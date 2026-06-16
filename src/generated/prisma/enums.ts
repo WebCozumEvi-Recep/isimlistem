@@ -17,6 +17,34 @@ export const Rol = {
 export type Rol = (typeof Rol)[keyof typeof Rol]
 
 
+export const FirmaUyeRol = {
+  FIRMA_ADMIN: 'FIRMA_ADMIN',
+  ICERIK_YONETICI: 'ICERIK_YONETICI',
+  RAPOR_IZLEYICI: 'RAPOR_IZLEYICI',
+  NETWORKER: 'NETWORKER'
+} as const
+
+export type FirmaUyeRol = (typeof FirmaUyeRol)[keyof typeof FirmaUyeRol]
+
+
+export const FirmaDurum = {
+  AKTIF: 'AKTIF',
+  PASIF: 'PASIF',
+  ASKIDA: 'ASKIDA'
+} as const
+
+export type FirmaDurum = (typeof FirmaDurum)[keyof typeof FirmaDurum]
+
+
+export const Paket = {
+  FREE: 'FREE',
+  BUSINESS: 'BUSINESS',
+  BUSINESS_PLUS: 'BUSINESS_PLUS'
+} as const
+
+export type Paket = (typeof Paket)[keyof typeof Paket]
+
+
 export const SunumDurum = {
   YENI: 'YENI',
   ARANDI: 'ARANDI',

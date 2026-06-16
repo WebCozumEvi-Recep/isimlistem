@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { requireUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { firmaUyeligi } from "@/lib/firma";
 import { cikisYap } from "@/app/auth/actions";
-import { LayoutGrid, List, KanbanSquare, Users, LogOut, Plus, MessageSquareText, FileText, CalendarClock, Bell } from "lucide-react";
+import { LayoutGrid, List, KanbanSquare, Users, LogOut, Plus, MessageSquareText, FileText, CalendarClock, Bell, Building2 } from "lucide-react";
 
 export default async function PanelLayout({
   children,
@@ -14,6 +15,9 @@ export default async function PanelLayout({
   const okunmamis = await prisma.bildirim.count({
     where: { kullaniciId: user.id, okundu: false },
   });
+
+  const uyelik = await firmaUyeligi(user.id);
+  const firmaYonetici = uyelik && ["FIRMA_ADMIN", "ICERIK_YONETICI", "RAPOR_IZLEYICI"].includes(uyelik.rol);
 
   const linkler = [
     { href: "/panel", etiket: "Panel", icon: LayoutGrid },
@@ -43,6 +47,15 @@ export default async function PanelLayout({
                   {l.etiket}
                 </Link>
               ))}
+              {firmaYonetici && (
+                <Link
+                  href="/firma"
+                  className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium text-indigo-600 hover:bg-indigo-50"
+                >
+                  <Building2 size={16} />
+                  Firma Paneli
+                </Link>
+              )}
               {user.rol === "ADMIN" && (
                 <Link
                   href="/admin"

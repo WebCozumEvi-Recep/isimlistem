@@ -19,8 +19,17 @@ export async function kayitOl(_prev: FormDurum, formData: FormData): Promise<For
   const mevcut = await prisma.kullanici.findUnique({ where: { email } });
   if (mevcut) return { hata: "Bu e-posta zaten kayıtlı." };
 
+  // Opsiyonel firma kayıt kodu — geçerliyse kullanıcı o firmaya bağlanır.
+  const kayitKodu = String(formData.get("kayitKodu") ?? "").trim();
+  let firma = null;
+  if (kayitKodu) {
+    firma = await prisma.firma.findUnique({ where: { kayitKodu } });
+    if (!firma) return { hata: "Firma kayıt kodu geçersiz." };
+    if (firma.durum !== "AKTIF") return { hata: "Bu firma hesabı şu an aktif değil." };
+  }
+
   const parolaHash = await bcrypt.hash(parola, 10);
-  // İlk kayıt olan kullanıcı ADMIN olur (white-label firma yöneticisi).
+  // İlk kayıt olan kullanıcı ADMIN olur (platform yöneticisi).
   const kullaniciSayisi = await prisma.kullanici.count();
   const kullanici = await prisma.kullanici.create({
     data: {
@@ -28,6 +37,8 @@ export async function kayitOl(_prev: FormDurum, formData: FormData): Promise<For
       email,
       parolaHash,
       rol: kullaniciSayisi === 0 ? "ADMIN" : "UYE",
+      varsayilanFirmaId: firma?.id ?? null,
+      ...(firma ? { firmaUyelikler: { create: { firmaId: firma.id, rol: "NETWORKER" } } } : {}),
     },
   });
 

@@ -13,6 +13,25 @@ enum Rol {
   ADMIN
 }
 
+enum FirmaUyeRol {
+  FIRMA_ADMIN
+  ICERIK_YONETICI
+  RAPOR_IZLEYICI
+  NETWORKER
+}
+
+enum FirmaDurum {
+  AKTIF
+  PASIF
+  ASKIDA
+}
+
+enum Paket {
+  FREE
+  BUSINESS
+  BUSINESS_PLUS
+}
+
 // Manuel huni durumu (mevcut — pano/liste bu sırayı kullanır)
 enum SunumDurum {
   YENI // listeye eklendi, henüz aksiyon yok
@@ -121,20 +140,58 @@ enum BildirimTip {
 }
 
 model Kullanici {
-  id            String         @id @default(cuid())
-  adSoyad       String
-  email         String         @unique
-  telefon       String?
-  parolaHash    String
-  rol           Rol            @default(UYE)
-  sehir         String?
-  bio           String?
-  profilFoto    String?
-  kisiler       Kisi[]
-  kaliplar      MesajKalibi[]
-  sayfalar      DavetSayfasi[]
-  bildirimler   Bildirim[]
-  createdAt     DateTime       @default(now())
+  id              String         @id @default(cuid())
+  adSoyad         String
+  email           String         @unique
+  telefon         String?
+  parolaHash      String
+  rol             Rol            @default(UYE)
+  sehir           String?
+  bio             String?
+  profilFoto      String?
+  varsayilanFirmaId String?
+  kisiler         Kisi[]
+  kaliplar        MesajKalibi[]
+  sayfalar        DavetSayfasi[]
+  bildirimler     Bildirim[]
+  firmaUyelikler  FirmaUye[]
+  createdAt       DateTime       @default(now())
+}
+
+model Firma {
+  id          String        @id @default(cuid())
+  ad          String
+  slug        String        @unique
+  logoUrl     String?
+  anaRenk     String?
+  aciklama    String?
+  website     String?
+  telefon     String?
+  whatsapp    String?
+  footerMetni String?
+  paket       Paket         @default(BUSINESS)
+  durum       FirmaDurum    @default(AKTIF)
+  kayitKodu   String        @unique
+  networkerLimiti Int?
+  uyeler      FirmaUye[]
+  kaliplar    MesajKalibi[]
+  sayfalar    DavetSayfasi[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model FirmaUye {
+  id          String      @id @default(cuid())
+  firma       Firma       @relation(fields: [firmaId], references: [id], onDelete: Cascade)
+  firmaId     String
+  kullanici   Kullanici   @relation(fields: [kullaniciId], references: [id], onDelete: Cascade)
+  kullaniciId String
+  rol         FirmaUyeRol @default(NETWORKER)
+  durum       FirmaDurum  @default(AKTIF)
+  createdAt   DateTime    @default(now())
+
+  @@unique([firmaId, kullaniciId])
+  @@index([firmaId])
 }
 
 model Kisi {
@@ -181,6 +238,8 @@ model MesajKalibi {
   sahiplik    SahiplikTipi @default(KISISEL)
   kullanici   Kullanici?   @relation(fields: [kullaniciId], references: [id], onDelete: Cascade)
   kullaniciId String?
+  firma       Firma?       @relation(fields: [firmaId], references: [id], onDelete: Cascade)
+  firmaId     String?
   baslik      String
   kategori    String       @default("ilk_temas")
   metin       String
@@ -190,6 +249,7 @@ model MesajKalibi {
 
   @@index([sahiplik])
   @@index([kullaniciId])
+  @@index([firmaId])
 }
 
 model DavetSayfasi {
@@ -197,6 +257,8 @@ model DavetSayfasi {
   sahiplik    SahiplikTipi  @default(KISISEL)
   kullanici   Kullanici?    @relation(fields: [kullaniciId], references: [id], onDelete: Cascade)
   kullaniciId String?
+  firma       Firma?        @relation(fields: [firmaId], references: [id], onDelete: Cascade)
+  firmaId     String?
   baslik      String
   aciklama    String?
   amac        String        @default("is_firsati")
@@ -208,6 +270,7 @@ model DavetSayfasi {
   updatedAt   DateTime      @updatedAt
 
   @@index([kullaniciId])
+  @@index([firmaId])
 }
 
 model DavetModulu {

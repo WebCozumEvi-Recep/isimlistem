@@ -613,14 +613,6 @@ export type DavetOlayiUncheckedUpdateManyWithoutLinkNestedInput = {
   deleteMany?: Prisma.DavetOlayiScalarWhereInput | Prisma.DavetOlayiScalarWhereInput[]
 }
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type DavetOlayiCreateWithoutLinkInput = {
   id?: string
   kullaniciId: string

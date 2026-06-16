@@ -1,4 +1,5 @@
 import { requireUser } from "@/lib/auth";
+import { firmaUyeligi } from "@/lib/firma";
 import { prisma } from "@/lib/prisma";
 import { kalipEkle, kalipSil } from "@/app/panel/davet-actions";
 import { KALIP_KATEGORILERI, KALIP_KATEGORI_ETIKET, type KalipKategori } from "@/lib/sabitler";
@@ -6,8 +7,13 @@ import { Trash2, Globe } from "lucide-react";
 
 export default async function KaliplarSayfasi() {
   const user = await requireUser();
+  const uyelik = await firmaUyeligi(user.id);
+  const firmaId = uyelik?.firmaId;
   const kaliplar = await prisma.mesajKalibi.findMany({
-    where: { OR: [{ sahiplik: "GLOBAL" }, { kullaniciId: user.id }], aktif: true },
+    where: {
+      aktif: true,
+      OR: [{ sahiplik: "GLOBAL" }, { kullaniciId: user.id }, ...(firmaId ? [{ firmaId }] : [])],
+    },
     orderBy: [{ sahiplik: "asc" }, { createdAt: "desc" }],
   });
 

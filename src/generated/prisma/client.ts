@@ -47,6 +47,16 @@ export { Prisma }
  */
 export type Kullanici = Prisma.KullaniciModel
 /**
+ * Model Firma
+ * 
+ */
+export type Firma = Prisma.FirmaModel
+/**
+ * Model FirmaUye
+ * 
+ */
+export type FirmaUye = Prisma.FirmaUyeModel
+/**
  * Model Kisi
  * 
  */

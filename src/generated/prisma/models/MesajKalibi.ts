@@ -28,6 +28,7 @@ export type MesajKalibiMinAggregateOutputType = {
   id: string | null
   sahiplik: $Enums.SahiplikTipi | null
   kullaniciId: string | null
+  firmaId: string | null
   baslik: string | null
   kategori: string | null
   metin: string | null
@@ -40,6 +41,7 @@ export type MesajKalibiMaxAggregateOutputType = {
   id: string | null
   sahiplik: $Enums.SahiplikTipi | null
   kullaniciId: string | null
+  firmaId: string | null
   baslik: string | null
   kategori: string | null
   metin: string | null
@@ -52,6 +54,7 @@ export type MesajKalibiCountAggregateOutputType = {
   id: number
   sahiplik: number
   kullaniciId: number
+  firmaId: number
   baslik: number
   kategori: number
   metin: number
@@ -66,6 +69,7 @@ export type MesajKalibiMinAggregateInputType = {
   id?: true
   sahiplik?: true
   kullaniciId?: true
+  firmaId?: true
   baslik?: true
   kategori?: true
   metin?: true
@@ -78,6 +82,7 @@ export type MesajKalibiMaxAggregateInputType = {
   id?: true
   sahiplik?: true
   kullaniciId?: true
+  firmaId?: true
   baslik?: true
   kategori?: true
   metin?: true
@@ -90,6 +95,7 @@ export type MesajKalibiCountAggregateInputType = {
   id?: true
   sahiplik?: true
   kullaniciId?: true
+  firmaId?: true
   baslik?: true
   kategori?: true
   metin?: true
@@ -175,6 +181,7 @@ export type MesajKalibiGroupByOutputType = {
   id: string
   sahiplik: $Enums.SahiplikTipi
   kullaniciId: string | null
+  firmaId: string | null
   baslik: string
   kategori: string
   metin: string
@@ -208,6 +215,7 @@ export type MesajKalibiWhereInput = {
   id?: Prisma.StringFilter<"MesajKalibi"> | string
   sahiplik?: Prisma.EnumSahiplikTipiFilter<"MesajKalibi"> | $Enums.SahiplikTipi
   kullaniciId?: Prisma.StringNullableFilter<"MesajKalibi"> | string | null
+  firmaId?: Prisma.StringNullableFilter<"MesajKalibi"> | string | null
   baslik?: Prisma.StringFilter<"MesajKalibi"> | string
   kategori?: Prisma.StringFilter<"MesajKalibi"> | string
   metin?: Prisma.StringFilter<"MesajKalibi"> | string
@@ -215,12 +223,14 @@ export type MesajKalibiWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"MesajKalibi"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MesajKalibi"> | Date | string
   kullanici?: Prisma.XOR<Prisma.KullaniciNullableScalarRelationFilter, Prisma.KullaniciWhereInput> | null
+  firma?: Prisma.XOR<Prisma.FirmaNullableScalarRelationFilter, Prisma.FirmaWhereInput> | null
 }
 
 export type MesajKalibiOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   sahiplik?: Prisma.SortOrder
   kullaniciId?: Prisma.SortOrderInput | Prisma.SortOrder
+  firmaId?: Prisma.SortOrderInput | Prisma.SortOrder
   baslik?: Prisma.SortOrder
   kategori?: Prisma.SortOrder
   metin?: Prisma.SortOrder
@@ -228,6 +238,7 @@ export type MesajKalibiOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   kullanici?: Prisma.KullaniciOrderByWithRelationInput
+  firma?: Prisma.FirmaOrderByWithRelationInput
 }
 
 export type MesajKalibiWhereUniqueInput = Prisma.AtLeast<{
@@ -237,6 +248,7 @@ export type MesajKalibiWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.MesajKalibiWhereInput | Prisma.MesajKalibiWhereInput[]
   sahiplik?: Prisma.EnumSahiplikTipiFilter<"MesajKalibi"> | $Enums.SahiplikTipi
   kullaniciId?: Prisma.StringNullableFilter<"MesajKalibi"> | string | null
+  firmaId?: Prisma.StringNullableFilter<"MesajKalibi"> | string | null
   baslik?: Prisma.StringFilter<"MesajKalibi"> | string
   kategori?: Prisma.StringFilter<"MesajKalibi"> | string
   metin?: Prisma.StringFilter<"MesajKalibi"> | string
@@ -244,12 +256,14 @@ export type MesajKalibiWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"MesajKalibi"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MesajKalibi"> | Date | string
   kullanici?: Prisma.XOR<Prisma.KullaniciNullableScalarRelationFilter, Prisma.KullaniciWhereInput> | null
+  firma?: Prisma.XOR<Prisma.FirmaNullableScalarRelationFilter, Prisma.FirmaWhereInput> | null
 }, "id">
 
 export type MesajKalibiOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   sahiplik?: Prisma.SortOrder
   kullaniciId?: Prisma.SortOrderInput | Prisma.SortOrder
+  firmaId?: Prisma.SortOrderInput | Prisma.SortOrder
   baslik?: Prisma.SortOrder
   kategori?: Prisma.SortOrder
   metin?: Prisma.SortOrder
@@ -268,6 +282,7 @@ export type MesajKalibiScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"MesajKalibi"> | string
   sahiplik?: Prisma.EnumSahiplikTipiWithAggregatesFilter<"MesajKalibi"> | $Enums.SahiplikTipi
   kullaniciId?: Prisma.StringNullableWithAggregatesFilter<"MesajKalibi"> | string | null
+  firmaId?: Prisma.StringNullableWithAggregatesFilter<"MesajKalibi"> | string | null
   baslik?: Prisma.StringWithAggregatesFilter<"MesajKalibi"> | string
   kategori?: Prisma.StringWithAggregatesFilter<"MesajKalibi"> | string
   metin?: Prisma.StringWithAggregatesFilter<"MesajKalibi"> | string
@@ -286,12 +301,14 @@ export type MesajKalibiCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   kullanici?: Prisma.KullaniciCreateNestedOneWithoutKaliplarInput
+  firma?: Prisma.FirmaCreateNestedOneWithoutKaliplarInput
 }
 
 export type MesajKalibiUncheckedCreateInput = {
   id?: string
   sahiplik?: $Enums.SahiplikTipi
   kullaniciId?: string | null
+  firmaId?: string | null
   baslik: string
   kategori?: string
   metin: string
@@ -310,12 +327,14 @@ export type MesajKalibiUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kullanici?: Prisma.KullaniciUpdateOneWithoutKaliplarNestedInput
+  firma?: Prisma.FirmaUpdateOneWithoutKaliplarNestedInput
 }
 
 export type MesajKalibiUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   sahiplik?: Prisma.EnumSahiplikTipiFieldUpdateOperationsInput | $Enums.SahiplikTipi
   kullaniciId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   kategori?: Prisma.StringFieldUpdateOperationsInput | string
   metin?: Prisma.StringFieldUpdateOperationsInput | string
@@ -328,6 +347,7 @@ export type MesajKalibiCreateManyInput = {
   id?: string
   sahiplik?: $Enums.SahiplikTipi
   kullaniciId?: string | null
+  firmaId?: string | null
   baslik: string
   kategori?: string
   metin: string
@@ -351,6 +371,7 @@ export type MesajKalibiUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   sahiplik?: Prisma.EnumSahiplikTipiFieldUpdateOperationsInput | $Enums.SahiplikTipi
   kullaniciId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   kategori?: Prisma.StringFieldUpdateOperationsInput | string
   metin?: Prisma.StringFieldUpdateOperationsInput | string
@@ -373,6 +394,7 @@ export type MesajKalibiCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   sahiplik?: Prisma.SortOrder
   kullaniciId?: Prisma.SortOrder
+  firmaId?: Prisma.SortOrder
   baslik?: Prisma.SortOrder
   kategori?: Prisma.SortOrder
   metin?: Prisma.SortOrder
@@ -385,6 +407,7 @@ export type MesajKalibiMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   sahiplik?: Prisma.SortOrder
   kullaniciId?: Prisma.SortOrder
+  firmaId?: Prisma.SortOrder
   baslik?: Prisma.SortOrder
   kategori?: Prisma.SortOrder
   metin?: Prisma.SortOrder
@@ -397,6 +420,7 @@ export type MesajKalibiMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   sahiplik?: Prisma.SortOrder
   kullaniciId?: Prisma.SortOrder
+  firmaId?: Prisma.SortOrder
   baslik?: Prisma.SortOrder
   kategori?: Prisma.SortOrder
   metin?: Prisma.SortOrder
@@ -447,6 +471,48 @@ export type MesajKalibiUncheckedUpdateManyWithoutKullaniciNestedInput = {
   deleteMany?: Prisma.MesajKalibiScalarWhereInput | Prisma.MesajKalibiScalarWhereInput[]
 }
 
+export type MesajKalibiCreateNestedManyWithoutFirmaInput = {
+  create?: Prisma.XOR<Prisma.MesajKalibiCreateWithoutFirmaInput, Prisma.MesajKalibiUncheckedCreateWithoutFirmaInput> | Prisma.MesajKalibiCreateWithoutFirmaInput[] | Prisma.MesajKalibiUncheckedCreateWithoutFirmaInput[]
+  connectOrCreate?: Prisma.MesajKalibiCreateOrConnectWithoutFirmaInput | Prisma.MesajKalibiCreateOrConnectWithoutFirmaInput[]
+  createMany?: Prisma.MesajKalibiCreateManyFirmaInputEnvelope
+  connect?: Prisma.MesajKalibiWhereUniqueInput | Prisma.MesajKalibiWhereUniqueInput[]
+}
+
+export type MesajKalibiUncheckedCreateNestedManyWithoutFirmaInput = {
+  create?: Prisma.XOR<Prisma.MesajKalibiCreateWithoutFirmaInput, Prisma.MesajKalibiUncheckedCreateWithoutFirmaInput> | Prisma.MesajKalibiCreateWithoutFirmaInput[] | Prisma.MesajKalibiUncheckedCreateWithoutFirmaInput[]
+  connectOrCreate?: Prisma.MesajKalibiCreateOrConnectWithoutFirmaInput | Prisma.MesajKalibiCreateOrConnectWithoutFirmaInput[]
+  createMany?: Prisma.MesajKalibiCreateManyFirmaInputEnvelope
+  connect?: Prisma.MesajKalibiWhereUniqueInput | Prisma.MesajKalibiWhereUniqueInput[]
+}
+
+export type MesajKalibiUpdateManyWithoutFirmaNestedInput = {
+  create?: Prisma.XOR<Prisma.MesajKalibiCreateWithoutFirmaInput, Prisma.MesajKalibiUncheckedCreateWithoutFirmaInput> | Prisma.MesajKalibiCreateWithoutFirmaInput[] | Prisma.MesajKalibiUncheckedCreateWithoutFirmaInput[]
+  connectOrCreate?: Prisma.MesajKalibiCreateOrConnectWithoutFirmaInput | Prisma.MesajKalibiCreateOrConnectWithoutFirmaInput[]
+  upsert?: Prisma.MesajKalibiUpsertWithWhereUniqueWithoutFirmaInput | Prisma.MesajKalibiUpsertWithWhereUniqueWithoutFirmaInput[]
+  createMany?: Prisma.MesajKalibiCreateManyFirmaInputEnvelope
+  set?: Prisma.MesajKalibiWhereUniqueInput | Prisma.MesajKalibiWhereUniqueInput[]
+  disconnect?: Prisma.MesajKalibiWhereUniqueInput | Prisma.MesajKalibiWhereUniqueInput[]
+  delete?: Prisma.MesajKalibiWhereUniqueInput | Prisma.MesajKalibiWhereUniqueInput[]
+  connect?: Prisma.MesajKalibiWhereUniqueInput | Prisma.MesajKalibiWhereUniqueInput[]
+  update?: Prisma.MesajKalibiUpdateWithWhereUniqueWithoutFirmaInput | Prisma.MesajKalibiUpdateWithWhereUniqueWithoutFirmaInput[]
+  updateMany?: Prisma.MesajKalibiUpdateManyWithWhereWithoutFirmaInput | Prisma.MesajKalibiUpdateManyWithWhereWithoutFirmaInput[]
+  deleteMany?: Prisma.MesajKalibiScalarWhereInput | Prisma.MesajKalibiScalarWhereInput[]
+}
+
+export type MesajKalibiUncheckedUpdateManyWithoutFirmaNestedInput = {
+  create?: Prisma.XOR<Prisma.MesajKalibiCreateWithoutFirmaInput, Prisma.MesajKalibiUncheckedCreateWithoutFirmaInput> | Prisma.MesajKalibiCreateWithoutFirmaInput[] | Prisma.MesajKalibiUncheckedCreateWithoutFirmaInput[]
+  connectOrCreate?: Prisma.MesajKalibiCreateOrConnectWithoutFirmaInput | Prisma.MesajKalibiCreateOrConnectWithoutFirmaInput[]
+  upsert?: Prisma.MesajKalibiUpsertWithWhereUniqueWithoutFirmaInput | Prisma.MesajKalibiUpsertWithWhereUniqueWithoutFirmaInput[]
+  createMany?: Prisma.MesajKalibiCreateManyFirmaInputEnvelope
+  set?: Prisma.MesajKalibiWhereUniqueInput | Prisma.MesajKalibiWhereUniqueInput[]
+  disconnect?: Prisma.MesajKalibiWhereUniqueInput | Prisma.MesajKalibiWhereUniqueInput[]
+  delete?: Prisma.MesajKalibiWhereUniqueInput | Prisma.MesajKalibiWhereUniqueInput[]
+  connect?: Prisma.MesajKalibiWhereUniqueInput | Prisma.MesajKalibiWhereUniqueInput[]
+  update?: Prisma.MesajKalibiUpdateWithWhereUniqueWithoutFirmaInput | Prisma.MesajKalibiUpdateWithWhereUniqueWithoutFirmaInput[]
+  updateMany?: Prisma.MesajKalibiUpdateManyWithWhereWithoutFirmaInput | Prisma.MesajKalibiUpdateManyWithWhereWithoutFirmaInput[]
+  deleteMany?: Prisma.MesajKalibiScalarWhereInput | Prisma.MesajKalibiScalarWhereInput[]
+}
+
 export type EnumSahiplikTipiFieldUpdateOperationsInput = {
   set?: $Enums.SahiplikTipi
 }
@@ -460,11 +526,13 @@ export type MesajKalibiCreateWithoutKullaniciInput = {
   aktif?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  firma?: Prisma.FirmaCreateNestedOneWithoutKaliplarInput
 }
 
 export type MesajKalibiUncheckedCreateWithoutKullaniciInput = {
   id?: string
   sahiplik?: $Enums.SahiplikTipi
+  firmaId?: string | null
   baslik: string
   kategori?: string
   metin: string
@@ -506,6 +574,7 @@ export type MesajKalibiScalarWhereInput = {
   id?: Prisma.StringFilter<"MesajKalibi"> | string
   sahiplik?: Prisma.EnumSahiplikTipiFilter<"MesajKalibi"> | $Enums.SahiplikTipi
   kullaniciId?: Prisma.StringNullableFilter<"MesajKalibi"> | string | null
+  firmaId?: Prisma.StringNullableFilter<"MesajKalibi"> | string | null
   baslik?: Prisma.StringFilter<"MesajKalibi"> | string
   kategori?: Prisma.StringFilter<"MesajKalibi"> | string
   metin?: Prisma.StringFilter<"MesajKalibi"> | string
@@ -514,9 +583,60 @@ export type MesajKalibiScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"MesajKalibi"> | Date | string
 }
 
+export type MesajKalibiCreateWithoutFirmaInput = {
+  id?: string
+  sahiplik?: $Enums.SahiplikTipi
+  baslik: string
+  kategori?: string
+  metin: string
+  aktif?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  kullanici?: Prisma.KullaniciCreateNestedOneWithoutKaliplarInput
+}
+
+export type MesajKalibiUncheckedCreateWithoutFirmaInput = {
+  id?: string
+  sahiplik?: $Enums.SahiplikTipi
+  kullaniciId?: string | null
+  baslik: string
+  kategori?: string
+  metin: string
+  aktif?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type MesajKalibiCreateOrConnectWithoutFirmaInput = {
+  where: Prisma.MesajKalibiWhereUniqueInput
+  create: Prisma.XOR<Prisma.MesajKalibiCreateWithoutFirmaInput, Prisma.MesajKalibiUncheckedCreateWithoutFirmaInput>
+}
+
+export type MesajKalibiCreateManyFirmaInputEnvelope = {
+  data: Prisma.MesajKalibiCreateManyFirmaInput | Prisma.MesajKalibiCreateManyFirmaInput[]
+  skipDuplicates?: boolean
+}
+
+export type MesajKalibiUpsertWithWhereUniqueWithoutFirmaInput = {
+  where: Prisma.MesajKalibiWhereUniqueInput
+  update: Prisma.XOR<Prisma.MesajKalibiUpdateWithoutFirmaInput, Prisma.MesajKalibiUncheckedUpdateWithoutFirmaInput>
+  create: Prisma.XOR<Prisma.MesajKalibiCreateWithoutFirmaInput, Prisma.MesajKalibiUncheckedCreateWithoutFirmaInput>
+}
+
+export type MesajKalibiUpdateWithWhereUniqueWithoutFirmaInput = {
+  where: Prisma.MesajKalibiWhereUniqueInput
+  data: Prisma.XOR<Prisma.MesajKalibiUpdateWithoutFirmaInput, Prisma.MesajKalibiUncheckedUpdateWithoutFirmaInput>
+}
+
+export type MesajKalibiUpdateManyWithWhereWithoutFirmaInput = {
+  where: Prisma.MesajKalibiScalarWhereInput
+  data: Prisma.XOR<Prisma.MesajKalibiUpdateManyMutationInput, Prisma.MesajKalibiUncheckedUpdateManyWithoutFirmaInput>
+}
+
 export type MesajKalibiCreateManyKullaniciInput = {
   id?: string
   sahiplik?: $Enums.SahiplikTipi
+  firmaId?: string | null
   baslik: string
   kategori?: string
   metin: string
@@ -534,11 +654,13 @@ export type MesajKalibiUpdateWithoutKullaniciInput = {
   aktif?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  firma?: Prisma.FirmaUpdateOneWithoutKaliplarNestedInput
 }
 
 export type MesajKalibiUncheckedUpdateWithoutKullaniciInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   sahiplik?: Prisma.EnumSahiplikTipiFieldUpdateOperationsInput | $Enums.SahiplikTipi
+  firmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   kategori?: Prisma.StringFieldUpdateOperationsInput | string
   metin?: Prisma.StringFieldUpdateOperationsInput | string
@@ -550,6 +672,55 @@ export type MesajKalibiUncheckedUpdateWithoutKullaniciInput = {
 export type MesajKalibiUncheckedUpdateManyWithoutKullaniciInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   sahiplik?: Prisma.EnumSahiplikTipiFieldUpdateOperationsInput | $Enums.SahiplikTipi
+  firmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  baslik?: Prisma.StringFieldUpdateOperationsInput | string
+  kategori?: Prisma.StringFieldUpdateOperationsInput | string
+  metin?: Prisma.StringFieldUpdateOperationsInput | string
+  aktif?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type MesajKalibiCreateManyFirmaInput = {
+  id?: string
+  sahiplik?: $Enums.SahiplikTipi
+  kullaniciId?: string | null
+  baslik: string
+  kategori?: string
+  metin: string
+  aktif?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type MesajKalibiUpdateWithoutFirmaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sahiplik?: Prisma.EnumSahiplikTipiFieldUpdateOperationsInput | $Enums.SahiplikTipi
+  baslik?: Prisma.StringFieldUpdateOperationsInput | string
+  kategori?: Prisma.StringFieldUpdateOperationsInput | string
+  metin?: Prisma.StringFieldUpdateOperationsInput | string
+  aktif?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  kullanici?: Prisma.KullaniciUpdateOneWithoutKaliplarNestedInput
+}
+
+export type MesajKalibiUncheckedUpdateWithoutFirmaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sahiplik?: Prisma.EnumSahiplikTipiFieldUpdateOperationsInput | $Enums.SahiplikTipi
+  kullaniciId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  baslik?: Prisma.StringFieldUpdateOperationsInput | string
+  kategori?: Prisma.StringFieldUpdateOperationsInput | string
+  metin?: Prisma.StringFieldUpdateOperationsInput | string
+  aktif?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type MesajKalibiUncheckedUpdateManyWithoutFirmaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sahiplik?: Prisma.EnumSahiplikTipiFieldUpdateOperationsInput | $Enums.SahiplikTipi
+  kullaniciId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   kategori?: Prisma.StringFieldUpdateOperationsInput | string
   metin?: Prisma.StringFieldUpdateOperationsInput | string
@@ -564,6 +735,7 @@ export type MesajKalibiSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   id?: boolean
   sahiplik?: boolean
   kullaniciId?: boolean
+  firmaId?: boolean
   baslik?: boolean
   kategori?: boolean
   metin?: boolean
@@ -571,12 +743,14 @@ export type MesajKalibiSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   createdAt?: boolean
   updatedAt?: boolean
   kullanici?: boolean | Prisma.MesajKalibi$kullaniciArgs<ExtArgs>
+  firma?: boolean | Prisma.MesajKalibi$firmaArgs<ExtArgs>
 }, ExtArgs["result"]["mesajKalibi"]>
 
 export type MesajKalibiSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   sahiplik?: boolean
   kullaniciId?: boolean
+  firmaId?: boolean
   baslik?: boolean
   kategori?: boolean
   metin?: boolean
@@ -584,12 +758,14 @@ export type MesajKalibiSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   createdAt?: boolean
   updatedAt?: boolean
   kullanici?: boolean | Prisma.MesajKalibi$kullaniciArgs<ExtArgs>
+  firma?: boolean | Prisma.MesajKalibi$firmaArgs<ExtArgs>
 }, ExtArgs["result"]["mesajKalibi"]>
 
 export type MesajKalibiSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   sahiplik?: boolean
   kullaniciId?: boolean
+  firmaId?: boolean
   baslik?: boolean
   kategori?: boolean
   metin?: boolean
@@ -597,12 +773,14 @@ export type MesajKalibiSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   createdAt?: boolean
   updatedAt?: boolean
   kullanici?: boolean | Prisma.MesajKalibi$kullaniciArgs<ExtArgs>
+  firma?: boolean | Prisma.MesajKalibi$firmaArgs<ExtArgs>
 }, ExtArgs["result"]["mesajKalibi"]>
 
 export type MesajKalibiSelectScalar = {
   id?: boolean
   sahiplik?: boolean
   kullaniciId?: boolean
+  firmaId?: boolean
   baslik?: boolean
   kategori?: boolean
   metin?: boolean
@@ -611,26 +789,31 @@ export type MesajKalibiSelectScalar = {
   updatedAt?: boolean
 }
 
-export type MesajKalibiOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sahiplik" | "kullaniciId" | "baslik" | "kategori" | "metin" | "aktif" | "createdAt" | "updatedAt", ExtArgs["result"]["mesajKalibi"]>
+export type MesajKalibiOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sahiplik" | "kullaniciId" | "firmaId" | "baslik" | "kategori" | "metin" | "aktif" | "createdAt" | "updatedAt", ExtArgs["result"]["mesajKalibi"]>
 export type MesajKalibiInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   kullanici?: boolean | Prisma.MesajKalibi$kullaniciArgs<ExtArgs>
+  firma?: boolean | Prisma.MesajKalibi$firmaArgs<ExtArgs>
 }
 export type MesajKalibiIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   kullanici?: boolean | Prisma.MesajKalibi$kullaniciArgs<ExtArgs>
+  firma?: boolean | Prisma.MesajKalibi$firmaArgs<ExtArgs>
 }
 export type MesajKalibiIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   kullanici?: boolean | Prisma.MesajKalibi$kullaniciArgs<ExtArgs>
+  firma?: boolean | Prisma.MesajKalibi$firmaArgs<ExtArgs>
 }
 
 export type $MesajKalibiPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "MesajKalibi"
   objects: {
     kullanici: Prisma.$KullaniciPayload<ExtArgs> | null
+    firma: Prisma.$FirmaPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     sahiplik: $Enums.SahiplikTipi
     kullaniciId: string | null
+    firmaId: string | null
     baslik: string
     kategori: string
     metin: string
@@ -1032,6 +1215,7 @@ readonly fields: MesajKalibiFieldRefs;
 export interface Prisma__MesajKalibiClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   kullanici<T extends Prisma.MesajKalibi$kullaniciArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MesajKalibi$kullaniciArgs<ExtArgs>>): Prisma.Prisma__KullaniciClient<runtime.Types.Result.GetResult<Prisma.$KullaniciPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  firma<T extends Prisma.MesajKalibi$firmaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MesajKalibi$firmaArgs<ExtArgs>>): Prisma.Prisma__FirmaClient<runtime.Types.Result.GetResult<Prisma.$FirmaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1064,6 +1248,7 @@ export interface MesajKalibiFieldRefs {
   readonly id: Prisma.FieldRef<"MesajKalibi", 'String'>
   readonly sahiplik: Prisma.FieldRef<"MesajKalibi", 'SahiplikTipi'>
   readonly kullaniciId: Prisma.FieldRef<"MesajKalibi", 'String'>
+  readonly firmaId: Prisma.FieldRef<"MesajKalibi", 'String'>
   readonly baslik: Prisma.FieldRef<"MesajKalibi", 'String'>
   readonly kategori: Prisma.FieldRef<"MesajKalibi", 'String'>
   readonly metin: Prisma.FieldRef<"MesajKalibi", 'String'>
@@ -1487,6 +1672,25 @@ export type MesajKalibi$kullaniciArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   include?: Prisma.KullaniciInclude<ExtArgs> | null
   where?: Prisma.KullaniciWhereInput
+}
+
+/**
+ * MesajKalibi.firma
+ */
+export type MesajKalibi$firmaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Firma
+   */
+  select?: Prisma.FirmaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Firma
+   */
+  omit?: Prisma.FirmaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FirmaInclude<ExtArgs> | null
+  where?: Prisma.FirmaWhereInput
 }
 
 /**

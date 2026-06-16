@@ -7,6 +7,7 @@ import { requireUser } from "@/lib/auth";
 import { davetUrl } from "@/lib/site";
 import { davetToken } from "@/server/token";
 import { mesajDoldur, waMeUrl } from "@/server/mesaj";
+import { sayfaDuzenleyebilir } from "@/lib/firma";
 import { KALIP_KATEGORILERI } from "@/lib/sabitler";
 
 function metin(fd: FormData, key: string): string | null {
@@ -66,10 +67,10 @@ export async function sayfaEkle(formData: FormData) {
 
 export async function modulEkle(sayfaId: string, formData: FormData) {
   const user = await requireUser();
-  const sayfa = await prisma.davetSayfasi.findUnique({ where: { id: sayfaId }, include: { moduller: true } });
-  if (!sayfa || sayfa.kullaniciId !== user.id) return;
+  if (!(await sayfaDuzenleyebilir(sayfaId, user.id))) return;
+  const adet = await prisma.davetModulu.count({ where: { sayfaId } });
   const tip = String(formData.get("tip") ?? "METIN");
-  const sira = sayfa.moduller.length;
+  const sira = adet;
   let icerik: Record<string, unknown> = {};
   if (tip === "METIN") icerik = { baslik: metin(formData, "baslik"), metin: metin(formData, "metin") };
   else if (tip === "GORSEL") icerik = { url: metin(formData, "url") };
@@ -84,16 +85,15 @@ export async function modulEkle(sayfaId: string, formData: FormData) {
 
 export async function modulSil(modulId: string, sayfaId: string) {
   const user = await requireUser();
-  const sayfa = await prisma.davetSayfasi.findUnique({ where: { id: sayfaId } });
-  if (!sayfa || sayfa.kullaniciId !== user.id) return;
+  if (!(await sayfaDuzenleyebilir(sayfaId, user.id))) return;
   await prisma.davetModulu.delete({ where: { id: modulId } });
   revalidatePath(`/panel/sayfa/${sayfaId}`);
 }
 
 export async function sayfaYayinla(sayfaId: string) {
   const user = await requireUser();
-  const sayfa = await prisma.davetSayfasi.findUnique({ where: { id: sayfaId } });
-  if (!sayfa || sayfa.kullaniciId !== user.id) return;
+  const sayfa = await sayfaDuzenleyebilir(sayfaId, user.id);
+  if (!sayfa) return;
   await prisma.davetSayfasi.update({
     where: { id: sayfaId },
     data: { durum: sayfa.durum === "YAYINDA" ? "TASLAK" : "YAYINDA" },
@@ -103,8 +103,7 @@ export async function sayfaYayinla(sayfaId: string) {
 
 export async function sayfaSil(sayfaId: string) {
   const user = await requireUser();
-  const sayfa = await prisma.davetSayfasi.findUnique({ where: { id: sayfaId } });
-  if (!sayfa || sayfa.kullaniciId !== user.id) return;
+  if (!(await sayfaDuzenleyebilir(sayfaId, user.id))) return;
   await prisma.davetSayfasi.delete({ where: { id: sayfaId } });
   redirect("/panel/sayfalar");
 }

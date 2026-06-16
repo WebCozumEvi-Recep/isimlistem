@@ -26,6 +26,9 @@ export default function AuthForm({ mod }: { mod: "giris" | "kayit" }) {
         )}
         <Alan label="E-posta" name="email" type="email" />
         <Alan label="Parola" name="parola" type="password" />
+        {mod === "kayit" && (
+          <Alan label="Firma Kayıt Kodu (opsiyonel)" name="kayitKodu" type="text" zorunlu={false} />
+        )}
 
         {durum?.hata && (
           <p className="rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-700">
@@ -63,14 +66,14 @@ export default function AuthForm({ mod }: { mod: "giris" | "kayit" }) {
   );
 }
 
-function Alan({ label, name, type }: { label: string; name: string; type: string }) {
+function Alan({ label, name, type, zorunlu = true }: { label: string; name: string; type: string; zorunlu?: boolean }) {
   return (
     <label className="block">
       <span className="mb-1 block text-sm font-medium text-slate-700">{label}</span>
       <input
         name={name}
         type={type}
-        required
+        required={zorunlu}
         className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
       />
     </label>

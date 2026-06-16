@@ -28,6 +28,7 @@ export type DavetSayfasiMinAggregateOutputType = {
   id: string | null
   sahiplik: $Enums.SahiplikTipi | null
   kullaniciId: string | null
+  firmaId: string | null
   baslik: string | null
   aciklama: string | null
   amac: string | null
@@ -41,6 +42,7 @@ export type DavetSayfasiMaxAggregateOutputType = {
   id: string | null
   sahiplik: $Enums.SahiplikTipi | null
   kullaniciId: string | null
+  firmaId: string | null
   baslik: string | null
   aciklama: string | null
   amac: string | null
@@ -54,6 +56,7 @@ export type DavetSayfasiCountAggregateOutputType = {
   id: number
   sahiplik: number
   kullaniciId: number
+  firmaId: number
   baslik: number
   aciklama: number
   amac: number
@@ -69,6 +72,7 @@ export type DavetSayfasiMinAggregateInputType = {
   id?: true
   sahiplik?: true
   kullaniciId?: true
+  firmaId?: true
   baslik?: true
   aciklama?: true
   amac?: true
@@ -82,6 +86,7 @@ export type DavetSayfasiMaxAggregateInputType = {
   id?: true
   sahiplik?: true
   kullaniciId?: true
+  firmaId?: true
   baslik?: true
   aciklama?: true
   amac?: true
@@ -95,6 +100,7 @@ export type DavetSayfasiCountAggregateInputType = {
   id?: true
   sahiplik?: true
   kullaniciId?: true
+  firmaId?: true
   baslik?: true
   aciklama?: true
   amac?: true
@@ -181,6 +187,7 @@ export type DavetSayfasiGroupByOutputType = {
   id: string
   sahiplik: $Enums.SahiplikTipi
   kullaniciId: string | null
+  firmaId: string | null
   baslik: string
   aciklama: string | null
   amac: string
@@ -215,6 +222,7 @@ export type DavetSayfasiWhereInput = {
   id?: Prisma.StringFilter<"DavetSayfasi"> | string
   sahiplik?: Prisma.EnumSahiplikTipiFilter<"DavetSayfasi"> | $Enums.SahiplikTipi
   kullaniciId?: Prisma.StringNullableFilter<"DavetSayfasi"> | string | null
+  firmaId?: Prisma.StringNullableFilter<"DavetSayfasi"> | string | null
   baslik?: Prisma.StringFilter<"DavetSayfasi"> | string
   aciklama?: Prisma.StringNullableFilter<"DavetSayfasi"> | string | null
   amac?: Prisma.StringFilter<"DavetSayfasi"> | string
@@ -223,6 +231,7 @@ export type DavetSayfasiWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"DavetSayfasi"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"DavetSayfasi"> | Date | string
   kullanici?: Prisma.XOR<Prisma.KullaniciNullableScalarRelationFilter, Prisma.KullaniciWhereInput> | null
+  firma?: Prisma.XOR<Prisma.FirmaNullableScalarRelationFilter, Prisma.FirmaWhereInput> | null
   moduller?: Prisma.DavetModuluListRelationFilter
   linkler?: Prisma.DavetLinkiListRelationFilter
 }
@@ -231,6 +240,7 @@ export type DavetSayfasiOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   sahiplik?: Prisma.SortOrder
   kullaniciId?: Prisma.SortOrderInput | Prisma.SortOrder
+  firmaId?: Prisma.SortOrderInput | Prisma.SortOrder
   baslik?: Prisma.SortOrder
   aciklama?: Prisma.SortOrderInput | Prisma.SortOrder
   amac?: Prisma.SortOrder
@@ -239,6 +249,7 @@ export type DavetSayfasiOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   kullanici?: Prisma.KullaniciOrderByWithRelationInput
+  firma?: Prisma.FirmaOrderByWithRelationInput
   moduller?: Prisma.DavetModuluOrderByRelationAggregateInput
   linkler?: Prisma.DavetLinkiOrderByRelationAggregateInput
 }
@@ -250,6 +261,7 @@ export type DavetSayfasiWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.DavetSayfasiWhereInput | Prisma.DavetSayfasiWhereInput[]
   sahiplik?: Prisma.EnumSahiplikTipiFilter<"DavetSayfasi"> | $Enums.SahiplikTipi
   kullaniciId?: Prisma.StringNullableFilter<"DavetSayfasi"> | string | null
+  firmaId?: Prisma.StringNullableFilter<"DavetSayfasi"> | string | null
   baslik?: Prisma.StringFilter<"DavetSayfasi"> | string
   aciklama?: Prisma.StringNullableFilter<"DavetSayfasi"> | string | null
   amac?: Prisma.StringFilter<"DavetSayfasi"> | string
@@ -258,6 +270,7 @@ export type DavetSayfasiWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"DavetSayfasi"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"DavetSayfasi"> | Date | string
   kullanici?: Prisma.XOR<Prisma.KullaniciNullableScalarRelationFilter, Prisma.KullaniciWhereInput> | null
+  firma?: Prisma.XOR<Prisma.FirmaNullableScalarRelationFilter, Prisma.FirmaWhereInput> | null
   moduller?: Prisma.DavetModuluListRelationFilter
   linkler?: Prisma.DavetLinkiListRelationFilter
 }, "id">
@@ -266,6 +279,7 @@ export type DavetSayfasiOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   sahiplik?: Prisma.SortOrder
   kullaniciId?: Prisma.SortOrderInput | Prisma.SortOrder
+  firmaId?: Prisma.SortOrderInput | Prisma.SortOrder
   baslik?: Prisma.SortOrder
   aciklama?: Prisma.SortOrderInput | Prisma.SortOrder
   amac?: Prisma.SortOrder
@@ -285,6 +299,7 @@ export type DavetSayfasiScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"DavetSayfasi"> | string
   sahiplik?: Prisma.EnumSahiplikTipiWithAggregatesFilter<"DavetSayfasi"> | $Enums.SahiplikTipi
   kullaniciId?: Prisma.StringNullableWithAggregatesFilter<"DavetSayfasi"> | string | null
+  firmaId?: Prisma.StringNullableWithAggregatesFilter<"DavetSayfasi"> | string | null
   baslik?: Prisma.StringWithAggregatesFilter<"DavetSayfasi"> | string
   aciklama?: Prisma.StringNullableWithAggregatesFilter<"DavetSayfasi"> | string | null
   amac?: Prisma.StringWithAggregatesFilter<"DavetSayfasi"> | string
@@ -305,6 +320,7 @@ export type DavetSayfasiCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   kullanici?: Prisma.KullaniciCreateNestedOneWithoutSayfalarInput
+  firma?: Prisma.FirmaCreateNestedOneWithoutSayfalarInput
   moduller?: Prisma.DavetModuluCreateNestedManyWithoutSayfaInput
   linkler?: Prisma.DavetLinkiCreateNestedManyWithoutSayfaInput
 }
@@ -313,6 +329,7 @@ export type DavetSayfasiUncheckedCreateInput = {
   id?: string
   sahiplik?: $Enums.SahiplikTipi
   kullaniciId?: string | null
+  firmaId?: string | null
   baslik: string
   aciklama?: string | null
   amac?: string
@@ -335,6 +352,7 @@ export type DavetSayfasiUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kullanici?: Prisma.KullaniciUpdateOneWithoutSayfalarNestedInput
+  firma?: Prisma.FirmaUpdateOneWithoutSayfalarNestedInput
   moduller?: Prisma.DavetModuluUpdateManyWithoutSayfaNestedInput
   linkler?: Prisma.DavetLinkiUpdateManyWithoutSayfaNestedInput
 }
@@ -343,6 +361,7 @@ export type DavetSayfasiUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   sahiplik?: Prisma.EnumSahiplikTipiFieldUpdateOperationsInput | $Enums.SahiplikTipi
   kullaniciId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amac?: Prisma.StringFieldUpdateOperationsInput | string
@@ -358,6 +377,7 @@ export type DavetSayfasiCreateManyInput = {
   id?: string
   sahiplik?: $Enums.SahiplikTipi
   kullaniciId?: string | null
+  firmaId?: string | null
   baslik: string
   aciklama?: string | null
   amac?: string
@@ -383,6 +403,7 @@ export type DavetSayfasiUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   sahiplik?: Prisma.EnumSahiplikTipiFieldUpdateOperationsInput | $Enums.SahiplikTipi
   kullaniciId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amac?: Prisma.StringFieldUpdateOperationsInput | string
@@ -406,6 +427,7 @@ export type DavetSayfasiCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   sahiplik?: Prisma.SortOrder
   kullaniciId?: Prisma.SortOrder
+  firmaId?: Prisma.SortOrder
   baslik?: Prisma.SortOrder
   aciklama?: Prisma.SortOrder
   amac?: Prisma.SortOrder
@@ -419,6 +441,7 @@ export type DavetSayfasiMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   sahiplik?: Prisma.SortOrder
   kullaniciId?: Prisma.SortOrder
+  firmaId?: Prisma.SortOrder
   baslik?: Prisma.SortOrder
   aciklama?: Prisma.SortOrder
   amac?: Prisma.SortOrder
@@ -432,6 +455,7 @@ export type DavetSayfasiMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   sahiplik?: Prisma.SortOrder
   kullaniciId?: Prisma.SortOrder
+  firmaId?: Prisma.SortOrder
   baslik?: Prisma.SortOrder
   aciklama?: Prisma.SortOrder
   amac?: Prisma.SortOrder
@@ -488,6 +512,48 @@ export type DavetSayfasiUncheckedUpdateManyWithoutKullaniciNestedInput = {
   deleteMany?: Prisma.DavetSayfasiScalarWhereInput | Prisma.DavetSayfasiScalarWhereInput[]
 }
 
+export type DavetSayfasiCreateNestedManyWithoutFirmaInput = {
+  create?: Prisma.XOR<Prisma.DavetSayfasiCreateWithoutFirmaInput, Prisma.DavetSayfasiUncheckedCreateWithoutFirmaInput> | Prisma.DavetSayfasiCreateWithoutFirmaInput[] | Prisma.DavetSayfasiUncheckedCreateWithoutFirmaInput[]
+  connectOrCreate?: Prisma.DavetSayfasiCreateOrConnectWithoutFirmaInput | Prisma.DavetSayfasiCreateOrConnectWithoutFirmaInput[]
+  createMany?: Prisma.DavetSayfasiCreateManyFirmaInputEnvelope
+  connect?: Prisma.DavetSayfasiWhereUniqueInput | Prisma.DavetSayfasiWhereUniqueInput[]
+}
+
+export type DavetSayfasiUncheckedCreateNestedManyWithoutFirmaInput = {
+  create?: Prisma.XOR<Prisma.DavetSayfasiCreateWithoutFirmaInput, Prisma.DavetSayfasiUncheckedCreateWithoutFirmaInput> | Prisma.DavetSayfasiCreateWithoutFirmaInput[] | Prisma.DavetSayfasiUncheckedCreateWithoutFirmaInput[]
+  connectOrCreate?: Prisma.DavetSayfasiCreateOrConnectWithoutFirmaInput | Prisma.DavetSayfasiCreateOrConnectWithoutFirmaInput[]
+  createMany?: Prisma.DavetSayfasiCreateManyFirmaInputEnvelope
+  connect?: Prisma.DavetSayfasiWhereUniqueInput | Prisma.DavetSayfasiWhereUniqueInput[]
+}
+
+export type DavetSayfasiUpdateManyWithoutFirmaNestedInput = {
+  create?: Prisma.XOR<Prisma.DavetSayfasiCreateWithoutFirmaInput, Prisma.DavetSayfasiUncheckedCreateWithoutFirmaInput> | Prisma.DavetSayfasiCreateWithoutFirmaInput[] | Prisma.DavetSayfasiUncheckedCreateWithoutFirmaInput[]
+  connectOrCreate?: Prisma.DavetSayfasiCreateOrConnectWithoutFirmaInput | Prisma.DavetSayfasiCreateOrConnectWithoutFirmaInput[]
+  upsert?: Prisma.DavetSayfasiUpsertWithWhereUniqueWithoutFirmaInput | Prisma.DavetSayfasiUpsertWithWhereUniqueWithoutFirmaInput[]
+  createMany?: Prisma.DavetSayfasiCreateManyFirmaInputEnvelope
+  set?: Prisma.DavetSayfasiWhereUniqueInput | Prisma.DavetSayfasiWhereUniqueInput[]
+  disconnect?: Prisma.DavetSayfasiWhereUniqueInput | Prisma.DavetSayfasiWhereUniqueInput[]
+  delete?: Prisma.DavetSayfasiWhereUniqueInput | Prisma.DavetSayfasiWhereUniqueInput[]
+  connect?: Prisma.DavetSayfasiWhereUniqueInput | Prisma.DavetSayfasiWhereUniqueInput[]
+  update?: Prisma.DavetSayfasiUpdateWithWhereUniqueWithoutFirmaInput | Prisma.DavetSayfasiUpdateWithWhereUniqueWithoutFirmaInput[]
+  updateMany?: Prisma.DavetSayfasiUpdateManyWithWhereWithoutFirmaInput | Prisma.DavetSayfasiUpdateManyWithWhereWithoutFirmaInput[]
+  deleteMany?: Prisma.DavetSayfasiScalarWhereInput | Prisma.DavetSayfasiScalarWhereInput[]
+}
+
+export type DavetSayfasiUncheckedUpdateManyWithoutFirmaNestedInput = {
+  create?: Prisma.XOR<Prisma.DavetSayfasiCreateWithoutFirmaInput, Prisma.DavetSayfasiUncheckedCreateWithoutFirmaInput> | Prisma.DavetSayfasiCreateWithoutFirmaInput[] | Prisma.DavetSayfasiUncheckedCreateWithoutFirmaInput[]
+  connectOrCreate?: Prisma.DavetSayfasiCreateOrConnectWithoutFirmaInput | Prisma.DavetSayfasiCreateOrConnectWithoutFirmaInput[]
+  upsert?: Prisma.DavetSayfasiUpsertWithWhereUniqueWithoutFirmaInput | Prisma.DavetSayfasiUpsertWithWhereUniqueWithoutFirmaInput[]
+  createMany?: Prisma.DavetSayfasiCreateManyFirmaInputEnvelope
+  set?: Prisma.DavetSayfasiWhereUniqueInput | Prisma.DavetSayfasiWhereUniqueInput[]
+  disconnect?: Prisma.DavetSayfasiWhereUniqueInput | Prisma.DavetSayfasiWhereUniqueInput[]
+  delete?: Prisma.DavetSayfasiWhereUniqueInput | Prisma.DavetSayfasiWhereUniqueInput[]
+  connect?: Prisma.DavetSayfasiWhereUniqueInput | Prisma.DavetSayfasiWhereUniqueInput[]
+  update?: Prisma.DavetSayfasiUpdateWithWhereUniqueWithoutFirmaInput | Prisma.DavetSayfasiUpdateWithWhereUniqueWithoutFirmaInput[]
+  updateMany?: Prisma.DavetSayfasiUpdateManyWithWhereWithoutFirmaInput | Prisma.DavetSayfasiUpdateManyWithWhereWithoutFirmaInput[]
+  deleteMany?: Prisma.DavetSayfasiScalarWhereInput | Prisma.DavetSayfasiScalarWhereInput[]
+}
+
 export type EnumSayfaDurumFieldUpdateOperationsInput = {
   set?: $Enums.SayfaDurum
 }
@@ -530,6 +596,7 @@ export type DavetSayfasiCreateWithoutKullaniciInput = {
   varsayilan?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  firma?: Prisma.FirmaCreateNestedOneWithoutSayfalarInput
   moduller?: Prisma.DavetModuluCreateNestedManyWithoutSayfaInput
   linkler?: Prisma.DavetLinkiCreateNestedManyWithoutSayfaInput
 }
@@ -537,6 +604,7 @@ export type DavetSayfasiCreateWithoutKullaniciInput = {
 export type DavetSayfasiUncheckedCreateWithoutKullaniciInput = {
   id?: string
   sahiplik?: $Enums.SahiplikTipi
+  firmaId?: string | null
   baslik: string
   aciklama?: string | null
   amac?: string
@@ -581,6 +649,7 @@ export type DavetSayfasiScalarWhereInput = {
   id?: Prisma.StringFilter<"DavetSayfasi"> | string
   sahiplik?: Prisma.EnumSahiplikTipiFilter<"DavetSayfasi"> | $Enums.SahiplikTipi
   kullaniciId?: Prisma.StringNullableFilter<"DavetSayfasi"> | string | null
+  firmaId?: Prisma.StringNullableFilter<"DavetSayfasi"> | string | null
   baslik?: Prisma.StringFilter<"DavetSayfasi"> | string
   aciklama?: Prisma.StringNullableFilter<"DavetSayfasi"> | string | null
   amac?: Prisma.StringFilter<"DavetSayfasi"> | string
@@ -588,6 +657,62 @@ export type DavetSayfasiScalarWhereInput = {
   varsayilan?: Prisma.BoolFilter<"DavetSayfasi"> | boolean
   createdAt?: Prisma.DateTimeFilter<"DavetSayfasi"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"DavetSayfasi"> | Date | string
+}
+
+export type DavetSayfasiCreateWithoutFirmaInput = {
+  id?: string
+  sahiplik?: $Enums.SahiplikTipi
+  baslik: string
+  aciklama?: string | null
+  amac?: string
+  durum?: $Enums.SayfaDurum
+  varsayilan?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  kullanici?: Prisma.KullaniciCreateNestedOneWithoutSayfalarInput
+  moduller?: Prisma.DavetModuluCreateNestedManyWithoutSayfaInput
+  linkler?: Prisma.DavetLinkiCreateNestedManyWithoutSayfaInput
+}
+
+export type DavetSayfasiUncheckedCreateWithoutFirmaInput = {
+  id?: string
+  sahiplik?: $Enums.SahiplikTipi
+  kullaniciId?: string | null
+  baslik: string
+  aciklama?: string | null
+  amac?: string
+  durum?: $Enums.SayfaDurum
+  varsayilan?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  moduller?: Prisma.DavetModuluUncheckedCreateNestedManyWithoutSayfaInput
+  linkler?: Prisma.DavetLinkiUncheckedCreateNestedManyWithoutSayfaInput
+}
+
+export type DavetSayfasiCreateOrConnectWithoutFirmaInput = {
+  where: Prisma.DavetSayfasiWhereUniqueInput
+  create: Prisma.XOR<Prisma.DavetSayfasiCreateWithoutFirmaInput, Prisma.DavetSayfasiUncheckedCreateWithoutFirmaInput>
+}
+
+export type DavetSayfasiCreateManyFirmaInputEnvelope = {
+  data: Prisma.DavetSayfasiCreateManyFirmaInput | Prisma.DavetSayfasiCreateManyFirmaInput[]
+  skipDuplicates?: boolean
+}
+
+export type DavetSayfasiUpsertWithWhereUniqueWithoutFirmaInput = {
+  where: Prisma.DavetSayfasiWhereUniqueInput
+  update: Prisma.XOR<Prisma.DavetSayfasiUpdateWithoutFirmaInput, Prisma.DavetSayfasiUncheckedUpdateWithoutFirmaInput>
+  create: Prisma.XOR<Prisma.DavetSayfasiCreateWithoutFirmaInput, Prisma.DavetSayfasiUncheckedCreateWithoutFirmaInput>
+}
+
+export type DavetSayfasiUpdateWithWhereUniqueWithoutFirmaInput = {
+  where: Prisma.DavetSayfasiWhereUniqueInput
+  data: Prisma.XOR<Prisma.DavetSayfasiUpdateWithoutFirmaInput, Prisma.DavetSayfasiUncheckedUpdateWithoutFirmaInput>
+}
+
+export type DavetSayfasiUpdateManyWithWhereWithoutFirmaInput = {
+  where: Prisma.DavetSayfasiScalarWhereInput
+  data: Prisma.XOR<Prisma.DavetSayfasiUpdateManyMutationInput, Prisma.DavetSayfasiUncheckedUpdateManyWithoutFirmaInput>
 }
 
 export type DavetSayfasiCreateWithoutModullerInput = {
@@ -601,6 +726,7 @@ export type DavetSayfasiCreateWithoutModullerInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   kullanici?: Prisma.KullaniciCreateNestedOneWithoutSayfalarInput
+  firma?: Prisma.FirmaCreateNestedOneWithoutSayfalarInput
   linkler?: Prisma.DavetLinkiCreateNestedManyWithoutSayfaInput
 }
 
@@ -608,6 +734,7 @@ export type DavetSayfasiUncheckedCreateWithoutModullerInput = {
   id?: string
   sahiplik?: $Enums.SahiplikTipi
   kullaniciId?: string | null
+  firmaId?: string | null
   baslik: string
   aciklama?: string | null
   amac?: string
@@ -645,6 +772,7 @@ export type DavetSayfasiUpdateWithoutModullerInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kullanici?: Prisma.KullaniciUpdateOneWithoutSayfalarNestedInput
+  firma?: Prisma.FirmaUpdateOneWithoutSayfalarNestedInput
   linkler?: Prisma.DavetLinkiUpdateManyWithoutSayfaNestedInput
 }
 
@@ -652,6 +780,7 @@ export type DavetSayfasiUncheckedUpdateWithoutModullerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   sahiplik?: Prisma.EnumSahiplikTipiFieldUpdateOperationsInput | $Enums.SahiplikTipi
   kullaniciId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amac?: Prisma.StringFieldUpdateOperationsInput | string
@@ -673,6 +802,7 @@ export type DavetSayfasiCreateWithoutLinklerInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   kullanici?: Prisma.KullaniciCreateNestedOneWithoutSayfalarInput
+  firma?: Prisma.FirmaCreateNestedOneWithoutSayfalarInput
   moduller?: Prisma.DavetModuluCreateNestedManyWithoutSayfaInput
 }
 
@@ -680,6 +810,7 @@ export type DavetSayfasiUncheckedCreateWithoutLinklerInput = {
   id?: string
   sahiplik?: $Enums.SahiplikTipi
   kullaniciId?: string | null
+  firmaId?: string | null
   baslik: string
   aciklama?: string | null
   amac?: string
@@ -717,6 +848,7 @@ export type DavetSayfasiUpdateWithoutLinklerInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kullanici?: Prisma.KullaniciUpdateOneWithoutSayfalarNestedInput
+  firma?: Prisma.FirmaUpdateOneWithoutSayfalarNestedInput
   moduller?: Prisma.DavetModuluUpdateManyWithoutSayfaNestedInput
 }
 
@@ -724,6 +856,7 @@ export type DavetSayfasiUncheckedUpdateWithoutLinklerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   sahiplik?: Prisma.EnumSahiplikTipiFieldUpdateOperationsInput | $Enums.SahiplikTipi
   kullaniciId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amac?: Prisma.StringFieldUpdateOperationsInput | string
@@ -737,6 +870,7 @@ export type DavetSayfasiUncheckedUpdateWithoutLinklerInput = {
 export type DavetSayfasiCreateManyKullaniciInput = {
   id?: string
   sahiplik?: $Enums.SahiplikTipi
+  firmaId?: string | null
   baslik: string
   aciklama?: string | null
   amac?: string
@@ -756,6 +890,7 @@ export type DavetSayfasiUpdateWithoutKullaniciInput = {
   varsayilan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  firma?: Prisma.FirmaUpdateOneWithoutSayfalarNestedInput
   moduller?: Prisma.DavetModuluUpdateManyWithoutSayfaNestedInput
   linkler?: Prisma.DavetLinkiUpdateManyWithoutSayfaNestedInput
 }
@@ -763,6 +898,7 @@ export type DavetSayfasiUpdateWithoutKullaniciInput = {
 export type DavetSayfasiUncheckedUpdateWithoutKullaniciInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   sahiplik?: Prisma.EnumSahiplikTipiFieldUpdateOperationsInput | $Enums.SahiplikTipi
+  firmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amac?: Prisma.StringFieldUpdateOperationsInput | string
@@ -777,6 +913,63 @@ export type DavetSayfasiUncheckedUpdateWithoutKullaniciInput = {
 export type DavetSayfasiUncheckedUpdateManyWithoutKullaniciInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   sahiplik?: Prisma.EnumSahiplikTipiFieldUpdateOperationsInput | $Enums.SahiplikTipi
+  firmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  baslik?: Prisma.StringFieldUpdateOperationsInput | string
+  aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amac?: Prisma.StringFieldUpdateOperationsInput | string
+  durum?: Prisma.EnumSayfaDurumFieldUpdateOperationsInput | $Enums.SayfaDurum
+  varsayilan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type DavetSayfasiCreateManyFirmaInput = {
+  id?: string
+  sahiplik?: $Enums.SahiplikTipi
+  kullaniciId?: string | null
+  baslik: string
+  aciklama?: string | null
+  amac?: string
+  durum?: $Enums.SayfaDurum
+  varsayilan?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type DavetSayfasiUpdateWithoutFirmaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sahiplik?: Prisma.EnumSahiplikTipiFieldUpdateOperationsInput | $Enums.SahiplikTipi
+  baslik?: Prisma.StringFieldUpdateOperationsInput | string
+  aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amac?: Prisma.StringFieldUpdateOperationsInput | string
+  durum?: Prisma.EnumSayfaDurumFieldUpdateOperationsInput | $Enums.SayfaDurum
+  varsayilan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  kullanici?: Prisma.KullaniciUpdateOneWithoutSayfalarNestedInput
+  moduller?: Prisma.DavetModuluUpdateManyWithoutSayfaNestedInput
+  linkler?: Prisma.DavetLinkiUpdateManyWithoutSayfaNestedInput
+}
+
+export type DavetSayfasiUncheckedUpdateWithoutFirmaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sahiplik?: Prisma.EnumSahiplikTipiFieldUpdateOperationsInput | $Enums.SahiplikTipi
+  kullaniciId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  baslik?: Prisma.StringFieldUpdateOperationsInput | string
+  aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amac?: Prisma.StringFieldUpdateOperationsInput | string
+  durum?: Prisma.EnumSayfaDurumFieldUpdateOperationsInput | $Enums.SayfaDurum
+  varsayilan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  moduller?: Prisma.DavetModuluUncheckedUpdateManyWithoutSayfaNestedInput
+  linkler?: Prisma.DavetLinkiUncheckedUpdateManyWithoutSayfaNestedInput
+}
+
+export type DavetSayfasiUncheckedUpdateManyWithoutFirmaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sahiplik?: Prisma.EnumSahiplikTipiFieldUpdateOperationsInput | $Enums.SahiplikTipi
+  kullaniciId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amac?: Prisma.StringFieldUpdateOperationsInput | string
@@ -830,6 +1023,7 @@ export type DavetSayfasiSelect<ExtArgs extends runtime.Types.Extensions.Internal
   id?: boolean
   sahiplik?: boolean
   kullaniciId?: boolean
+  firmaId?: boolean
   baslik?: boolean
   aciklama?: boolean
   amac?: boolean
@@ -838,6 +1032,7 @@ export type DavetSayfasiSelect<ExtArgs extends runtime.Types.Extensions.Internal
   createdAt?: boolean
   updatedAt?: boolean
   kullanici?: boolean | Prisma.DavetSayfasi$kullaniciArgs<ExtArgs>
+  firma?: boolean | Prisma.DavetSayfasi$firmaArgs<ExtArgs>
   moduller?: boolean | Prisma.DavetSayfasi$modullerArgs<ExtArgs>
   linkler?: boolean | Prisma.DavetSayfasi$linklerArgs<ExtArgs>
   _count?: boolean | Prisma.DavetSayfasiCountOutputTypeDefaultArgs<ExtArgs>
@@ -847,6 +1042,7 @@ export type DavetSayfasiSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   id?: boolean
   sahiplik?: boolean
   kullaniciId?: boolean
+  firmaId?: boolean
   baslik?: boolean
   aciklama?: boolean
   amac?: boolean
@@ -855,12 +1051,14 @@ export type DavetSayfasiSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   createdAt?: boolean
   updatedAt?: boolean
   kullanici?: boolean | Prisma.DavetSayfasi$kullaniciArgs<ExtArgs>
+  firma?: boolean | Prisma.DavetSayfasi$firmaArgs<ExtArgs>
 }, ExtArgs["result"]["davetSayfasi"]>
 
 export type DavetSayfasiSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   sahiplik?: boolean
   kullaniciId?: boolean
+  firmaId?: boolean
   baslik?: boolean
   aciklama?: boolean
   amac?: boolean
@@ -869,12 +1067,14 @@ export type DavetSayfasiSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   createdAt?: boolean
   updatedAt?: boolean
   kullanici?: boolean | Prisma.DavetSayfasi$kullaniciArgs<ExtArgs>
+  firma?: boolean | Prisma.DavetSayfasi$firmaArgs<ExtArgs>
 }, ExtArgs["result"]["davetSayfasi"]>
 
 export type DavetSayfasiSelectScalar = {
   id?: boolean
   sahiplik?: boolean
   kullaniciId?: boolean
+  firmaId?: boolean
   baslik?: boolean
   aciklama?: boolean
   amac?: boolean
@@ -884,24 +1084,28 @@ export type DavetSayfasiSelectScalar = {
   updatedAt?: boolean
 }
 
-export type DavetSayfasiOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sahiplik" | "kullaniciId" | "baslik" | "aciklama" | "amac" | "durum" | "varsayilan" | "createdAt" | "updatedAt", ExtArgs["result"]["davetSayfasi"]>
+export type DavetSayfasiOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sahiplik" | "kullaniciId" | "firmaId" | "baslik" | "aciklama" | "amac" | "durum" | "varsayilan" | "createdAt" | "updatedAt", ExtArgs["result"]["davetSayfasi"]>
 export type DavetSayfasiInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   kullanici?: boolean | Prisma.DavetSayfasi$kullaniciArgs<ExtArgs>
+  firma?: boolean | Prisma.DavetSayfasi$firmaArgs<ExtArgs>
   moduller?: boolean | Prisma.DavetSayfasi$modullerArgs<ExtArgs>
   linkler?: boolean | Prisma.DavetSayfasi$linklerArgs<ExtArgs>
   _count?: boolean | Prisma.DavetSayfasiCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type DavetSayfasiIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   kullanici?: boolean | Prisma.DavetSayfasi$kullaniciArgs<ExtArgs>
+  firma?: boolean | Prisma.DavetSayfasi$firmaArgs<ExtArgs>
 }
 export type DavetSayfasiIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   kullanici?: boolean | Prisma.DavetSayfasi$kullaniciArgs<ExtArgs>
+  firma?: boolean | Prisma.DavetSayfasi$firmaArgs<ExtArgs>
 }
 
 export type $DavetSayfasiPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "DavetSayfasi"
   objects: {
     kullanici: Prisma.$KullaniciPayload<ExtArgs> | null
+    firma: Prisma.$FirmaPayload<ExtArgs> | null
     moduller: Prisma.$DavetModuluPayload<ExtArgs>[]
     linkler: Prisma.$DavetLinkiPayload<ExtArgs>[]
   }
@@ -909,6 +1113,7 @@ export type $DavetSayfasiPayload<ExtArgs extends runtime.Types.Extensions.Intern
     id: string
     sahiplik: $Enums.SahiplikTipi
     kullaniciId: string | null
+    firmaId: string | null
     baslik: string
     aciklama: string | null
     amac: string
@@ -1311,6 +1516,7 @@ readonly fields: DavetSayfasiFieldRefs;
 export interface Prisma__DavetSayfasiClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   kullanici<T extends Prisma.DavetSayfasi$kullaniciArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DavetSayfasi$kullaniciArgs<ExtArgs>>): Prisma.Prisma__KullaniciClient<runtime.Types.Result.GetResult<Prisma.$KullaniciPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  firma<T extends Prisma.DavetSayfasi$firmaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DavetSayfasi$firmaArgs<ExtArgs>>): Prisma.Prisma__FirmaClient<runtime.Types.Result.GetResult<Prisma.$FirmaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   moduller<T extends Prisma.DavetSayfasi$modullerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DavetSayfasi$modullerArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DavetModuluPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   linkler<T extends Prisma.DavetSayfasi$linklerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DavetSayfasi$linklerArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DavetLinkiPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1345,6 +1551,7 @@ export interface DavetSayfasiFieldRefs {
   readonly id: Prisma.FieldRef<"DavetSayfasi", 'String'>
   readonly sahiplik: Prisma.FieldRef<"DavetSayfasi", 'SahiplikTipi'>
   readonly kullaniciId: Prisma.FieldRef<"DavetSayfasi", 'String'>
+  readonly firmaId: Prisma.FieldRef<"DavetSayfasi", 'String'>
   readonly baslik: Prisma.FieldRef<"DavetSayfasi", 'String'>
   readonly aciklama: Prisma.FieldRef<"DavetSayfasi", 'String'>
   readonly amac: Prisma.FieldRef<"DavetSayfasi", 'String'>
@@ -1769,6 +1976,25 @@ export type DavetSayfasi$kullaniciArgs<ExtArgs extends runtime.Types.Extensions.
    */
   include?: Prisma.KullaniciInclude<ExtArgs> | null
   where?: Prisma.KullaniciWhereInput
+}
+
+/**
+ * DavetSayfasi.firma
+ */
+export type DavetSayfasi$firmaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Firma
+   */
+  select?: Prisma.FirmaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Firma
+   */
+  omit?: Prisma.FirmaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FirmaInclude<ExtArgs> | null
+  where?: Prisma.FirmaWhereInput
 }
 
 /**

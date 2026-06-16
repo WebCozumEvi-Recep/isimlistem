@@ -52,6 +52,8 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Kullanici: 'Kullanici',
+  Firma: 'Firma',
+  FirmaUye: 'FirmaUye',
   Kisi: 'Kisi',
   Aktivite: 'Aktivite',
   MesajKalibi: 'MesajKalibi',
@@ -90,10 +92,45 @@ export const KullaniciScalarFieldEnum = {
   sehir: 'sehir',
   bio: 'bio',
   profilFoto: 'profilFoto',
+  varsayilanFirmaId: 'varsayilanFirmaId',
   createdAt: 'createdAt'
 } as const
 
 export type KullaniciScalarFieldEnum = (typeof KullaniciScalarFieldEnum)[keyof typeof KullaniciScalarFieldEnum]
+
+
+export const FirmaScalarFieldEnum = {
+  id: 'id',
+  ad: 'ad',
+  slug: 'slug',
+  logoUrl: 'logoUrl',
+  anaRenk: 'anaRenk',
+  aciklama: 'aciklama',
+  website: 'website',
+  telefon: 'telefon',
+  whatsapp: 'whatsapp',
+  footerMetni: 'footerMetni',
+  paket: 'paket',
+  durum: 'durum',
+  kayitKodu: 'kayitKodu',
+  networkerLimiti: 'networkerLimiti',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type FirmaScalarFieldEnum = (typeof FirmaScalarFieldEnum)[keyof typeof FirmaScalarFieldEnum]
+
+
+export const FirmaUyeScalarFieldEnum = {
+  id: 'id',
+  firmaId: 'firmaId',
+  kullaniciId: 'kullaniciId',
+  rol: 'rol',
+  durum: 'durum',
+  createdAt: 'createdAt'
+} as const
+
+export type FirmaUyeScalarFieldEnum = (typeof FirmaUyeScalarFieldEnum)[keyof typeof FirmaUyeScalarFieldEnum]
 
 
 export const KisiScalarFieldEnum = {
@@ -136,6 +173,7 @@ export const MesajKalibiScalarFieldEnum = {
   id: 'id',
   sahiplik: 'sahiplik',
   kullaniciId: 'kullaniciId',
+  firmaId: 'firmaId',
   baslik: 'baslik',
   kategori: 'kategori',
   metin: 'metin',
@@ -151,6 +189,7 @@ export const DavetSayfasiScalarFieldEnum = {
   id: 'id',
   sahiplik: 'sahiplik',
   kullaniciId: 'kullaniciId',
+  firmaId: 'firmaId',
   baslik: 'baslik',
   aciklama: 'aciklama',
   amac: 'amac',

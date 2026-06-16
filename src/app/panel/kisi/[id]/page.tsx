@@ -7,6 +7,7 @@ import DurumRozeti from "@/components/DurumRozeti";
 import AdayAnalitik from "@/components/AdayAnalitik";
 import { kisiGuncelle, durumDegistir, kisiSil } from "@/app/panel/actions";
 import { whatsappHazirla, gonderildiOnayla } from "@/app/panel/davet-actions";
+import { firmaUyeligi } from "@/lib/firma";
 import { SUNUM_DURUMLARI, DURUM_ETIKET, SICAKLIK_ETIKET, SICAKLIK_RENK, skorSicaklik, type SunumDurum } from "@/lib/sabitler";
 import { Trash2, Send, MessageCircle } from "lucide-react";
 
@@ -24,12 +25,20 @@ export default async function KisiDetaySayfasi({ params }: { params: Promise<{ i
   });
   if (!kisi || kisi.kullaniciId !== user.id) notFound();
 
+  const uyelik = await firmaUyeligi(user.id);
+  const firmaId = uyelik?.firmaId;
   const [kaliplar, sayfalar] = await Promise.all([
     prisma.mesajKalibi.findMany({
-      where: { OR: [{ sahiplik: "GLOBAL" }, { kullaniciId: user.id }], aktif: true },
+      where: {
+        aktif: true,
+        OR: [{ sahiplik: "GLOBAL" }, { kullaniciId: user.id }, ...(firmaId ? [{ firmaId }] : [])],
+      },
       orderBy: [{ sahiplik: "asc" }, { baslik: "asc" }],
     }),
-    prisma.davetSayfasi.findMany({ where: { kullaniciId: user.id }, orderBy: { updatedAt: "desc" } }),
+    prisma.davetSayfasi.findMany({
+      where: { OR: [{ kullaniciId: user.id }, ...(firmaId ? [{ firmaId, durum: "YAYINDA" as const }] : [])] },
+      orderBy: { updatedAt: "desc" },
+    }),
   ]);
 
   // Analitik agregasyon

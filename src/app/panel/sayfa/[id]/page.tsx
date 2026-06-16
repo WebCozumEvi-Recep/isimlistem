@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { requireUser } from "@/lib/auth";
+import { sayfaDuzenleyebilir } from "@/lib/firma";
 import { prisma } from "@/lib/prisma";
 import { modulEkle, modulSil, sayfaYayinla, sayfaSil } from "@/app/panel/davet-actions";
 import { Trash2 } from "lucide-react";
@@ -16,11 +17,13 @@ const MODUL_ETIKET: Record<string, string> = {
 export default async function SayfaBuilder({ params }: { params: Promise<{ id: string }> }) {
   const user = await requireUser();
   const { id } = await params;
+  const erisim = await sayfaDuzenleyebilir(id, user.id);
+  if (!erisim) notFound();
   const sayfa = await prisma.davetSayfasi.findUnique({
     where: { id },
     include: { moduller: { orderBy: { sira: "asc" } } },
   });
-  if (!sayfa || sayfa.kullaniciId !== user.id) notFound();
+  if (!sayfa) notFound();
 
   return (
     <div className="space-y-6">

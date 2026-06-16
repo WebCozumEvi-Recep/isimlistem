@@ -385,6 +385,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   Kullanici: 'Kullanici',
+  Firma: 'Firma',
+  FirmaUye: 'FirmaUye',
   Kisi: 'Kisi',
   Aktivite: 'Aktivite',
   MesajKalibi: 'MesajKalibi',
@@ -410,7 +412,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "kullanici" | "kisi" | "aktivite" | "mesajKalibi" | "davetSayfasi" | "davetModulu" | "davetLinki" | "davetOlayi" | "hazirMesajLog" | "randevuTalebi" | "bildirim"
+    modelProps: "kullanici" | "firma" | "firmaUye" | "kisi" | "aktivite" | "mesajKalibi" | "davetSayfasi" | "davetModulu" | "davetLinki" | "davetOlayi" | "hazirMesajLog" | "randevuTalebi" | "bildirim"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -485,6 +487,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.KullaniciCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.KullaniciCountAggregateOutputType> | number
+        }
+      }
+    }
+    Firma: {
+      payload: Prisma.$FirmaPayload<ExtArgs>
+      fields: Prisma.FirmaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.FirmaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FirmaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.FirmaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FirmaPayload>
+        }
+        findFirst: {
+          args: Prisma.FirmaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FirmaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.FirmaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FirmaPayload>
+        }
+        findMany: {
+          args: Prisma.FirmaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FirmaPayload>[]
+        }
+        create: {
+          args: Prisma.FirmaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FirmaPayload>
+        }
+        createMany: {
+          args: Prisma.FirmaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.FirmaCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FirmaPayload>[]
+        }
+        delete: {
+          args: Prisma.FirmaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FirmaPayload>
+        }
+        update: {
+          args: Prisma.FirmaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FirmaPayload>
+        }
+        deleteMany: {
+          args: Prisma.FirmaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.FirmaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.FirmaUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FirmaPayload>[]
+        }
+        upsert: {
+          args: Prisma.FirmaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FirmaPayload>
+        }
+        aggregate: {
+          args: Prisma.FirmaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateFirma>
+        }
+        groupBy: {
+          args: Prisma.FirmaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FirmaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.FirmaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FirmaCountAggregateOutputType> | number
+        }
+      }
+    }
+    FirmaUye: {
+      payload: Prisma.$FirmaUyePayload<ExtArgs>
+      fields: Prisma.FirmaUyeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.FirmaUyeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FirmaUyePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.FirmaUyeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FirmaUyePayload>
+        }
+        findFirst: {
+          args: Prisma.FirmaUyeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FirmaUyePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.FirmaUyeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FirmaUyePayload>
+        }
+        findMany: {
+          args: Prisma.FirmaUyeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FirmaUyePayload>[]
+        }
+        create: {
+          args: Prisma.FirmaUyeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FirmaUyePayload>
+        }
+        createMany: {
+          args: Prisma.FirmaUyeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.FirmaUyeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FirmaUyePayload>[]
+        }
+        delete: {
+          args: Prisma.FirmaUyeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FirmaUyePayload>
+        }
+        update: {
+          args: Prisma.FirmaUyeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FirmaUyePayload>
+        }
+        deleteMany: {
+          args: Prisma.FirmaUyeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.FirmaUyeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.FirmaUyeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FirmaUyePayload>[]
+        }
+        upsert: {
+          args: Prisma.FirmaUyeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FirmaUyePayload>
+        }
+        aggregate: {
+          args: Prisma.FirmaUyeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateFirmaUye>
+        }
+        groupBy: {
+          args: Prisma.FirmaUyeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FirmaUyeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.FirmaUyeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FirmaUyeCountAggregateOutputType> | number
         }
       }
     }
@@ -1277,10 +1427,45 @@ export const KullaniciScalarFieldEnum = {
   sehir: 'sehir',
   bio: 'bio',
   profilFoto: 'profilFoto',
+  varsayilanFirmaId: 'varsayilanFirmaId',
   createdAt: 'createdAt'
 } as const
 
 export type KullaniciScalarFieldEnum = (typeof KullaniciScalarFieldEnum)[keyof typeof KullaniciScalarFieldEnum]
+
+
+export const FirmaScalarFieldEnum = {
+  id: 'id',
+  ad: 'ad',
+  slug: 'slug',
+  logoUrl: 'logoUrl',
+  anaRenk: 'anaRenk',
+  aciklama: 'aciklama',
+  website: 'website',
+  telefon: 'telefon',
+  whatsapp: 'whatsapp',
+  footerMetni: 'footerMetni',
+  paket: 'paket',
+  durum: 'durum',
+  kayitKodu: 'kayitKodu',
+  networkerLimiti: 'networkerLimiti',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type FirmaScalarFieldEnum = (typeof FirmaScalarFieldEnum)[keyof typeof FirmaScalarFieldEnum]
+
+
+export const FirmaUyeScalarFieldEnum = {
+  id: 'id',
+  firmaId: 'firmaId',
+  kullaniciId: 'kullaniciId',
+  rol: 'rol',
+  durum: 'durum',
+  createdAt: 'createdAt'
+} as const
+
+export type FirmaUyeScalarFieldEnum = (typeof FirmaUyeScalarFieldEnum)[keyof typeof FirmaUyeScalarFieldEnum]
 
 
 export const KisiScalarFieldEnum = {
@@ -1323,6 +1508,7 @@ export const MesajKalibiScalarFieldEnum = {
   id: 'id',
   sahiplik: 'sahiplik',
   kullaniciId: 'kullaniciId',
+  firmaId: 'firmaId',
   baslik: 'baslik',
   kategori: 'kategori',
   metin: 'metin',
@@ -1338,6 +1524,7 @@ export const DavetSayfasiScalarFieldEnum = {
   id: 'id',
   sahiplik: 'sahiplik',
   kullaniciId: 'kullaniciId',
+  firmaId: 'firmaId',
   baslik: 'baslik',
   aciklama: 'aciklama',
   amac: 'amac',
@@ -1537,6 +1724,62 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
+ * Reference to a field of type 'Paket'
+ */
+export type EnumPaketFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Paket'>
+    
+
+
+/**
+ * Reference to a field of type 'Paket[]'
+ */
+export type ListEnumPaketFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Paket[]'>
+    
+
+
+/**
+ * Reference to a field of type 'FirmaDurum'
+ */
+export type EnumFirmaDurumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FirmaDurum'>
+    
+
+
+/**
+ * Reference to a field of type 'FirmaDurum[]'
+ */
+export type ListEnumFirmaDurumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FirmaDurum[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Int'
+ */
+export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+/**
+ * Reference to a field of type 'Int[]'
+ */
+export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'FirmaUyeRol'
+ */
+export type EnumFirmaUyeRolFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FirmaUyeRol'>
+    
+
+
+/**
+ * Reference to a field of type 'FirmaUyeRol[]'
+ */
+export type ListEnumFirmaUyeRolFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FirmaUyeRol[]'>
+    
+
+
+/**
  * Reference to a field of type 'AdayTipi'
  */
 export type EnumAdayTipiFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AdayTipi'>
@@ -1589,20 +1832,6 @@ export type EnumSunumDurumFieldRefInput<$PrismaModel> = FieldRefInputType<$Prism
  * Reference to a field of type 'SunumDurum[]'
  */
 export type ListEnumSunumDurumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SunumDurum[]'>
-    
-
-
-/**
- * Reference to a field of type 'Int'
- */
-export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-/**
- * Reference to a field of type 'Int[]'
- */
-export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -1863,6 +2092,8 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   kullanici?: Prisma.KullaniciOmit
+  firma?: Prisma.FirmaOmit
+  firmaUye?: Prisma.FirmaUyeOmit
   kisi?: Prisma.KisiOmit
   aktivite?: Prisma.AktiviteOmit
   mesajKalibi?: Prisma.MesajKalibiOmit
