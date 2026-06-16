@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import DavetTracker from "@/components/DavetTracker";
+import DavetVideo from "@/components/DavetVideo";
 import { ButonGrubu, RandevuModulu } from "@/components/DavetAksiyonlar";
 import { telefonNormalize } from "@/server/mesaj";
 import type { Metadata } from "next";
@@ -54,11 +55,7 @@ export default async function DavetSayfasi({ params }: { params: Promise<{ token
           }
           if (m.tip === "VIDEO" && ic.url) {
             const embed = ytEmbed(String(ic.url));
-            return embed ? (
-              <div key={m.id} className="aspect-video overflow-hidden rounded-2xl shadow-sm">
-                <iframe src={embed} className="h-full w-full" allowFullScreen title="video" />
-              </div>
-            ) : null;
+            return embed ? <DavetVideo key={m.id} token={token} embedUrl={embed} /> : null;
           }
           if (m.tip === "BUTON") {
             return (

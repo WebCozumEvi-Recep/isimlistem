@@ -160,6 +160,50 @@ export async function whatsappHazirla(kisiId: string, formData: FormData) {
   revalidatePath(`/panel/kisi/${kisiId}`);
 }
 
+// ---------- Randevu yönetimi ----------
+
+async function sahipRandevu(randevuId: string, kullaniciId: string) {
+  const r = await prisma.randevuTalebi.findUnique({ where: { id: randevuId } });
+  if (!r || r.kullaniciId !== kullaniciId) return null;
+  return r;
+}
+
+export async function randevuDurumGuncelle(
+  randevuId: string,
+  durum: "ONAYLANDI" | "REDDEDILDI" | "ERTELENDI" | "TAMAMLANDI" | "IPTAL"
+) {
+  const user = await requireUser();
+  const r = await sahipRandevu(randevuId, user.id);
+  if (!r) return;
+  await prisma.randevuTalebi.update({ where: { id: randevuId }, data: { durum } });
+  if (durum === "ONAYLANDI") {
+    const kisi = await prisma.kisi.findUnique({ where: { id: r.kisiId } });
+    if (kisi && kisi.durum !== "KATILDI" && kisi.durum !== "KAYIP") {
+      await prisma.$transaction([
+        prisma.kisi.update({ where: { id: r.kisiId }, data: { durum: "RANDEVU" } }),
+        prisma.aktivite.create({ data: { kisiId: r.kisiId, durum: "RANDEVU", aciklama: "Randevu onaylandı", otomatik: true } }),
+      ]);
+    }
+  }
+  revalidatePath("/panel/randevular");
+}
+
+// ---------- Bildirimler ----------
+
+export async function bildirimOkundu(bildirimId: string) {
+  const user = await requireUser();
+  const b = await prisma.bildirim.findUnique({ where: { id: bildirimId } });
+  if (!b || b.kullaniciId !== user.id) return;
+  await prisma.bildirim.update({ where: { id: bildirimId }, data: { okundu: true } });
+  revalidatePath("/panel/bildirimler");
+}
+
+export async function tumBildirimleriOku() {
+  const user = await requireUser();
+  await prisma.bildirim.updateMany({ where: { kullaniciId: user.id, okundu: false }, data: { okundu: true } });
+  revalidatePath("/panel/bildirimler");
+}
+
 /** "Gönderdim" — log + link durumu + huni durumu güncellenir. */
 export async function gonderildiOnayla(logId: string, kisiId: string) {
   const user = await requireUser();

@@ -6,6 +6,8 @@ import {
   SUNUM_DURUMLARI,
   DURUM_ETIKET,
   DURUM_RENK,
+  SICAKLIK_ETIKET,
+  skorSicaklik,
   type SunumDurum,
 } from "@/lib/sabitler";
 
@@ -13,7 +15,7 @@ export default async function PanelAnaSayfa() {
   const user = await requireUser();
   const simdi = new Date();
 
-  const [kisiler, gecikmis] = await Promise.all([
+  const [kisiler, gecikmis, sicakAdaylar, bekleyenRandevu] = await Promise.all([
     prisma.kisi.groupBy({
       by: ["durum"],
       where: { kullaniciId: user.id },
@@ -28,6 +30,12 @@ export default async function PanelAnaSayfa() {
       orderBy: { sonrakiTakip: "asc" },
       take: 10,
     }),
+    prisma.kisi.findMany({
+      where: { kullaniciId: user.id, skor: { gt: 0 }, durum: { notIn: ["KATILDI", "KAYIP"] } },
+      orderBy: { skor: "desc" },
+      take: 5,
+    }),
+    prisma.randevuTalebi.count({ where: { kullaniciId: user.id, durum: "TALEP" } }),
   ]);
 
   const sayac = new Map<SunumDurum, number>();
@@ -46,7 +54,7 @@ export default async function PanelAnaSayfa() {
         <p className="text-slate-500">İsim listenin iş sunum hunisi özeti.</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-5">
         <OzetKart baslik="Toplam Kişi" deger={toplam} vurgu />
         <OzetKart baslik="Katılan" deger={katildi} />
         <OzetKart baslik="Dönüşüm" deger={`%${donusum}`} />
@@ -55,7 +63,34 @@ export default async function PanelAnaSayfa() {
           deger={gecikmis.length}
           uyari={gecikmis.length > 0}
         />
+        <Link href="/panel/randevular" className="block">
+          <OzetKart baslik="Bekleyen Randevu" deger={bekleyenRandevu} uyari={bekleyenRandevu > 0} />
+        </Link>
       </div>
+
+      {sicakAdaylar.length > 0 && (
+        <section>
+          <h2 className="mb-3 text-lg font-semibold text-slate-900">🔥 En Sıcak Adaylar</h2>
+          <ul className="divide-y divide-slate-100 overflow-hidden rounded-xl border border-slate-200 bg-white">
+            {sicakAdaylar.map((k) => (
+              <li key={k.id}>
+                <Link href={`/panel/kisi/${k.id}`} className="flex items-center justify-between px-4 py-3 hover:bg-slate-50">
+                  <div>
+                    <div className="font-medium text-slate-900">{k.adSoyad}</div>
+                    <div className="text-xs text-slate-500">
+                      {SICAKLIK_ETIKET[skorSicaklik(k.skor)]}
+                      {k.telefon ? ` · ${k.telefon}` : ""}
+                    </div>
+                  </div>
+                  <span className="rounded-full bg-orange-100 px-2.5 py-0.5 text-xs font-bold text-orange-700">
+                    Skor {k.skor}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <section>
         <h2 className="mb-3 text-lg font-semibold text-slate-900">Huni Dağılımı</h2>
