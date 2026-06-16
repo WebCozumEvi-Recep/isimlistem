@@ -5,7 +5,7 @@ import { ChevronDown } from "lucide-react";
 
 const SORULAR = [
   { s: "İsim Listem ücretli mi?", c: "Bireysel networker kullanımı ücretsizdir. Kurumsal firmalar için Business versiyon ücretlidir." },
-  { s: "WhatsApp mesajları otomatik mi gönderiliyor?", c: "Hayır. Sistem sadece mesajı hazırlar ve wa.me bağlantısı oluşturur. Mesaj WhatsApp ekranında açılır, gönderme işlemini siz manuel yaparsınız." },
+  { s: "WhatsApp mesajları otomatik mi gönderiliyor?", c: "Hayır. Sistem sadece mesajı hazırlar; mesaj WhatsApp ekranında hazır açılır, gönderme işlemini siz manuel yaparsınız." },
   { s: "Bu sistem bir MLM yazılımı mı?", c: "Hayır. Komisyon, sponsor ağacı, binary, unilevel, prim veya kazanç planı takibi yoktur. Sistem aday takip ve davet linki yönetimi sağlar." },
   { s: "Adaylarımı başka kullanıcılar görebilir mi?", c: "Hayır. Aday listeniz size özeldir, başka kullanıcılara gösterilmez." },
   { s: "Kurumsal firma aday bilgilerimi görebilir mi?", c: "Varsayılan olarak firma aday kişisel bilgilerini göremez. Aday form üzerinden açık izin verirse ilgili bilgiler firma ile paylaşılabilir." },

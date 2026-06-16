@@ -150,7 +150,7 @@ export default async function Landing() {
           {[
             { icon: ListChecks, b: "Aday Takip CRM’i", m: "Tüm potansiyel müşteri ve iş ortaklarını tek listede yönet." },
             { icon: MessageCircle, b: "WhatsApp Mesaj Kalıpları", m: "İlk temas, takip, sunum, randevu ve itiraz için hazır mesajlar." },
-            { icon: Send, b: "wa.me ile Manuel Gönderim", m: "Mesaj WhatsApp’ta hazır açılır, gönderme işlemini sen yaparsın." },
+            { icon: Send, b: "WhatsApp Mesaj Gönder", m: "Mesaj WhatsApp’ta hazır açılır, gönderme işlemini sen yaparsın." },
             { icon: Link2, b: "Adaya Özel Davet Linki", m: "Her adaya özel, networker’a ve adaya özel çalışan tanıtım linki." },
             { icon: Layers, b: "Modüler Davet Sayfası", m: "Metin, görsel, video, buton, SSS, form ve randevu modülleri." },
             { icon: PlayCircle, b: "Video İzleme Takibi", m: "Aday videoyu başlattı mı, ne kadar izledi, sayfada ne kadar kaldı?" },
