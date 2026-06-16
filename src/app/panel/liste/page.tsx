@@ -11,7 +11,7 @@ import {
   type SunumDurum,
   type KaynakTip,
 } from "@/lib/sabitler";
-import { Download } from "lucide-react";
+import { Download, Pencil } from "lucide-react";
 import IceAktarButton from "@/components/IceAktarButton";
 
 type Arama = {
@@ -52,7 +52,7 @@ export default async function ListeSayfasi({
     <div className="space-y-5">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-slate-900">
-          İsim Listesi{" "}
+          Aday İsim Listesi{" "}
           <span className="text-base font-normal text-slate-400">
             ({kisiler.length})
           </span>
@@ -126,6 +126,7 @@ export default async function ListeSayfasi({
                 <th className="px-4 py-3">Durum</th>
                 <th className="px-4 py-3">Öncelik</th>
                 <th className="px-4 py-3">Takip</th>
+                <th className="px-4 py-3 text-right">Düzenle</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -153,6 +154,15 @@ export default async function ListeSayfasi({
                   </td>
                   <td className="px-4 py-3 text-slate-600">
                     {k.sonrakiTakip?.toLocaleDateString("tr-TR") ?? "—"}
+                  </td>
+                  <td className="px-4 py-3 text-right">
+                    <Link
+                      href={`/panel/kisi/${k.id}`}
+                      title="Düzenle"
+                      className="inline-flex items-center justify-center rounded-lg border border-slate-200 p-2 text-slate-500 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-600"
+                    >
+                      <Pencil size={15} />
+                    </Link>
                   </td>
                 </tr>
               ))}
