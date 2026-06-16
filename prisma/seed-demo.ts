@@ -78,7 +78,7 @@ async function main() {
     const var_ = await prisma.kisi.findFirst({ where: { kullaniciId: networker.id, adSoyad: a.adSoyad } });
     if (!var_) {
       await prisma.kisi.create({
-        data: { ...a, kullaniciId: networker.id, firmaId: firma.id, durum: "YENI", aktiviteler: { create: { durum: "YENI", aciklama: "Listeye eklendi" } } },
+        data: { ...a, kullaniciId: networker.id, durum: "YENI", aktiviteler: { create: { durum: "YENI", aciklama: "Listeye eklendi" } } },
       });
     }
   }
