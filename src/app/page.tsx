@@ -290,7 +290,7 @@ export default async function Landing() {
             ))}
           </div>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a href="mailto:info@waqur.com?subject=İsim Listem Business Demo" className="rounded-xl bg-emerald-500 px-6 py-3.5 font-semibold text-white transition hover:bg-emerald-600">Business Demo Talep Et</a>
+            <a href={`mailto:${ayar.destekEmail ?? "info@waqur.com"}?subject=Business Demo`} className="rounded-xl bg-emerald-500 px-6 py-3.5 font-semibold text-white transition hover:bg-emerald-600">Business Demo Talep Et</a>
             <a href="#ozellikler" className="rounded-xl border border-white/20 px-6 py-3.5 font-semibold text-white transition hover:bg-white/10">Kurumsal Özellikleri İncele</a>
           </div>
         </div>
@@ -402,7 +402,7 @@ export default async function Landing() {
             </p>
             <div className="relative mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link href="/auth/kayit" className="rounded-xl bg-emerald-500 px-7 py-3.5 font-semibold text-white transition hover:bg-emerald-600">Ücretsiz Başla</Link>
-              <a href="mailto:info@waqur.com?subject=İsim Listem Business Demo" className="rounded-xl border border-white/20 px-7 py-3.5 font-semibold text-white transition hover:bg-white/10">Business Demo Talep Et</a>
+              <a href={`mailto:${ayar.destekEmail ?? "info@waqur.com"}?subject=Business Demo`} className="rounded-xl border border-white/20 px-7 py-3.5 font-semibold text-white transition hover:bg-white/10">Business Demo Talep Et</a>
             </div>
             <p className="relative mt-4 text-sm text-slate-400">Bireysel networker kullanımı ücretsizdir. Kurumsal firmalar için Business panel sunulur.</p>
           </div>
@@ -413,10 +413,15 @@ export default async function Landing() {
       <footer className="border-t border-slate-200 bg-white">
         <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
           <div className="sm:col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-2">
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-slate-900 to-slate-700 text-sm font-bold text-white">İL</span>
-              <span className="font-bold text-slate-900">İsim Listem</span>
-            </div>
+            {ayar.logoUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={ayar.logoUrl} alt={ayar.siteAdi} className="h-10 w-auto max-w-[200px] object-contain" />
+            ) : (
+              <div className="flex items-center gap-2">
+                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-slate-900 to-slate-700 text-sm font-bold text-white">İL</span>
+                <span className="font-bold text-slate-900">{ayar.siteAdi}</span>
+              </div>
+            )}
             <p className="mt-3 max-w-xs text-sm text-slate-500">
               Networker’lar için aday takip ve kişiye özel davet sistemi. Bireysel kullanım ücretsiz.
             </p>
@@ -446,7 +451,7 @@ export default async function Landing() {
             <ul className="mt-3 space-y-2 text-sm text-slate-500">
               <li className="flex items-start gap-2"><MapPin size={15} className="mt-0.5 shrink-0" /> Çakmak Mh. Alemdağ Cd. No:488/3 Ümraniye / İstanbul</li>
               <li className="flex items-center gap-2"><Phone size={15} /> +90 850 302 40 04</li>
-              <li className="flex items-center gap-2"><Mail size={15} /> info@waqur.com</li>
+              <li className="flex items-center gap-2"><Mail size={15} /> {ayar.destekEmail ?? "info@waqur.com"}</li>
             </ul>
           </div>
         </div>

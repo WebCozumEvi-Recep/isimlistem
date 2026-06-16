@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { MessageCircle, Link2, Eye, ArrowLeft } from "lucide-react";
+import { getAyar } from "@/lib/ayarlar";
 
 /** Auth ekranları için markalı iki kolonlu kabuk (mobilde tek kolon). */
-export default function AuthKabuk({ children }: { children: React.ReactNode }) {
+export default async function AuthKabuk({ children }: { children: React.ReactNode }) {
+  const ayar = await getAyar();
   return (
     <main className="grid min-h-screen lg:grid-cols-2">
       {/* Sol marka paneli */}
@@ -12,8 +14,15 @@ export default function AuthKabuk({ children }: { children: React.ReactNode }) {
           <div className="anim-blob absolute bottom-10 right-0 h-80 w-80 rounded-full bg-white/10 blur-3xl [animation-delay:5s]" />
         </div>
         <Link href="/" className="relative flex items-center gap-2 text-xl font-bold">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/20">İ</span>
-          İsim Listem
+          {ayar.logoUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={ayar.logoUrl} alt={ayar.siteAdi} className="h-10 w-auto max-w-[200px] rounded-lg bg-white/95 px-3 py-1.5 object-contain" />
+          ) : (
+            <>
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/20">İ</span>
+              {ayar.siteAdi}
+            </>
+          )}
         </Link>
         <div className="relative">
           <h2 className="text-3xl font-bold leading-snug">
