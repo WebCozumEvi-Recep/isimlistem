@@ -27,7 +27,7 @@ export default async function AdminFirmalar() {
               {firmalar.map((f) => (
                 <tr key={f.id}>
                   <td className="px-4 py-3 font-medium text-slate-900">{f.ad}<div className="text-xs text-slate-400">/{f.slug}</div></td>
-                  <td className="px-4 py-3"><code className="font-mono text-indigo-700">{f.kayitKodu}</code></td>
+                  <td className="px-4 py-3"><code className="font-mono text-emerald-700">{f.kayitKodu}</code></td>
                   <td className="px-4 py-3">{f._count.uyeler}</td>
                   <td className="px-4 py-3">
                     <form action={firmaPaketDegistir.bind(null, f.id, f.paket === "BUSINESS" ? "BUSINESS_PLUS" : f.paket === "BUSINESS_PLUS" ? "FREE" : "BUSINESS")}>
@@ -54,7 +54,7 @@ export default async function AdminFirmalar() {
             <input name="ad" placeholder="Firma adı" required className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
             <input name="yoneticiEmail" type="email" placeholder="Firma yöneticisi e-postası (kayıtlı kullanıcı)" className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
             <p className="text-xs text-slate-400">Yönetici e-postası kayıtlı bir kullanıcıya aitse o kişi firma admini yapılır. Boş bırakılabilir.</p>
-            <button className="w-full rounded-lg bg-indigo-600 py-2 text-sm font-medium text-white hover:bg-indigo-700">Firma Oluştur</button>
+            <button className="w-full rounded-lg bg-emerald-500 py-2 text-sm font-medium text-white hover:bg-emerald-600">Firma Oluştur</button>
           </form>
         </div>
       </div>

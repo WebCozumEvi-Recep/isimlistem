@@ -17,7 +17,7 @@ export default async function SayfalarSayfasi() {
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-slate-900">Davet Sayfalarım</h1>
         <form action={sayfaEkle}>
-          <button className="flex items-center gap-1.5 rounded-lg bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-indigo-700">
+          <button className="flex items-center gap-1.5 rounded-lg bg-emerald-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-emerald-600">
             <Plus size={16} /> Yeni Sayfa
           </button>
         </form>
@@ -34,10 +34,10 @@ export default async function SayfalarSayfasi() {
           <Link
             key={s.id}
             href={`/panel/sayfa/${s.id}`}
-            className="rounded-2xl border border-slate-200 bg-white p-5 hover:border-indigo-300"
+            className="rounded-2xl border border-slate-200 bg-white p-5 hover:border-emerald-300"
           >
             <div className="flex items-center gap-2 text-slate-900">
-              <FileText size={18} className="text-indigo-500" />
+              <FileText size={18} className="text-emerald-500" />
               <h3 className="font-semibold">{s.baslik}</h3>
             </div>
             <div className="mt-2 flex items-center gap-3 text-xs text-slate-500">

@@ -42,7 +42,7 @@ export default async function KaliplarSayfasi() {
                       </span>
                     )}
                   </div>
-                  <span className="text-xs text-indigo-600">
+                  <span className="text-xs text-emerald-600">
                     {KALIP_KATEGORI_ETIKET[k.kategori as KalipKategori] ?? k.kategori}
                   </span>
                 </div>
@@ -82,7 +82,7 @@ export default async function KaliplarSayfasi() {
               placeholder="Merhaba {ad}, sana özel bir sayfa hazırladım: {ozel_davet_linki}"
               className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
             />
-            <button className="w-full rounded-lg bg-indigo-600 py-2 text-sm font-medium text-white hover:bg-indigo-700">
+            <button className="w-full rounded-lg bg-emerald-500 py-2 text-sm font-medium text-white hover:bg-emerald-600">
               Kalıbı Kaydet
             </button>
           </form>

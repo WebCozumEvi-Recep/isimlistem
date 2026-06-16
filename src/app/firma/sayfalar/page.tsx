@@ -19,7 +19,7 @@ export default async function FirmaSayfalar() {
         <h1 className="text-2xl font-bold text-slate-900">Firma Davet Sayfaları</h1>
         {duzenleyebilir && (
           <form action={firmaSayfaEkle}>
-            <button className="flex items-center gap-1.5 rounded-lg bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-indigo-700">
+            <button className="flex items-center gap-1.5 rounded-lg bg-emerald-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-emerald-600">
               <Plus size={16} /> Yeni Sayfa
             </button>
           </form>
@@ -31,8 +31,8 @@ export default async function FirmaSayfalar() {
         {sayfalar.map((s) => (
           <div key={s.id} className="rounded-2xl border border-slate-200 bg-white p-5">
             <div className="flex items-start justify-between">
-              <Link href={`/panel/sayfa/${s.id}`} className="flex items-center gap-2 text-slate-900 hover:text-indigo-600">
-                <FileText size={18} className="text-indigo-500" />
+              <Link href={`/panel/sayfa/${s.id}`} className="flex items-center gap-2 text-slate-900 hover:text-emerald-600">
+                <FileText size={18} className="text-emerald-500" />
                 <h3 className="font-semibold">{s.baslik}</h3>
               </Link>
               {duzenleyebilir && (

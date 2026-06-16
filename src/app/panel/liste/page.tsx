@@ -73,7 +73,7 @@ export default async function ListeSayfasi({
           name="q"
           defaultValue={sp.q ?? ""}
           placeholder="İsim, telefon, e-posta ara…"
-          className="min-w-48 flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-indigo-500"
+          className="min-w-48 flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-emerald-500"
         />
         <select
           name="durum"
@@ -110,7 +110,7 @@ export default async function ListeSayfasi({
       {kisiler.length === 0 ? (
         <p className="rounded-xl border border-slate-200 bg-white p-8 text-center text-slate-500">
           Kayıt bulunamadı.{" "}
-          <Link href="/panel/kisi/yeni" className="text-indigo-600">
+          <Link href="/panel/kisi/yeni" className="text-emerald-600">
             İlk kişini ekle
           </Link>
           .
@@ -134,7 +134,7 @@ export default async function ListeSayfasi({
                   <td className="px-4 py-3">
                     <Link
                       href={`/panel/kisi/${k.id}`}
-                      className="font-medium text-indigo-600 hover:underline"
+                      className="font-medium text-emerald-600 hover:underline"
                     >
                       {k.adSoyad}
                     </Link>

@@ -33,7 +33,7 @@ export function ButonGrubu({ token, whatsapp }: { token: string; whatsapp?: stri
       <Buton aktif={secilen === "cta_interested"} onClick={() => bas("cta_interested")} icon={ThumbsUp} renk="emerald">
         İlgileniyorum
       </Buton>
-      <Buton aktif={secilen === "cta_more_info"} onClick={() => bas("cta_more_info")} icon={Info} renk="indigo">
+      <Buton aktif={secilen === "cta_more_info"} onClick={() => bas("cta_more_info")} icon={Info} renk="koyu">
         Daha detaylı bilgi istiyorum
       </Buton>
       {whatsapp && (
@@ -92,7 +92,7 @@ export function RandevuModulu({ token }: { token: string }) {
           setAciklik(true);
           olay(token, "appointment_opened");
         }}
-        className="flex w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 py-3 font-medium text-white hover:bg-indigo-700"
+        className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 py-3 font-medium text-white hover:bg-emerald-600"
       >
         <CalendarClock size={18} /> Randevu oluştur
       </button>
@@ -109,7 +109,7 @@ export function RandevuModulu({ token }: { token: string }) {
         <option value="YUZ_YUZE">Yüz yüze</option>
       </select>
       <textarea name="mesaj" rows={2} placeholder="Kısa not (opsiyonel)" className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
-      <button className="w-full rounded-lg bg-indigo-600 py-2.5 font-medium text-white hover:bg-indigo-700">
+      <button className="w-full rounded-lg bg-emerald-500 py-2.5 font-medium text-white hover:bg-emerald-600">
         Randevu Talebi Gönder
       </button>
     </form>
@@ -126,12 +126,12 @@ function Buton({
   children: React.ReactNode;
   onClick: () => void;
   icon: React.ComponentType<{ size?: number }>;
-  renk: "emerald" | "indigo" | "slate";
+  renk: "emerald" | "koyu" | "slate";
   aktif: boolean;
 }) {
   const renkler = {
     emerald: "bg-emerald-600 hover:bg-emerald-700 text-white",
-    indigo: "bg-indigo-600 hover:bg-indigo-700 text-white",
+    koyu: "bg-slate-900 hover:bg-slate-800 text-white",
     slate: "border border-slate-300 text-slate-600 hover:bg-slate-50",
   }[renk];
   return (

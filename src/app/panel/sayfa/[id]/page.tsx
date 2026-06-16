@@ -51,7 +51,7 @@ export default async function SayfaBuilder({ params }: { params: Promise<{ id: s
             return (
               <div key={m.id} className="rounded-2xl border border-slate-200 bg-white p-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-semibold text-indigo-600">
+                  <span className="text-sm font-semibold text-emerald-600">
                     {MODUL_ETIKET[m.tip] ?? m.tip}
                   </span>
                   <form action={modulSil.bind(null, m.id, sayfa.id)}>

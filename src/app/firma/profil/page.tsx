@@ -18,7 +18,7 @@ export default async function FirmaProfil() {
         </div>
         <Alan label="Kısa Açıklama" name="aciklama" deger={firma.aciklama ?? ""} cokSatir />
         <Alan label="Footer Metni" name="footerMetni" deger={firma.footerMetni ?? ""} />
-        <button className="rounded-lg bg-indigo-600 px-5 py-2.5 font-medium text-white hover:bg-indigo-700">
+        <button className="rounded-lg bg-emerald-500 px-5 py-2.5 font-medium text-white hover:bg-emerald-600">
           Kaydet
         </button>
       </form>

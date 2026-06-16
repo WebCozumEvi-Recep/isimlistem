@@ -159,14 +159,14 @@ function OzetKart({
         uyari
           ? "border-rose-200 bg-rose-50"
           : vurgu
-            ? "border-indigo-200 bg-indigo-50"
+            ? "border-emerald-200 bg-emerald-50"
             : "border-slate-200 bg-white"
       }`}
     >
       <div className="text-sm text-slate-500">{baslik}</div>
       <div
         className={`mt-1 text-3xl font-bold ${
-          uyari ? "text-rose-600" : vurgu ? "text-indigo-600" : "text-slate-900"
+          uyari ? "text-rose-600" : vurgu ? "text-emerald-600" : "text-slate-900"
         }`}
       >
         {deger}

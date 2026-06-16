@@ -39,7 +39,7 @@ export default function AuthForm({ mod }: { mod: "giris" | "kayit" }) {
         <button
           type="submit"
           disabled={bekliyor}
-          className="w-full rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 py-2.5 font-semibold text-white shadow-lg shadow-indigo-500/25 transition hover:shadow-xl hover:shadow-indigo-500/35 disabled:opacity-60"
+          className="w-full rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 py-2.5 font-semibold text-white shadow-lg shadow-emerald-500/25 transition hover:shadow-xl hover:shadow-emerald-500/35 disabled:opacity-60"
         >
           {bekliyor ? "Lütfen bekleyin…" : mod === "giris" ? "Giriş Yap" : "Kayıt Ol"}
         </button>
@@ -49,14 +49,14 @@ export default function AuthForm({ mod }: { mod: "giris" | "kayit" }) {
         {mod === "giris" ? (
           <>
             Hesabın yok mu?{" "}
-            <Link href="/auth/kayit" className="font-medium text-indigo-600">
+            <Link href="/auth/kayit" className="font-medium text-emerald-600">
               Kayıt ol
             </Link>
           </>
         ) : (
           <>
             Zaten hesabın var mı?{" "}
-            <Link href="/auth/giris" className="font-medium text-indigo-600">
+            <Link href="/auth/giris" className="font-medium text-emerald-600">
               Giriş yap
             </Link>
           </>
@@ -74,7 +74,7 @@ function Alan({ label, name, type, zorunlu = true }: { label: string; name: stri
         name={name}
         type={type}
         required={zorunlu}
-        className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+        className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
       />
     </label>
   );

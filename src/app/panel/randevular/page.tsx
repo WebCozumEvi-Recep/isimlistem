@@ -37,7 +37,7 @@ export default async function RandevularSayfasi() {
             <div key={r.id} className="rounded-2xl border border-slate-200 bg-white p-5">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
-                  <Link href={`/panel/kisi/${r.kisi.id}`} className="font-semibold text-slate-900 hover:text-indigo-600">
+                  <Link href={`/panel/kisi/${r.kisi.id}`} className="font-semibold text-slate-900 hover:text-emerald-600">
                     {r.kisi.adSoyad}
                   </Link>
                   <div className="mt-1 text-sm text-slate-500">

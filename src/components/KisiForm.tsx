@@ -51,7 +51,7 @@ export default function KisiForm({
           <select
             name="kaynakTip"
             defaultValue={kisi?.kaynakTip ?? "DIGER"}
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-indigo-500"
+            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-emerald-500"
           >
             {KAYNAK_TIPLERI.map((k) => (
               <option key={k} value={k}>
@@ -69,7 +69,7 @@ export default function KisiForm({
           <select
             name="adayTipi"
             defaultValue={kisi?.adayTipi ?? "GENEL"}
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-indigo-500"
+            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-emerald-500"
           >
             {ADAY_TIPLERI.map((t) => (
               <option key={t} value={t}>{ADAY_TIPI_ETIKET[t]}</option>
@@ -81,7 +81,7 @@ export default function KisiForm({
           <select
             name="sicaklik"
             defaultValue={kisi?.sicaklik ?? "ILIK"}
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-indigo-500"
+            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-emerald-500"
           >
             {SICAKLIKLAR.map((s) => (
               <option key={s} value={s}>{SICAKLIK_ETIKET[s]}</option>
@@ -103,7 +103,7 @@ export default function KisiForm({
             <select
               name="durum"
               defaultValue={kisi?.durum ?? "YENI"}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-indigo-500"
+              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-emerald-500"
             >
               {SUNUM_DURUMLARI.map((d) => (
                 <option key={d} value={d}>
@@ -121,7 +121,7 @@ export default function KisiForm({
             min={0}
             max={5}
             defaultValue={kisi?.oncelik ?? 0}
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-indigo-500"
+            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-emerald-500"
           />
         </div>
         <Alan
@@ -138,13 +138,13 @@ export default function KisiForm({
           name="notlar"
           defaultValue={kisi?.notlar ?? ""}
           rows={3}
-          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-indigo-500"
+          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-emerald-500"
         />
       </div>
 
       <button
         type="submit"
-        className="rounded-lg bg-indigo-600 px-5 py-2.5 font-medium text-white hover:bg-indigo-700"
+        className="rounded-lg bg-emerald-500 px-5 py-2.5 font-medium text-white hover:bg-emerald-600"
       >
         {gonderEtiket}
       </button>
@@ -173,7 +173,7 @@ function Alan({
         type={type}
         required={required}
         defaultValue={deger ?? ""}
-        className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+        className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
       />
     </label>
   );

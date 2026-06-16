@@ -22,7 +22,7 @@ export default async function FirmaKaliplar() {
               <div className="flex items-start justify-between">
                 <div>
                   <h3 className="font-semibold text-slate-900">{k.baslik}</h3>
-                  <span className="text-xs text-indigo-600">{KALIP_KATEGORI_ETIKET[k.kategori as KalipKategori] ?? k.kategori}</span>
+                  <span className="text-xs text-emerald-600">{KALIP_KATEGORI_ETIKET[k.kategori as KalipKategori] ?? k.kategori}</span>
                 </div>
                 {duzenleyebilir && (
                   <form action={firmaKalipSil.bind(null, k.id)}>
@@ -44,7 +44,7 @@ export default async function FirmaKaliplar() {
                 {KALIP_KATEGORILERI.map((c) => <option key={c} value={c}>{KALIP_KATEGORI_ETIKET[c]}</option>)}
               </select>
               <textarea name="metin" rows={6} required placeholder="Merhaba {ad}, ... {ozel_davet_linki}" className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
-              <button className="w-full rounded-lg bg-indigo-600 py-2 text-sm font-medium text-white hover:bg-indigo-700">Kaydet</button>
+              <button className="w-full rounded-lg bg-emerald-500 py-2 text-sm font-medium text-white hover:bg-emerald-600">Kaydet</button>
             </form>
           </div>
         )}

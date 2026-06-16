@@ -6,7 +6,7 @@ export default function AuthKabuk({ children }: { children: React.ReactNode }) {
   return (
     <main className="grid min-h-screen lg:grid-cols-2">
       {/* Sol marka paneli */}
-      <div className="relative hidden overflow-hidden bg-gradient-to-br from-indigo-600 via-violet-600 to-fuchsia-600 p-12 text-white lg:flex lg:flex-col lg:justify-between">
+      <div className="relative hidden overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-12 text-white lg:flex lg:flex-col lg:justify-between">
         <div className="pointer-events-none absolute inset-0">
           <div className="anim-blob absolute -left-10 top-10 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
           <div className="anim-blob absolute bottom-10 right-0 h-80 w-80 rounded-full bg-white/10 blur-3xl [animation-delay:5s]" />
@@ -19,13 +19,13 @@ export default function AuthKabuk({ children }: { children: React.ReactNode }) {
           <h2 className="text-3xl font-bold leading-snug">
             Adayını ekle, davet gönder,<br />ne yaptığını gör.
           </h2>
-          <ul className="mt-8 space-y-4 text-indigo-100">
+          <ul className="mt-8 space-y-4 text-slate-300">
             <li className="flex items-center gap-3"><MessageCircle size={20} /> WhatsApp'tan kişiye özel davet</li>
             <li className="flex items-center gap-3"><Link2 size={20} /> Her adaya özel takip linki</li>
             <li className="flex items-center gap-3"><Eye size={20} /> Canlı davranış ve skor takibi</li>
           </ul>
         </div>
-        <p className="relative text-sm text-indigo-200">Bireysel kullanım tamamen ücretsiz.</p>
+        <p className="relative text-sm text-slate-400">Bireysel kullanım tamamen ücretsiz.</p>
       </div>
 
       {/* Sağ form */}

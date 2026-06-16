@@ -85,7 +85,7 @@ export default async function KisiDetaySayfasi({ params }: { params: Promise<{ i
             </h2>
             {sayfalar.length === 0 ? (
               <p className="text-sm text-slate-600">
-                Önce bir <a href="/panel/sayfalar" className="font-medium text-indigo-600 underline">davet sayfası</a> oluşturun.
+                Önce bir <a href="/panel/sayfalar" className="font-medium text-emerald-600 underline">davet sayfası</a> oluşturun.
               </p>
             ) : (
               <form action={whatsappHazirla.bind(null, kisi.id)} className="grid gap-3 sm:grid-cols-2">
@@ -160,7 +160,7 @@ export default async function KisiDetaySayfasi({ params }: { params: Promise<{ i
                 ))}
               </select>
               <input name="aciklama" placeholder="Not (ör: telefonda görüştük)" className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
-              <button className="w-full rounded-lg bg-indigo-600 py-2 text-sm font-medium text-white hover:bg-indigo-700">
+              <button className="w-full rounded-lg bg-emerald-500 py-2 text-sm font-medium text-white hover:bg-emerald-600">
                 Durumu Kaydet
               </button>
             </form>

@@ -33,9 +33,9 @@ export default async function AdminDashboard() {
 
 function Kart({ baslik, deger, vurgu }: { baslik: string; deger: number; vurgu?: boolean }) {
   return (
-    <div className={`rounded-xl border p-4 ${vurgu ? "border-indigo-200 bg-indigo-50" : "border-slate-200 bg-white"}`}>
+    <div className={`rounded-xl border p-4 ${vurgu ? "border-emerald-200 bg-emerald-50" : "border-slate-200 bg-white"}`}>
       <div className="text-sm text-slate-500">{baslik}</div>
-      <div className={`mt-1 text-2xl font-bold ${vurgu ? "text-indigo-600" : "text-slate-900"}`}>{deger}</div>
+      <div className={`mt-1 text-2xl font-bold ${vurgu ? "text-emerald-600" : "text-slate-900"}`}>{deger}</div>
     </div>
   );
 }

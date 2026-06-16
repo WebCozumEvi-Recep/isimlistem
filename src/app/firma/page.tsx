@@ -34,7 +34,7 @@ export default async function FirmaDashboard() {
       <div className="rounded-2xl border border-slate-200 bg-white p-6">
         <h2 className="mb-2 font-semibold text-slate-900">Kayıt Kodu</h2>
         <p className="text-sm text-slate-500">Networker'larını davet etmek için bu kodu paylaş:</p>
-        <code className="mt-2 inline-block rounded-lg bg-slate-100 px-3 py-1.5 font-mono text-lg text-indigo-700">{firma.kayitKodu}</code>
+        <code className="mt-2 inline-block rounded-lg bg-slate-100 px-3 py-1.5 font-mono text-lg text-emerald-700">{firma.kayitKodu}</code>
         <p className="mt-3 text-xs text-slate-400">
           Networker, kayıt ekranındaki "Firma Kayıt Kodu" alanına bu kodu girerek firmanıza bağlanır.
         </p>
@@ -45,9 +45,9 @@ export default async function FirmaDashboard() {
 
 function Kart({ baslik, deger, vurgu }: { baslik: string; deger: number | string; vurgu?: boolean }) {
   return (
-    <div className={`rounded-xl border p-4 ${vurgu ? "border-indigo-200 bg-indigo-50" : "border-slate-200 bg-white"}`}>
+    <div className={`rounded-xl border p-4 ${vurgu ? "border-emerald-200 bg-emerald-50" : "border-slate-200 bg-white"}`}>
       <div className="text-sm text-slate-500">{baslik}</div>
-      <div className={`mt-1 text-2xl font-bold ${vurgu ? "text-indigo-600" : "text-slate-900"}`}>{deger}</div>
+      <div className={`mt-1 text-2xl font-bold ${vurgu ? "text-emerald-600" : "text-slate-900"}`}>{deger}</div>
     </div>
   );
 }

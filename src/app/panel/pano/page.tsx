@@ -39,7 +39,7 @@ export default async function PanoSayfasi() {
                   <Link
                     key={k.id}
                     href={`/panel/kisi/${k.id}`}
-                    className="block rounded-lg border border-slate-200 bg-white p-3 text-sm shadow-sm hover:border-indigo-300"
+                    className="block rounded-lg border border-slate-200 bg-white p-3 text-sm shadow-sm hover:border-emerald-300"
                   >
                     <div className="font-medium text-slate-900">{k.adSoyad}</div>
                     {k.telefon && (

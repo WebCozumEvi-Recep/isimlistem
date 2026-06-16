@@ -24,7 +24,7 @@ export default async function FirmaNetworkerlar() {
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-slate-900">Networker'lar</h1>
         <div className="rounded-lg bg-slate-100 px-3 py-1.5 text-sm text-slate-600">
-          Kayıt Kodu: <code className="font-mono text-indigo-700">{firma.kayitKodu}</code>
+          Kayıt Kodu: <code className="font-mono text-emerald-700">{firma.kayitKodu}</code>
         </div>
       </div>
 

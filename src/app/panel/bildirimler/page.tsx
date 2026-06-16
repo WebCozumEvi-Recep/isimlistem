@@ -34,12 +34,12 @@ export default async function BildirimlerSayfasi() {
         <ul className="divide-y divide-slate-100 overflow-hidden rounded-xl border border-slate-200 bg-white">
           {bildirimler.map((b) => {
             const govde = (
-              <div className={`flex items-start justify-between gap-3 px-4 py-3 ${b.okundu ? "" : "bg-indigo-50/40"}`}>
+              <div className={`flex items-start justify-between gap-3 px-4 py-3 ${b.okundu ? "" : "bg-emerald-50/40"}`}>
                 <div>
                   <div className="font-medium text-slate-900">{b.mesaj}</div>
                   <div className="text-xs text-slate-400">{b.createdAt.toLocaleString("tr-TR")}</div>
                 </div>
-                {!b.okundu && <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-indigo-500" />}
+                {!b.okundu && <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />}
               </div>
             );
             return (

@@ -52,7 +52,7 @@ export default function AdayAnalitik(p: Props) {
               <MousePointerClick size={15} className="mt-0.5 text-slate-400" />
               <div className="flex flex-wrap gap-1">
                 {p.butonlar.map((b) => (
-                  <span key={b} className="rounded-full bg-indigo-50 px-2 py-0.5 text-xs text-indigo-700">
+                  <span key={b} className="rounded-full bg-emerald-50 px-2 py-0.5 text-xs text-emerald-700">
                     {CTA_ETIKET[b] ?? b}
                   </span>
                 ))}
