@@ -9,11 +9,12 @@ const BASLIK: Record<string, string> = {
   gizlilik: "Gizlilik Politikası",
   cerez: "Çerez / Analitik Bilgilendirme",
   kullanim: "Kullanım Koşulları",
+  uyelik: "Üyelik Sözleşmesi",
   mesafeli: "Mesafeli Satış Sözleşmesi",
   "veri-silme": "Verilerimi Sil / İletişim",
 };
-const AYAR_ALAN: Record<string, "kvkkMetni" | "gizlilikMetni" | "cerezMetni" | "kullanimMetni" | "mesafeliMetni"> = {
-  kvkk: "kvkkMetni", gizlilik: "gizlilikMetni", cerez: "cerezMetni", kullanim: "kullanimMetni", mesafeli: "mesafeliMetni",
+const AYAR_ALAN: Record<string, "kvkkMetni" | "gizlilikMetni" | "cerezMetni" | "kullanimMetni" | "mesafeliMetni" | "uyelikMetni"> = {
+  kvkk: "kvkkMetni", gizlilik: "gizlilikMetni", cerez: "cerezMetni", kullanim: "kullanimMetni", mesafeli: "mesafeliMetni", uyelik: "uyelikMetni",
 };
 
 const ICERIK: Record<string, { baslik: string; metin: string[] }> = {

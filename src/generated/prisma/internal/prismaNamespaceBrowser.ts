@@ -301,6 +301,7 @@ export const SiteAyarScalarFieldEnum = {
   cerezMetni: 'cerezMetni',
   kullanimMetni: 'kullanimMetni',
   mesafeliMetni: 'mesafeliMetni',
+  uyelikMetni: 'uyelikMetni',
   updatedAt: 'updatedAt'
 } as const
 

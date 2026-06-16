@@ -433,7 +433,9 @@ export default async function Landing() {
           <div>
             <h4 className="text-sm font-semibold text-slate-900">Yasal</h4>
             <ul className="mt-3 space-y-2 text-sm text-slate-500">
+              <li><Link href="/yasal/uyelik" className="hover:text-slate-900">Üyelik Sözleşmesi</Link></li>
               <li><Link href="/yasal/kullanim" className="hover:text-slate-900">Kullanım Koşulları</Link></li>
+              <li><Link href="/yasal/mesafeli" className="hover:text-slate-900">Mesafeli Satış</Link></li>
               <li><Link href="/yasal/gizlilik" className="hover:text-slate-900">Gizlilik Politikası</Link></li>
               <li><Link href="/yasal/kvkk" className="hover:text-slate-900">KVKK Aydınlatma</Link></li>
               <li><Link href="/yasal/cerez" className="hover:text-slate-900">Çerez Politikası</Link></li>

@@ -39,6 +39,7 @@ export type SiteAyarMinAggregateOutputType = {
   cerezMetni: string | null
   kullanimMetni: string | null
   mesafeliMetni: string | null
+  uyelikMetni: string | null
   updatedAt: Date | null
 }
 
@@ -57,6 +58,7 @@ export type SiteAyarMaxAggregateOutputType = {
   cerezMetni: string | null
   kullanimMetni: string | null
   mesafeliMetni: string | null
+  uyelikMetni: string | null
   updatedAt: Date | null
 }
 
@@ -75,6 +77,7 @@ export type SiteAyarCountAggregateOutputType = {
   cerezMetni: number
   kullanimMetni: number
   mesafeliMetni: number
+  uyelikMetni: number
   updatedAt: number
   _all: number
 }
@@ -95,6 +98,7 @@ export type SiteAyarMinAggregateInputType = {
   cerezMetni?: true
   kullanimMetni?: true
   mesafeliMetni?: true
+  uyelikMetni?: true
   updatedAt?: true
 }
 
@@ -113,6 +117,7 @@ export type SiteAyarMaxAggregateInputType = {
   cerezMetni?: true
   kullanimMetni?: true
   mesafeliMetni?: true
+  uyelikMetni?: true
   updatedAt?: true
 }
 
@@ -131,6 +136,7 @@ export type SiteAyarCountAggregateInputType = {
   cerezMetni?: true
   kullanimMetni?: true
   mesafeliMetni?: true
+  uyelikMetni?: true
   updatedAt?: true
   _all?: true
 }
@@ -222,6 +228,7 @@ export type SiteAyarGroupByOutputType = {
   cerezMetni: string | null
   kullanimMetni: string | null
   mesafeliMetni: string | null
+  uyelikMetni: string | null
   updatedAt: Date
   _count: SiteAyarCountAggregateOutputType | null
   _min: SiteAyarMinAggregateOutputType | null
@@ -261,6 +268,7 @@ export type SiteAyarWhereInput = {
   cerezMetni?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   kullanimMetni?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   mesafeliMetni?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
+  uyelikMetni?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   updatedAt?: Prisma.DateTimeFilter<"SiteAyar"> | Date | string
 }
 
@@ -279,6 +287,7 @@ export type SiteAyarOrderByWithRelationInput = {
   cerezMetni?: Prisma.SortOrderInput | Prisma.SortOrder
   kullanimMetni?: Prisma.SortOrderInput | Prisma.SortOrder
   mesafeliMetni?: Prisma.SortOrderInput | Prisma.SortOrder
+  uyelikMetni?: Prisma.SortOrderInput | Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
@@ -300,6 +309,7 @@ export type SiteAyarWhereUniqueInput = Prisma.AtLeast<{
   cerezMetni?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   kullanimMetni?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   mesafeliMetni?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
+  uyelikMetni?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   updatedAt?: Prisma.DateTimeFilter<"SiteAyar"> | Date | string
 }, "id">
 
@@ -318,6 +328,7 @@ export type SiteAyarOrderByWithAggregationInput = {
   cerezMetni?: Prisma.SortOrderInput | Prisma.SortOrder
   kullanimMetni?: Prisma.SortOrderInput | Prisma.SortOrder
   mesafeliMetni?: Prisma.SortOrderInput | Prisma.SortOrder
+  uyelikMetni?: Prisma.SortOrderInput | Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.SiteAyarCountOrderByAggregateInput
   _max?: Prisma.SiteAyarMaxOrderByAggregateInput
@@ -342,6 +353,7 @@ export type SiteAyarScalarWhereWithAggregatesInput = {
   cerezMetni?: Prisma.StringNullableWithAggregatesFilter<"SiteAyar"> | string | null
   kullanimMetni?: Prisma.StringNullableWithAggregatesFilter<"SiteAyar"> | string | null
   mesafeliMetni?: Prisma.StringNullableWithAggregatesFilter<"SiteAyar"> | string | null
+  uyelikMetni?: Prisma.StringNullableWithAggregatesFilter<"SiteAyar"> | string | null
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"SiteAyar"> | Date | string
 }
 
@@ -360,6 +372,7 @@ export type SiteAyarCreateInput = {
   cerezMetni?: string | null
   kullanimMetni?: string | null
   mesafeliMetni?: string | null
+  uyelikMetni?: string | null
   updatedAt?: Date | string
 }
 
@@ -378,6 +391,7 @@ export type SiteAyarUncheckedCreateInput = {
   cerezMetni?: string | null
   kullanimMetni?: string | null
   mesafeliMetni?: string | null
+  uyelikMetni?: string | null
   updatedAt?: Date | string
 }
 
@@ -396,6 +410,7 @@ export type SiteAyarUpdateInput = {
   cerezMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   kullanimMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mesafeliMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uyelikMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -414,6 +429,7 @@ export type SiteAyarUncheckedUpdateInput = {
   cerezMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   kullanimMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mesafeliMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uyelikMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -432,6 +448,7 @@ export type SiteAyarCreateManyInput = {
   cerezMetni?: string | null
   kullanimMetni?: string | null
   mesafeliMetni?: string | null
+  uyelikMetni?: string | null
   updatedAt?: Date | string
 }
 
@@ -450,6 +467,7 @@ export type SiteAyarUpdateManyMutationInput = {
   cerezMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   kullanimMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mesafeliMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uyelikMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -468,6 +486,7 @@ export type SiteAyarUncheckedUpdateManyInput = {
   cerezMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   kullanimMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mesafeliMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uyelikMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -486,6 +505,7 @@ export type SiteAyarCountOrderByAggregateInput = {
   cerezMetni?: Prisma.SortOrder
   kullanimMetni?: Prisma.SortOrder
   mesafeliMetni?: Prisma.SortOrder
+  uyelikMetni?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
@@ -504,6 +524,7 @@ export type SiteAyarMaxOrderByAggregateInput = {
   cerezMetni?: Prisma.SortOrder
   kullanimMetni?: Prisma.SortOrder
   mesafeliMetni?: Prisma.SortOrder
+  uyelikMetni?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
@@ -522,6 +543,7 @@ export type SiteAyarMinOrderByAggregateInput = {
   cerezMetni?: Prisma.SortOrder
   kullanimMetni?: Prisma.SortOrder
   mesafeliMetni?: Prisma.SortOrder
+  uyelikMetni?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
@@ -542,6 +564,7 @@ export type SiteAyarSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   cerezMetni?: boolean
   kullanimMetni?: boolean
   mesafeliMetni?: boolean
+  uyelikMetni?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["siteAyar"]>
 
@@ -560,6 +583,7 @@ export type SiteAyarSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   cerezMetni?: boolean
   kullanimMetni?: boolean
   mesafeliMetni?: boolean
+  uyelikMetni?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["siteAyar"]>
 
@@ -578,6 +602,7 @@ export type SiteAyarSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   cerezMetni?: boolean
   kullanimMetni?: boolean
   mesafeliMetni?: boolean
+  uyelikMetni?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["siteAyar"]>
 
@@ -596,10 +621,11 @@ export type SiteAyarSelectScalar = {
   cerezMetni?: boolean
   kullanimMetni?: boolean
   mesafeliMetni?: boolean
+  uyelikMetni?: boolean
   updatedAt?: boolean
 }
 
-export type SiteAyarOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "siteAdi" | "slogan" | "logoUrl" | "faviconUrl" | "aciklama" | "googleDogrulama" | "analitikKodu" | "destekEmail" | "kvkkMetni" | "gizlilikMetni" | "cerezMetni" | "kullanimMetni" | "mesafeliMetni" | "updatedAt", ExtArgs["result"]["siteAyar"]>
+export type SiteAyarOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "siteAdi" | "slogan" | "logoUrl" | "faviconUrl" | "aciklama" | "googleDogrulama" | "analitikKodu" | "destekEmail" | "kvkkMetni" | "gizlilikMetni" | "cerezMetni" | "kullanimMetni" | "mesafeliMetni" | "uyelikMetni" | "updatedAt", ExtArgs["result"]["siteAyar"]>
 
 export type $SiteAyarPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "SiteAyar"
@@ -619,6 +645,7 @@ export type $SiteAyarPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     cerezMetni: string | null
     kullanimMetni: string | null
     mesafeliMetni: string | null
+    uyelikMetni: string | null
     updatedAt: Date
   }, ExtArgs["result"]["siteAyar"]>
   composites: {}
@@ -1057,6 +1084,7 @@ export interface SiteAyarFieldRefs {
   readonly cerezMetni: Prisma.FieldRef<"SiteAyar", 'String'>
   readonly kullanimMetni: Prisma.FieldRef<"SiteAyar", 'String'>
   readonly mesafeliMetni: Prisma.FieldRef<"SiteAyar", 'String'>
+  readonly uyelikMetni: Prisma.FieldRef<"SiteAyar", 'String'>
   readonly updatedAt: Prisma.FieldRef<"SiteAyar", 'DateTime'>
 }
     

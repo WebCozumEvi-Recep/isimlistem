@@ -53,6 +53,7 @@ export default async function SistemAyarlari() {
           <Alan label="Gizlilik Politikası" name="gizlilikMetni" deger={a.gizlilikMetni ?? ""} cokSatir buyuk />
           <Alan label="Çerez Politikası" name="cerezMetni" deger={a.cerezMetni ?? ""} cokSatir buyuk />
           <Alan label="Kullanım Koşulları" name="kullanimMetni" deger={a.kullanimMetni ?? ""} cokSatir buyuk />
+          <Alan label="Üyelik Sözleşmesi" name="uyelikMetni" deger={a.uyelikMetni ?? ""} cokSatir buyuk />
           <Alan label="Mesafeli Satış Sözleşmesi" name="mesafeliMetni" deger={a.mesafeliMetni ?? ""} cokSatir buyuk />
         </Kart>
 

@@ -17,6 +17,7 @@ export type SiteAyarVeri = {
   cerezMetni: string | null;
   kullanimMetni: string | null;
   mesafeliMetni: string | null;
+  uyelikMetni: string | null;
 };
 
 const VARSAYILAN: SiteAyarVeri = {
@@ -24,7 +25,7 @@ const VARSAYILAN: SiteAyarVeri = {
   siteAdi: "İsim Listem",
   slogan: null, logoUrl: null, faviconUrl: null, aciklama: null,
   googleDogrulama: null, analitikKodu: null, destekEmail: null,
-  kvkkMetni: null, gizlilikMetni: null, cerezMetni: null, kullanimMetni: null, mesafeliMetni: null,
+  kvkkMetni: null, gizlilikMetni: null, cerezMetni: null, kullanimMetni: null, mesafeliMetni: null, uyelikMetni: null,
 };
 
 /** Singleton site ayarını döner (yoksa oluşturur). DB erişilemezse varsayılan döner. */

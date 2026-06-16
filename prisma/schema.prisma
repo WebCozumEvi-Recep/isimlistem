@@ -378,6 +378,7 @@ model SiteAyar {
   cerezMetni      String?
   kullanimMetni   String?
   mesafeliMetni   String?
+  uyelikMetni     String?
   updatedAt       DateTime @updatedAt @default(now())
 }
 

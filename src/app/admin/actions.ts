@@ -85,7 +85,8 @@ async function dosyaKaydet(dosya: FormDataEntryValue | null, onek: string): Prom
   const dizin = path.join(process.cwd(), "public", "marka");
   await mkdir(dizin, { recursive: true });
   await writeFile(path.join(dizin, adi), Buffer.from(await dosya.arrayBuffer()));
-  return `/marka/${adi}`;
+  // /public statik servisi build sonrası dosyaları sunmadığından route handler ile sunulur.
+  return `/medya/${adi}`;
 }
 
 export async function ayarGuncelle(formData: FormData) {
@@ -106,6 +107,7 @@ export async function ayarGuncelle(formData: FormData) {
     cerezMetni: metin(formData, "cerezMetni"),
     kullanimMetni: metin(formData, "kullanimMetni"),
     mesafeliMetni: metin(formData, "mesafeliMetni"),
+    uyelikMetni: metin(formData, "uyelikMetni"),
     ...(logoUrl ? { logoUrl } : {}),
     ...(faviconUrl ? { faviconUrl } : {}),
   };
