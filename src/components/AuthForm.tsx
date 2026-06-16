@@ -39,7 +39,7 @@ export default function AuthForm({ mod }: { mod: "giris" | "kayit" }) {
         <button
           type="submit"
           disabled={bekliyor}
-          className="w-full rounded-lg bg-indigo-600 py-2.5 font-medium text-white transition hover:bg-indigo-700 disabled:opacity-60"
+          className="w-full rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 py-2.5 font-semibold text-white shadow-lg shadow-indigo-500/25 transition hover:shadow-xl hover:shadow-indigo-500/35 disabled:opacity-60"
         >
           {bekliyor ? "Lütfen bekleyin…" : mod === "giris" ? "Giriş Yap" : "Kayıt Ol"}
         </button>
