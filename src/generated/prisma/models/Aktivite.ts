@@ -29,6 +29,7 @@ export type AktiviteMinAggregateOutputType = {
   kisiId: string | null
   durum: $Enums.SunumDurum | null
   aciklama: string | null
+  otomatik: boolean | null
   tarih: Date | null
 }
 
@@ -37,6 +38,7 @@ export type AktiviteMaxAggregateOutputType = {
   kisiId: string | null
   durum: $Enums.SunumDurum | null
   aciklama: string | null
+  otomatik: boolean | null
   tarih: Date | null
 }
 
@@ -45,6 +47,7 @@ export type AktiviteCountAggregateOutputType = {
   kisiId: number
   durum: number
   aciklama: number
+  otomatik: number
   tarih: number
   _all: number
 }
@@ -55,6 +58,7 @@ export type AktiviteMinAggregateInputType = {
   kisiId?: true
   durum?: true
   aciklama?: true
+  otomatik?: true
   tarih?: true
 }
 
@@ -63,6 +67,7 @@ export type AktiviteMaxAggregateInputType = {
   kisiId?: true
   durum?: true
   aciklama?: true
+  otomatik?: true
   tarih?: true
 }
 
@@ -71,6 +76,7 @@ export type AktiviteCountAggregateInputType = {
   kisiId?: true
   durum?: true
   aciklama?: true
+  otomatik?: true
   tarih?: true
   _all?: true
 }
@@ -152,6 +158,7 @@ export type AktiviteGroupByOutputType = {
   kisiId: string
   durum: $Enums.SunumDurum
   aciklama: string | null
+  otomatik: boolean
   tarih: Date
   _count: AktiviteCountAggregateOutputType | null
   _min: AktiviteMinAggregateOutputType | null
@@ -181,6 +188,7 @@ export type AktiviteWhereInput = {
   kisiId?: Prisma.StringFilter<"Aktivite"> | string
   durum?: Prisma.EnumSunumDurumFilter<"Aktivite"> | $Enums.SunumDurum
   aciklama?: Prisma.StringNullableFilter<"Aktivite"> | string | null
+  otomatik?: Prisma.BoolFilter<"Aktivite"> | boolean
   tarih?: Prisma.DateTimeFilter<"Aktivite"> | Date | string
   kisi?: Prisma.XOR<Prisma.KisiScalarRelationFilter, Prisma.KisiWhereInput>
 }
@@ -190,6 +198,7 @@ export type AktiviteOrderByWithRelationInput = {
   kisiId?: Prisma.SortOrder
   durum?: Prisma.SortOrder
   aciklama?: Prisma.SortOrderInput | Prisma.SortOrder
+  otomatik?: Prisma.SortOrder
   tarih?: Prisma.SortOrder
   kisi?: Prisma.KisiOrderByWithRelationInput
 }
@@ -202,6 +211,7 @@ export type AktiviteWhereUniqueInput = Prisma.AtLeast<{
   kisiId?: Prisma.StringFilter<"Aktivite"> | string
   durum?: Prisma.EnumSunumDurumFilter<"Aktivite"> | $Enums.SunumDurum
   aciklama?: Prisma.StringNullableFilter<"Aktivite"> | string | null
+  otomatik?: Prisma.BoolFilter<"Aktivite"> | boolean
   tarih?: Prisma.DateTimeFilter<"Aktivite"> | Date | string
   kisi?: Prisma.XOR<Prisma.KisiScalarRelationFilter, Prisma.KisiWhereInput>
 }, "id">
@@ -211,6 +221,7 @@ export type AktiviteOrderByWithAggregationInput = {
   kisiId?: Prisma.SortOrder
   durum?: Prisma.SortOrder
   aciklama?: Prisma.SortOrderInput | Prisma.SortOrder
+  otomatik?: Prisma.SortOrder
   tarih?: Prisma.SortOrder
   _count?: Prisma.AktiviteCountOrderByAggregateInput
   _max?: Prisma.AktiviteMaxOrderByAggregateInput
@@ -225,6 +236,7 @@ export type AktiviteScalarWhereWithAggregatesInput = {
   kisiId?: Prisma.StringWithAggregatesFilter<"Aktivite"> | string
   durum?: Prisma.EnumSunumDurumWithAggregatesFilter<"Aktivite"> | $Enums.SunumDurum
   aciklama?: Prisma.StringNullableWithAggregatesFilter<"Aktivite"> | string | null
+  otomatik?: Prisma.BoolWithAggregatesFilter<"Aktivite"> | boolean
   tarih?: Prisma.DateTimeWithAggregatesFilter<"Aktivite"> | Date | string
 }
 
@@ -232,6 +244,7 @@ export type AktiviteCreateInput = {
   id?: string
   durum: $Enums.SunumDurum
   aciklama?: string | null
+  otomatik?: boolean
   tarih?: Date | string
   kisi: Prisma.KisiCreateNestedOneWithoutAktivitelerInput
 }
@@ -241,6 +254,7 @@ export type AktiviteUncheckedCreateInput = {
   kisiId: string
   durum: $Enums.SunumDurum
   aciklama?: string | null
+  otomatik?: boolean
   tarih?: Date | string
 }
 
@@ -248,6 +262,7 @@ export type AktiviteUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   durum?: Prisma.EnumSunumDurumFieldUpdateOperationsInput | $Enums.SunumDurum
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otomatik?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tarih?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisi?: Prisma.KisiUpdateOneRequiredWithoutAktivitelerNestedInput
 }
@@ -257,6 +272,7 @@ export type AktiviteUncheckedUpdateInput = {
   kisiId?: Prisma.StringFieldUpdateOperationsInput | string
   durum?: Prisma.EnumSunumDurumFieldUpdateOperationsInput | $Enums.SunumDurum
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otomatik?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tarih?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -265,6 +281,7 @@ export type AktiviteCreateManyInput = {
   kisiId: string
   durum: $Enums.SunumDurum
   aciklama?: string | null
+  otomatik?: boolean
   tarih?: Date | string
 }
 
@@ -272,6 +289,7 @@ export type AktiviteUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   durum?: Prisma.EnumSunumDurumFieldUpdateOperationsInput | $Enums.SunumDurum
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otomatik?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tarih?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -280,6 +298,7 @@ export type AktiviteUncheckedUpdateManyInput = {
   kisiId?: Prisma.StringFieldUpdateOperationsInput | string
   durum?: Prisma.EnumSunumDurumFieldUpdateOperationsInput | $Enums.SunumDurum
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otomatik?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tarih?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -298,6 +317,7 @@ export type AktiviteCountOrderByAggregateInput = {
   kisiId?: Prisma.SortOrder
   durum?: Prisma.SortOrder
   aciklama?: Prisma.SortOrder
+  otomatik?: Prisma.SortOrder
   tarih?: Prisma.SortOrder
 }
 
@@ -306,6 +326,7 @@ export type AktiviteMaxOrderByAggregateInput = {
   kisiId?: Prisma.SortOrder
   durum?: Prisma.SortOrder
   aciklama?: Prisma.SortOrder
+  otomatik?: Prisma.SortOrder
   tarih?: Prisma.SortOrder
 }
 
@@ -314,6 +335,7 @@ export type AktiviteMinOrderByAggregateInput = {
   kisiId?: Prisma.SortOrder
   durum?: Prisma.SortOrder
   aciklama?: Prisma.SortOrder
+  otomatik?: Prisma.SortOrder
   tarih?: Prisma.SortOrder
 }
 
@@ -359,10 +381,15 @@ export type AktiviteUncheckedUpdateManyWithoutKisiNestedInput = {
   deleteMany?: Prisma.AktiviteScalarWhereInput | Prisma.AktiviteScalarWhereInput[]
 }
 
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
 export type AktiviteCreateWithoutKisiInput = {
   id?: string
   durum: $Enums.SunumDurum
   aciklama?: string | null
+  otomatik?: boolean
   tarih?: Date | string
 }
 
@@ -370,6 +397,7 @@ export type AktiviteUncheckedCreateWithoutKisiInput = {
   id?: string
   durum: $Enums.SunumDurum
   aciklama?: string | null
+  otomatik?: boolean
   tarih?: Date | string
 }
 
@@ -407,6 +435,7 @@ export type AktiviteScalarWhereInput = {
   kisiId?: Prisma.StringFilter<"Aktivite"> | string
   durum?: Prisma.EnumSunumDurumFilter<"Aktivite"> | $Enums.SunumDurum
   aciklama?: Prisma.StringNullableFilter<"Aktivite"> | string | null
+  otomatik?: Prisma.BoolFilter<"Aktivite"> | boolean
   tarih?: Prisma.DateTimeFilter<"Aktivite"> | Date | string
 }
 
@@ -414,6 +443,7 @@ export type AktiviteCreateManyKisiInput = {
   id?: string
   durum: $Enums.SunumDurum
   aciklama?: string | null
+  otomatik?: boolean
   tarih?: Date | string
 }
 
@@ -421,6 +451,7 @@ export type AktiviteUpdateWithoutKisiInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   durum?: Prisma.EnumSunumDurumFieldUpdateOperationsInput | $Enums.SunumDurum
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otomatik?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tarih?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -428,6 +459,7 @@ export type AktiviteUncheckedUpdateWithoutKisiInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   durum?: Prisma.EnumSunumDurumFieldUpdateOperationsInput | $Enums.SunumDurum
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otomatik?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tarih?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -435,6 +467,7 @@ export type AktiviteUncheckedUpdateManyWithoutKisiInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   durum?: Prisma.EnumSunumDurumFieldUpdateOperationsInput | $Enums.SunumDurum
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otomatik?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tarih?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -445,6 +478,7 @@ export type AktiviteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   kisiId?: boolean
   durum?: boolean
   aciklama?: boolean
+  otomatik?: boolean
   tarih?: boolean
   kisi?: boolean | Prisma.KisiDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["aktivite"]>
@@ -454,6 +488,7 @@ export type AktiviteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   kisiId?: boolean
   durum?: boolean
   aciklama?: boolean
+  otomatik?: boolean
   tarih?: boolean
   kisi?: boolean | Prisma.KisiDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["aktivite"]>
@@ -463,6 +498,7 @@ export type AktiviteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   kisiId?: boolean
   durum?: boolean
   aciklama?: boolean
+  otomatik?: boolean
   tarih?: boolean
   kisi?: boolean | Prisma.KisiDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["aktivite"]>
@@ -472,10 +508,11 @@ export type AktiviteSelectScalar = {
   kisiId?: boolean
   durum?: boolean
   aciklama?: boolean
+  otomatik?: boolean
   tarih?: boolean
 }
 
-export type AktiviteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "kisiId" | "durum" | "aciklama" | "tarih", ExtArgs["result"]["aktivite"]>
+export type AktiviteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "kisiId" | "durum" | "aciklama" | "otomatik" | "tarih", ExtArgs["result"]["aktivite"]>
 export type AktiviteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   kisi?: boolean | Prisma.KisiDefaultArgs<ExtArgs>
 }
@@ -496,6 +533,7 @@ export type $AktivitePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     kisiId: string
     durum: $Enums.SunumDurum
     aciklama: string | null
+    otomatik: boolean
     tarih: Date
   }, ExtArgs["result"]["aktivite"]>
   composites: {}
@@ -925,6 +963,7 @@ export interface AktiviteFieldRefs {
   readonly kisiId: Prisma.FieldRef<"Aktivite", 'String'>
   readonly durum: Prisma.FieldRef<"Aktivite", 'SunumDurum'>
   readonly aciklama: Prisma.FieldRef<"Aktivite", 'String'>
+  readonly otomatik: Prisma.FieldRef<"Aktivite", 'Boolean'>
   readonly tarih: Prisma.FieldRef<"Aktivite", 'DateTime'>
 }
     

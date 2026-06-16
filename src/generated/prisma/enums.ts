@@ -43,3 +43,117 @@ export const KaynakTip = {
 } as const
 
 export type KaynakTip = (typeof KaynakTip)[keyof typeof KaynakTip]
+
+
+export const AdayTipi = {
+  URUN_MUSTERISI: 'URUN_MUSTERISI',
+  IS_FIRSATI: 'IS_FIRSATI',
+  EKIP_ADAYI: 'EKIP_ADAYI',
+  ESKI_MUSTERI: 'ESKI_MUSTERI',
+  TEKRAR_ARANACAK: 'TEKRAR_ARANACAK',
+  GENEL: 'GENEL'
+} as const
+
+export type AdayTipi = (typeof AdayTipi)[keyof typeof AdayTipi]
+
+
+export const Sicaklik = {
+  SOGUK: 'SOGUK',
+  ILIK: 'ILIK',
+  SICAK: 'SICAK',
+  COK_SICAK: 'COK_SICAK'
+} as const
+
+export type Sicaklik = (typeof Sicaklik)[keyof typeof Sicaklik]
+
+
+export const SahiplikTipi = {
+  GLOBAL: 'GLOBAL',
+  KISISEL: 'KISISEL',
+  FIRMA: 'FIRMA'
+} as const
+
+export type SahiplikTipi = (typeof SahiplikTipi)[keyof typeof SahiplikTipi]
+
+
+export const SayfaDurum = {
+  TASLAK: 'TASLAK',
+  YAYINDA: 'YAYINDA',
+  PASIF: 'PASIF'
+} as const
+
+export type SayfaDurum = (typeof SayfaDurum)[keyof typeof SayfaDurum]
+
+
+export const LinkDurum = {
+  OLUSTURULDU: 'OLUSTURULDU',
+  GONDERILDI: 'GONDERILDI',
+  ACILDI: 'ACILDI',
+  ETKILESTI: 'ETKILESTI',
+  RANDEVU_ISTEDI: 'RANDEVU_ISTEDI',
+  ILGISIZ: 'ILGISIZ'
+} as const
+
+export type LinkDurum = (typeof LinkDurum)[keyof typeof LinkDurum]
+
+
+export const ModulTip = {
+  KARSILAMA: 'KARSILAMA',
+  METIN: 'METIN',
+  GORSEL: 'GORSEL',
+  VIDEO: 'VIDEO',
+  BUTON: 'BUTON',
+  RANDEVU: 'RANDEVU',
+  SSS: 'SSS',
+  WHATSAPP: 'WHATSAPP',
+  YASAL: 'YASAL'
+} as const
+
+export type ModulTip = (typeof ModulTip)[keyof typeof ModulTip]
+
+
+export const HazirMesajDurum = {
+  HAZIRLANDI: 'HAZIRLANDI',
+  WHATSAPP_ACILDI: 'WHATSAPP_ACILDI',
+  GONDERILDI_ONAY: 'GONDERILDI_ONAY',
+  IPTAL: 'IPTAL'
+} as const
+
+export type HazirMesajDurum = (typeof HazirMesajDurum)[keyof typeof HazirMesajDurum]
+
+
+export const RandevuTip = {
+  TELEFON: 'TELEFON',
+  WHATSAPP: 'WHATSAPP',
+  ZOOM: 'ZOOM',
+  YUZ_YUZE: 'YUZ_YUZE',
+  OFIS: 'OFIS',
+  DIGER: 'DIGER'
+} as const
+
+export type RandevuTip = (typeof RandevuTip)[keyof typeof RandevuTip]
+
+
+export const RandevuDurum = {
+  TALEP: 'TALEP',
+  ONAYLANDI: 'ONAYLANDI',
+  REDDEDILDI: 'REDDEDILDI',
+  ERTELENDI: 'ERTELENDI',
+  TAMAMLANDI: 'TAMAMLANDI',
+  IPTAL: 'IPTAL'
+} as const
+
+export type RandevuDurum = (typeof RandevuDurum)[keyof typeof RandevuDurum]
+
+
+export const BildirimTip = {
+  LINK_ACILDI: 'LINK_ACILDI',
+  VIDEO_IZLEDI: 'VIDEO_IZLEDI',
+  ILGILENIYOR: 'ILGILENIYOR',
+  RANDEVU: 'RANDEVU',
+  WHATSAPP_DONUS: 'WHATSAPP_DONUS',
+  TAKIP_ZAMANI: 'TAKIP_ZAMANI',
+  ACILMAYAN_DAVET: 'ACILMAYAN_DAVET'
+} as const
+
+export type BildirimTip = (typeof BildirimTip)[keyof typeof BildirimTip]

@@ -32,3 +32,43 @@ export type Kisi = Prisma.KisiModel
  * 
  */
 export type Aktivite = Prisma.AktiviteModel
+/**
+ * Model MesajKalibi
+ * 
+ */
+export type MesajKalibi = Prisma.MesajKalibiModel
+/**
+ * Model DavetSayfasi
+ * 
+ */
+export type DavetSayfasi = Prisma.DavetSayfasiModel
+/**
+ * Model DavetModulu
+ * 
+ */
+export type DavetModulu = Prisma.DavetModuluModel
+/**
+ * Model DavetLinki
+ * 
+ */
+export type DavetLinki = Prisma.DavetLinkiModel
+/**
+ * Model DavetOlayi
+ * 
+ */
+export type DavetOlayi = Prisma.DavetOlayiModel
+/**
+ * Model HazirMesajLog
+ * 
+ */
+export type HazirMesajLog = Prisma.HazirMesajLogModel
+/**
+ * Model RandevuTalebi
+ * 
+ */
+export type RandevuTalebi = Prisma.RandevuTalebiModel
+/**
+ * Model Bildirim
+ * 
+ */
+export type Bildirim = Prisma.BildirimModel

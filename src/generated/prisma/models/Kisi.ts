@@ -28,10 +28,12 @@ export type AggregateKisi = {
 
 export type KisiAvgAggregateOutputType = {
   oncelik: number | null
+  skor: number | null
 }
 
 export type KisiSumAggregateOutputType = {
   oncelik: number | null
+  skor: number | null
 }
 
 export type KisiMinAggregateOutputType = {
@@ -39,11 +41,15 @@ export type KisiMinAggregateOutputType = {
   adSoyad: string | null
   telefon: string | null
   email: string | null
+  sehir: string | null
+  adayTipi: $Enums.AdayTipi | null
+  sicaklik: $Enums.Sicaklik | null
   kaynakTip: $Enums.KaynakTip | null
   kaynakNot: string | null
   durum: $Enums.SunumDurum | null
   oncelik: number | null
   notlar: string | null
+  skor: number | null
   sonTemas: Date | null
   sonrakiTakip: Date | null
   kullaniciId: string | null
@@ -56,11 +62,15 @@ export type KisiMaxAggregateOutputType = {
   adSoyad: string | null
   telefon: string | null
   email: string | null
+  sehir: string | null
+  adayTipi: $Enums.AdayTipi | null
+  sicaklik: $Enums.Sicaklik | null
   kaynakTip: $Enums.KaynakTip | null
   kaynakNot: string | null
   durum: $Enums.SunumDurum | null
   oncelik: number | null
   notlar: string | null
+  skor: number | null
   sonTemas: Date | null
   sonrakiTakip: Date | null
   kullaniciId: string | null
@@ -73,11 +83,15 @@ export type KisiCountAggregateOutputType = {
   adSoyad: number
   telefon: number
   email: number
+  sehir: number
+  adayTipi: number
+  sicaklik: number
   kaynakTip: number
   kaynakNot: number
   durum: number
   oncelik: number
   notlar: number
+  skor: number
   sonTemas: number
   sonrakiTakip: number
   kullaniciId: number
@@ -89,10 +103,12 @@ export type KisiCountAggregateOutputType = {
 
 export type KisiAvgAggregateInputType = {
   oncelik?: true
+  skor?: true
 }
 
 export type KisiSumAggregateInputType = {
   oncelik?: true
+  skor?: true
 }
 
 export type KisiMinAggregateInputType = {
@@ -100,11 +116,15 @@ export type KisiMinAggregateInputType = {
   adSoyad?: true
   telefon?: true
   email?: true
+  sehir?: true
+  adayTipi?: true
+  sicaklik?: true
   kaynakTip?: true
   kaynakNot?: true
   durum?: true
   oncelik?: true
   notlar?: true
+  skor?: true
   sonTemas?: true
   sonrakiTakip?: true
   kullaniciId?: true
@@ -117,11 +137,15 @@ export type KisiMaxAggregateInputType = {
   adSoyad?: true
   telefon?: true
   email?: true
+  sehir?: true
+  adayTipi?: true
+  sicaklik?: true
   kaynakTip?: true
   kaynakNot?: true
   durum?: true
   oncelik?: true
   notlar?: true
+  skor?: true
   sonTemas?: true
   sonrakiTakip?: true
   kullaniciId?: true
@@ -134,11 +158,15 @@ export type KisiCountAggregateInputType = {
   adSoyad?: true
   telefon?: true
   email?: true
+  sehir?: true
+  adayTipi?: true
+  sicaklik?: true
   kaynakTip?: true
   kaynakNot?: true
   durum?: true
   oncelik?: true
   notlar?: true
+  skor?: true
   sonTemas?: true
   sonrakiTakip?: true
   kullaniciId?: true
@@ -238,11 +266,15 @@ export type KisiGroupByOutputType = {
   adSoyad: string
   telefon: string | null
   email: string | null
+  sehir: string | null
+  adayTipi: $Enums.AdayTipi
+  sicaklik: $Enums.Sicaklik
   kaynakTip: $Enums.KaynakTip
   kaynakNot: string | null
   durum: $Enums.SunumDurum
   oncelik: number
   notlar: string | null
+  skor: number
   sonTemas: Date | null
   sonrakiTakip: Date | null
   kullaniciId: string
@@ -278,11 +310,15 @@ export type KisiWhereInput = {
   adSoyad?: Prisma.StringFilter<"Kisi"> | string
   telefon?: Prisma.StringNullableFilter<"Kisi"> | string | null
   email?: Prisma.StringNullableFilter<"Kisi"> | string | null
+  sehir?: Prisma.StringNullableFilter<"Kisi"> | string | null
+  adayTipi?: Prisma.EnumAdayTipiFilter<"Kisi"> | $Enums.AdayTipi
+  sicaklik?: Prisma.EnumSicaklikFilter<"Kisi"> | $Enums.Sicaklik
   kaynakTip?: Prisma.EnumKaynakTipFilter<"Kisi"> | $Enums.KaynakTip
   kaynakNot?: Prisma.StringNullableFilter<"Kisi"> | string | null
   durum?: Prisma.EnumSunumDurumFilter<"Kisi"> | $Enums.SunumDurum
   oncelik?: Prisma.IntFilter<"Kisi"> | number
   notlar?: Prisma.StringNullableFilter<"Kisi"> | string | null
+  skor?: Prisma.IntFilter<"Kisi"> | number
   sonTemas?: Prisma.DateTimeNullableFilter<"Kisi"> | Date | string | null
   sonrakiTakip?: Prisma.DateTimeNullableFilter<"Kisi"> | Date | string | null
   kullaniciId?: Prisma.StringFilter<"Kisi"> | string
@@ -290,6 +326,9 @@ export type KisiWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Kisi"> | Date | string
   kullanici?: Prisma.XOR<Prisma.KullaniciScalarRelationFilter, Prisma.KullaniciWhereInput>
   aktiviteler?: Prisma.AktiviteListRelationFilter
+  davetLinkleri?: Prisma.DavetLinkiListRelationFilter
+  hazirMesajlar?: Prisma.HazirMesajLogListRelationFilter
+  randevular?: Prisma.RandevuTalebiListRelationFilter
 }
 
 export type KisiOrderByWithRelationInput = {
@@ -297,11 +336,15 @@ export type KisiOrderByWithRelationInput = {
   adSoyad?: Prisma.SortOrder
   telefon?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
+  sehir?: Prisma.SortOrderInput | Prisma.SortOrder
+  adayTipi?: Prisma.SortOrder
+  sicaklik?: Prisma.SortOrder
   kaynakTip?: Prisma.SortOrder
   kaynakNot?: Prisma.SortOrderInput | Prisma.SortOrder
   durum?: Prisma.SortOrder
   oncelik?: Prisma.SortOrder
   notlar?: Prisma.SortOrderInput | Prisma.SortOrder
+  skor?: Prisma.SortOrder
   sonTemas?: Prisma.SortOrderInput | Prisma.SortOrder
   sonrakiTakip?: Prisma.SortOrderInput | Prisma.SortOrder
   kullaniciId?: Prisma.SortOrder
@@ -309,6 +352,9 @@ export type KisiOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   kullanici?: Prisma.KullaniciOrderByWithRelationInput
   aktiviteler?: Prisma.AktiviteOrderByRelationAggregateInput
+  davetLinkleri?: Prisma.DavetLinkiOrderByRelationAggregateInput
+  hazirMesajlar?: Prisma.HazirMesajLogOrderByRelationAggregateInput
+  randevular?: Prisma.RandevuTalebiOrderByRelationAggregateInput
 }
 
 export type KisiWhereUniqueInput = Prisma.AtLeast<{
@@ -319,11 +365,15 @@ export type KisiWhereUniqueInput = Prisma.AtLeast<{
   adSoyad?: Prisma.StringFilter<"Kisi"> | string
   telefon?: Prisma.StringNullableFilter<"Kisi"> | string | null
   email?: Prisma.StringNullableFilter<"Kisi"> | string | null
+  sehir?: Prisma.StringNullableFilter<"Kisi"> | string | null
+  adayTipi?: Prisma.EnumAdayTipiFilter<"Kisi"> | $Enums.AdayTipi
+  sicaklik?: Prisma.EnumSicaklikFilter<"Kisi"> | $Enums.Sicaklik
   kaynakTip?: Prisma.EnumKaynakTipFilter<"Kisi"> | $Enums.KaynakTip
   kaynakNot?: Prisma.StringNullableFilter<"Kisi"> | string | null
   durum?: Prisma.EnumSunumDurumFilter<"Kisi"> | $Enums.SunumDurum
   oncelik?: Prisma.IntFilter<"Kisi"> | number
   notlar?: Prisma.StringNullableFilter<"Kisi"> | string | null
+  skor?: Prisma.IntFilter<"Kisi"> | number
   sonTemas?: Prisma.DateTimeNullableFilter<"Kisi"> | Date | string | null
   sonrakiTakip?: Prisma.DateTimeNullableFilter<"Kisi"> | Date | string | null
   kullaniciId?: Prisma.StringFilter<"Kisi"> | string
@@ -331,6 +381,9 @@ export type KisiWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Kisi"> | Date | string
   kullanici?: Prisma.XOR<Prisma.KullaniciScalarRelationFilter, Prisma.KullaniciWhereInput>
   aktiviteler?: Prisma.AktiviteListRelationFilter
+  davetLinkleri?: Prisma.DavetLinkiListRelationFilter
+  hazirMesajlar?: Prisma.HazirMesajLogListRelationFilter
+  randevular?: Prisma.RandevuTalebiListRelationFilter
 }, "id">
 
 export type KisiOrderByWithAggregationInput = {
@@ -338,11 +391,15 @@ export type KisiOrderByWithAggregationInput = {
   adSoyad?: Prisma.SortOrder
   telefon?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
+  sehir?: Prisma.SortOrderInput | Prisma.SortOrder
+  adayTipi?: Prisma.SortOrder
+  sicaklik?: Prisma.SortOrder
   kaynakTip?: Prisma.SortOrder
   kaynakNot?: Prisma.SortOrderInput | Prisma.SortOrder
   durum?: Prisma.SortOrder
   oncelik?: Prisma.SortOrder
   notlar?: Prisma.SortOrderInput | Prisma.SortOrder
+  skor?: Prisma.SortOrder
   sonTemas?: Prisma.SortOrderInput | Prisma.SortOrder
   sonrakiTakip?: Prisma.SortOrderInput | Prisma.SortOrder
   kullaniciId?: Prisma.SortOrder
@@ -363,11 +420,15 @@ export type KisiScalarWhereWithAggregatesInput = {
   adSoyad?: Prisma.StringWithAggregatesFilter<"Kisi"> | string
   telefon?: Prisma.StringNullableWithAggregatesFilter<"Kisi"> | string | null
   email?: Prisma.StringNullableWithAggregatesFilter<"Kisi"> | string | null
+  sehir?: Prisma.StringNullableWithAggregatesFilter<"Kisi"> | string | null
+  adayTipi?: Prisma.EnumAdayTipiWithAggregatesFilter<"Kisi"> | $Enums.AdayTipi
+  sicaklik?: Prisma.EnumSicaklikWithAggregatesFilter<"Kisi"> | $Enums.Sicaklik
   kaynakTip?: Prisma.EnumKaynakTipWithAggregatesFilter<"Kisi"> | $Enums.KaynakTip
   kaynakNot?: Prisma.StringNullableWithAggregatesFilter<"Kisi"> | string | null
   durum?: Prisma.EnumSunumDurumWithAggregatesFilter<"Kisi"> | $Enums.SunumDurum
   oncelik?: Prisma.IntWithAggregatesFilter<"Kisi"> | number
   notlar?: Prisma.StringNullableWithAggregatesFilter<"Kisi"> | string | null
+  skor?: Prisma.IntWithAggregatesFilter<"Kisi"> | number
   sonTemas?: Prisma.DateTimeNullableWithAggregatesFilter<"Kisi"> | Date | string | null
   sonrakiTakip?: Prisma.DateTimeNullableWithAggregatesFilter<"Kisi"> | Date | string | null
   kullaniciId?: Prisma.StringWithAggregatesFilter<"Kisi"> | string
@@ -380,17 +441,24 @@ export type KisiCreateInput = {
   adSoyad: string
   telefon?: string | null
   email?: string | null
+  sehir?: string | null
+  adayTipi?: $Enums.AdayTipi
+  sicaklik?: $Enums.Sicaklik
   kaynakTip?: $Enums.KaynakTip
   kaynakNot?: string | null
   durum?: $Enums.SunumDurum
   oncelik?: number
   notlar?: string | null
+  skor?: number
   sonTemas?: Date | string | null
   sonrakiTakip?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   kullanici: Prisma.KullaniciCreateNestedOneWithoutKisilerInput
   aktiviteler?: Prisma.AktiviteCreateNestedManyWithoutKisiInput
+  davetLinkleri?: Prisma.DavetLinkiCreateNestedManyWithoutKisiInput
+  hazirMesajlar?: Prisma.HazirMesajLogCreateNestedManyWithoutKisiInput
+  randevular?: Prisma.RandevuTalebiCreateNestedManyWithoutKisiInput
 }
 
 export type KisiUncheckedCreateInput = {
@@ -398,17 +466,24 @@ export type KisiUncheckedCreateInput = {
   adSoyad: string
   telefon?: string | null
   email?: string | null
+  sehir?: string | null
+  adayTipi?: $Enums.AdayTipi
+  sicaklik?: $Enums.Sicaklik
   kaynakTip?: $Enums.KaynakTip
   kaynakNot?: string | null
   durum?: $Enums.SunumDurum
   oncelik?: number
   notlar?: string | null
+  skor?: number
   sonTemas?: Date | string | null
   sonrakiTakip?: Date | string | null
   kullaniciId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   aktiviteler?: Prisma.AktiviteUncheckedCreateNestedManyWithoutKisiInput
+  davetLinkleri?: Prisma.DavetLinkiUncheckedCreateNestedManyWithoutKisiInput
+  hazirMesajlar?: Prisma.HazirMesajLogUncheckedCreateNestedManyWithoutKisiInput
+  randevular?: Prisma.RandevuTalebiUncheckedCreateNestedManyWithoutKisiInput
 }
 
 export type KisiUpdateInput = {
@@ -416,17 +491,24 @@ export type KisiUpdateInput = {
   adSoyad?: Prisma.StringFieldUpdateOperationsInput | string
   telefon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sehir?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adayTipi?: Prisma.EnumAdayTipiFieldUpdateOperationsInput | $Enums.AdayTipi
+  sicaklik?: Prisma.EnumSicaklikFieldUpdateOperationsInput | $Enums.Sicaklik
   kaynakTip?: Prisma.EnumKaynakTipFieldUpdateOperationsInput | $Enums.KaynakTip
   kaynakNot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durum?: Prisma.EnumSunumDurumFieldUpdateOperationsInput | $Enums.SunumDurum
   oncelik?: Prisma.IntFieldUpdateOperationsInput | number
   notlar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skor?: Prisma.IntFieldUpdateOperationsInput | number
   sonTemas?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sonrakiTakip?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kullanici?: Prisma.KullaniciUpdateOneRequiredWithoutKisilerNestedInput
   aktiviteler?: Prisma.AktiviteUpdateManyWithoutKisiNestedInput
+  davetLinkleri?: Prisma.DavetLinkiUpdateManyWithoutKisiNestedInput
+  hazirMesajlar?: Prisma.HazirMesajLogUpdateManyWithoutKisiNestedInput
+  randevular?: Prisma.RandevuTalebiUpdateManyWithoutKisiNestedInput
 }
 
 export type KisiUncheckedUpdateInput = {
@@ -434,17 +516,24 @@ export type KisiUncheckedUpdateInput = {
   adSoyad?: Prisma.StringFieldUpdateOperationsInput | string
   telefon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sehir?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adayTipi?: Prisma.EnumAdayTipiFieldUpdateOperationsInput | $Enums.AdayTipi
+  sicaklik?: Prisma.EnumSicaklikFieldUpdateOperationsInput | $Enums.Sicaklik
   kaynakTip?: Prisma.EnumKaynakTipFieldUpdateOperationsInput | $Enums.KaynakTip
   kaynakNot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durum?: Prisma.EnumSunumDurumFieldUpdateOperationsInput | $Enums.SunumDurum
   oncelik?: Prisma.IntFieldUpdateOperationsInput | number
   notlar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skor?: Prisma.IntFieldUpdateOperationsInput | number
   sonTemas?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sonrakiTakip?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   kullaniciId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   aktiviteler?: Prisma.AktiviteUncheckedUpdateManyWithoutKisiNestedInput
+  davetLinkleri?: Prisma.DavetLinkiUncheckedUpdateManyWithoutKisiNestedInput
+  hazirMesajlar?: Prisma.HazirMesajLogUncheckedUpdateManyWithoutKisiNestedInput
+  randevular?: Prisma.RandevuTalebiUncheckedUpdateManyWithoutKisiNestedInput
 }
 
 export type KisiCreateManyInput = {
@@ -452,11 +541,15 @@ export type KisiCreateManyInput = {
   adSoyad: string
   telefon?: string | null
   email?: string | null
+  sehir?: string | null
+  adayTipi?: $Enums.AdayTipi
+  sicaklik?: $Enums.Sicaklik
   kaynakTip?: $Enums.KaynakTip
   kaynakNot?: string | null
   durum?: $Enums.SunumDurum
   oncelik?: number
   notlar?: string | null
+  skor?: number
   sonTemas?: Date | string | null
   sonrakiTakip?: Date | string | null
   kullaniciId: string
@@ -469,11 +562,15 @@ export type KisiUpdateManyMutationInput = {
   adSoyad?: Prisma.StringFieldUpdateOperationsInput | string
   telefon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sehir?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adayTipi?: Prisma.EnumAdayTipiFieldUpdateOperationsInput | $Enums.AdayTipi
+  sicaklik?: Prisma.EnumSicaklikFieldUpdateOperationsInput | $Enums.Sicaklik
   kaynakTip?: Prisma.EnumKaynakTipFieldUpdateOperationsInput | $Enums.KaynakTip
   kaynakNot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durum?: Prisma.EnumSunumDurumFieldUpdateOperationsInput | $Enums.SunumDurum
   oncelik?: Prisma.IntFieldUpdateOperationsInput | number
   notlar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skor?: Prisma.IntFieldUpdateOperationsInput | number
   sonTemas?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sonrakiTakip?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -485,11 +582,15 @@ export type KisiUncheckedUpdateManyInput = {
   adSoyad?: Prisma.StringFieldUpdateOperationsInput | string
   telefon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sehir?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adayTipi?: Prisma.EnumAdayTipiFieldUpdateOperationsInput | $Enums.AdayTipi
+  sicaklik?: Prisma.EnumSicaklikFieldUpdateOperationsInput | $Enums.Sicaklik
   kaynakTip?: Prisma.EnumKaynakTipFieldUpdateOperationsInput | $Enums.KaynakTip
   kaynakNot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durum?: Prisma.EnumSunumDurumFieldUpdateOperationsInput | $Enums.SunumDurum
   oncelik?: Prisma.IntFieldUpdateOperationsInput | number
   notlar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skor?: Prisma.IntFieldUpdateOperationsInput | number
   sonTemas?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sonrakiTakip?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   kullaniciId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -512,11 +613,15 @@ export type KisiCountOrderByAggregateInput = {
   adSoyad?: Prisma.SortOrder
   telefon?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  sehir?: Prisma.SortOrder
+  adayTipi?: Prisma.SortOrder
+  sicaklik?: Prisma.SortOrder
   kaynakTip?: Prisma.SortOrder
   kaynakNot?: Prisma.SortOrder
   durum?: Prisma.SortOrder
   oncelik?: Prisma.SortOrder
   notlar?: Prisma.SortOrder
+  skor?: Prisma.SortOrder
   sonTemas?: Prisma.SortOrder
   sonrakiTakip?: Prisma.SortOrder
   kullaniciId?: Prisma.SortOrder
@@ -526,6 +631,7 @@ export type KisiCountOrderByAggregateInput = {
 
 export type KisiAvgOrderByAggregateInput = {
   oncelik?: Prisma.SortOrder
+  skor?: Prisma.SortOrder
 }
 
 export type KisiMaxOrderByAggregateInput = {
@@ -533,11 +639,15 @@ export type KisiMaxOrderByAggregateInput = {
   adSoyad?: Prisma.SortOrder
   telefon?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  sehir?: Prisma.SortOrder
+  adayTipi?: Prisma.SortOrder
+  sicaklik?: Prisma.SortOrder
   kaynakTip?: Prisma.SortOrder
   kaynakNot?: Prisma.SortOrder
   durum?: Prisma.SortOrder
   oncelik?: Prisma.SortOrder
   notlar?: Prisma.SortOrder
+  skor?: Prisma.SortOrder
   sonTemas?: Prisma.SortOrder
   sonrakiTakip?: Prisma.SortOrder
   kullaniciId?: Prisma.SortOrder
@@ -550,11 +660,15 @@ export type KisiMinOrderByAggregateInput = {
   adSoyad?: Prisma.SortOrder
   telefon?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  sehir?: Prisma.SortOrder
+  adayTipi?: Prisma.SortOrder
+  sicaklik?: Prisma.SortOrder
   kaynakTip?: Prisma.SortOrder
   kaynakNot?: Prisma.SortOrder
   durum?: Prisma.SortOrder
   oncelik?: Prisma.SortOrder
   notlar?: Prisma.SortOrder
+  skor?: Prisma.SortOrder
   sonTemas?: Prisma.SortOrder
   sonrakiTakip?: Prisma.SortOrder
   kullaniciId?: Prisma.SortOrder
@@ -564,6 +678,7 @@ export type KisiMinOrderByAggregateInput = {
 
 export type KisiSumOrderByAggregateInput = {
   oncelik?: Prisma.SortOrder
+  skor?: Prisma.SortOrder
 }
 
 export type KisiScalarRelationFilter = {
@@ -613,8 +728,12 @@ export type KisiUncheckedUpdateManyWithoutKullaniciNestedInput = {
   deleteMany?: Prisma.KisiScalarWhereInput | Prisma.KisiScalarWhereInput[]
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
+export type EnumAdayTipiFieldUpdateOperationsInput = {
+  set?: $Enums.AdayTipi
+}
+
+export type EnumSicaklikFieldUpdateOperationsInput = {
+  set?: $Enums.Sicaklik
 }
 
 export type EnumKaynakTipFieldUpdateOperationsInput = {
@@ -651,21 +770,70 @@ export type KisiUpdateOneRequiredWithoutAktivitelerNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.KisiUpdateToOneWithWhereWithoutAktivitelerInput, Prisma.KisiUpdateWithoutAktivitelerInput>, Prisma.KisiUncheckedUpdateWithoutAktivitelerInput>
 }
 
+export type KisiCreateNestedOneWithoutDavetLinkleriInput = {
+  create?: Prisma.XOR<Prisma.KisiCreateWithoutDavetLinkleriInput, Prisma.KisiUncheckedCreateWithoutDavetLinkleriInput>
+  connectOrCreate?: Prisma.KisiCreateOrConnectWithoutDavetLinkleriInput
+  connect?: Prisma.KisiWhereUniqueInput
+}
+
+export type KisiUpdateOneRequiredWithoutDavetLinkleriNestedInput = {
+  create?: Prisma.XOR<Prisma.KisiCreateWithoutDavetLinkleriInput, Prisma.KisiUncheckedCreateWithoutDavetLinkleriInput>
+  connectOrCreate?: Prisma.KisiCreateOrConnectWithoutDavetLinkleriInput
+  upsert?: Prisma.KisiUpsertWithoutDavetLinkleriInput
+  connect?: Prisma.KisiWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.KisiUpdateToOneWithWhereWithoutDavetLinkleriInput, Prisma.KisiUpdateWithoutDavetLinkleriInput>, Prisma.KisiUncheckedUpdateWithoutDavetLinkleriInput>
+}
+
+export type KisiCreateNestedOneWithoutHazirMesajlarInput = {
+  create?: Prisma.XOR<Prisma.KisiCreateWithoutHazirMesajlarInput, Prisma.KisiUncheckedCreateWithoutHazirMesajlarInput>
+  connectOrCreate?: Prisma.KisiCreateOrConnectWithoutHazirMesajlarInput
+  connect?: Prisma.KisiWhereUniqueInput
+}
+
+export type KisiUpdateOneRequiredWithoutHazirMesajlarNestedInput = {
+  create?: Prisma.XOR<Prisma.KisiCreateWithoutHazirMesajlarInput, Prisma.KisiUncheckedCreateWithoutHazirMesajlarInput>
+  connectOrCreate?: Prisma.KisiCreateOrConnectWithoutHazirMesajlarInput
+  upsert?: Prisma.KisiUpsertWithoutHazirMesajlarInput
+  connect?: Prisma.KisiWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.KisiUpdateToOneWithWhereWithoutHazirMesajlarInput, Prisma.KisiUpdateWithoutHazirMesajlarInput>, Prisma.KisiUncheckedUpdateWithoutHazirMesajlarInput>
+}
+
+export type KisiCreateNestedOneWithoutRandevularInput = {
+  create?: Prisma.XOR<Prisma.KisiCreateWithoutRandevularInput, Prisma.KisiUncheckedCreateWithoutRandevularInput>
+  connectOrCreate?: Prisma.KisiCreateOrConnectWithoutRandevularInput
+  connect?: Prisma.KisiWhereUniqueInput
+}
+
+export type KisiUpdateOneRequiredWithoutRandevularNestedInput = {
+  create?: Prisma.XOR<Prisma.KisiCreateWithoutRandevularInput, Prisma.KisiUncheckedCreateWithoutRandevularInput>
+  connectOrCreate?: Prisma.KisiCreateOrConnectWithoutRandevularInput
+  upsert?: Prisma.KisiUpsertWithoutRandevularInput
+  connect?: Prisma.KisiWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.KisiUpdateToOneWithWhereWithoutRandevularInput, Prisma.KisiUpdateWithoutRandevularInput>, Prisma.KisiUncheckedUpdateWithoutRandevularInput>
+}
+
 export type KisiCreateWithoutKullaniciInput = {
   id?: string
   adSoyad: string
   telefon?: string | null
   email?: string | null
+  sehir?: string | null
+  adayTipi?: $Enums.AdayTipi
+  sicaklik?: $Enums.Sicaklik
   kaynakTip?: $Enums.KaynakTip
   kaynakNot?: string | null
   durum?: $Enums.SunumDurum
   oncelik?: number
   notlar?: string | null
+  skor?: number
   sonTemas?: Date | string | null
   sonrakiTakip?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   aktiviteler?: Prisma.AktiviteCreateNestedManyWithoutKisiInput
+  davetLinkleri?: Prisma.DavetLinkiCreateNestedManyWithoutKisiInput
+  hazirMesajlar?: Prisma.HazirMesajLogCreateNestedManyWithoutKisiInput
+  randevular?: Prisma.RandevuTalebiCreateNestedManyWithoutKisiInput
 }
 
 export type KisiUncheckedCreateWithoutKullaniciInput = {
@@ -673,16 +841,23 @@ export type KisiUncheckedCreateWithoutKullaniciInput = {
   adSoyad: string
   telefon?: string | null
   email?: string | null
+  sehir?: string | null
+  adayTipi?: $Enums.AdayTipi
+  sicaklik?: $Enums.Sicaklik
   kaynakTip?: $Enums.KaynakTip
   kaynakNot?: string | null
   durum?: $Enums.SunumDurum
   oncelik?: number
   notlar?: string | null
+  skor?: number
   sonTemas?: Date | string | null
   sonrakiTakip?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   aktiviteler?: Prisma.AktiviteUncheckedCreateNestedManyWithoutKisiInput
+  davetLinkleri?: Prisma.DavetLinkiUncheckedCreateNestedManyWithoutKisiInput
+  hazirMesajlar?: Prisma.HazirMesajLogUncheckedCreateNestedManyWithoutKisiInput
+  randevular?: Prisma.RandevuTalebiUncheckedCreateNestedManyWithoutKisiInput
 }
 
 export type KisiCreateOrConnectWithoutKullaniciInput = {
@@ -719,11 +894,15 @@ export type KisiScalarWhereInput = {
   adSoyad?: Prisma.StringFilter<"Kisi"> | string
   telefon?: Prisma.StringNullableFilter<"Kisi"> | string | null
   email?: Prisma.StringNullableFilter<"Kisi"> | string | null
+  sehir?: Prisma.StringNullableFilter<"Kisi"> | string | null
+  adayTipi?: Prisma.EnumAdayTipiFilter<"Kisi"> | $Enums.AdayTipi
+  sicaklik?: Prisma.EnumSicaklikFilter<"Kisi"> | $Enums.Sicaklik
   kaynakTip?: Prisma.EnumKaynakTipFilter<"Kisi"> | $Enums.KaynakTip
   kaynakNot?: Prisma.StringNullableFilter<"Kisi"> | string | null
   durum?: Prisma.EnumSunumDurumFilter<"Kisi"> | $Enums.SunumDurum
   oncelik?: Prisma.IntFilter<"Kisi"> | number
   notlar?: Prisma.StringNullableFilter<"Kisi"> | string | null
+  skor?: Prisma.IntFilter<"Kisi"> | number
   sonTemas?: Prisma.DateTimeNullableFilter<"Kisi"> | Date | string | null
   sonrakiTakip?: Prisma.DateTimeNullableFilter<"Kisi"> | Date | string | null
   kullaniciId?: Prisma.StringFilter<"Kisi"> | string
@@ -736,16 +915,23 @@ export type KisiCreateWithoutAktivitelerInput = {
   adSoyad: string
   telefon?: string | null
   email?: string | null
+  sehir?: string | null
+  adayTipi?: $Enums.AdayTipi
+  sicaklik?: $Enums.Sicaklik
   kaynakTip?: $Enums.KaynakTip
   kaynakNot?: string | null
   durum?: $Enums.SunumDurum
   oncelik?: number
   notlar?: string | null
+  skor?: number
   sonTemas?: Date | string | null
   sonrakiTakip?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   kullanici: Prisma.KullaniciCreateNestedOneWithoutKisilerInput
+  davetLinkleri?: Prisma.DavetLinkiCreateNestedManyWithoutKisiInput
+  hazirMesajlar?: Prisma.HazirMesajLogCreateNestedManyWithoutKisiInput
+  randevular?: Prisma.RandevuTalebiCreateNestedManyWithoutKisiInput
 }
 
 export type KisiUncheckedCreateWithoutAktivitelerInput = {
@@ -753,16 +939,23 @@ export type KisiUncheckedCreateWithoutAktivitelerInput = {
   adSoyad: string
   telefon?: string | null
   email?: string | null
+  sehir?: string | null
+  adayTipi?: $Enums.AdayTipi
+  sicaklik?: $Enums.Sicaklik
   kaynakTip?: $Enums.KaynakTip
   kaynakNot?: string | null
   durum?: $Enums.SunumDurum
   oncelik?: number
   notlar?: string | null
+  skor?: number
   sonTemas?: Date | string | null
   sonrakiTakip?: Date | string | null
   kullaniciId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  davetLinkleri?: Prisma.DavetLinkiUncheckedCreateNestedManyWithoutKisiInput
+  hazirMesajlar?: Prisma.HazirMesajLogUncheckedCreateNestedManyWithoutKisiInput
+  randevular?: Prisma.RandevuTalebiUncheckedCreateNestedManyWithoutKisiInput
 }
 
 export type KisiCreateOrConnectWithoutAktivitelerInput = {
@@ -786,16 +979,23 @@ export type KisiUpdateWithoutAktivitelerInput = {
   adSoyad?: Prisma.StringFieldUpdateOperationsInput | string
   telefon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sehir?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adayTipi?: Prisma.EnumAdayTipiFieldUpdateOperationsInput | $Enums.AdayTipi
+  sicaklik?: Prisma.EnumSicaklikFieldUpdateOperationsInput | $Enums.Sicaklik
   kaynakTip?: Prisma.EnumKaynakTipFieldUpdateOperationsInput | $Enums.KaynakTip
   kaynakNot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durum?: Prisma.EnumSunumDurumFieldUpdateOperationsInput | $Enums.SunumDurum
   oncelik?: Prisma.IntFieldUpdateOperationsInput | number
   notlar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skor?: Prisma.IntFieldUpdateOperationsInput | number
   sonTemas?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sonrakiTakip?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kullanici?: Prisma.KullaniciUpdateOneRequiredWithoutKisilerNestedInput
+  davetLinkleri?: Prisma.DavetLinkiUpdateManyWithoutKisiNestedInput
+  hazirMesajlar?: Prisma.HazirMesajLogUpdateManyWithoutKisiNestedInput
+  randevular?: Prisma.RandevuTalebiUpdateManyWithoutKisiNestedInput
 }
 
 export type KisiUncheckedUpdateWithoutAktivitelerInput = {
@@ -803,16 +1003,359 @@ export type KisiUncheckedUpdateWithoutAktivitelerInput = {
   adSoyad?: Prisma.StringFieldUpdateOperationsInput | string
   telefon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sehir?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adayTipi?: Prisma.EnumAdayTipiFieldUpdateOperationsInput | $Enums.AdayTipi
+  sicaklik?: Prisma.EnumSicaklikFieldUpdateOperationsInput | $Enums.Sicaklik
   kaynakTip?: Prisma.EnumKaynakTipFieldUpdateOperationsInput | $Enums.KaynakTip
   kaynakNot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durum?: Prisma.EnumSunumDurumFieldUpdateOperationsInput | $Enums.SunumDurum
   oncelik?: Prisma.IntFieldUpdateOperationsInput | number
   notlar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skor?: Prisma.IntFieldUpdateOperationsInput | number
   sonTemas?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sonrakiTakip?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   kullaniciId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  davetLinkleri?: Prisma.DavetLinkiUncheckedUpdateManyWithoutKisiNestedInput
+  hazirMesajlar?: Prisma.HazirMesajLogUncheckedUpdateManyWithoutKisiNestedInput
+  randevular?: Prisma.RandevuTalebiUncheckedUpdateManyWithoutKisiNestedInput
+}
+
+export type KisiCreateWithoutDavetLinkleriInput = {
+  id?: string
+  adSoyad: string
+  telefon?: string | null
+  email?: string | null
+  sehir?: string | null
+  adayTipi?: $Enums.AdayTipi
+  sicaklik?: $Enums.Sicaklik
+  kaynakTip?: $Enums.KaynakTip
+  kaynakNot?: string | null
+  durum?: $Enums.SunumDurum
+  oncelik?: number
+  notlar?: string | null
+  skor?: number
+  sonTemas?: Date | string | null
+  sonrakiTakip?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  kullanici: Prisma.KullaniciCreateNestedOneWithoutKisilerInput
+  aktiviteler?: Prisma.AktiviteCreateNestedManyWithoutKisiInput
+  hazirMesajlar?: Prisma.HazirMesajLogCreateNestedManyWithoutKisiInput
+  randevular?: Prisma.RandevuTalebiCreateNestedManyWithoutKisiInput
+}
+
+export type KisiUncheckedCreateWithoutDavetLinkleriInput = {
+  id?: string
+  adSoyad: string
+  telefon?: string | null
+  email?: string | null
+  sehir?: string | null
+  adayTipi?: $Enums.AdayTipi
+  sicaklik?: $Enums.Sicaklik
+  kaynakTip?: $Enums.KaynakTip
+  kaynakNot?: string | null
+  durum?: $Enums.SunumDurum
+  oncelik?: number
+  notlar?: string | null
+  skor?: number
+  sonTemas?: Date | string | null
+  sonrakiTakip?: Date | string | null
+  kullaniciId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  aktiviteler?: Prisma.AktiviteUncheckedCreateNestedManyWithoutKisiInput
+  hazirMesajlar?: Prisma.HazirMesajLogUncheckedCreateNestedManyWithoutKisiInput
+  randevular?: Prisma.RandevuTalebiUncheckedCreateNestedManyWithoutKisiInput
+}
+
+export type KisiCreateOrConnectWithoutDavetLinkleriInput = {
+  where: Prisma.KisiWhereUniqueInput
+  create: Prisma.XOR<Prisma.KisiCreateWithoutDavetLinkleriInput, Prisma.KisiUncheckedCreateWithoutDavetLinkleriInput>
+}
+
+export type KisiUpsertWithoutDavetLinkleriInput = {
+  update: Prisma.XOR<Prisma.KisiUpdateWithoutDavetLinkleriInput, Prisma.KisiUncheckedUpdateWithoutDavetLinkleriInput>
+  create: Prisma.XOR<Prisma.KisiCreateWithoutDavetLinkleriInput, Prisma.KisiUncheckedCreateWithoutDavetLinkleriInput>
+  where?: Prisma.KisiWhereInput
+}
+
+export type KisiUpdateToOneWithWhereWithoutDavetLinkleriInput = {
+  where?: Prisma.KisiWhereInput
+  data: Prisma.XOR<Prisma.KisiUpdateWithoutDavetLinkleriInput, Prisma.KisiUncheckedUpdateWithoutDavetLinkleriInput>
+}
+
+export type KisiUpdateWithoutDavetLinkleriInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  adSoyad?: Prisma.StringFieldUpdateOperationsInput | string
+  telefon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sehir?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adayTipi?: Prisma.EnumAdayTipiFieldUpdateOperationsInput | $Enums.AdayTipi
+  sicaklik?: Prisma.EnumSicaklikFieldUpdateOperationsInput | $Enums.Sicaklik
+  kaynakTip?: Prisma.EnumKaynakTipFieldUpdateOperationsInput | $Enums.KaynakTip
+  kaynakNot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  durum?: Prisma.EnumSunumDurumFieldUpdateOperationsInput | $Enums.SunumDurum
+  oncelik?: Prisma.IntFieldUpdateOperationsInput | number
+  notlar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skor?: Prisma.IntFieldUpdateOperationsInput | number
+  sonTemas?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sonrakiTakip?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  kullanici?: Prisma.KullaniciUpdateOneRequiredWithoutKisilerNestedInput
+  aktiviteler?: Prisma.AktiviteUpdateManyWithoutKisiNestedInput
+  hazirMesajlar?: Prisma.HazirMesajLogUpdateManyWithoutKisiNestedInput
+  randevular?: Prisma.RandevuTalebiUpdateManyWithoutKisiNestedInput
+}
+
+export type KisiUncheckedUpdateWithoutDavetLinkleriInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  adSoyad?: Prisma.StringFieldUpdateOperationsInput | string
+  telefon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sehir?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adayTipi?: Prisma.EnumAdayTipiFieldUpdateOperationsInput | $Enums.AdayTipi
+  sicaklik?: Prisma.EnumSicaklikFieldUpdateOperationsInput | $Enums.Sicaklik
+  kaynakTip?: Prisma.EnumKaynakTipFieldUpdateOperationsInput | $Enums.KaynakTip
+  kaynakNot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  durum?: Prisma.EnumSunumDurumFieldUpdateOperationsInput | $Enums.SunumDurum
+  oncelik?: Prisma.IntFieldUpdateOperationsInput | number
+  notlar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skor?: Prisma.IntFieldUpdateOperationsInput | number
+  sonTemas?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sonrakiTakip?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kullaniciId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aktiviteler?: Prisma.AktiviteUncheckedUpdateManyWithoutKisiNestedInput
+  hazirMesajlar?: Prisma.HazirMesajLogUncheckedUpdateManyWithoutKisiNestedInput
+  randevular?: Prisma.RandevuTalebiUncheckedUpdateManyWithoutKisiNestedInput
+}
+
+export type KisiCreateWithoutHazirMesajlarInput = {
+  id?: string
+  adSoyad: string
+  telefon?: string | null
+  email?: string | null
+  sehir?: string | null
+  adayTipi?: $Enums.AdayTipi
+  sicaklik?: $Enums.Sicaklik
+  kaynakTip?: $Enums.KaynakTip
+  kaynakNot?: string | null
+  durum?: $Enums.SunumDurum
+  oncelik?: number
+  notlar?: string | null
+  skor?: number
+  sonTemas?: Date | string | null
+  sonrakiTakip?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  kullanici: Prisma.KullaniciCreateNestedOneWithoutKisilerInput
+  aktiviteler?: Prisma.AktiviteCreateNestedManyWithoutKisiInput
+  davetLinkleri?: Prisma.DavetLinkiCreateNestedManyWithoutKisiInput
+  randevular?: Prisma.RandevuTalebiCreateNestedManyWithoutKisiInput
+}
+
+export type KisiUncheckedCreateWithoutHazirMesajlarInput = {
+  id?: string
+  adSoyad: string
+  telefon?: string | null
+  email?: string | null
+  sehir?: string | null
+  adayTipi?: $Enums.AdayTipi
+  sicaklik?: $Enums.Sicaklik
+  kaynakTip?: $Enums.KaynakTip
+  kaynakNot?: string | null
+  durum?: $Enums.SunumDurum
+  oncelik?: number
+  notlar?: string | null
+  skor?: number
+  sonTemas?: Date | string | null
+  sonrakiTakip?: Date | string | null
+  kullaniciId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  aktiviteler?: Prisma.AktiviteUncheckedCreateNestedManyWithoutKisiInput
+  davetLinkleri?: Prisma.DavetLinkiUncheckedCreateNestedManyWithoutKisiInput
+  randevular?: Prisma.RandevuTalebiUncheckedCreateNestedManyWithoutKisiInput
+}
+
+export type KisiCreateOrConnectWithoutHazirMesajlarInput = {
+  where: Prisma.KisiWhereUniqueInput
+  create: Prisma.XOR<Prisma.KisiCreateWithoutHazirMesajlarInput, Prisma.KisiUncheckedCreateWithoutHazirMesajlarInput>
+}
+
+export type KisiUpsertWithoutHazirMesajlarInput = {
+  update: Prisma.XOR<Prisma.KisiUpdateWithoutHazirMesajlarInput, Prisma.KisiUncheckedUpdateWithoutHazirMesajlarInput>
+  create: Prisma.XOR<Prisma.KisiCreateWithoutHazirMesajlarInput, Prisma.KisiUncheckedCreateWithoutHazirMesajlarInput>
+  where?: Prisma.KisiWhereInput
+}
+
+export type KisiUpdateToOneWithWhereWithoutHazirMesajlarInput = {
+  where?: Prisma.KisiWhereInput
+  data: Prisma.XOR<Prisma.KisiUpdateWithoutHazirMesajlarInput, Prisma.KisiUncheckedUpdateWithoutHazirMesajlarInput>
+}
+
+export type KisiUpdateWithoutHazirMesajlarInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  adSoyad?: Prisma.StringFieldUpdateOperationsInput | string
+  telefon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sehir?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adayTipi?: Prisma.EnumAdayTipiFieldUpdateOperationsInput | $Enums.AdayTipi
+  sicaklik?: Prisma.EnumSicaklikFieldUpdateOperationsInput | $Enums.Sicaklik
+  kaynakTip?: Prisma.EnumKaynakTipFieldUpdateOperationsInput | $Enums.KaynakTip
+  kaynakNot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  durum?: Prisma.EnumSunumDurumFieldUpdateOperationsInput | $Enums.SunumDurum
+  oncelik?: Prisma.IntFieldUpdateOperationsInput | number
+  notlar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skor?: Prisma.IntFieldUpdateOperationsInput | number
+  sonTemas?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sonrakiTakip?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  kullanici?: Prisma.KullaniciUpdateOneRequiredWithoutKisilerNestedInput
+  aktiviteler?: Prisma.AktiviteUpdateManyWithoutKisiNestedInput
+  davetLinkleri?: Prisma.DavetLinkiUpdateManyWithoutKisiNestedInput
+  randevular?: Prisma.RandevuTalebiUpdateManyWithoutKisiNestedInput
+}
+
+export type KisiUncheckedUpdateWithoutHazirMesajlarInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  adSoyad?: Prisma.StringFieldUpdateOperationsInput | string
+  telefon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sehir?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adayTipi?: Prisma.EnumAdayTipiFieldUpdateOperationsInput | $Enums.AdayTipi
+  sicaklik?: Prisma.EnumSicaklikFieldUpdateOperationsInput | $Enums.Sicaklik
+  kaynakTip?: Prisma.EnumKaynakTipFieldUpdateOperationsInput | $Enums.KaynakTip
+  kaynakNot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  durum?: Prisma.EnumSunumDurumFieldUpdateOperationsInput | $Enums.SunumDurum
+  oncelik?: Prisma.IntFieldUpdateOperationsInput | number
+  notlar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skor?: Prisma.IntFieldUpdateOperationsInput | number
+  sonTemas?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sonrakiTakip?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kullaniciId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aktiviteler?: Prisma.AktiviteUncheckedUpdateManyWithoutKisiNestedInput
+  davetLinkleri?: Prisma.DavetLinkiUncheckedUpdateManyWithoutKisiNestedInput
+  randevular?: Prisma.RandevuTalebiUncheckedUpdateManyWithoutKisiNestedInput
+}
+
+export type KisiCreateWithoutRandevularInput = {
+  id?: string
+  adSoyad: string
+  telefon?: string | null
+  email?: string | null
+  sehir?: string | null
+  adayTipi?: $Enums.AdayTipi
+  sicaklik?: $Enums.Sicaklik
+  kaynakTip?: $Enums.KaynakTip
+  kaynakNot?: string | null
+  durum?: $Enums.SunumDurum
+  oncelik?: number
+  notlar?: string | null
+  skor?: number
+  sonTemas?: Date | string | null
+  sonrakiTakip?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  kullanici: Prisma.KullaniciCreateNestedOneWithoutKisilerInput
+  aktiviteler?: Prisma.AktiviteCreateNestedManyWithoutKisiInput
+  davetLinkleri?: Prisma.DavetLinkiCreateNestedManyWithoutKisiInput
+  hazirMesajlar?: Prisma.HazirMesajLogCreateNestedManyWithoutKisiInput
+}
+
+export type KisiUncheckedCreateWithoutRandevularInput = {
+  id?: string
+  adSoyad: string
+  telefon?: string | null
+  email?: string | null
+  sehir?: string | null
+  adayTipi?: $Enums.AdayTipi
+  sicaklik?: $Enums.Sicaklik
+  kaynakTip?: $Enums.KaynakTip
+  kaynakNot?: string | null
+  durum?: $Enums.SunumDurum
+  oncelik?: number
+  notlar?: string | null
+  skor?: number
+  sonTemas?: Date | string | null
+  sonrakiTakip?: Date | string | null
+  kullaniciId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  aktiviteler?: Prisma.AktiviteUncheckedCreateNestedManyWithoutKisiInput
+  davetLinkleri?: Prisma.DavetLinkiUncheckedCreateNestedManyWithoutKisiInput
+  hazirMesajlar?: Prisma.HazirMesajLogUncheckedCreateNestedManyWithoutKisiInput
+}
+
+export type KisiCreateOrConnectWithoutRandevularInput = {
+  where: Prisma.KisiWhereUniqueInput
+  create: Prisma.XOR<Prisma.KisiCreateWithoutRandevularInput, Prisma.KisiUncheckedCreateWithoutRandevularInput>
+}
+
+export type KisiUpsertWithoutRandevularInput = {
+  update: Prisma.XOR<Prisma.KisiUpdateWithoutRandevularInput, Prisma.KisiUncheckedUpdateWithoutRandevularInput>
+  create: Prisma.XOR<Prisma.KisiCreateWithoutRandevularInput, Prisma.KisiUncheckedCreateWithoutRandevularInput>
+  where?: Prisma.KisiWhereInput
+}
+
+export type KisiUpdateToOneWithWhereWithoutRandevularInput = {
+  where?: Prisma.KisiWhereInput
+  data: Prisma.XOR<Prisma.KisiUpdateWithoutRandevularInput, Prisma.KisiUncheckedUpdateWithoutRandevularInput>
+}
+
+export type KisiUpdateWithoutRandevularInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  adSoyad?: Prisma.StringFieldUpdateOperationsInput | string
+  telefon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sehir?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adayTipi?: Prisma.EnumAdayTipiFieldUpdateOperationsInput | $Enums.AdayTipi
+  sicaklik?: Prisma.EnumSicaklikFieldUpdateOperationsInput | $Enums.Sicaklik
+  kaynakTip?: Prisma.EnumKaynakTipFieldUpdateOperationsInput | $Enums.KaynakTip
+  kaynakNot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  durum?: Prisma.EnumSunumDurumFieldUpdateOperationsInput | $Enums.SunumDurum
+  oncelik?: Prisma.IntFieldUpdateOperationsInput | number
+  notlar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skor?: Prisma.IntFieldUpdateOperationsInput | number
+  sonTemas?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sonrakiTakip?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  kullanici?: Prisma.KullaniciUpdateOneRequiredWithoutKisilerNestedInput
+  aktiviteler?: Prisma.AktiviteUpdateManyWithoutKisiNestedInput
+  davetLinkleri?: Prisma.DavetLinkiUpdateManyWithoutKisiNestedInput
+  hazirMesajlar?: Prisma.HazirMesajLogUpdateManyWithoutKisiNestedInput
+}
+
+export type KisiUncheckedUpdateWithoutRandevularInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  adSoyad?: Prisma.StringFieldUpdateOperationsInput | string
+  telefon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sehir?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adayTipi?: Prisma.EnumAdayTipiFieldUpdateOperationsInput | $Enums.AdayTipi
+  sicaklik?: Prisma.EnumSicaklikFieldUpdateOperationsInput | $Enums.Sicaklik
+  kaynakTip?: Prisma.EnumKaynakTipFieldUpdateOperationsInput | $Enums.KaynakTip
+  kaynakNot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  durum?: Prisma.EnumSunumDurumFieldUpdateOperationsInput | $Enums.SunumDurum
+  oncelik?: Prisma.IntFieldUpdateOperationsInput | number
+  notlar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skor?: Prisma.IntFieldUpdateOperationsInput | number
+  sonTemas?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sonrakiTakip?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kullaniciId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aktiviteler?: Prisma.AktiviteUncheckedUpdateManyWithoutKisiNestedInput
+  davetLinkleri?: Prisma.DavetLinkiUncheckedUpdateManyWithoutKisiNestedInput
+  hazirMesajlar?: Prisma.HazirMesajLogUncheckedUpdateManyWithoutKisiNestedInput
 }
 
 export type KisiCreateManyKullaniciInput = {
@@ -820,11 +1363,15 @@ export type KisiCreateManyKullaniciInput = {
   adSoyad: string
   telefon?: string | null
   email?: string | null
+  sehir?: string | null
+  adayTipi?: $Enums.AdayTipi
+  sicaklik?: $Enums.Sicaklik
   kaynakTip?: $Enums.KaynakTip
   kaynakNot?: string | null
   durum?: $Enums.SunumDurum
   oncelik?: number
   notlar?: string | null
+  skor?: number
   sonTemas?: Date | string | null
   sonrakiTakip?: Date | string | null
   createdAt?: Date | string
@@ -836,16 +1383,23 @@ export type KisiUpdateWithoutKullaniciInput = {
   adSoyad?: Prisma.StringFieldUpdateOperationsInput | string
   telefon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sehir?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adayTipi?: Prisma.EnumAdayTipiFieldUpdateOperationsInput | $Enums.AdayTipi
+  sicaklik?: Prisma.EnumSicaklikFieldUpdateOperationsInput | $Enums.Sicaklik
   kaynakTip?: Prisma.EnumKaynakTipFieldUpdateOperationsInput | $Enums.KaynakTip
   kaynakNot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durum?: Prisma.EnumSunumDurumFieldUpdateOperationsInput | $Enums.SunumDurum
   oncelik?: Prisma.IntFieldUpdateOperationsInput | number
   notlar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skor?: Prisma.IntFieldUpdateOperationsInput | number
   sonTemas?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sonrakiTakip?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   aktiviteler?: Prisma.AktiviteUpdateManyWithoutKisiNestedInput
+  davetLinkleri?: Prisma.DavetLinkiUpdateManyWithoutKisiNestedInput
+  hazirMesajlar?: Prisma.HazirMesajLogUpdateManyWithoutKisiNestedInput
+  randevular?: Prisma.RandevuTalebiUpdateManyWithoutKisiNestedInput
 }
 
 export type KisiUncheckedUpdateWithoutKullaniciInput = {
@@ -853,16 +1407,23 @@ export type KisiUncheckedUpdateWithoutKullaniciInput = {
   adSoyad?: Prisma.StringFieldUpdateOperationsInput | string
   telefon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sehir?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adayTipi?: Prisma.EnumAdayTipiFieldUpdateOperationsInput | $Enums.AdayTipi
+  sicaklik?: Prisma.EnumSicaklikFieldUpdateOperationsInput | $Enums.Sicaklik
   kaynakTip?: Prisma.EnumKaynakTipFieldUpdateOperationsInput | $Enums.KaynakTip
   kaynakNot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durum?: Prisma.EnumSunumDurumFieldUpdateOperationsInput | $Enums.SunumDurum
   oncelik?: Prisma.IntFieldUpdateOperationsInput | number
   notlar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skor?: Prisma.IntFieldUpdateOperationsInput | number
   sonTemas?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sonrakiTakip?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   aktiviteler?: Prisma.AktiviteUncheckedUpdateManyWithoutKisiNestedInput
+  davetLinkleri?: Prisma.DavetLinkiUncheckedUpdateManyWithoutKisiNestedInput
+  hazirMesajlar?: Prisma.HazirMesajLogUncheckedUpdateManyWithoutKisiNestedInput
+  randevular?: Prisma.RandevuTalebiUncheckedUpdateManyWithoutKisiNestedInput
 }
 
 export type KisiUncheckedUpdateManyWithoutKullaniciInput = {
@@ -870,11 +1431,15 @@ export type KisiUncheckedUpdateManyWithoutKullaniciInput = {
   adSoyad?: Prisma.StringFieldUpdateOperationsInput | string
   telefon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sehir?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adayTipi?: Prisma.EnumAdayTipiFieldUpdateOperationsInput | $Enums.AdayTipi
+  sicaklik?: Prisma.EnumSicaklikFieldUpdateOperationsInput | $Enums.Sicaklik
   kaynakTip?: Prisma.EnumKaynakTipFieldUpdateOperationsInput | $Enums.KaynakTip
   kaynakNot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durum?: Prisma.EnumSunumDurumFieldUpdateOperationsInput | $Enums.SunumDurum
   oncelik?: Prisma.IntFieldUpdateOperationsInput | number
   notlar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skor?: Prisma.IntFieldUpdateOperationsInput | number
   sonTemas?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sonrakiTakip?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -888,10 +1453,16 @@ export type KisiUncheckedUpdateManyWithoutKullaniciInput = {
 
 export type KisiCountOutputType = {
   aktiviteler: number
+  davetLinkleri: number
+  hazirMesajlar: number
+  randevular: number
 }
 
 export type KisiCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   aktiviteler?: boolean | KisiCountOutputTypeCountAktivitelerArgs
+  davetLinkleri?: boolean | KisiCountOutputTypeCountDavetLinkleriArgs
+  hazirMesajlar?: boolean | KisiCountOutputTypeCountHazirMesajlarArgs
+  randevular?: boolean | KisiCountOutputTypeCountRandevularArgs
 }
 
 /**
@@ -911,17 +1482,42 @@ export type KisiCountOutputTypeCountAktivitelerArgs<ExtArgs extends runtime.Type
   where?: Prisma.AktiviteWhereInput
 }
 
+/**
+ * KisiCountOutputType without action
+ */
+export type KisiCountOutputTypeCountDavetLinkleriArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DavetLinkiWhereInput
+}
+
+/**
+ * KisiCountOutputType without action
+ */
+export type KisiCountOutputTypeCountHazirMesajlarArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.HazirMesajLogWhereInput
+}
+
+/**
+ * KisiCountOutputType without action
+ */
+export type KisiCountOutputTypeCountRandevularArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RandevuTalebiWhereInput
+}
+
 
 export type KisiSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   adSoyad?: boolean
   telefon?: boolean
   email?: boolean
+  sehir?: boolean
+  adayTipi?: boolean
+  sicaklik?: boolean
   kaynakTip?: boolean
   kaynakNot?: boolean
   durum?: boolean
   oncelik?: boolean
   notlar?: boolean
+  skor?: boolean
   sonTemas?: boolean
   sonrakiTakip?: boolean
   kullaniciId?: boolean
@@ -929,6 +1525,9 @@ export type KisiSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedAt?: boolean
   kullanici?: boolean | Prisma.KullaniciDefaultArgs<ExtArgs>
   aktiviteler?: boolean | Prisma.Kisi$aktivitelerArgs<ExtArgs>
+  davetLinkleri?: boolean | Prisma.Kisi$davetLinkleriArgs<ExtArgs>
+  hazirMesajlar?: boolean | Prisma.Kisi$hazirMesajlarArgs<ExtArgs>
+  randevular?: boolean | Prisma.Kisi$randevularArgs<ExtArgs>
   _count?: boolean | Prisma.KisiCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["kisi"]>
 
@@ -937,11 +1536,15 @@ export type KisiSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   adSoyad?: boolean
   telefon?: boolean
   email?: boolean
+  sehir?: boolean
+  adayTipi?: boolean
+  sicaklik?: boolean
   kaynakTip?: boolean
   kaynakNot?: boolean
   durum?: boolean
   oncelik?: boolean
   notlar?: boolean
+  skor?: boolean
   sonTemas?: boolean
   sonrakiTakip?: boolean
   kullaniciId?: boolean
@@ -955,11 +1558,15 @@ export type KisiSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   adSoyad?: boolean
   telefon?: boolean
   email?: boolean
+  sehir?: boolean
+  adayTipi?: boolean
+  sicaklik?: boolean
   kaynakTip?: boolean
   kaynakNot?: boolean
   durum?: boolean
   oncelik?: boolean
   notlar?: boolean
+  skor?: boolean
   sonTemas?: boolean
   sonrakiTakip?: boolean
   kullaniciId?: boolean
@@ -973,11 +1580,15 @@ export type KisiSelectScalar = {
   adSoyad?: boolean
   telefon?: boolean
   email?: boolean
+  sehir?: boolean
+  adayTipi?: boolean
+  sicaklik?: boolean
   kaynakTip?: boolean
   kaynakNot?: boolean
   durum?: boolean
   oncelik?: boolean
   notlar?: boolean
+  skor?: boolean
   sonTemas?: boolean
   sonrakiTakip?: boolean
   kullaniciId?: boolean
@@ -985,10 +1596,13 @@ export type KisiSelectScalar = {
   updatedAt?: boolean
 }
 
-export type KisiOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "adSoyad" | "telefon" | "email" | "kaynakTip" | "kaynakNot" | "durum" | "oncelik" | "notlar" | "sonTemas" | "sonrakiTakip" | "kullaniciId" | "createdAt" | "updatedAt", ExtArgs["result"]["kisi"]>
+export type KisiOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "adSoyad" | "telefon" | "email" | "sehir" | "adayTipi" | "sicaklik" | "kaynakTip" | "kaynakNot" | "durum" | "oncelik" | "notlar" | "skor" | "sonTemas" | "sonrakiTakip" | "kullaniciId" | "createdAt" | "updatedAt", ExtArgs["result"]["kisi"]>
 export type KisiInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   kullanici?: boolean | Prisma.KullaniciDefaultArgs<ExtArgs>
   aktiviteler?: boolean | Prisma.Kisi$aktivitelerArgs<ExtArgs>
+  davetLinkleri?: boolean | Prisma.Kisi$davetLinkleriArgs<ExtArgs>
+  hazirMesajlar?: boolean | Prisma.Kisi$hazirMesajlarArgs<ExtArgs>
+  randevular?: boolean | Prisma.Kisi$randevularArgs<ExtArgs>
   _count?: boolean | Prisma.KisiCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type KisiIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1003,17 +1617,24 @@ export type $KisiPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     kullanici: Prisma.$KullaniciPayload<ExtArgs>
     aktiviteler: Prisma.$AktivitePayload<ExtArgs>[]
+    davetLinkleri: Prisma.$DavetLinkiPayload<ExtArgs>[]
+    hazirMesajlar: Prisma.$HazirMesajLogPayload<ExtArgs>[]
+    randevular: Prisma.$RandevuTalebiPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     adSoyad: string
     telefon: string | null
     email: string | null
+    sehir: string | null
+    adayTipi: $Enums.AdayTipi
+    sicaklik: $Enums.Sicaklik
     kaynakTip: $Enums.KaynakTip
     kaynakNot: string | null
     durum: $Enums.SunumDurum
     oncelik: number
     notlar: string | null
+    skor: number
     sonTemas: Date | null
     sonrakiTakip: Date | null
     kullaniciId: string
@@ -1415,6 +2036,9 @@ export interface Prisma__KisiClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   kullanici<T extends Prisma.KullaniciDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.KullaniciDefaultArgs<ExtArgs>>): Prisma.Prisma__KullaniciClient<runtime.Types.Result.GetResult<Prisma.$KullaniciPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   aktiviteler<T extends Prisma.Kisi$aktivitelerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Kisi$aktivitelerArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AktivitePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  davetLinkleri<T extends Prisma.Kisi$davetLinkleriArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Kisi$davetLinkleriArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DavetLinkiPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  hazirMesajlar<T extends Prisma.Kisi$hazirMesajlarArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Kisi$hazirMesajlarArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HazirMesajLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  randevular<T extends Prisma.Kisi$randevularArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Kisi$randevularArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RandevuTalebiPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1448,11 +2072,15 @@ export interface KisiFieldRefs {
   readonly adSoyad: Prisma.FieldRef<"Kisi", 'String'>
   readonly telefon: Prisma.FieldRef<"Kisi", 'String'>
   readonly email: Prisma.FieldRef<"Kisi", 'String'>
+  readonly sehir: Prisma.FieldRef<"Kisi", 'String'>
+  readonly adayTipi: Prisma.FieldRef<"Kisi", 'AdayTipi'>
+  readonly sicaklik: Prisma.FieldRef<"Kisi", 'Sicaklik'>
   readonly kaynakTip: Prisma.FieldRef<"Kisi", 'KaynakTip'>
   readonly kaynakNot: Prisma.FieldRef<"Kisi", 'String'>
   readonly durum: Prisma.FieldRef<"Kisi", 'SunumDurum'>
   readonly oncelik: Prisma.FieldRef<"Kisi", 'Int'>
   readonly notlar: Prisma.FieldRef<"Kisi", 'String'>
+  readonly skor: Prisma.FieldRef<"Kisi", 'Int'>
   readonly sonTemas: Prisma.FieldRef<"Kisi", 'DateTime'>
   readonly sonrakiTakip: Prisma.FieldRef<"Kisi", 'DateTime'>
   readonly kullaniciId: Prisma.FieldRef<"Kisi", 'String'>
@@ -1880,6 +2508,78 @@ export type Kisi$aktivitelerArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.AktiviteScalarFieldEnum | Prisma.AktiviteScalarFieldEnum[]
+}
+
+/**
+ * Kisi.davetLinkleri
+ */
+export type Kisi$davetLinkleriArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DavetLinki
+   */
+  select?: Prisma.DavetLinkiSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DavetLinki
+   */
+  omit?: Prisma.DavetLinkiOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DavetLinkiInclude<ExtArgs> | null
+  where?: Prisma.DavetLinkiWhereInput
+  orderBy?: Prisma.DavetLinkiOrderByWithRelationInput | Prisma.DavetLinkiOrderByWithRelationInput[]
+  cursor?: Prisma.DavetLinkiWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DavetLinkiScalarFieldEnum | Prisma.DavetLinkiScalarFieldEnum[]
+}
+
+/**
+ * Kisi.hazirMesajlar
+ */
+export type Kisi$hazirMesajlarArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the HazirMesajLog
+   */
+  select?: Prisma.HazirMesajLogSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the HazirMesajLog
+   */
+  omit?: Prisma.HazirMesajLogOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.HazirMesajLogInclude<ExtArgs> | null
+  where?: Prisma.HazirMesajLogWhereInput
+  orderBy?: Prisma.HazirMesajLogOrderByWithRelationInput | Prisma.HazirMesajLogOrderByWithRelationInput[]
+  cursor?: Prisma.HazirMesajLogWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.HazirMesajLogScalarFieldEnum | Prisma.HazirMesajLogScalarFieldEnum[]
+}
+
+/**
+ * Kisi.randevular
+ */
+export type Kisi$randevularArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RandevuTalebi
+   */
+  select?: Prisma.RandevuTalebiSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RandevuTalebi
+   */
+  omit?: Prisma.RandevuTalebiOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RandevuTalebiInclude<ExtArgs> | null
+  where?: Prisma.RandevuTalebiWhereInput
+  orderBy?: Prisma.RandevuTalebiOrderByWithRelationInput | Prisma.RandevuTalebiOrderByWithRelationInput[]
+  cursor?: Prisma.RandevuTalebiWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RandevuTalebiScalarFieldEnum | Prisma.RandevuTalebiScalarFieldEnum[]
 }
 
 /**

@@ -53,7 +53,15 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Kullanici: 'Kullanici',
   Kisi: 'Kisi',
-  Aktivite: 'Aktivite'
+  Aktivite: 'Aktivite',
+  MesajKalibi: 'MesajKalibi',
+  DavetSayfasi: 'DavetSayfasi',
+  DavetModulu: 'DavetModulu',
+  DavetLinki: 'DavetLinki',
+  DavetOlayi: 'DavetOlayi',
+  HazirMesajLog: 'HazirMesajLog',
+  RandevuTalebi: 'RandevuTalebi',
+  Bildirim: 'Bildirim'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -76,8 +84,12 @@ export const KullaniciScalarFieldEnum = {
   id: 'id',
   adSoyad: 'adSoyad',
   email: 'email',
+  telefon: 'telefon',
   parolaHash: 'parolaHash',
   rol: 'rol',
+  sehir: 'sehir',
+  bio: 'bio',
+  profilFoto: 'profilFoto',
   createdAt: 'createdAt'
 } as const
 
@@ -89,11 +101,15 @@ export const KisiScalarFieldEnum = {
   adSoyad: 'adSoyad',
   telefon: 'telefon',
   email: 'email',
+  sehir: 'sehir',
+  adayTipi: 'adayTipi',
+  sicaklik: 'sicaklik',
   kaynakTip: 'kaynakTip',
   kaynakNot: 'kaynakNot',
   durum: 'durum',
   oncelik: 'oncelik',
   notlar: 'notlar',
+  skor: 'skor',
   sonTemas: 'sonTemas',
   sonrakiTakip: 'sonrakiTakip',
   kullaniciId: 'kullaniciId',
@@ -109,10 +125,140 @@ export const AktiviteScalarFieldEnum = {
   kisiId: 'kisiId',
   durum: 'durum',
   aciklama: 'aciklama',
+  otomatik: 'otomatik',
   tarih: 'tarih'
 } as const
 
 export type AktiviteScalarFieldEnum = (typeof AktiviteScalarFieldEnum)[keyof typeof AktiviteScalarFieldEnum]
+
+
+export const MesajKalibiScalarFieldEnum = {
+  id: 'id',
+  sahiplik: 'sahiplik',
+  kullaniciId: 'kullaniciId',
+  baslik: 'baslik',
+  kategori: 'kategori',
+  metin: 'metin',
+  aktif: 'aktif',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MesajKalibiScalarFieldEnum = (typeof MesajKalibiScalarFieldEnum)[keyof typeof MesajKalibiScalarFieldEnum]
+
+
+export const DavetSayfasiScalarFieldEnum = {
+  id: 'id',
+  sahiplik: 'sahiplik',
+  kullaniciId: 'kullaniciId',
+  baslik: 'baslik',
+  aciklama: 'aciklama',
+  amac: 'amac',
+  durum: 'durum',
+  varsayilan: 'varsayilan',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DavetSayfasiScalarFieldEnum = (typeof DavetSayfasiScalarFieldEnum)[keyof typeof DavetSayfasiScalarFieldEnum]
+
+
+export const DavetModuluScalarFieldEnum = {
+  id: 'id',
+  sayfaId: 'sayfaId',
+  tip: 'tip',
+  sira: 'sira',
+  icerik: 'icerik',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DavetModuluScalarFieldEnum = (typeof DavetModuluScalarFieldEnum)[keyof typeof DavetModuluScalarFieldEnum]
+
+
+export const DavetLinkiScalarFieldEnum = {
+  id: 'id',
+  token: 'token',
+  kisiId: 'kisiId',
+  kullaniciId: 'kullaniciId',
+  sayfaId: 'sayfaId',
+  durum: 'durum',
+  gonderildiAt: 'gonderildiAt',
+  ilkAcilmaAt: 'ilkAcilmaAt',
+  sonAcilmaAt: 'sonAcilmaAt',
+  acilmaSayisi: 'acilmaSayisi',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DavetLinkiScalarFieldEnum = (typeof DavetLinkiScalarFieldEnum)[keyof typeof DavetLinkiScalarFieldEnum]
+
+
+export const DavetOlayiScalarFieldEnum = {
+  id: 'id',
+  linkId: 'linkId',
+  kullaniciId: 'kullaniciId',
+  kisiId: 'kisiId',
+  olayTip: 'olayTip',
+  olayDeger: 'olayDeger',
+  modulId: 'modulId',
+  videoYuzde: 'videoYuzde',
+  scrollYuzde: 'scrollYuzde',
+  sayfadaSure: 'sayfadaSure',
+  sessionId: 'sessionId',
+  ipHash: 'ipHash',
+  uaHash: 'uaHash',
+  createdAt: 'createdAt'
+} as const
+
+export type DavetOlayiScalarFieldEnum = (typeof DavetOlayiScalarFieldEnum)[keyof typeof DavetOlayiScalarFieldEnum]
+
+
+export const HazirMesajLogScalarFieldEnum = {
+  id: 'id',
+  kullaniciId: 'kullaniciId',
+  kisiId: 'kisiId',
+  kalipId: 'kalipId',
+  linkId: 'linkId',
+  mesajMetni: 'mesajMetni',
+  waMeUrl: 'waMeUrl',
+  durum: 'durum',
+  gonderildiOnayAt: 'gonderildiOnayAt',
+  createdAt: 'createdAt'
+} as const
+
+export type HazirMesajLogScalarFieldEnum = (typeof HazirMesajLogScalarFieldEnum)[keyof typeof HazirMesajLogScalarFieldEnum]
+
+
+export const RandevuTalebiScalarFieldEnum = {
+  id: 'id',
+  kullaniciId: 'kullaniciId',
+  kisiId: 'kisiId',
+  linkId: 'linkId',
+  tarihMetni: 'tarihMetni',
+  tip: 'tip',
+  mesaj: 'mesaj',
+  durum: 'durum',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RandevuTalebiScalarFieldEnum = (typeof RandevuTalebiScalarFieldEnum)[keyof typeof RandevuTalebiScalarFieldEnum]
+
+
+export const BildirimScalarFieldEnum = {
+  id: 'id',
+  kullaniciId: 'kullaniciId',
+  baslik: 'baslik',
+  mesaj: 'mesaj',
+  tip: 'tip',
+  kisiId: 'kisiId',
+  linkId: 'linkId',
+  okundu: 'okundu',
+  createdAt: 'createdAt'
+} as const
+
+export type BildirimScalarFieldEnum = (typeof BildirimScalarFieldEnum)[keyof typeof BildirimScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -121,6 +267,13 @@ export const SortOrder = {
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -137,4 +290,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

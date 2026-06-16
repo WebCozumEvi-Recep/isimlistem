@@ -7,8 +7,12 @@ import { requireUser } from "@/lib/auth";
 import {
   SUNUM_DURUMLARI,
   KAYNAK_TIPLERI,
+  ADAY_TIPLERI,
+  SICAKLIKLAR,
   type SunumDurum,
   type KaynakTip,
+  type AdayTipi,
+  type Sicaklik,
 } from "@/lib/sabitler";
 
 function metin(formData: FormData, key: string): string | null {
@@ -29,6 +33,14 @@ function kaynakDogrula(v: string | null): KaynakTip {
   return KAYNAK_TIPLERI.includes(v as KaynakTip) ? (v as KaynakTip) : "DIGER";
 }
 
+function adayTipiDogrula(v: string | null): AdayTipi {
+  return ADAY_TIPLERI.includes(v as AdayTipi) ? (v as AdayTipi) : "GENEL";
+}
+
+function sicaklikDogrula(v: string | null): Sicaklik {
+  return SICAKLIKLAR.includes(v as Sicaklik) ? (v as Sicaklik) : "ILIK";
+}
+
 async function sahipKisi(kisiId: string, kullaniciId: string) {
   const kisi = await prisma.kisi.findUnique({ where: { id: kisiId } });
   if (!kisi || kisi.kullaniciId !== kullaniciId) redirect("/panel/liste");
@@ -46,6 +58,9 @@ export async function kisiEkle(formData: FormData) {
       adSoyad,
       telefon: metin(formData, "telefon"),
       email: metin(formData, "email"),
+      sehir: metin(formData, "sehir"),
+      adayTipi: adayTipiDogrula(metin(formData, "adayTipi")),
+      sicaklik: sicaklikDogrula(metin(formData, "sicaklik")),
       kaynakTip: kaynakDogrula(metin(formData, "kaynakTip")),
       kaynakNot: metin(formData, "kaynakNot"),
       durum,
@@ -69,6 +84,9 @@ export async function kisiGuncelle(kisiId: string, formData: FormData) {
       adSoyad: metin(formData, "adSoyad") ?? "İsimsiz",
       telefon: metin(formData, "telefon"),
       email: metin(formData, "email"),
+      sehir: metin(formData, "sehir"),
+      adayTipi: adayTipiDogrula(metin(formData, "adayTipi")),
+      sicaklik: sicaklikDogrula(metin(formData, "sicaklik")),
       kaynakTip: kaynakDogrula(metin(formData, "kaynakTip")),
       kaynakNot: metin(formData, "kaynakNot"),
       oncelik: Number(formData.get("oncelik") ?? 0) || 0,

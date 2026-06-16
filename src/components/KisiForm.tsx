@@ -3,12 +3,19 @@ import {
   KAYNAK_ETIKET,
   SUNUM_DURUMLARI,
   DURUM_ETIKET,
+  ADAY_TIPLERI,
+  ADAY_TIPI_ETIKET,
+  SICAKLIKLAR,
+  SICAKLIK_ETIKET,
 } from "@/lib/sabitler";
 
 type Kisi = {
   adSoyad: string;
   telefon: string | null;
   email: string | null;
+  sehir: string | null;
+  adayTipi: string;
+  sicaklik: string;
   kaynakTip: string;
   kaynakNot: string | null;
   durum: string;
@@ -50,6 +57,34 @@ export default function KisiForm({
               <option key={k} value={k}>
                 {KAYNAK_ETIKET[k]}
               </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-3">
+        <Alan label="Şehir" name="sehir" deger={kisi?.sehir ?? ""} />
+        <div>
+          <span className="mb-1 block text-sm font-medium text-slate-700">Aday Tipi</span>
+          <select
+            name="adayTipi"
+            defaultValue={kisi?.adayTipi ?? "GENEL"}
+            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-indigo-500"
+          >
+            {ADAY_TIPLERI.map((t) => (
+              <option key={t} value={t}>{ADAY_TIPI_ETIKET[t]}</option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <span className="mb-1 block text-sm font-medium text-slate-700">Sıcaklık</span>
+          <select
+            name="sicaklik"
+            defaultValue={kisi?.sicaklik ?? "ILIK"}
+            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-indigo-500"
+          >
+            {SICAKLIKLAR.map((s) => (
+              <option key={s} value={s}>{SICAKLIK_ETIKET[s]}</option>
             ))}
           </select>
         </div>

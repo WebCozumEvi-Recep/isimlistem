@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { requireUser } from "@/lib/auth";
 import { cikisYap } from "@/app/auth/actions";
-import { LayoutGrid, List, KanbanSquare, Users, LogOut, Plus } from "lucide-react";
+import { LayoutGrid, List, KanbanSquare, Users, LogOut, Plus, MessageSquareText, FileText } from "lucide-react";
 
 export default async function PanelLayout({
   children,
@@ -14,6 +14,8 @@ export default async function PanelLayout({
     { href: "/panel", etiket: "Panel", icon: LayoutGrid },
     { href: "/panel/liste", etiket: "İsim Listesi", icon: List },
     { href: "/panel/pano", etiket: "Pano", icon: KanbanSquare },
+    { href: "/panel/sayfalar", etiket: "Davet Sayfaları", icon: FileText },
+    { href: "/panel/kaliplar", etiket: "Mesaj Kalıpları", icon: MessageSquareText },
   ];
 
   return (
