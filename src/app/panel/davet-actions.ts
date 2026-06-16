@@ -90,6 +90,45 @@ export async function modulSil(modulId: string, sayfaId: string) {
   revalidatePath(`/panel/sayfa/${sayfaId}`);
 }
 
+const MODUL_VARSAYILAN: Record<string, Record<string, unknown>> = {
+  KARSILAMA: { baslik: "Merhaba {ad} 👋", metin: "Sana özel hazırladığım bu kısa tanıtımı inceleyebilirsin." },
+  METIN: { baslik: "Başlık", metin: "Açıklama metni…" },
+  GORSEL: { url: "" },
+  VIDEO: { url: "" },
+  BUTON: { butonlar: ["ilgileniyorum", "more_info", "appointment", "whatsapp"] },
+  RANDEVU: {},
+};
+
+/** Yeni modül ekler, oluşturulan kaydı döner (client builder için). */
+export async function modulEkleTip(sayfaId: string, tip: string) {
+  const user = await requireUser();
+  if (!(await sayfaDuzenleyebilir(sayfaId, user.id))) return null;
+  const adet = await prisma.davetModulu.count({ where: { sayfaId } });
+  const m = await prisma.davetModulu.create({
+    data: { sayfaId, tip: tip as never, sira: adet, icerik: (MODUL_VARSAYILAN[tip] ?? {}) as never },
+  });
+  revalidatePath(`/panel/sayfa/${sayfaId}`);
+  return { id: m.id, tip: m.tip as string, sira: m.sira, icerik: m.icerik as Record<string, unknown> };
+}
+
+export async function modulGuncelle(modulId: string, sayfaId: string, icerik: Record<string, unknown>) {
+  const user = await requireUser();
+  if (!(await sayfaDuzenleyebilir(sayfaId, user.id))) return { ok: false };
+  await prisma.davetModulu.update({ where: { id: modulId }, data: { icerik: icerik as never } });
+  revalidatePath(`/panel/sayfa/${sayfaId}`);
+  return { ok: true };
+}
+
+export async function modulSiraGuncelle(sayfaId: string, siraliIdler: string[]) {
+  const user = await requireUser();
+  if (!(await sayfaDuzenleyebilir(sayfaId, user.id))) return { ok: false };
+  await prisma.$transaction(
+    siraliIdler.map((id, i) => prisma.davetModulu.update({ where: { id }, data: { sira: i } }))
+  );
+  revalidatePath(`/panel/sayfa/${sayfaId}`);
+  return { ok: true };
+}
+
 export async function sayfaYayinla(sayfaId: string) {
   const user = await requireUser();
   const sayfa = await sayfaDuzenleyebilir(sayfaId, user.id);
