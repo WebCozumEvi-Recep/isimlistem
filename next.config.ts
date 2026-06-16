@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Üst klasördeki package-lock.json yüzünden Turbopack kökü yanlış seçmesin.
+  turbopack: {
+    root: __dirname,
+  },
 };
 
 export default nextConfig;

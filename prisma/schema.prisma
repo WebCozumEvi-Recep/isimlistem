@@ -1,0 +1,76 @@
+// İsim Listem — Network Marketing isim listesi & iş sunum takip SaaS
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Rol {
+  UYE
+  ADMIN
+}
+
+enum SunumDurum {
+  YENI // listeye eklendi, henüz aksiyon yok
+  ARANDI // ilk iletişim kuruldu
+  RANDEVU // randevu alındı
+  SUNUM_YAPILDI // iş sunumu yapıldı
+  TAKIP // takip aşamasında / düşünüyor
+  KATILDI // ekibe katıldı (kazanım)
+  KAYIP // ilgilenmedi / kapandı
+}
+
+enum KaynakTip {
+  AILE
+  AKRABA
+  ARKADAS
+  IS
+  KOMSU
+  OKUL
+  SOSYAL_MEDYA
+  REFERANS
+  DIGER
+}
+
+model Kullanici {
+  id         String    @id @default(cuid())
+  adSoyad    String
+  email      String    @unique
+  parolaHash String
+  rol        Rol       @default(UYE)
+  kisiler    Kisi[]
+  createdAt  DateTime  @default(now())
+}
+
+model Kisi {
+  id           String     @id @default(cuid())
+  adSoyad      String
+  telefon      String?
+  email        String?
+  kaynakTip    KaynakTip  @default(DIGER)
+  kaynakNot    String?
+  durum        SunumDurum @default(YENI)
+  oncelik      Int        @default(0)
+  notlar       String?
+  sonTemas     DateTime?
+  sonrakiTakip DateTime?
+  kullanici    Kullanici  @relation(fields: [kullaniciId], references: [id], onDelete: Cascade)
+  kullaniciId  String
+  aktiviteler  Aktivite[]
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@index([kullaniciId, durum])
+}
+
+model Aktivite {
+  id       String     @id @default(cuid())
+  kisi     Kisi       @relation(fields: [kisiId], references: [id], onDelete: Cascade)
+  kisiId   String
+  durum    SunumDurum
+  aciklama String?
+  tarih    DateTime   @default(now())
+}
