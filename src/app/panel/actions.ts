@@ -50,7 +50,8 @@ async function sahipKisi(kisiId: string, kullaniciId: string) {
 export async function kisiEkle(formData: FormData) {
   const user = await requireUser();
   const adSoyad = metin(formData, "adSoyad");
-  if (!adSoyad) return;
+  const telefonZorunlu = metin(formData, "telefon");
+  if (!adSoyad || !telefonZorunlu) return;
 
   const durum = durumDogrula(metin(formData, "durum"));
   const kisi = await prisma.kisi.create({

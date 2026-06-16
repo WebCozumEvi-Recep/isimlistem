@@ -44,7 +44,7 @@ export default function KisiForm({
     <form action={action} className="space-y-4">
       <div className="grid gap-4 sm:grid-cols-2">
         <Alan label="Ad Soyad *" name="adSoyad" deger={kisi?.adSoyad} required />
-        <Alan label="Telefon" name="telefon" deger={kisi?.telefon ?? ""} type="tel" />
+        <Alan label="GSM Telefon *" name="telefon" deger={kisi?.telefon ?? ""} type="tel" required />
         <Alan label="E-posta" name="email" deger={kisi?.email ?? ""} type="email" />
         <div>
           <span className="mb-1 block text-sm font-medium text-slate-700">Kaynak / Bağ</span>
