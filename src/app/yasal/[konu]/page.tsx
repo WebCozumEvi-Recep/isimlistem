@@ -34,6 +34,16 @@ const ICERIK: Record<string, { baslik: string; metin: string[] }> = {
       "Bu kayıtlar pazarlama amaçlı üçüncü taraflarla paylaşılmaz.",
     ],
   },
+  kullanim: {
+    baslik: "Kullanım Koşulları",
+    metin: [
+      "İsim Listem, networker’ların kendi aday listelerini takip etmesi ve adaylarına kişiye özel davet linki göndermesi için sunulan bir araçtır.",
+      "Kullanıcı, yalnızca iletişim kurma hakkına sahip olduğu kişileri aday olarak ekleyeceğini kabul eder. Sistem adaylara otomatik mesaj göndermez; tüm mesajlar kullanıcının kendi WhatsApp hesabından manuel gönderilir.",
+      "Hizmet bir MLM, komisyon, sponsor ağacı veya kazanç planı sistemi değildir. Kullanıcılar arası aday paylaşımı yapılmaz.",
+      "Bireysel networker kullanımı ücretsizdir. Kurumsal firmalar için Business panel ayrı koşullarla sunulur.",
+      "Hizmet sağlayıcı: WAQUR TEKNOLOJİ TAR. MAD. SAN. VE TİC. LTD. ŞTİ.",
+    ],
+  },
 };
 
 export default async function YasalSayfa({ params }: { params: Promise<{ konu: string }> }) {
