@@ -396,6 +396,7 @@ export const ModelName = {
   DavetOlayi: 'DavetOlayi',
   HazirMesajLog: 'HazirMesajLog',
   RandevuTalebi: 'RandevuTalebi',
+  SiteAyar: 'SiteAyar',
   Bildirim: 'Bildirim'
 } as const
 
@@ -412,7 +413,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "kullanici" | "firma" | "firmaUye" | "kisi" | "aktivite" | "mesajKalibi" | "davetSayfasi" | "davetModulu" | "davetLinki" | "davetOlayi" | "hazirMesajLog" | "randevuTalebi" | "bildirim"
+    modelProps: "kullanici" | "firma" | "firmaUye" | "kisi" | "aktivite" | "mesajKalibi" | "davetSayfasi" | "davetModulu" | "davetLinki" | "davetOlayi" | "hazirMesajLog" | "randevuTalebi" | "siteAyar" | "bildirim"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1304,6 +1305,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    SiteAyar: {
+      payload: Prisma.$SiteAyarPayload<ExtArgs>
+      fields: Prisma.SiteAyarFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SiteAyarFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SiteAyarPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SiteAyarFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SiteAyarPayload>
+        }
+        findFirst: {
+          args: Prisma.SiteAyarFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SiteAyarPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SiteAyarFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SiteAyarPayload>
+        }
+        findMany: {
+          args: Prisma.SiteAyarFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SiteAyarPayload>[]
+        }
+        create: {
+          args: Prisma.SiteAyarCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SiteAyarPayload>
+        }
+        createMany: {
+          args: Prisma.SiteAyarCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SiteAyarCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SiteAyarPayload>[]
+        }
+        delete: {
+          args: Prisma.SiteAyarDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SiteAyarPayload>
+        }
+        update: {
+          args: Prisma.SiteAyarUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SiteAyarPayload>
+        }
+        deleteMany: {
+          args: Prisma.SiteAyarDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SiteAyarUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SiteAyarUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SiteAyarPayload>[]
+        }
+        upsert: {
+          args: Prisma.SiteAyarUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SiteAyarPayload>
+        }
+        aggregate: {
+          args: Prisma.SiteAyarAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSiteAyar>
+        }
+        groupBy: {
+          args: Prisma.SiteAyarGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SiteAyarGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SiteAyarCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SiteAyarCountAggregateOutputType> | number
+        }
+      }
+    }
     Bildirim: {
       payload: Prisma.$BildirimPayload<ExtArgs>
       fields: Prisma.BildirimFieldRefs
@@ -1618,6 +1693,27 @@ export const RandevuTalebiScalarFieldEnum = {
 } as const
 
 export type RandevuTalebiScalarFieldEnum = (typeof RandevuTalebiScalarFieldEnum)[keyof typeof RandevuTalebiScalarFieldEnum]
+
+
+export const SiteAyarScalarFieldEnum = {
+  id: 'id',
+  siteAdi: 'siteAdi',
+  slogan: 'slogan',
+  logoUrl: 'logoUrl',
+  faviconUrl: 'faviconUrl',
+  aciklama: 'aciklama',
+  googleDogrulama: 'googleDogrulama',
+  analitikKodu: 'analitikKodu',
+  destekEmail: 'destekEmail',
+  kvkkMetni: 'kvkkMetni',
+  gizlilikMetni: 'gizlilikMetni',
+  cerezMetni: 'cerezMetni',
+  kullanimMetni: 'kullanimMetni',
+  mesafeliMetni: 'mesafeliMetni',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SiteAyarScalarFieldEnum = (typeof SiteAyarScalarFieldEnum)[keyof typeof SiteAyarScalarFieldEnum]
 
 
 export const BildirimScalarFieldEnum = {
@@ -2103,6 +2199,7 @@ export type GlobalOmitConfig = {
   davetOlayi?: Prisma.DavetOlayiOmit
   hazirMesajLog?: Prisma.HazirMesajLogOmit
   randevuTalebi?: Prisma.RandevuTalebiOmit
+  siteAyar?: Prisma.SiteAyarOmit
   bildirim?: Prisma.BildirimOmit
 }
 

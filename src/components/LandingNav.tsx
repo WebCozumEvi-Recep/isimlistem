@@ -12,18 +12,25 @@ const LINKLER = [
   { href: "#sss", etiket: "SSS" },
 ];
 
-export default function LandingNav({ session }: { session: boolean }) {
+export default function LandingNav({ session, logoUrl, siteAdi = "İsim Listem", slogan }: { session: boolean; logoUrl?: string | null; siteAdi?: string; slogan?: string | null }) {
   const [acik, setAcik] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/85 backdrop-blur-lg">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link href="/" className="flex items-center gap-2.5">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-slate-900 to-slate-700 text-sm font-bold text-white">İL</span>
-          <span className="leading-tight">
-            <span className="block text-base font-bold text-slate-900">İsim Listem</span>
-            <span className="hidden text-[11px] text-slate-500 sm:block">Networker’lar için aday takip sistemi</span>
-          </span>
+          {logoUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={logoUrl} alt={siteAdi} className="h-9 w-auto max-w-[180px] object-contain" />
+          ) : (
+            <>
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-slate-900 to-slate-700 text-sm font-bold text-white">İL</span>
+              <span className="leading-tight">
+                <span className="block text-base font-bold text-slate-900">{siteAdi}</span>
+                <span className="hidden text-[11px] text-slate-500 sm:block">{slogan ?? "Networker’lar için aday takip sistemi"}</span>
+              </span>
+            </>
+          )}
         </Link>
 
         <nav className="hidden items-center gap-7 text-sm font-medium text-slate-600 lg:flex">

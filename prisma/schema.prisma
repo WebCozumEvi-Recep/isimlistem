@@ -362,6 +362,25 @@ model RandevuTalebi {
   @@index([kullaniciId, durum])
 }
 
+model SiteAyar {
+  id              String   @id @default("default")
+  siteAdi         String   @default("İsim Listem")
+  slogan          String?
+  logoUrl         String?
+  faviconUrl      String?
+  aciklama        String?
+  googleDogrulama String?
+  analitikKodu    String?  // <head> içine eklenecek JS (GA/GTM/Pixel)
+  destekEmail     String?
+  // Sözleşme / yasal sayfa içerikleri (boşsa varsayılan metin kullanılır)
+  kvkkMetni       String?
+  gizlilikMetni   String?
+  cerezMetni      String?
+  kullanimMetni   String?
+  mesafeliMetni   String?
+  updatedAt       DateTime @updatedAt @default(now())
+}
+
 model Bildirim {
   id          String      @id @default(cuid())
   kullanici   Kullanici   @relation(fields: [kullaniciId], references: [id], onDelete: Cascade)

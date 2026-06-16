@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getSession } from "@/lib/session";
+import { getAyar } from "@/lib/ayarlar";
 import Reveal from "@/components/Reveal";
 import LandingNav from "@/components/LandingNav";
 import SSS from "@/components/SSS";
@@ -15,12 +16,15 @@ export const metadata = {
     "Adaylarını ekle, kişiye özel WhatsApp davet linki gönder, adayın sayfada ne yaptığını takip et. Bireysel networker’lara ücretsiz.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function Landing() {
   const session = await getSession();
+  const ayar = await getAyar();
 
   return (
     <div className="min-h-screen bg-white text-slate-900">
-      <LandingNav session={!!session} />
+      <LandingNav session={!!session} logoUrl={ayar.logoUrl} siteAdi={ayar.siteAdi} slogan={ayar.slogan} />
 
       {/* 2. HERO */}
       <section className="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white">

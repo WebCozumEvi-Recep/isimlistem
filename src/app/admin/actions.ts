@@ -1,6 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { writeFile, mkdir } from "fs/promises";
+import path from "path";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth";
 import { benzersizSlug, kayitKoduUret } from "@/lib/firma";
@@ -72,4 +74,47 @@ export async function globalKalipSil(kalipId: string) {
   if (!k || k.sahiplik !== "GLOBAL") return;
   await prisma.mesajKalibi.delete({ where: { id: kalipId } });
   revalidatePath("/admin/kaliplar");
+}
+
+// ---------- Sistem ayarları ----------
+
+async function dosyaKaydet(dosya: FormDataEntryValue | null, onek: string): Promise<string | null> {
+  if (!(dosya instanceof File) || dosya.size === 0) return null;
+  const uzanti = (dosya.name.split(".").pop() || "png").toLowerCase().replace(/[^a-z0-9]/g, "");
+  const adi = `${onek}-${Date.now()}.${uzanti}`;
+  const dizin = path.join(process.cwd(), "public", "marka");
+  await mkdir(dizin, { recursive: true });
+  await writeFile(path.join(dizin, adi), Buffer.from(await dosya.arrayBuffer()));
+  return `/marka/${adi}`;
+}
+
+export async function ayarGuncelle(formData: FormData) {
+  await requireAdmin();
+
+  const logoUrl = (await dosyaKaydet(formData.get("logoDosya"), "logo")) ?? metin(formData, "logoUrl");
+  const faviconUrl = (await dosyaKaydet(formData.get("faviconDosya"), "favicon")) ?? metin(formData, "faviconUrl");
+
+  const veri = {
+    siteAdi: metin(formData, "siteAdi") ?? "İsim Listem",
+    slogan: metin(formData, "slogan"),
+    aciklama: metin(formData, "aciklama"),
+    googleDogrulama: metin(formData, "googleDogrulama"),
+    analitikKodu: metin(formData, "analitikKodu"),
+    destekEmail: metin(formData, "destekEmail"),
+    kvkkMetni: metin(formData, "kvkkMetni"),
+    gizlilikMetni: metin(formData, "gizlilikMetni"),
+    cerezMetni: metin(formData, "cerezMetni"),
+    kullanimMetni: metin(formData, "kullanimMetni"),
+    mesafeliMetni: metin(formData, "mesafeliMetni"),
+    ...(logoUrl ? { logoUrl } : {}),
+    ...(faviconUrl ? { faviconUrl } : {}),
+  };
+
+  await prisma.siteAyar.upsert({
+    where: { id: "default" },
+    update: veri,
+    create: { id: "default", ...veri },
+  });
+  revalidatePath("/", "layout");
+  revalidatePath("/admin/ayarlar");
 }

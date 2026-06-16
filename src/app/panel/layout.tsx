@@ -1,14 +1,16 @@
 import { requireUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { firmaUyeligi } from "@/lib/firma";
+import { getAyar } from "@/lib/ayarlar";
 import AppSidebar, { UstAksiyonBar, type SidebarItem } from "@/components/AppSidebar";
 
 export default async function PanelLayout({ children }: { children: React.ReactNode }) {
   const user = await requireUser();
 
-  const [okunmamis, uyelik] = await Promise.all([
+  const [okunmamis, uyelik, ayar] = await Promise.all([
     prisma.bildirim.count({ where: { kullaniciId: user.id, okundu: false } }),
     firmaUyeligi(user.id),
+    getAyar(),
   ]);
   const firmaYonetici = !!uyelik && ["FIRMA_ADMIN", "ICERIK_YONETICI", "RAPOR_IZLEYICI"].includes(uyelik.rol);
 
@@ -27,8 +29,9 @@ export default async function PanelLayout({ children }: { children: React.ReactN
   return (
     <div className="min-h-screen bg-slate-50">
       <AppSidebar
-        brandTitle="İsim Listem"
+        brandTitle={ayar.siteAdi}
         brandBadge={user.rol === "ADMIN" ? "Yönetici" : "Üye"}
+        logoUrl={ayar.logoUrl}
         items={items}
         adSoyad={user.adSoyad}
         email={user.email}

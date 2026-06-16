@@ -6,12 +6,12 @@ import { usePathname } from "next/navigation";
 import { cikisYap } from "@/app/auth/actions";
 import {
   LayoutGrid, List, KanbanSquare, FileText, MessageSquareText, CalendarClock,
-  Bell, Building2, Users, LogOut, Plus, Menu, X, BarChart3, ArrowLeft,
+  Bell, Building2, Users, LogOut, Plus, Menu, X, BarChart3, ArrowLeft, Settings,
 } from "lucide-react";
 
 const IKONLAR = {
   LayoutGrid, List, KanbanSquare, FileText, MessageSquareText, CalendarClock,
-  Bell, Building2, Users, BarChart3, ArrowLeft,
+  Bell, Building2, Users, BarChart3, ArrowLeft, Settings,
 } as const;
 
 export type SidebarItem = {
@@ -24,7 +24,7 @@ export type SidebarItem = {
 };
 
 export default function AppSidebar({
-  brandTitle, brandBadge, items, adSoyad, email, ustAksiyon,
+  brandTitle, brandBadge, items, adSoyad, email, ustAksiyon, logoUrl,
 }: {
   brandTitle: string;
   brandBadge?: string;
@@ -32,6 +32,7 @@ export default function AppSidebar({
   adSoyad: string;
   email: string;
   ustAksiyon?: { href: string; etiket: string };
+  logoUrl?: string | null;
 }) {
   const [acik, setAcik] = useState(false);
   const pathname = usePathname();
@@ -62,11 +63,18 @@ export default function AppSidebar({
     <div className="flex h-full flex-col">
       <div className="px-5 py-5">
         <Link href={items[0]?.href ?? "/panel"} className="flex items-center gap-2.5" onClick={() => setAcik(false)}>
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-slate-900 to-slate-700 text-sm font-bold text-white">İL</span>
-          <div className="leading-tight">
-            <div className="font-bold text-slate-900">{brandTitle}</div>
-            {brandBadge && <span className="inline-block rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-500">{brandBadge}</span>}
-          </div>
+          {logoUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={logoUrl} alt={brandTitle} className="h-9 w-auto max-w-[150px] object-contain" />
+          ) : (
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-slate-900 to-slate-700 text-sm font-bold text-white">İL</span>
+          )}
+          {!logoUrl && (
+            <div className="leading-tight">
+              <div className="font-bold text-slate-900">{brandTitle}</div>
+              {brandBadge && <span className="inline-block rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-500">{brandBadge}</span>}
+            </div>
+          )}
         </Link>
       </div>
       <nav className="flex-1 space-y-1 overflow-y-auto px-3">

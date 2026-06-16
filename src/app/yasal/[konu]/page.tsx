@@ -1,5 +1,20 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { getAyar } from "@/lib/ayarlar";
+
+export const dynamic = "force-dynamic";
+
+const BASLIK: Record<string, string> = {
+  kvkk: "KVKK Aydınlatma Metni",
+  gizlilik: "Gizlilik Politikası",
+  cerez: "Çerez / Analitik Bilgilendirme",
+  kullanim: "Kullanım Koşulları",
+  mesafeli: "Mesafeli Satış Sözleşmesi",
+  "veri-silme": "Verilerimi Sil / İletişim",
+};
+const AYAR_ALAN: Record<string, "kvkkMetni" | "gizlilikMetni" | "cerezMetni" | "kullanimMetni" | "mesafeliMetni"> = {
+  kvkk: "kvkkMetni", gizlilik: "gizlilikMetni", cerez: "cerezMetni", kullanim: "kullanimMetni", mesafeli: "mesafeliMetni",
+};
 
 const ICERIK: Record<string, { baslik: string; metin: string[] }> = {
   kvkk: {
@@ -48,16 +63,23 @@ const ICERIK: Record<string, { baslik: string; metin: string[] }> = {
 
 export default async function YasalSayfa({ params }: { params: Promise<{ konu: string }> }) {
   const { konu } = await params;
-  const d = ICERIK[konu];
-  if (!d) notFound();
+  const varsayilan = ICERIK[konu];
+  const baslik = BASLIK[konu] ?? varsayilan?.baslik;
+  if (!baslik) notFound();
+
+  // Ayarlardan özel metin varsa onu kullan, yoksa varsayılan paragraflar.
+  const ayar = await getAyar();
+  const alan = AYAR_ALAN[konu];
+  const ozel = alan ? ayar[alan] : null;
+  const paragraflar = ozel && ozel.trim() ? ozel.split("\n").filter((s) => s.trim()) : varsayilan?.metin ?? [];
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-12">
       <Link href="/" className="text-sm text-emerald-600">← Ana sayfa</Link>
-      <h1 className="mt-4 text-2xl font-bold text-slate-900">{d.baslik}</h1>
+      <h1 className="mt-4 text-2xl font-bold text-slate-900">{baslik}</h1>
       <div className="mt-6 space-y-4">
-        {d.metin.map((p, i) => (
-          <p key={i} className="text-slate-600">{p}</p>
+        {paragraflar.map((p, i) => (
+          <p key={i} className="whitespace-pre-wrap text-slate-600">{p}</p>
         ))}
       </div>
     </div>

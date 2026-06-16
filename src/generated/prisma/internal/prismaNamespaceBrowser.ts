@@ -63,6 +63,7 @@ export const ModelName = {
   DavetOlayi: 'DavetOlayi',
   HazirMesajLog: 'HazirMesajLog',
   RandevuTalebi: 'RandevuTalebi',
+  SiteAyar: 'SiteAyar',
   Bildirim: 'Bildirim'
 } as const
 
@@ -283,6 +284,27 @@ export const RandevuTalebiScalarFieldEnum = {
 } as const
 
 export type RandevuTalebiScalarFieldEnum = (typeof RandevuTalebiScalarFieldEnum)[keyof typeof RandevuTalebiScalarFieldEnum]
+
+
+export const SiteAyarScalarFieldEnum = {
+  id: 'id',
+  siteAdi: 'siteAdi',
+  slogan: 'slogan',
+  logoUrl: 'logoUrl',
+  faviconUrl: 'faviconUrl',
+  aciklama: 'aciklama',
+  googleDogrulama: 'googleDogrulama',
+  analitikKodu: 'analitikKodu',
+  destekEmail: 'destekEmail',
+  kvkkMetni: 'kvkkMetni',
+  gizlilikMetni: 'gizlilikMetni',
+  cerezMetni: 'cerezMetni',
+  kullanimMetni: 'kullanimMetni',
+  mesafeliMetni: 'mesafeliMetni',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SiteAyarScalarFieldEnum = (typeof SiteAyarScalarFieldEnum)[keyof typeof SiteAyarScalarFieldEnum]
 
 
 export const BildirimScalarFieldEnum = {

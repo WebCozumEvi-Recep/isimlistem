@@ -78,6 +78,11 @@ export type HazirMesajLog = Prisma.HazirMesajLogModel
  */
 export type RandevuTalebi = Prisma.RandevuTalebiModel
 /**
+ * Model SiteAyar
+ * 
+ */
+export type SiteAyar = Prisma.SiteAyarModel
+/**
  * Model Bildirim
  * 
  */

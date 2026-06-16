@@ -1,6 +1,8 @@
 import { requireFirmaYonetici } from "@/lib/firma";
 import AppSidebar, { type SidebarItem } from "@/components/AppSidebar";
 
+export const dynamic = "force-dynamic";
+
 export default async function FirmaLayout({ children }: { children: React.ReactNode }) {
   const { user, firma } = await requireFirmaYonetici();
 
