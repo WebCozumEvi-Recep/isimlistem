@@ -1,8 +1,10 @@
 import { requireUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import Link from "next/link";
+import { Plus, Compass } from "lucide-react";
 import { firmaUyeligi } from "@/lib/firma";
 import { getAyar } from "@/lib/ayarlar";
-import AppSidebar, { UstAksiyonBar, type SidebarItem } from "@/components/AppSidebar";
+import AppSidebar, { type SidebarItem } from "@/components/AppSidebar";
 
 export default async function PanelLayout({ children }: { children: React.ReactNode }) {
   const user = await requireUser();
@@ -16,6 +18,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
 
   const items: SidebarItem[] = [
     { href: "/panel", etiket: "Panel", ikon: "LayoutGrid", exact: true },
+    { href: "/panel/kesfet", etiket: "Aday Keşfet", ikon: "Compass", vurgu: true },
     { href: "/panel/liste", etiket: "İsim Listesi", ikon: "List" },
     { href: "/panel/pano", etiket: "Pano", ikon: "KanbanSquare" },
     { href: "/panel/sayfalar", etiket: "Davet Sayfaları", ikon: "FileText" },
@@ -38,7 +41,14 @@ export default async function PanelLayout({ children }: { children: React.ReactN
         ustAksiyon={{ href: "/panel/kisi/yeni", etiket: "Kişi Ekle" }}
       />
       <div className="lg:pl-64">
-        <UstAksiyonBar href="/panel/kisi/yeni" etiket="Kişi Ekle" />
+        <div className="sticky top-0 z-20 hidden items-center justify-end gap-2 border-b border-slate-200 bg-white/80 px-6 py-3 backdrop-blur lg:flex">
+          <Link href="/panel/kesfet" className="flex items-center gap-1.5 rounded-xl border border-emerald-300 px-3.5 py-2 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50">
+            <Compass size={16} /> Keşfet
+          </Link>
+          <Link href="/panel/kisi/yeni" className="flex items-center gap-1.5 rounded-xl bg-emerald-500 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-600">
+            <Plus size={16} /> Aday İsim Ekle
+          </Link>
+        </div>
         <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6">{children}</main>
       </div>
     </div>
