@@ -128,6 +128,7 @@ export async function firmaGuncelle(firmaId: string, formData: FormData) {
         ...(PAKETLER.includes(paket) ? { paket: paket as never } : {}),
         ...(DURUMLAR.includes(durum) ? { durum: durum as never } : {}),
         networkerLimiti,
+        logoUrl: al(formData, "logoUrl"),
         aciklama: al(formData, "aciklama"),
         website: al(formData, "website"),
         telefon: al(formData, "telefon"),

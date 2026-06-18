@@ -4,6 +4,7 @@ import { requireAdmin } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { firmaGuncelle } from "@/app/admin/actions";
 import { altAlanUrl, ANA_DOMAIN } from "@/lib/host";
+import LogoSecici from "@/components/LogoSecici";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 
 export default async function FirmaDuzenle({ params }: { params: Promise<{ id: string }> }) {
@@ -30,7 +31,12 @@ export default async function FirmaDuzenle({ params }: { params: Promise<{ id: s
       </div>
 
       <form action={action} className="max-w-2xl space-y-4 rounded-2xl border border-slate-200 bg-white p-6">
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div>
+          <span className="mb-1.5 block text-sm font-medium text-slate-600">Logo</span>
+          <LogoSecici baslangic={firma.logoUrl} />
+          <p className="mt-1.5 text-xs text-slate-400">Bu logo firmanın kayıt/giriş alt-alan sayfasında köşede gösterilir.</p>
+        </div>
+        <div className="grid gap-4 border-t border-slate-100 pt-4 sm:grid-cols-2">
           <Alan label="Firma Adı *" name="ad" deger={firma.ad} />
           <Alan label="Slug (URL)" name="slug" deger={firma.slug} />
           <div>
