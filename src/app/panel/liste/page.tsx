@@ -11,7 +11,7 @@ import {
   type SunumDurum,
   type KaynakTip,
 } from "@/lib/sabitler";
-import { Download, Pencil } from "lucide-react";
+import { Download, Pencil, MessageCircle, Activity, ListChecks, History } from "lucide-react";
 import IceAktarButton from "@/components/IceAktarButton";
 
 type Arama = {
@@ -126,7 +126,7 @@ export default async function ListeSayfasi({
                 <th className="px-4 py-3">Durum</th>
                 <th className="px-4 py-3">Öncelik</th>
                 <th className="px-4 py-3">Takip</th>
-                <th className="px-4 py-3 text-right">Düzenle</th>
+                <th className="px-4 py-3 text-right">İşlemler</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -155,14 +155,14 @@ export default async function ListeSayfasi({
                   <td className="px-4 py-3 text-slate-600">
                     {k.sonrakiTakip?.toLocaleDateString("tr-TR") ?? "—"}
                   </td>
-                  <td className="px-4 py-3 text-right">
-                    <Link
-                      href={`/panel/kisi/${k.id}`}
-                      title="Düzenle"
-                      className="inline-flex items-center justify-center rounded-lg border border-slate-200 p-2 text-slate-500 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-600"
-                    >
-                      <Pencil size={15} />
-                    </Link>
+                  <td className="px-4 py-3">
+                    <div className="flex items-center justify-end gap-1">
+                      <SatirAksiyon href={`/panel/kisi/${k.id}?bolum=davet`} title="WhatsApp Daveti" icon={MessageCircle} />
+                      <SatirAksiyon href={`/panel/kisi/${k.id}?bolum=etkilesim`} title="Etkileşim" icon={Activity} />
+                      <SatirAksiyon href={`/panel/kisi/${k.id}?bolum=durum`} title="Durum Güncelle" icon={ListChecks} />
+                      <SatirAksiyon href={`/panel/kisi/${k.id}?bolum=aktivite`} title="Aktivite Geçmişi" icon={History} />
+                      <SatirAksiyon href={`/panel/kisi/${k.id}?bolum=bilgiler`} title="Düzenle" icon={Pencil} />
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -171,5 +171,17 @@ export default async function ListeSayfasi({
         </div>
       )}
     </div>
+  );
+}
+
+function SatirAksiyon({ href, title, icon: Icon }: { href: string; title: string; icon: React.ComponentType<{ size?: number }> }) {
+  return (
+    <Link
+      href={href}
+      title={title}
+      className="inline-flex items-center justify-center rounded-lg border border-slate-200 p-2 text-slate-500 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-600"
+    >
+      <Icon size={15} />
+    </Link>
   );
 }
