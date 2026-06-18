@@ -30,6 +30,10 @@ const BILDIRIM_ESLEME: Record<string, { tip: BildirimTip; metin: (ad: string) =>
   cta_more_info: { tip: "ILGILENIYOR", metin: (a) => `${a} daha detaylı bilgi istedi.` },
   appointment_requested: { tip: "RANDEVU", metin: (a) => `${a} randevu talep etti.` },
   whatsapp_clicked: { tip: "WHATSAPP_DONUS", metin: (a) => `${a} WhatsApp'tan yazmak için tıkladı.` },
+  secim_randevu: { tip: "ILGILENIYOR", metin: (a) => `${a} gelir fırsatı için ilgisini belirtti.` },
+  secim_urun: { tip: "ILGILENIYOR", metin: (a) => `${a} ürünlerle ilgilendiğini belirtti.` },
+  secim_whatsapp: { tip: "ILGILENIYOR", metin: (a) => `${a} bilgi almak istediğini belirtti.` },
+  secim_bilgi: { tip: "ILGILENIYOR", metin: (a) => `${a} bilgi almak istediğini belirtti.` },
 };
 
 /**

@@ -2,6 +2,8 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { writeFile, mkdir } from "fs/promises";
+import path from "path";
 import { prisma } from "@/lib/prisma";
 import { requireUser } from "@/lib/auth";
 import { davetUrl } from "@/lib/site";
@@ -9,6 +11,7 @@ import { davetToken } from "@/server/token";
 import { mesajDoldur, waMeUrl } from "@/server/mesaj";
 import { sayfaDuzenleyebilir } from "@/lib/firma";
 import { KALIP_KATEGORILERI } from "@/lib/sabitler";
+import { MODUL_VARSAYILAN, SABLON_AKIS } from "@/lib/davet-sablon";
 
 function metin(fd: FormData, key: string): string | null {
   const v = String(fd.get(key) ?? "").trim();
@@ -90,15 +93,6 @@ export async function modulSil(modulId: string, sayfaId: string) {
   revalidatePath(`/panel/sayfa/${sayfaId}`);
 }
 
-const MODUL_VARSAYILAN: Record<string, Record<string, unknown>> = {
-  KARSILAMA: { baslik: "Merhaba {ad} 👋", metin: "Sana özel hazırladığım bu kısa tanıtımı inceleyebilirsin." },
-  METIN: { baslik: "Başlık", metin: "Açıklama metni…" },
-  GORSEL: { url: "" },
-  VIDEO: { url: "" },
-  BUTON: { butonlar: ["ilgileniyorum", "more_info", "appointment", "whatsapp"] },
-  RANDEVU: {},
-};
-
 /** Yeni modül ekler, oluşturulan kaydı döner (client builder için). */
 export async function modulEkleTip(sayfaId: string, tip: string) {
   const user = await requireUser();
@@ -127,6 +121,39 @@ export async function modulSiraGuncelle(sayfaId: string, siraliIdler: string[]) 
   );
   revalidatePath(`/panel/sayfa/${sayfaId}`);
   return { ok: true };
+}
+
+/** Davet medyası (hikaye fotoğrafı vb.) yükler, /medya URL'i döner. */
+export async function medyaYukle(formData: FormData): Promise<{ url: string | null }> {
+  await requireUser();
+  const dosya = formData.get("dosya");
+  if (!(dosya instanceof File) || dosya.size === 0) return { url: null };
+  if (dosya.size > 5 * 1024 * 1024) return { url: null }; // 5MB sınır
+  const izinli = ["png", "jpg", "jpeg", "webp", "gif"];
+  const uzanti = (dosya.name.split(".").pop() || "png").toLowerCase().replace(/[^a-z0-9]/g, "");
+  if (!izinli.includes(uzanti)) return { url: null };
+  const adi = `davet-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${uzanti}`;
+  const dizin = path.join(process.cwd(), "public", "marka");
+  await mkdir(dizin, { recursive: true });
+  await writeFile(path.join(dizin, adi), Buffer.from(await dosya.arrayBuffer()));
+  return { url: `/medya/${adi}` };
+}
+
+/** Hazır 8 modüllü şablonu sayfaya ekler (mevcut modüllerin sonuna). */
+export async function sablonUygula(sayfaId: string) {
+  const user = await requireUser();
+  if (!(await sayfaDuzenleyebilir(sayfaId, user.id))) return [] as { id: string; tip: string; sira: number; icerik: Record<string, unknown> }[];
+  const adet = await prisma.davetModulu.count({ where: { sayfaId } });
+  const olusan: { id: string; tip: string; sira: number; icerik: Record<string, unknown> }[] = [];
+  for (let i = 0; i < SABLON_AKIS.length; i++) {
+    const { tip, icerik } = SABLON_AKIS[i];
+    const m = await prisma.davetModulu.create({
+      data: { sayfaId, tip: tip as never, sira: adet + i, icerik: icerik as never },
+    });
+    olusan.push({ id: m.id, tip: m.tip as string, sira: m.sira, icerik: m.icerik as Record<string, unknown> });
+  }
+  revalidatePath(`/panel/sayfa/${sayfaId}`);
+  return olusan;
 }
 
 export async function sayfaYayinla(sayfaId: string) {

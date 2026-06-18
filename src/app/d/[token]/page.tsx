@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import DavetTracker from "@/components/DavetTracker";
 import DavetVideo from "@/components/DavetVideo";
 import { ButonGrubu, RandevuModulu } from "@/components/DavetAksiyonlar";
+import { SSSListesi, HikayelerBolum, SecimBolum } from "@/components/DavetIcerik";
 import { telefonNormalize } from "@/server/mesaj";
 import type { Metadata } from "next";
 
@@ -48,6 +49,68 @@ export default async function DavetSayfasi({ params }: { params: Promise<{ token
                 {ic.metin ? <p className="mt-2 whitespace-pre-wrap text-slate-600">{yaz(ic.metin)}</p> : null}
               </div>
             );
+          }
+          if (m.tip === "NEDENLER") {
+            const ogeler = Array.isArray(ic.ogeler) ? (ic.ogeler as { baslik?: string; metin?: string }[]) : [];
+            return (
+              <div key={m.id} className="rounded-2xl bg-white p-6 shadow-sm">
+                {ic.baslik ? <h2 className="mb-4 text-xl font-bold text-slate-900">{yaz(ic.baslik)}</h2> : null}
+                <div className="space-y-3">
+                  {ogeler.map((o, i) => (
+                    <div key={i} className="rounded-xl bg-slate-50 p-4">
+                      {o.baslik ? <p className="font-semibold text-slate-900">{o.baslik}</p> : null}
+                      {o.metin ? <p className="mt-0.5 text-sm text-slate-600">{o.metin}</p> : null}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          }
+          if (m.tip === "LISTE") {
+            const ogeler = Array.isArray(ic.ogeler) ? (ic.ogeler as string[]) : [];
+            return (
+              <div key={m.id} className="rounded-2xl bg-white p-6 shadow-sm">
+                {ic.baslik ? <h2 className="mb-4 text-xl font-bold text-slate-900">{yaz(ic.baslik)}</h2> : null}
+                <ul className="space-y-2.5">
+                  {ogeler.map((o, i) => (
+                    <li key={i} className="flex items-start gap-2 text-slate-700">
+                      <span className="mt-0.5 text-emerald-500">✅</span> {o}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          }
+          if (m.tip === "ADIMLAR") {
+            const ogeler = Array.isArray(ic.ogeler) ? (ic.ogeler as string[]) : [];
+            return (
+              <div key={m.id} className="rounded-2xl bg-white p-6 shadow-sm">
+                {ic.baslik ? <h2 className="mb-4 text-xl font-bold text-slate-900">{yaz(ic.baslik)}</h2> : null}
+                <ol className="space-y-1">
+                  {ogeler.map((o, i) => (
+                    <li key={i}>
+                      <div className="flex items-center gap-3">
+                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-sm font-bold text-white">{i + 1}</span>
+                        <span className="font-medium text-slate-800">{o}</span>
+                      </div>
+                      {i < ogeler.length - 1 && <div className="ml-4 h-4 w-px bg-slate-200" />}
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            );
+          }
+          if (m.tip === "HIKAYELER") {
+            const ogeler = Array.isArray(ic.ogeler) ? (ic.ogeler as { ad?: string; foto?: string; metin?: string }[]) : [];
+            return <HikayelerBolum key={m.id} token={token} baslik={ic.baslik ? yaz(ic.baslik) : undefined} ogeler={ogeler} />;
+          }
+          if (m.tip === "SSS") {
+            const ogeler = Array.isArray(ic.ogeler) ? (ic.ogeler as { soru: string; cevap: string }[]) : [];
+            return <SSSListesi key={m.id} token={token} baslik={ic.baslik ? yaz(ic.baslik) : undefined} ogeler={ogeler} />;
+          }
+          if (m.tip === "SECIM") {
+            const secenekler = Array.isArray(ic.secenekler) ? (ic.secenekler as { etiket: string; hedef: string }[]) : [];
+            return <SecimBolum key={m.id} token={token} baslik={ic.baslik ? yaz(ic.baslik) : undefined} secenekler={secenekler} whatsapp={waNumara} />;
           }
           if (m.tip === "GORSEL" && ic.url) {
             // eslint-disable-next-line @next/next/no-img-element

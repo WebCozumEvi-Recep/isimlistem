@@ -135,7 +135,12 @@ export const ModulTip = {
   RANDEVU: 'RANDEVU',
   SSS: 'SSS',
   WHATSAPP: 'WHATSAPP',
-  YASAL: 'YASAL'
+  YASAL: 'YASAL',
+  NEDENLER: 'NEDENLER',
+  LISTE: 'LISTE',
+  ADIMLAR: 'ADIMLAR',
+  HIKAYELER: 'HIKAYELER',
+  SECIM: 'SECIM'
 } as const
 
 export type ModulTip = (typeof ModulTip)[keyof typeof ModulTip]

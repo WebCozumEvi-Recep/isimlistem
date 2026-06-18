@@ -103,6 +103,11 @@ enum ModulTip {
   SSS
   WHATSAPP
   YASAL
+  NEDENLER
+  LISTE
+  ADIMLAR
+  HIKAYELER
+  SECIM
 }
 
 enum HazirMesajDurum {

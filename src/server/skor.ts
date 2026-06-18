@@ -48,6 +48,16 @@ export function skorHesapla(olaylar: SkorOlay[]): number {
   if (maxVideo >= 90) skor += 30;
   else if (maxVideo >= 50) skor += 20;
 
+  // SSS — açılan soru sayısına göre (sss_0, sss_1, …)
+  const sssSayisi = new Set(
+    olaylar.filter((o) => /^sss_\d+$/.test(o.olayTip)).map((o) => o.olayTip)
+  ).size;
+  if (sssSayisi >= 3) skor += 10;
+  else if (sssSayisi >= 1) skor += 5;
+
+  // Başarı hikayeleri görüntülendi
+  if (olaylar.some((o) => o.olayTip === "stories_viewed")) skor += 10;
+
   // CTA sinyalleri (her biri bir kez)
   if (olaylar.some((o) => o.olayTip === "cta_interested")) skor += 50;
   if (olaylar.some((o) => o.olayTip === "cta_more_info")) skor += 40;
