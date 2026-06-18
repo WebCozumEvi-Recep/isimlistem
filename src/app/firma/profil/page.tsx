@@ -1,5 +1,6 @@
 import { requireFirmaYonetici } from "@/lib/firma";
 import { firmaProfilGuncelle } from "@/app/firma/actions";
+import LogoSecici from "@/components/LogoSecici";
 
 export default async function FirmaProfil() {
   const { firma } = await requireFirmaYonetici();
@@ -9,8 +10,12 @@ export default async function FirmaProfil() {
       <h1 className="text-2xl font-bold text-slate-900">Firma Profili</h1>
       <form action={firmaProfilGuncelle} className="max-w-2xl space-y-4 rounded-2xl border border-slate-200 bg-white p-6">
         <Alan label="Firma Adı" name="ad" deger={firma.ad} />
+        <div>
+          <span className="mb-1.5 block text-sm font-medium text-slate-700">Logo</span>
+          <LogoSecici baslangic={firma.logoUrl} />
+          <p className="mt-1.5 text-xs text-slate-400">Logo, kayıt/giriş sayfanızda ve markalı alanlarda gösterilir.</p>
+        </div>
         <div className="grid gap-4 sm:grid-cols-2">
-          <Alan label="Logo URL" name="logoUrl" deger={firma.logoUrl ?? ""} />
           <Alan label="Ana Renk (ör: #4f46e5)" name="anaRenk" deger={firma.anaRenk ?? ""} />
           <Alan label="Web Sitesi" name="website" deger={firma.website ?? ""} />
           <Alan label="Telefon" name="telefon" deger={firma.telefon ?? ""} />
