@@ -3,7 +3,12 @@ import { headers } from "next/headers";
 import { prisma } from "./prisma";
 
 // Ana domain (alt-alanlar bunun altında: <slug>.isimlistem.com)
-const ANA_DOMAIN = (process.env.ANA_DOMAIN ?? "isimlistem.com").toLowerCase();
+export const ANA_DOMAIN = (process.env.ANA_DOMAIN ?? "isimlistem.com").toLowerCase();
+
+/** Firma slug'ından tam alt-alan adresi üretir. */
+export function altAlanUrl(slug: string): string {
+  return `https://${slug}.${ANA_DOMAIN}`;
+}
 
 /** İstek host'undan alt-alanı çıkarır (yoksa null). www ve apex hariç. */
 export async function hostAltAlan(): Promise<string | null> {

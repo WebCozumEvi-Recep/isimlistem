@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Pencil } from "lucide-react";
+import { Pencil, ExternalLink } from "lucide-react";
 import { prisma } from "@/lib/prisma";
+import { altAlanUrl, ANA_DOMAIN } from "@/lib/host";
 import { firmaOlustur, firmaDurumDegistir, firmaPaketDegistir } from "@/app/admin/actions";
 
 export default async function AdminFirmalar() {
@@ -29,7 +30,12 @@ export default async function AdminFirmalar() {
             <tbody className="divide-y divide-slate-100">
               {firmalar.map((f) => (
                 <tr key={f.id}>
-                  <td className="px-4 py-3 font-medium text-slate-900">{f.ad}<div className="text-xs text-slate-400">/{f.slug}</div></td>
+                  <td className="px-4 py-3 font-medium text-slate-900">
+                    {f.ad}
+                    <a href={altAlanUrl(f.slug)} target="_blank" rel="noopener noreferrer" className="mt-0.5 flex items-center gap-1 text-xs font-normal text-emerald-600 hover:underline">
+                      <ExternalLink size={11} /> {f.slug}.{ANA_DOMAIN}
+                    </a>
+                  </td>
                   <td className="px-4 py-3"><code className="font-mono text-emerald-700">{f.kayitKodu}</code></td>
                   <td className="px-4 py-3">{f._count.uyeler}</td>
                   <td className="px-4 py-3">

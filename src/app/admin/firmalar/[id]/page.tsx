@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { requireAdmin } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { firmaGuncelle } from "@/app/admin/actions";
-import { ArrowLeft } from "lucide-react";
+import { altAlanUrl, ANA_DOMAIN } from "@/lib/host";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 
 export default async function FirmaDuzenle({ params }: { params: Promise<{ id: string }> }) {
   await requireAdmin();
@@ -21,7 +22,12 @@ export default async function FirmaDuzenle({ params }: { params: Promise<{ id: s
       <Link href="/admin/firmalar" className="flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-900">
         <ArrowLeft size={16} /> Firmalar
       </Link>
-      <h1 className="text-2xl font-bold text-slate-900">{firma.ad} — Düzenle</h1>
+      <div>
+        <h1 className="text-2xl font-bold text-slate-900">{firma.ad} — Düzenle</h1>
+        <a href={altAlanUrl(firma.slug)} target="_blank" rel="noopener noreferrer" className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-emerald-600 hover:underline">
+          <ExternalLink size={14} /> {firma.slug}.{ANA_DOMAIN}
+        </a>
+      </div>
 
       <form action={action} className="max-w-2xl space-y-4 rounded-2xl border border-slate-200 bg-white p-6">
         <div className="grid gap-4 sm:grid-cols-2">
