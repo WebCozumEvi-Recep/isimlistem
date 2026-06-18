@@ -21,7 +21,6 @@ export default async function PanelLayout({ children }: { children: React.ReactN
     { href: "/panel", etiket: "Panel", ikon: "LayoutGrid", exact: true },
     { href: "/panel/kesfet", etiket: "Aday Keşfet", ikon: "Compass", vurgu: true },
     { href: "/panel/liste", etiket: "Aday İsim Listesi", ikon: "List" },
-    { href: "/panel/pano", etiket: "Pano", ikon: "KanbanSquare" },
     { href: "/panel/sayfalar", etiket: "Davet Sayfaları", ikon: "FileText" },
     { href: "/panel/kaliplar", etiket: "Mesaj Kalıpları", ikon: "MessageSquareText" },
     { href: "/panel/randevular", etiket: "Randevular", ikon: "CalendarClock" },

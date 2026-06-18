@@ -5,12 +5,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cikisYap } from "@/app/auth/actions";
 import {
-  LayoutGrid, List, KanbanSquare, FileText, MessageSquareText, CalendarClock,
+  LayoutGrid, List, FileText, MessageSquareText, CalendarClock,
   Bell, Building2, Users, LogOut, Plus, Menu, X, BarChart3, ArrowLeft, Settings, Compass,
 } from "lucide-react";
 
 const IKONLAR = {
-  LayoutGrid, List, KanbanSquare, FileText, MessageSquareText, CalendarClock,
+  LayoutGrid, List, FileText, MessageSquareText, CalendarClock,
   Bell, Building2, Users, BarChart3, ArrowLeft, Settings, Compass,
 } as const;
 
