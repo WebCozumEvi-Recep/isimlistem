@@ -94,20 +94,20 @@ export function HikayelerBolum({
   return (
     <div ref={ref} className="rounded-2xl bg-white p-6 shadow-sm">
       {baslik ? <h2 className="mb-4 text-xl font-bold text-slate-900">{baslik}</h2> : null}
-      <div className="space-y-4">
+      <div className="space-y-3">
         {ogeler.map((o, i) => (
-          <div key={i} className="flex items-start gap-3">
+          <div key={i} className="flex items-start gap-3 rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-50 p-4">
             {o.foto ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={o.foto} alt={o.ad ?? ""} className="h-12 w-12 shrink-0 rounded-full object-cover" />
+              <img src={o.foto} alt={o.ad ?? ""} className="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-emerald-200" />
             ) : (
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-sm font-bold text-emerald-700">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 text-base font-bold text-white">
                 {(o.ad ?? "?").trim().charAt(0).toUpperCase()}
               </div>
             )}
             <div>
               {o.ad ? <p className="font-semibold text-slate-900">{o.ad}</p> : null}
-              {o.metin ? <p className="text-sm text-slate-600">{o.metin}</p> : null}
+              {o.metin ? <p className="text-sm text-slate-600">&ldquo;{o.metin}&rdquo;</p> : null}
             </div>
           </div>
         ))}
@@ -144,10 +144,10 @@ export function SecimBolum({
             <button
               key={i}
               onClick={() => sec(s)}
-              className="flex w-full items-center justify-between gap-2 rounded-xl border border-slate-200 px-4 py-3 text-left font-medium text-slate-700 hover:border-emerald-400 hover:bg-emerald-50"
+              className="group flex w-full items-center justify-between gap-2 rounded-xl border-2 border-slate-100 bg-slate-50 px-4 py-3.5 text-left font-medium text-slate-700 transition hover:border-emerald-400 hover:bg-emerald-50 hover:text-emerald-700"
             >
               {s.etiket}
-              <ChevronDown size={16} className="-rotate-90 text-slate-400" />
+              <ChevronDown size={18} className="-rotate-90 text-slate-300 transition group-hover:text-emerald-500" />
             </button>
           ))}
         </div>
