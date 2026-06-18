@@ -3,6 +3,8 @@
 # Kodu çeker, bağımlılıkları kurar, build eder (build içinde `prisma db push` ile
 # DB şeması otomatik senkronlanır) ve servisi sıfır kesintiyle yeniden yükler.
 set -euo pipefail
+# Forced-command SSH (GitHub Actions) altında minimal PATH gelebilir; garantiye al.
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${PATH:-}"
 cd "$(dirname "$0")"
 
 echo "==> git pull"
