@@ -1,5 +1,6 @@
 "use server";
 
+import bcrypt from "bcryptjs";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { writeFile, mkdir } from "fs/promises";
@@ -58,6 +59,46 @@ export async function firmaPaketDegistir(firmaId: string, paket: "FREE" | "BUSIN
 
 const PAKETLER = ["FREE", "BUSINESS", "BUSINESS_PLUS"];
 const DURUMLAR = ["AKTIF", "PASIF", "ASKIDA"];
+const FIRMA_ROLLERI = ["FIRMA_ADMIN", "ICERIK_YONETICI", "RAPOR_IZLEYICI", "NETWORKER"];
+
+/** Admin: kullanıcının rolünü, firmasını ve (istenirse) parolasını günceller. */
+export async function kullaniciGuncelle(kullaniciId: string, formData: FormData) {
+  await requireAdmin();
+
+  const rol = String(formData.get("rol") ?? "");
+  const firmaId = String(formData.get("firmaId") ?? "");
+  const firmaRol = String(formData.get("firmaRol") ?? "NETWORKER");
+  const yeniParola = String(formData.get("yeniParola") ?? "");
+
+  const veri: Record<string, unknown> = {};
+  if (rol === "ADMIN" || rol === "UYE") veri.rol = rol;
+  if (yeniParola) {
+    if (yeniParola.length < 6) return; // çok kısa parola yok sayılır
+    veri.parolaHash = await bcrypt.hash(yeniParola, 10);
+  }
+
+  if (firmaId) {
+    // Tek firma modeli: diğer üyelikleri kaldır, seçilene NETWORKER/rol ile bağla.
+    const rolDeg = (FIRMA_ROLLERI.includes(firmaRol) ? firmaRol : "NETWORKER") as never;
+    await prisma.firmaUye.deleteMany({ where: { kullaniciId, firmaId: { not: firmaId } } });
+    await prisma.firmaUye.upsert({
+      where: { firmaId_kullaniciId: { firmaId, kullaniciId } },
+      create: { firmaId, kullaniciId, rol: rolDeg },
+      update: { rol: rolDeg },
+    });
+    veri.varsayilanFirmaId = firmaId;
+  } else {
+    // Firma kaldırıldı.
+    await prisma.firmaUye.deleteMany({ where: { kullaniciId } });
+    veri.varsayilanFirmaId = null;
+  }
+
+  if (Object.keys(veri).length > 0) {
+    await prisma.kullanici.update({ where: { id: kullaniciId }, data: veri });
+  }
+  revalidatePath("/admin/kullanicilar");
+  redirect("/admin/kullanicilar");
+}
 
 function al(fd: FormData, k: string): string | null {
   const v = String(fd.get(k) ?? "").trim();

@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { Pencil } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 
 export default async function AdminKullanicilar() {
@@ -19,6 +21,7 @@ export default async function AdminKullanicilar() {
               <th className="px-4 py-3 font-medium">Firma</th>
               <th className="px-4 py-3 font-medium">Aday</th>
               <th className="px-4 py-3 font-medium">Kayıt</th>
+              <th className="px-4 py-3 text-right font-medium">İşlem</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
@@ -30,6 +33,11 @@ export default async function AdminKullanicilar() {
                 <td className="px-4 py-3 text-slate-600">{u.firmaUyelikler[0]?.firma.ad ?? "—"}</td>
                 <td className="px-4 py-3 text-slate-600">{u._count.kisiler}</td>
                 <td className="px-4 py-3 text-slate-400">{u.createdAt.toLocaleDateString("tr-TR")}</td>
+                <td className="px-4 py-3 text-right">
+                  <Link href={`/admin/kullanicilar/${u.id}`} title="Düzenle" className="inline-flex items-center justify-center rounded-lg border border-slate-200 p-2 text-slate-500 hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-600">
+                    <Pencil size={15} />
+                  </Link>
+                </td>
               </tr>
             ))}
           </tbody>
