@@ -1687,6 +1687,7 @@ export const RandevuTalebiScalarFieldEnum = {
   tarihMetni: 'tarihMetni',
   tip: 'tip',
   mesaj: 'mesaj',
+  sonucNotu: 'sonucNotu',
   durum: 'durum',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

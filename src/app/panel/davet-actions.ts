@@ -233,14 +233,20 @@ async function sahipRandevu(randevuId: string, kullaniciId: string) {
   return r;
 }
 
-export async function randevuDurumGuncelle(
-  randevuId: string,
-  durum: "ONAYLANDI" | "REDDEDILDI" | "ERTELENDI" | "TAMAMLANDI" | "IPTAL"
-) {
+const RANDEVU_DURUMLARI = ["TALEP", "ONAYLANDI", "REDDEDILDI", "ERTELENDI", "TAMAMLANDI", "IPTAL"] as const;
+
+export async function randevuDurumGuncelle(randevuId: string, formData: FormData) {
   const user = await requireUser();
   const r = await sahipRandevu(randevuId, user.id);
   if (!r) return;
-  await prisma.randevuTalebi.update({ where: { id: randevuId }, data: { durum } });
+  const durum = String(formData.get("durum") ?? "");
+  if (!(RANDEVU_DURUMLARI as readonly string[]).includes(durum)) return;
+  const sonucNotu = metin(formData, "sonucNotu");
+
+  await prisma.randevuTalebi.update({
+    where: { id: randevuId },
+    data: { durum: durum as never, ...(sonucNotu !== null ? { sonucNotu } : {}) },
+  });
   if (durum === "ONAYLANDI") {
     const kisi = await prisma.kisi.findUnique({ where: { id: r.kisiId } });
     if (kisi && kisi.durum !== "KATILDI" && kisi.durum !== "KAYIP") {

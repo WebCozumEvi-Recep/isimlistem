@@ -32,6 +32,7 @@ export type RandevuTalebiMinAggregateOutputType = {
   tarihMetni: string | null
   tip: $Enums.RandevuTip | null
   mesaj: string | null
+  sonucNotu: string | null
   durum: $Enums.RandevuDurum | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -45,6 +46,7 @@ export type RandevuTalebiMaxAggregateOutputType = {
   tarihMetni: string | null
   tip: $Enums.RandevuTip | null
   mesaj: string | null
+  sonucNotu: string | null
   durum: $Enums.RandevuDurum | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -58,6 +60,7 @@ export type RandevuTalebiCountAggregateOutputType = {
   tarihMetni: number
   tip: number
   mesaj: number
+  sonucNotu: number
   durum: number
   createdAt: number
   updatedAt: number
@@ -73,6 +76,7 @@ export type RandevuTalebiMinAggregateInputType = {
   tarihMetni?: true
   tip?: true
   mesaj?: true
+  sonucNotu?: true
   durum?: true
   createdAt?: true
   updatedAt?: true
@@ -86,6 +90,7 @@ export type RandevuTalebiMaxAggregateInputType = {
   tarihMetni?: true
   tip?: true
   mesaj?: true
+  sonucNotu?: true
   durum?: true
   createdAt?: true
   updatedAt?: true
@@ -99,6 +104,7 @@ export type RandevuTalebiCountAggregateInputType = {
   tarihMetni?: true
   tip?: true
   mesaj?: true
+  sonucNotu?: true
   durum?: true
   createdAt?: true
   updatedAt?: true
@@ -185,6 +191,7 @@ export type RandevuTalebiGroupByOutputType = {
   tarihMetni: string | null
   tip: $Enums.RandevuTip
   mesaj: string | null
+  sonucNotu: string | null
   durum: $Enums.RandevuDurum
   createdAt: Date
   updatedAt: Date
@@ -219,6 +226,7 @@ export type RandevuTalebiWhereInput = {
   tarihMetni?: Prisma.StringNullableFilter<"RandevuTalebi"> | string | null
   tip?: Prisma.EnumRandevuTipFilter<"RandevuTalebi"> | $Enums.RandevuTip
   mesaj?: Prisma.StringNullableFilter<"RandevuTalebi"> | string | null
+  sonucNotu?: Prisma.StringNullableFilter<"RandevuTalebi"> | string | null
   durum?: Prisma.EnumRandevuDurumFilter<"RandevuTalebi"> | $Enums.RandevuDurum
   createdAt?: Prisma.DateTimeFilter<"RandevuTalebi"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"RandevuTalebi"> | Date | string
@@ -234,6 +242,7 @@ export type RandevuTalebiOrderByWithRelationInput = {
   tarihMetni?: Prisma.SortOrderInput | Prisma.SortOrder
   tip?: Prisma.SortOrder
   mesaj?: Prisma.SortOrderInput | Prisma.SortOrder
+  sonucNotu?: Prisma.SortOrderInput | Prisma.SortOrder
   durum?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -252,6 +261,7 @@ export type RandevuTalebiWhereUniqueInput = Prisma.AtLeast<{
   tarihMetni?: Prisma.StringNullableFilter<"RandevuTalebi"> | string | null
   tip?: Prisma.EnumRandevuTipFilter<"RandevuTalebi"> | $Enums.RandevuTip
   mesaj?: Prisma.StringNullableFilter<"RandevuTalebi"> | string | null
+  sonucNotu?: Prisma.StringNullableFilter<"RandevuTalebi"> | string | null
   durum?: Prisma.EnumRandevuDurumFilter<"RandevuTalebi"> | $Enums.RandevuDurum
   createdAt?: Prisma.DateTimeFilter<"RandevuTalebi"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"RandevuTalebi"> | Date | string
@@ -267,6 +277,7 @@ export type RandevuTalebiOrderByWithAggregationInput = {
   tarihMetni?: Prisma.SortOrderInput | Prisma.SortOrder
   tip?: Prisma.SortOrder
   mesaj?: Prisma.SortOrderInput | Prisma.SortOrder
+  sonucNotu?: Prisma.SortOrderInput | Prisma.SortOrder
   durum?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -286,6 +297,7 @@ export type RandevuTalebiScalarWhereWithAggregatesInput = {
   tarihMetni?: Prisma.StringNullableWithAggregatesFilter<"RandevuTalebi"> | string | null
   tip?: Prisma.EnumRandevuTipWithAggregatesFilter<"RandevuTalebi"> | $Enums.RandevuTip
   mesaj?: Prisma.StringNullableWithAggregatesFilter<"RandevuTalebi"> | string | null
+  sonucNotu?: Prisma.StringNullableWithAggregatesFilter<"RandevuTalebi"> | string | null
   durum?: Prisma.EnumRandevuDurumWithAggregatesFilter<"RandevuTalebi"> | $Enums.RandevuDurum
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"RandevuTalebi"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"RandevuTalebi"> | Date | string
@@ -297,6 +309,7 @@ export type RandevuTalebiCreateInput = {
   tarihMetni?: string | null
   tip?: $Enums.RandevuTip
   mesaj?: string | null
+  sonucNotu?: string | null
   durum?: $Enums.RandevuDurum
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -312,6 +325,7 @@ export type RandevuTalebiUncheckedCreateInput = {
   tarihMetni?: string | null
   tip?: $Enums.RandevuTip
   mesaj?: string | null
+  sonucNotu?: string | null
   durum?: $Enums.RandevuDurum
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -323,6 +337,7 @@ export type RandevuTalebiUpdateInput = {
   tarihMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tip?: Prisma.EnumRandevuTipFieldUpdateOperationsInput | $Enums.RandevuTip
   mesaj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sonucNotu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durum?: Prisma.EnumRandevuDurumFieldUpdateOperationsInput | $Enums.RandevuDurum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -338,6 +353,7 @@ export type RandevuTalebiUncheckedUpdateInput = {
   tarihMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tip?: Prisma.EnumRandevuTipFieldUpdateOperationsInput | $Enums.RandevuTip
   mesaj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sonucNotu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durum?: Prisma.EnumRandevuDurumFieldUpdateOperationsInput | $Enums.RandevuDurum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -351,6 +367,7 @@ export type RandevuTalebiCreateManyInput = {
   tarihMetni?: string | null
   tip?: $Enums.RandevuTip
   mesaj?: string | null
+  sonucNotu?: string | null
   durum?: $Enums.RandevuDurum
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -362,6 +379,7 @@ export type RandevuTalebiUpdateManyMutationInput = {
   tarihMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tip?: Prisma.EnumRandevuTipFieldUpdateOperationsInput | $Enums.RandevuTip
   mesaj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sonucNotu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durum?: Prisma.EnumRandevuDurumFieldUpdateOperationsInput | $Enums.RandevuDurum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -375,6 +393,7 @@ export type RandevuTalebiUncheckedUpdateManyInput = {
   tarihMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tip?: Prisma.EnumRandevuTipFieldUpdateOperationsInput | $Enums.RandevuTip
   mesaj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sonucNotu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durum?: Prisma.EnumRandevuDurumFieldUpdateOperationsInput | $Enums.RandevuDurum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -398,6 +417,7 @@ export type RandevuTalebiCountOrderByAggregateInput = {
   tarihMetni?: Prisma.SortOrder
   tip?: Prisma.SortOrder
   mesaj?: Prisma.SortOrder
+  sonucNotu?: Prisma.SortOrder
   durum?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -411,6 +431,7 @@ export type RandevuTalebiMaxOrderByAggregateInput = {
   tarihMetni?: Prisma.SortOrder
   tip?: Prisma.SortOrder
   mesaj?: Prisma.SortOrder
+  sonucNotu?: Prisma.SortOrder
   durum?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -424,6 +445,7 @@ export type RandevuTalebiMinOrderByAggregateInput = {
   tarihMetni?: Prisma.SortOrder
   tip?: Prisma.SortOrder
   mesaj?: Prisma.SortOrder
+  sonucNotu?: Prisma.SortOrder
   durum?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -527,6 +549,7 @@ export type RandevuTalebiCreateWithoutKisiInput = {
   tarihMetni?: string | null
   tip?: $Enums.RandevuTip
   mesaj?: string | null
+  sonucNotu?: string | null
   durum?: $Enums.RandevuDurum
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -540,6 +563,7 @@ export type RandevuTalebiUncheckedCreateWithoutKisiInput = {
   tarihMetni?: string | null
   tip?: $Enums.RandevuTip
   mesaj?: string | null
+  sonucNotu?: string | null
   durum?: $Enums.RandevuDurum
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -582,6 +606,7 @@ export type RandevuTalebiScalarWhereInput = {
   tarihMetni?: Prisma.StringNullableFilter<"RandevuTalebi"> | string | null
   tip?: Prisma.EnumRandevuTipFilter<"RandevuTalebi"> | $Enums.RandevuTip
   mesaj?: Prisma.StringNullableFilter<"RandevuTalebi"> | string | null
+  sonucNotu?: Prisma.StringNullableFilter<"RandevuTalebi"> | string | null
   durum?: Prisma.EnumRandevuDurumFilter<"RandevuTalebi"> | $Enums.RandevuDurum
   createdAt?: Prisma.DateTimeFilter<"RandevuTalebi"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"RandevuTalebi"> | Date | string
@@ -593,6 +618,7 @@ export type RandevuTalebiCreateWithoutLinkInput = {
   tarihMetni?: string | null
   tip?: $Enums.RandevuTip
   mesaj?: string | null
+  sonucNotu?: string | null
   durum?: $Enums.RandevuDurum
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -606,6 +632,7 @@ export type RandevuTalebiUncheckedCreateWithoutLinkInput = {
   tarihMetni?: string | null
   tip?: $Enums.RandevuTip
   mesaj?: string | null
+  sonucNotu?: string | null
   durum?: $Enums.RandevuDurum
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -644,6 +671,7 @@ export type RandevuTalebiCreateManyKisiInput = {
   tarihMetni?: string | null
   tip?: $Enums.RandevuTip
   mesaj?: string | null
+  sonucNotu?: string | null
   durum?: $Enums.RandevuDurum
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -655,6 +683,7 @@ export type RandevuTalebiUpdateWithoutKisiInput = {
   tarihMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tip?: Prisma.EnumRandevuTipFieldUpdateOperationsInput | $Enums.RandevuTip
   mesaj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sonucNotu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durum?: Prisma.EnumRandevuDurumFieldUpdateOperationsInput | $Enums.RandevuDurum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -668,6 +697,7 @@ export type RandevuTalebiUncheckedUpdateWithoutKisiInput = {
   tarihMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tip?: Prisma.EnumRandevuTipFieldUpdateOperationsInput | $Enums.RandevuTip
   mesaj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sonucNotu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durum?: Prisma.EnumRandevuDurumFieldUpdateOperationsInput | $Enums.RandevuDurum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -680,6 +710,7 @@ export type RandevuTalebiUncheckedUpdateManyWithoutKisiInput = {
   tarihMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tip?: Prisma.EnumRandevuTipFieldUpdateOperationsInput | $Enums.RandevuTip
   mesaj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sonucNotu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durum?: Prisma.EnumRandevuDurumFieldUpdateOperationsInput | $Enums.RandevuDurum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -692,6 +723,7 @@ export type RandevuTalebiCreateManyLinkInput = {
   tarihMetni?: string | null
   tip?: $Enums.RandevuTip
   mesaj?: string | null
+  sonucNotu?: string | null
   durum?: $Enums.RandevuDurum
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -703,6 +735,7 @@ export type RandevuTalebiUpdateWithoutLinkInput = {
   tarihMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tip?: Prisma.EnumRandevuTipFieldUpdateOperationsInput | $Enums.RandevuTip
   mesaj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sonucNotu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durum?: Prisma.EnumRandevuDurumFieldUpdateOperationsInput | $Enums.RandevuDurum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -716,6 +749,7 @@ export type RandevuTalebiUncheckedUpdateWithoutLinkInput = {
   tarihMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tip?: Prisma.EnumRandevuTipFieldUpdateOperationsInput | $Enums.RandevuTip
   mesaj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sonucNotu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durum?: Prisma.EnumRandevuDurumFieldUpdateOperationsInput | $Enums.RandevuDurum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -728,6 +762,7 @@ export type RandevuTalebiUncheckedUpdateManyWithoutLinkInput = {
   tarihMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tip?: Prisma.EnumRandevuTipFieldUpdateOperationsInput | $Enums.RandevuTip
   mesaj?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sonucNotu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durum?: Prisma.EnumRandevuDurumFieldUpdateOperationsInput | $Enums.RandevuDurum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -743,6 +778,7 @@ export type RandevuTalebiSelect<ExtArgs extends runtime.Types.Extensions.Interna
   tarihMetni?: boolean
   tip?: boolean
   mesaj?: boolean
+  sonucNotu?: boolean
   durum?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -758,6 +794,7 @@ export type RandevuTalebiSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   tarihMetni?: boolean
   tip?: boolean
   mesaj?: boolean
+  sonucNotu?: boolean
   durum?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -773,6 +810,7 @@ export type RandevuTalebiSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   tarihMetni?: boolean
   tip?: boolean
   mesaj?: boolean
+  sonucNotu?: boolean
   durum?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -788,12 +826,13 @@ export type RandevuTalebiSelectScalar = {
   tarihMetni?: boolean
   tip?: boolean
   mesaj?: boolean
+  sonucNotu?: boolean
   durum?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type RandevuTalebiOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "kullaniciId" | "kisiId" | "linkId" | "tarihMetni" | "tip" | "mesaj" | "durum" | "createdAt" | "updatedAt", ExtArgs["result"]["randevuTalebi"]>
+export type RandevuTalebiOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "kullaniciId" | "kisiId" | "linkId" | "tarihMetni" | "tip" | "mesaj" | "sonucNotu" | "durum" | "createdAt" | "updatedAt", ExtArgs["result"]["randevuTalebi"]>
 export type RandevuTalebiInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   kisi?: boolean | Prisma.KisiDefaultArgs<ExtArgs>
   link?: boolean | Prisma.RandevuTalebi$linkArgs<ExtArgs>
@@ -821,6 +860,7 @@ export type $RandevuTalebiPayload<ExtArgs extends runtime.Types.Extensions.Inter
     tarihMetni: string | null
     tip: $Enums.RandevuTip
     mesaj: string | null
+    sonucNotu: string | null
     durum: $Enums.RandevuDurum
     createdAt: Date
     updatedAt: Date
@@ -1256,6 +1296,7 @@ export interface RandevuTalebiFieldRefs {
   readonly tarihMetni: Prisma.FieldRef<"RandevuTalebi", 'String'>
   readonly tip: Prisma.FieldRef<"RandevuTalebi", 'RandevuTip'>
   readonly mesaj: Prisma.FieldRef<"RandevuTalebi", 'String'>
+  readonly sonucNotu: Prisma.FieldRef<"RandevuTalebi", 'String'>
   readonly durum: Prisma.FieldRef<"RandevuTalebi", 'RandevuDurum'>
   readonly createdAt: Prisma.FieldRef<"RandevuTalebi", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"RandevuTalebi", 'DateTime'>

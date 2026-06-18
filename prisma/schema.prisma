@@ -361,6 +361,7 @@ model RandevuTalebi {
   tarihMetni  String?
   tip         RandevuTip   @default(WHATSAPP)
   mesaj       String?
+  sonucNotu   String?
   durum       RandevuDurum @default(TALEP)
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
