@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { getSession } from "@/lib/session";
 import { getAyar } from "@/lib/ayarlar";
+import { hostFirma } from "@/lib/host";
 import Reveal from "@/components/Reveal";
 import LandingNav from "@/components/LandingNav";
 import SSS from "@/components/SSS";
@@ -19,6 +21,10 @@ export const metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function Landing() {
+  // Firma alt-alanından gelindiyse doğrudan kayıt/giriş akışına yönlendir.
+  const firma = await hostFirma();
+  if (firma) redirect("/auth/kayit");
+
   const session = await getSession();
   const ayar = await getAyar();
 
