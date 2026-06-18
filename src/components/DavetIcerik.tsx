@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ChevronDown, MessageCircle, CalendarClock, Package, Info } from "lucide-react";
+import { ChevronDown, MessageCircle, Package, Info } from "lucide-react";
+import { RandevuModulu } from "./DavetAksiyonlar";
 
 function sid() {
   return typeof window !== "undefined" ? sessionStorage.getItem("il_sid") ?? "anon" : "anon";
@@ -152,40 +153,60 @@ export function SecimBolum({
           ))}
         </div>
       ) : (
-        <SonrakiAdim hedef={secilen.hedef} whatsapp={whatsapp} />
+        <div className="space-y-3">
+          <button
+            onClick={() => setSecilen(null)}
+            className="text-xs font-medium text-slate-400 hover:text-slate-600"
+          >
+            ← Seçimi değiştir
+          </button>
+          <SonrakiAdim hedef={secilen.hedef} whatsapp={whatsapp} token={token} />
+        </div>
       )}
     </div>
   );
 }
 
-function SonrakiAdim({ hedef, whatsapp }: { hedef: string; whatsapp?: string | null }) {
-  if (hedef === "whatsapp" || hedef === "bilgi") {
-    return whatsapp ? (
-      <a
-        href={`https://wa.me/${whatsapp}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 py-3 font-medium text-white hover:bg-green-700"
-      >
-        <MessageCircle size={18} /> WhatsApp&apos;tan yaz
-      </a>
-    ) : (
-      <p className="flex items-center justify-center gap-2 rounded-xl bg-emerald-50 py-4 text-sm font-medium text-emerald-700">
-        <Info size={16} /> Teşekkürler, en kısa sürede iletişime geçilecek.
-      </p>
-    );
-  }
-  if (hedef === "urun") {
-    return (
-      <p className="flex items-center justify-center gap-2 rounded-xl bg-emerald-50 py-4 text-center text-sm font-medium text-emerald-700">
-        <Package size={16} /> Ürün bilgileri için en kısa sürede iletişime geçilecek.
-      </p>
-    );
-  }
-  // randevu
-  return (
+function WhatsappButon({ whatsapp, etiket }: { whatsapp?: string | null; etiket: string }) {
+  return whatsapp ? (
+    <a
+      href={`https://wa.me/${whatsapp}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 py-3 font-medium text-white hover:bg-green-700"
+    >
+      <MessageCircle size={18} /> {etiket}
+    </a>
+  ) : (
     <p className="flex items-center justify-center gap-2 rounded-xl bg-emerald-50 py-4 text-center text-sm font-medium text-emerald-700">
-      <CalendarClock size={16} /> Görüşme planlamak için aşağıdaki butonları kullanabilirsin.
+      <Info size={16} /> Teşekkürler, en kısa sürede iletişime geçilecek.
     </p>
   );
+}
+
+function SonrakiAdim({ hedef, whatsapp, token }: { hedef: string; whatsapp?: string | null; token: string }) {
+  // Randevu / Takvim → gerçek takvim + saat seçiciyi hemen burada aç.
+  if (hedef === "randevu") {
+    return (
+      <div>
+        <p className="mb-2 text-sm font-medium text-slate-600">
+          Sana uygun bir görüşme zamanı seç 👇
+        </p>
+        <RandevuModulu token={token} />
+      </div>
+    );
+  }
+  // Ürün sunumu → ürünler hakkında WhatsApp üzerinden iletişim.
+  if (hedef === "urun") {
+    return (
+      <div className="space-y-2">
+        <p className="flex items-center justify-center gap-2 text-center text-sm font-medium text-slate-600">
+          <Package size={16} className="text-emerald-600" /> Ürünler hakkında bilgi almak için yazabilirsin.
+        </p>
+        <WhatsappButon whatsapp={whatsapp} etiket="Ürünler için WhatsApp'tan yaz" />
+      </div>
+    );
+  }
+  // WhatsApp / Bilgi
+  return <WhatsappButon whatsapp={whatsapp} etiket="WhatsApp'tan yaz" />;
 }
