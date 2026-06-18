@@ -20,7 +20,7 @@ export default async function KisiDetaySayfasi({ params }: { params: Promise<{ i
     include: {
       aktiviteler: { orderBy: { tarih: "desc" } },
       davetLinkleri: { include: { olaylar: true } },
-      hazirMesajlar: { orderBy: { createdAt: "desc" }, take: 1 },
+      hazirMesajlar: { orderBy: { createdAt: "desc" }, take: 10 },
     },
   });
   if (!kisi || kisi.kullaniciId !== user.id) notFound();
@@ -53,7 +53,10 @@ export default async function KisiDetaySayfasi({ params }: { params: Promise<{ i
   const maxVideo = Math.max(0, ...olaylar.map((o) => o.videoYuzde ?? 0));
   const butonlar = [...new Set(olaylar.filter((o) => o.olayTip.startsWith("cta_") || o.olayTip === "whatsapp_clicked" || o.olayTip === "appointment_requested").map((o) => o.olayTip))];
   const sicaklik = skorSicaklik(kisi.skor);
-  const sonMesaj = kisi.hazirMesajlar[0];
+  // Linki silinmiş (ölü) eski mesajları gösterme; yalnızca canlı linke bağlı
+  // (ya da linksiz) en güncel mesajı sun.
+  const canliLinkIdleri = new Set(kisi.davetLinkleri.map((l) => l.id));
+  const sonMesaj = kisi.hazirMesajlar.find((m) => !m.linkId || canliLinkIdleri.has(m.linkId));
 
   const guncelleAction = kisiGuncelle.bind(null, kisi.id);
   const durumAction = durumDegistir.bind(null, kisi.id);
@@ -117,7 +120,7 @@ export default async function KisiDetaySayfasi({ params }: { params: Promise<{ i
                     rel="noopener noreferrer"
                     className="flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-emerald-700"
                   >
-                    <MessageCircle size={15} /> WhatsApp'ta Aç
+                    <MessageCircle size={15} /> WhatsApp&apos;ta Aç
                   </a>
                   {sonMesaj.durum !== "GONDERILDI_ONAY" ? (
                     <form action={gonderildiOnayla.bind(null, sonMesaj.id, kisi.id)}>
