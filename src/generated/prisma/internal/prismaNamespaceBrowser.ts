@@ -193,6 +193,7 @@ export const DavetSayfasiScalarFieldEnum = {
   firmaId: 'firmaId',
   baslik: 'baslik',
   aciklama: 'aciklama',
+  kapakGorsel: 'kapakGorsel',
   amac: 'amac',
   durum: 'durum',
   varsayilan: 'varsayilan',

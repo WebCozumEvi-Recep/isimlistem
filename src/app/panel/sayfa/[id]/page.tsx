@@ -19,6 +19,7 @@ export default async function SayfaBuilderSayfasi({ params }: { params: Promise<
     <DavetBuilder
       sayfaId={sayfa.id}
       baslik={sayfa.baslik}
+      kapakGorsel={sayfa.kapakGorsel}
       durum={sayfa.durum}
       moduller={sayfa.moduller.map((m) => ({ id: m.id, tip: m.tip as string, sira: m.sira, icerik: m.icerik as Record<string, unknown> }))}
     />

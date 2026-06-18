@@ -267,6 +267,7 @@ model DavetSayfasi {
   firmaId     String?
   baslik      String
   aciklama    String?
+  kapakGorsel String?
   amac        String        @default("is_firsati")
   durum       SayfaDurum    @default(TASLAK)
   varsayilan  Boolean       @default(false)

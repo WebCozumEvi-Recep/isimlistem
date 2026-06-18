@@ -31,6 +31,7 @@ export type DavetSayfasiMinAggregateOutputType = {
   firmaId: string | null
   baslik: string | null
   aciklama: string | null
+  kapakGorsel: string | null
   amac: string | null
   durum: $Enums.SayfaDurum | null
   varsayilan: boolean | null
@@ -45,6 +46,7 @@ export type DavetSayfasiMaxAggregateOutputType = {
   firmaId: string | null
   baslik: string | null
   aciklama: string | null
+  kapakGorsel: string | null
   amac: string | null
   durum: $Enums.SayfaDurum | null
   varsayilan: boolean | null
@@ -59,6 +61,7 @@ export type DavetSayfasiCountAggregateOutputType = {
   firmaId: number
   baslik: number
   aciklama: number
+  kapakGorsel: number
   amac: number
   durum: number
   varsayilan: number
@@ -75,6 +78,7 @@ export type DavetSayfasiMinAggregateInputType = {
   firmaId?: true
   baslik?: true
   aciklama?: true
+  kapakGorsel?: true
   amac?: true
   durum?: true
   varsayilan?: true
@@ -89,6 +93,7 @@ export type DavetSayfasiMaxAggregateInputType = {
   firmaId?: true
   baslik?: true
   aciklama?: true
+  kapakGorsel?: true
   amac?: true
   durum?: true
   varsayilan?: true
@@ -103,6 +108,7 @@ export type DavetSayfasiCountAggregateInputType = {
   firmaId?: true
   baslik?: true
   aciklama?: true
+  kapakGorsel?: true
   amac?: true
   durum?: true
   varsayilan?: true
@@ -190,6 +196,7 @@ export type DavetSayfasiGroupByOutputType = {
   firmaId: string | null
   baslik: string
   aciklama: string | null
+  kapakGorsel: string | null
   amac: string
   durum: $Enums.SayfaDurum
   varsayilan: boolean
@@ -225,6 +232,7 @@ export type DavetSayfasiWhereInput = {
   firmaId?: Prisma.StringNullableFilter<"DavetSayfasi"> | string | null
   baslik?: Prisma.StringFilter<"DavetSayfasi"> | string
   aciklama?: Prisma.StringNullableFilter<"DavetSayfasi"> | string | null
+  kapakGorsel?: Prisma.StringNullableFilter<"DavetSayfasi"> | string | null
   amac?: Prisma.StringFilter<"DavetSayfasi"> | string
   durum?: Prisma.EnumSayfaDurumFilter<"DavetSayfasi"> | $Enums.SayfaDurum
   varsayilan?: Prisma.BoolFilter<"DavetSayfasi"> | boolean
@@ -243,6 +251,7 @@ export type DavetSayfasiOrderByWithRelationInput = {
   firmaId?: Prisma.SortOrderInput | Prisma.SortOrder
   baslik?: Prisma.SortOrder
   aciklama?: Prisma.SortOrderInput | Prisma.SortOrder
+  kapakGorsel?: Prisma.SortOrderInput | Prisma.SortOrder
   amac?: Prisma.SortOrder
   durum?: Prisma.SortOrder
   varsayilan?: Prisma.SortOrder
@@ -264,6 +273,7 @@ export type DavetSayfasiWhereUniqueInput = Prisma.AtLeast<{
   firmaId?: Prisma.StringNullableFilter<"DavetSayfasi"> | string | null
   baslik?: Prisma.StringFilter<"DavetSayfasi"> | string
   aciklama?: Prisma.StringNullableFilter<"DavetSayfasi"> | string | null
+  kapakGorsel?: Prisma.StringNullableFilter<"DavetSayfasi"> | string | null
   amac?: Prisma.StringFilter<"DavetSayfasi"> | string
   durum?: Prisma.EnumSayfaDurumFilter<"DavetSayfasi"> | $Enums.SayfaDurum
   varsayilan?: Prisma.BoolFilter<"DavetSayfasi"> | boolean
@@ -282,6 +292,7 @@ export type DavetSayfasiOrderByWithAggregationInput = {
   firmaId?: Prisma.SortOrderInput | Prisma.SortOrder
   baslik?: Prisma.SortOrder
   aciklama?: Prisma.SortOrderInput | Prisma.SortOrder
+  kapakGorsel?: Prisma.SortOrderInput | Prisma.SortOrder
   amac?: Prisma.SortOrder
   durum?: Prisma.SortOrder
   varsayilan?: Prisma.SortOrder
@@ -302,6 +313,7 @@ export type DavetSayfasiScalarWhereWithAggregatesInput = {
   firmaId?: Prisma.StringNullableWithAggregatesFilter<"DavetSayfasi"> | string | null
   baslik?: Prisma.StringWithAggregatesFilter<"DavetSayfasi"> | string
   aciklama?: Prisma.StringNullableWithAggregatesFilter<"DavetSayfasi"> | string | null
+  kapakGorsel?: Prisma.StringNullableWithAggregatesFilter<"DavetSayfasi"> | string | null
   amac?: Prisma.StringWithAggregatesFilter<"DavetSayfasi"> | string
   durum?: Prisma.EnumSayfaDurumWithAggregatesFilter<"DavetSayfasi"> | $Enums.SayfaDurum
   varsayilan?: Prisma.BoolWithAggregatesFilter<"DavetSayfasi"> | boolean
@@ -314,6 +326,7 @@ export type DavetSayfasiCreateInput = {
   sahiplik?: $Enums.SahiplikTipi
   baslik: string
   aciklama?: string | null
+  kapakGorsel?: string | null
   amac?: string
   durum?: $Enums.SayfaDurum
   varsayilan?: boolean
@@ -332,6 +345,7 @@ export type DavetSayfasiUncheckedCreateInput = {
   firmaId?: string | null
   baslik: string
   aciklama?: string | null
+  kapakGorsel?: string | null
   amac?: string
   durum?: $Enums.SayfaDurum
   varsayilan?: boolean
@@ -346,6 +360,7 @@ export type DavetSayfasiUpdateInput = {
   sahiplik?: Prisma.EnumSahiplikTipiFieldUpdateOperationsInput | $Enums.SahiplikTipi
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kapakGorsel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amac?: Prisma.StringFieldUpdateOperationsInput | string
   durum?: Prisma.EnumSayfaDurumFieldUpdateOperationsInput | $Enums.SayfaDurum
   varsayilan?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -364,6 +379,7 @@ export type DavetSayfasiUncheckedUpdateInput = {
   firmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kapakGorsel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amac?: Prisma.StringFieldUpdateOperationsInput | string
   durum?: Prisma.EnumSayfaDurumFieldUpdateOperationsInput | $Enums.SayfaDurum
   varsayilan?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -380,6 +396,7 @@ export type DavetSayfasiCreateManyInput = {
   firmaId?: string | null
   baslik: string
   aciklama?: string | null
+  kapakGorsel?: string | null
   amac?: string
   durum?: $Enums.SayfaDurum
   varsayilan?: boolean
@@ -392,6 +409,7 @@ export type DavetSayfasiUpdateManyMutationInput = {
   sahiplik?: Prisma.EnumSahiplikTipiFieldUpdateOperationsInput | $Enums.SahiplikTipi
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kapakGorsel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amac?: Prisma.StringFieldUpdateOperationsInput | string
   durum?: Prisma.EnumSayfaDurumFieldUpdateOperationsInput | $Enums.SayfaDurum
   varsayilan?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -406,6 +424,7 @@ export type DavetSayfasiUncheckedUpdateManyInput = {
   firmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kapakGorsel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amac?: Prisma.StringFieldUpdateOperationsInput | string
   durum?: Prisma.EnumSayfaDurumFieldUpdateOperationsInput | $Enums.SayfaDurum
   varsayilan?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -430,6 +449,7 @@ export type DavetSayfasiCountOrderByAggregateInput = {
   firmaId?: Prisma.SortOrder
   baslik?: Prisma.SortOrder
   aciklama?: Prisma.SortOrder
+  kapakGorsel?: Prisma.SortOrder
   amac?: Prisma.SortOrder
   durum?: Prisma.SortOrder
   varsayilan?: Prisma.SortOrder
@@ -444,6 +464,7 @@ export type DavetSayfasiMaxOrderByAggregateInput = {
   firmaId?: Prisma.SortOrder
   baslik?: Prisma.SortOrder
   aciklama?: Prisma.SortOrder
+  kapakGorsel?: Prisma.SortOrder
   amac?: Prisma.SortOrder
   durum?: Prisma.SortOrder
   varsayilan?: Prisma.SortOrder
@@ -458,6 +479,7 @@ export type DavetSayfasiMinOrderByAggregateInput = {
   firmaId?: Prisma.SortOrder
   baslik?: Prisma.SortOrder
   aciklama?: Prisma.SortOrder
+  kapakGorsel?: Prisma.SortOrder
   amac?: Prisma.SortOrder
   durum?: Prisma.SortOrder
   varsayilan?: Prisma.SortOrder
@@ -591,6 +613,7 @@ export type DavetSayfasiCreateWithoutKullaniciInput = {
   sahiplik?: $Enums.SahiplikTipi
   baslik: string
   aciklama?: string | null
+  kapakGorsel?: string | null
   amac?: string
   durum?: $Enums.SayfaDurum
   varsayilan?: boolean
@@ -607,6 +630,7 @@ export type DavetSayfasiUncheckedCreateWithoutKullaniciInput = {
   firmaId?: string | null
   baslik: string
   aciklama?: string | null
+  kapakGorsel?: string | null
   amac?: string
   durum?: $Enums.SayfaDurum
   varsayilan?: boolean
@@ -652,6 +676,7 @@ export type DavetSayfasiScalarWhereInput = {
   firmaId?: Prisma.StringNullableFilter<"DavetSayfasi"> | string | null
   baslik?: Prisma.StringFilter<"DavetSayfasi"> | string
   aciklama?: Prisma.StringNullableFilter<"DavetSayfasi"> | string | null
+  kapakGorsel?: Prisma.StringNullableFilter<"DavetSayfasi"> | string | null
   amac?: Prisma.StringFilter<"DavetSayfasi"> | string
   durum?: Prisma.EnumSayfaDurumFilter<"DavetSayfasi"> | $Enums.SayfaDurum
   varsayilan?: Prisma.BoolFilter<"DavetSayfasi"> | boolean
@@ -664,6 +689,7 @@ export type DavetSayfasiCreateWithoutFirmaInput = {
   sahiplik?: $Enums.SahiplikTipi
   baslik: string
   aciklama?: string | null
+  kapakGorsel?: string | null
   amac?: string
   durum?: $Enums.SayfaDurum
   varsayilan?: boolean
@@ -680,6 +706,7 @@ export type DavetSayfasiUncheckedCreateWithoutFirmaInput = {
   kullaniciId?: string | null
   baslik: string
   aciklama?: string | null
+  kapakGorsel?: string | null
   amac?: string
   durum?: $Enums.SayfaDurum
   varsayilan?: boolean
@@ -720,6 +747,7 @@ export type DavetSayfasiCreateWithoutModullerInput = {
   sahiplik?: $Enums.SahiplikTipi
   baslik: string
   aciklama?: string | null
+  kapakGorsel?: string | null
   amac?: string
   durum?: $Enums.SayfaDurum
   varsayilan?: boolean
@@ -737,6 +765,7 @@ export type DavetSayfasiUncheckedCreateWithoutModullerInput = {
   firmaId?: string | null
   baslik: string
   aciklama?: string | null
+  kapakGorsel?: string | null
   amac?: string
   durum?: $Enums.SayfaDurum
   varsayilan?: boolean
@@ -766,6 +795,7 @@ export type DavetSayfasiUpdateWithoutModullerInput = {
   sahiplik?: Prisma.EnumSahiplikTipiFieldUpdateOperationsInput | $Enums.SahiplikTipi
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kapakGorsel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amac?: Prisma.StringFieldUpdateOperationsInput | string
   durum?: Prisma.EnumSayfaDurumFieldUpdateOperationsInput | $Enums.SayfaDurum
   varsayilan?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -783,6 +813,7 @@ export type DavetSayfasiUncheckedUpdateWithoutModullerInput = {
   firmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kapakGorsel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amac?: Prisma.StringFieldUpdateOperationsInput | string
   durum?: Prisma.EnumSayfaDurumFieldUpdateOperationsInput | $Enums.SayfaDurum
   varsayilan?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -796,6 +827,7 @@ export type DavetSayfasiCreateWithoutLinklerInput = {
   sahiplik?: $Enums.SahiplikTipi
   baslik: string
   aciklama?: string | null
+  kapakGorsel?: string | null
   amac?: string
   durum?: $Enums.SayfaDurum
   varsayilan?: boolean
@@ -813,6 +845,7 @@ export type DavetSayfasiUncheckedCreateWithoutLinklerInput = {
   firmaId?: string | null
   baslik: string
   aciklama?: string | null
+  kapakGorsel?: string | null
   amac?: string
   durum?: $Enums.SayfaDurum
   varsayilan?: boolean
@@ -842,6 +875,7 @@ export type DavetSayfasiUpdateWithoutLinklerInput = {
   sahiplik?: Prisma.EnumSahiplikTipiFieldUpdateOperationsInput | $Enums.SahiplikTipi
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kapakGorsel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amac?: Prisma.StringFieldUpdateOperationsInput | string
   durum?: Prisma.EnumSayfaDurumFieldUpdateOperationsInput | $Enums.SayfaDurum
   varsayilan?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -859,6 +893,7 @@ export type DavetSayfasiUncheckedUpdateWithoutLinklerInput = {
   firmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kapakGorsel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amac?: Prisma.StringFieldUpdateOperationsInput | string
   durum?: Prisma.EnumSayfaDurumFieldUpdateOperationsInput | $Enums.SayfaDurum
   varsayilan?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -873,6 +908,7 @@ export type DavetSayfasiCreateManyKullaniciInput = {
   firmaId?: string | null
   baslik: string
   aciklama?: string | null
+  kapakGorsel?: string | null
   amac?: string
   durum?: $Enums.SayfaDurum
   varsayilan?: boolean
@@ -885,6 +921,7 @@ export type DavetSayfasiUpdateWithoutKullaniciInput = {
   sahiplik?: Prisma.EnumSahiplikTipiFieldUpdateOperationsInput | $Enums.SahiplikTipi
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kapakGorsel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amac?: Prisma.StringFieldUpdateOperationsInput | string
   durum?: Prisma.EnumSayfaDurumFieldUpdateOperationsInput | $Enums.SayfaDurum
   varsayilan?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -901,6 +938,7 @@ export type DavetSayfasiUncheckedUpdateWithoutKullaniciInput = {
   firmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kapakGorsel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amac?: Prisma.StringFieldUpdateOperationsInput | string
   durum?: Prisma.EnumSayfaDurumFieldUpdateOperationsInput | $Enums.SayfaDurum
   varsayilan?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -916,6 +954,7 @@ export type DavetSayfasiUncheckedUpdateManyWithoutKullaniciInput = {
   firmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kapakGorsel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amac?: Prisma.StringFieldUpdateOperationsInput | string
   durum?: Prisma.EnumSayfaDurumFieldUpdateOperationsInput | $Enums.SayfaDurum
   varsayilan?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -929,6 +968,7 @@ export type DavetSayfasiCreateManyFirmaInput = {
   kullaniciId?: string | null
   baslik: string
   aciklama?: string | null
+  kapakGorsel?: string | null
   amac?: string
   durum?: $Enums.SayfaDurum
   varsayilan?: boolean
@@ -941,6 +981,7 @@ export type DavetSayfasiUpdateWithoutFirmaInput = {
   sahiplik?: Prisma.EnumSahiplikTipiFieldUpdateOperationsInput | $Enums.SahiplikTipi
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kapakGorsel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amac?: Prisma.StringFieldUpdateOperationsInput | string
   durum?: Prisma.EnumSayfaDurumFieldUpdateOperationsInput | $Enums.SayfaDurum
   varsayilan?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -957,6 +998,7 @@ export type DavetSayfasiUncheckedUpdateWithoutFirmaInput = {
   kullaniciId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kapakGorsel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amac?: Prisma.StringFieldUpdateOperationsInput | string
   durum?: Prisma.EnumSayfaDurumFieldUpdateOperationsInput | $Enums.SayfaDurum
   varsayilan?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -972,6 +1014,7 @@ export type DavetSayfasiUncheckedUpdateManyWithoutFirmaInput = {
   kullaniciId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   baslik?: Prisma.StringFieldUpdateOperationsInput | string
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kapakGorsel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amac?: Prisma.StringFieldUpdateOperationsInput | string
   durum?: Prisma.EnumSayfaDurumFieldUpdateOperationsInput | $Enums.SayfaDurum
   varsayilan?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1026,6 +1069,7 @@ export type DavetSayfasiSelect<ExtArgs extends runtime.Types.Extensions.Internal
   firmaId?: boolean
   baslik?: boolean
   aciklama?: boolean
+  kapakGorsel?: boolean
   amac?: boolean
   durum?: boolean
   varsayilan?: boolean
@@ -1045,6 +1089,7 @@ export type DavetSayfasiSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   firmaId?: boolean
   baslik?: boolean
   aciklama?: boolean
+  kapakGorsel?: boolean
   amac?: boolean
   durum?: boolean
   varsayilan?: boolean
@@ -1061,6 +1106,7 @@ export type DavetSayfasiSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   firmaId?: boolean
   baslik?: boolean
   aciklama?: boolean
+  kapakGorsel?: boolean
   amac?: boolean
   durum?: boolean
   varsayilan?: boolean
@@ -1077,6 +1123,7 @@ export type DavetSayfasiSelectScalar = {
   firmaId?: boolean
   baslik?: boolean
   aciklama?: boolean
+  kapakGorsel?: boolean
   amac?: boolean
   durum?: boolean
   varsayilan?: boolean
@@ -1084,7 +1131,7 @@ export type DavetSayfasiSelectScalar = {
   updatedAt?: boolean
 }
 
-export type DavetSayfasiOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sahiplik" | "kullaniciId" | "firmaId" | "baslik" | "aciklama" | "amac" | "durum" | "varsayilan" | "createdAt" | "updatedAt", ExtArgs["result"]["davetSayfasi"]>
+export type DavetSayfasiOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sahiplik" | "kullaniciId" | "firmaId" | "baslik" | "aciklama" | "kapakGorsel" | "amac" | "durum" | "varsayilan" | "createdAt" | "updatedAt", ExtArgs["result"]["davetSayfasi"]>
 export type DavetSayfasiInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   kullanici?: boolean | Prisma.DavetSayfasi$kullaniciArgs<ExtArgs>
   firma?: boolean | Prisma.DavetSayfasi$firmaArgs<ExtArgs>
@@ -1116,6 +1163,7 @@ export type $DavetSayfasiPayload<ExtArgs extends runtime.Types.Extensions.Intern
     firmaId: string | null
     baslik: string
     aciklama: string | null
+    kapakGorsel: string | null
     amac: string
     durum: $Enums.SayfaDurum
     varsayilan: boolean
@@ -1554,6 +1602,7 @@ export interface DavetSayfasiFieldRefs {
   readonly firmaId: Prisma.FieldRef<"DavetSayfasi", 'String'>
   readonly baslik: Prisma.FieldRef<"DavetSayfasi", 'String'>
   readonly aciklama: Prisma.FieldRef<"DavetSayfasi", 'String'>
+  readonly kapakGorsel: Prisma.FieldRef<"DavetSayfasi", 'String'>
   readonly amac: Prisma.FieldRef<"DavetSayfasi", 'String'>
   readonly durum: Prisma.FieldRef<"DavetSayfasi", 'SayfaDurum'>
   readonly varsayilan: Prisma.FieldRef<"DavetSayfasi", 'Boolean'>

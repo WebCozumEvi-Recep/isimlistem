@@ -9,7 +9,10 @@ export default async function SayfalarSayfasi() {
   const sayfalar = await prisma.davetSayfasi.findMany({
     where: { kullaniciId: user.id },
     orderBy: { updatedAt: "desc" },
-    include: { _count: { select: { moduller: true, linkler: true } } },
+    include: {
+      _count: { select: { moduller: true, linkler: true } },
+      linkler: { orderBy: { createdAt: "desc" }, include: { kisi: { select: { adSoyad: true } } } },
+    },
   });
 
   return (
@@ -25,7 +28,7 @@ export default async function SayfalarSayfasi() {
 
       {sayfalar.length === 0 && (
         <div className="rounded-2xl border border-dashed border-slate-300 p-10 text-center text-slate-500">
-          Henüz davet sayfanız yok. "Yeni Sayfa" ile başlayın — adaylarınıza özel link bu sayfadan üretilir.
+          Henüz davet sayfanız yok. &ldquo;Yeni Sayfa&rdquo; ile başlayın — adaylarınıza özel link bu sayfadan üretilir.
         </div>
       )}
 
@@ -34,24 +37,38 @@ export default async function SayfalarSayfasi() {
           <Link
             key={s.id}
             href={`/panel/sayfa/${s.id}`}
-            className="rounded-2xl border border-slate-200 bg-white p-5 hover:border-emerald-300"
+            className="flex gap-4 rounded-2xl border border-slate-200 bg-white p-5 hover:border-emerald-300"
           >
-            <div className="flex items-center gap-2 text-slate-900">
-              <FileText size={18} className="text-emerald-500" />
-              <h3 className="font-semibold">{s.baslik}</h3>
-            </div>
-            <div className="mt-2 flex items-center gap-3 text-xs text-slate-500">
-              <span
-                className={`rounded-full px-2 py-0.5 ${
-                  s.durum === "YAYINDA"
-                    ? "bg-emerald-100 text-emerald-700"
-                    : "bg-slate-100 text-slate-600"
-                }`}
-              >
-                {s.durum === "YAYINDA" ? "Yayında" : s.durum === "PASIF" ? "Pasif" : "Taslak"}
-              </span>
-              <span>{s._count.moduller} modül</span>
-              <span>{s._count.linkler} link</span>
+            {s.kapakGorsel ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={s.kapakGorsel} alt="" className="h-16 w-16 shrink-0 rounded-xl object-cover" />
+            ) : (
+              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-emerald-50">
+                <FileText size={22} className="text-emerald-500" />
+              </div>
+            )}
+            <div className="min-w-0 flex-1">
+              <h3 className="font-semibold text-slate-900">{s.baslik}</h3>
+              <div className="mt-1.5 flex flex-wrap items-center gap-2 text-xs text-slate-500">
+                <span
+                  className={`rounded-full px-2 py-0.5 ${
+                    s.durum === "YAYINDA"
+                      ? "bg-emerald-100 text-emerald-700"
+                      : "bg-slate-100 text-slate-600"
+                  }`}
+                >
+                  {s.durum === "YAYINDA" ? "Yayında" : s.durum === "PASIF" ? "Pasif" : "Taslak"}
+                </span>
+                <span>{s._count.moduller} modül</span>
+                <span>{s._count.linkler} davet</span>
+              </div>
+              {s.linkler.length > 0 && (
+                <p className="mt-2 truncate text-xs text-slate-500">
+                  <span className="font-medium text-slate-400">Davet edilenler: </span>
+                  {s.linkler.slice(0, 4).map((l) => l.kisi.adSoyad).join(", ")}
+                  {s.linkler.length > 4 ? ` +${s.linkler.length - 4}` : ""}
+                </p>
+              )}
             </div>
           </Link>
         ))}

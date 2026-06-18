@@ -156,6 +156,20 @@ export async function sablonUygula(sayfaId: string) {
   return olusan;
 }
 
+/** Sayfa adını ve/veya kapak görselini günceller (builder'dan). */
+export async function sayfaBilgiGuncelle(sayfaId: string, data: { baslik?: string; kapakGorsel?: string | null }) {
+  const user = await requireUser();
+  if (!(await sayfaDuzenleyebilir(sayfaId, user.id))) return { ok: false };
+  const veri: { baslik?: string; kapakGorsel?: string | null } = {};
+  if (typeof data.baslik === "string" && data.baslik.trim()) veri.baslik = data.baslik.trim();
+  if (data.kapakGorsel !== undefined) veri.kapakGorsel = data.kapakGorsel || null;
+  if (Object.keys(veri).length === 0) return { ok: false };
+  await prisma.davetSayfasi.update({ where: { id: sayfaId }, data: veri });
+  revalidatePath(`/panel/sayfa/${sayfaId}`);
+  revalidatePath("/panel/sayfalar");
+  return { ok: true };
+}
+
 export async function sayfaYayinla(sayfaId: string) {
   const user = await requireUser();
   const sayfa = await sayfaDuzenleyebilir(sayfaId, user.id);

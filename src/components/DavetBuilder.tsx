@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
-  modulEkleTip, modulGuncelle, modulSil, modulSiraGuncelle, sayfaYayinla, sayfaSil, sablonUygula, medyaYukle,
+  modulEkleTip, modulGuncelle, modulSil, modulSiraGuncelle, sayfaYayinla, sayfaSil, sablonUygula, medyaYukle, sayfaBilgiGuncelle,
 } from "@/app/panel/davet-actions";
 import { MODUL_TIPLERI, MODUL_ETIKET, SECIM_HEDEFLERI } from "@/lib/davet-sablon";
 import {
@@ -25,15 +25,35 @@ const NEDEN_STILI = [
 ];
 
 export default function DavetBuilder({
-  sayfaId, baslik, durum, moduller: ilk,
+  sayfaId, baslik, kapakGorsel, durum, moduller: ilk,
 }: {
   sayfaId: string;
   baslik: string;
+  kapakGorsel?: string | null;
   durum: string;
   moduller: Modul[];
 }) {
   const router = useRouter();
   const [moduller, setModuller] = useState<Modul[]>([...ilk].sort((a, b) => a.sira - b.sira));
+  const [ad, setAd] = useState(baslik);
+  const [kapak, setKapak] = useState(kapakGorsel ?? "");
+  const [kapakYukleniyor, setKapakYukleniyor] = useState(false);
+
+  async function adKaydet() {
+    if (ad.trim() && ad.trim() !== baslik) await sayfaBilgiGuncelle(sayfaId, { baslik: ad });
+  }
+  async function kapakSec(e: React.ChangeEvent<HTMLInputElement>) {
+    const dosya = e.target.files?.[0];
+    if (!dosya) return;
+    setKapakYukleniyor(true);
+    const fd = new FormData();
+    fd.append("dosya", dosya);
+    const { url } = await medyaYukle(fd);
+    setKapakYukleniyor(false);
+    if (url) { setKapak(url); await sayfaBilgiGuncelle(sayfaId, { kapakGorsel: url }); }
+    e.target.value = "";
+  }
+  async function kapakKaldir() { setKapak(""); await sayfaBilgiGuncelle(sayfaId, { kapakGorsel: null }); }
   const [yeniTip, setYeniTip] = useState<string>("KARSILAMA");
   const [yayinda, setYayinda] = useState(durum === "YAYINDA");
   const [ekliyor, setEkliyor] = useState(false);
@@ -100,7 +120,34 @@ export default function DavetBuilder({
   return (
     <div className="space-y-5">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-bold text-slate-900">{baslik}</h1>
+        <div className="flex min-w-0 flex-1 items-center gap-3">
+          {/* Kapak görseli */}
+          <div className="shrink-0">
+            {kapak ? (
+              <div className="group relative">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={kapak} alt="" className="h-14 w-14 rounded-xl object-cover" />
+                <button onClick={kapakKaldir} title="Kapağı kaldır" className="absolute -right-1.5 -top-1.5 rounded-full bg-rose-500 p-0.5 text-white opacity-0 transition group-hover:opacity-100">
+                  <X size={12} />
+                </button>
+              </div>
+            ) : (
+              <label className="flex h-14 w-14 cursor-pointer flex-col items-center justify-center gap-0.5 rounded-xl border border-dashed border-slate-300 text-slate-400 hover:bg-slate-50" title="Kapak görseli yükle">
+                {kapakYukleniyor ? <span className="text-[10px]">…</span> : <Upload size={16} />}
+                <input type="file" accept="image/*" onChange={kapakSec} className="hidden" disabled={kapakYukleniyor} />
+              </label>
+            )}
+          </div>
+          {/* Düzenlenebilir başlık */}
+          <input
+            value={ad}
+            onChange={(e) => setAd(e.target.value)}
+            onBlur={adKaydet}
+            onKeyDown={(e) => e.key === "Enter" && (e.target as HTMLInputElement).blur()}
+            className="min-w-0 flex-1 rounded-lg border border-transparent bg-transparent px-2 py-1 text-2xl font-bold text-slate-900 outline-none hover:border-slate-200 focus:border-emerald-400 focus:bg-white"
+            placeholder="Sayfa adı"
+          />
+        </div>
         <div className="flex items-center gap-2">
           <button onClick={yayinToggle} className={`rounded-lg border px-3 py-1.5 text-sm font-medium ${yayinda ? "border-emerald-300 bg-emerald-50 text-emerald-700" : "border-slate-300 text-slate-700 hover:bg-slate-50"}`}>
             {yayinda ? "● Yayında" : "Yayınla"}
