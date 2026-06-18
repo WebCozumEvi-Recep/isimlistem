@@ -24,7 +24,7 @@ export type SidebarItem = {
 };
 
 export default function AppSidebar({
-  brandTitle, brandBadge, items, adSoyad, email, ustAksiyon, logoUrl,
+  brandTitle, brandBadge, items, adSoyad, email, ustAksiyon, logoUrl, profilFoto, profilHref,
 }: {
   brandTitle: string;
   brandBadge?: string;
@@ -33,6 +33,8 @@ export default function AppSidebar({
   email: string;
   ustAksiyon?: { href: string; etiket: string };
   logoUrl?: string | null;
+  profilFoto?: string | null;
+  profilHref?: string;
 }) {
   const [acik, setAcik] = useState(false);
   const pathname = usePathname();
@@ -81,13 +83,18 @@ export default function AppSidebar({
         {items.map((i) => <NavLink key={i.href} i={i} />)}
       </nav>
       <div className="border-t border-slate-100 p-3">
-        <div className="flex items-center gap-3 rounded-xl px-2 py-2">
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-sm font-bold text-emerald-700">{adSoyad.charAt(0).toUpperCase()}</span>
+        <Link href={profilHref ?? "#"} onClick={() => setAcik(false)} className="flex items-center gap-3 rounded-xl px-2 py-2 transition hover:bg-slate-50">
+          {profilFoto ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={profilFoto} alt="" className="h-9 w-9 shrink-0 rounded-full object-cover" />
+          ) : (
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-sm font-bold text-emerald-700">{adSoyad.charAt(0).toUpperCase()}</span>
+          )}
           <div className="min-w-0 flex-1">
             <div className="truncate text-sm font-semibold text-slate-900">{adSoyad}</div>
             <div className="truncate text-xs text-slate-400">{email}</div>
           </div>
-        </div>
+        </Link>
         <form action={cikisYap}>
           <button className="mt-1 flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-rose-600 transition hover:bg-rose-50">
             <LogOut size={18} /> Çıkış Yap

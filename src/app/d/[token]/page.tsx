@@ -169,9 +169,14 @@ export default async function DavetSayfasi({ params }: { params: Promise<{ token
 
         {networker && (
           <div className="flex flex-col items-center rounded-2xl bg-white p-5 text-center shadow-sm">
-            <span className="mb-2 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 text-xl font-bold text-white shadow-sm">
-              {networker.adSoyad.trim().charAt(0).toUpperCase()}
-            </span>
+            {networker.profilFoto ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={networker.profilFoto} alt={networker.adSoyad} className="mb-2 h-16 w-16 rounded-full object-cover ring-2 ring-emerald-200" />
+            ) : (
+              <span className="mb-2 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 text-xl font-bold text-white shadow-sm">
+                {networker.adSoyad.trim().charAt(0).toUpperCase()}
+              </span>
+            )}
             <p className="text-sm text-slate-500">Bu daveti gönderen</p>
             <p className="font-semibold text-slate-900">{networker.adSoyad}</p>
             {networker.bio && <p className="mt-1 text-sm text-slate-500">{networker.bio}</p>}

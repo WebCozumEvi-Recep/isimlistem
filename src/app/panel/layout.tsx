@@ -9,10 +9,11 @@ import AppSidebar, { type SidebarItem } from "@/components/AppSidebar";
 export default async function PanelLayout({ children }: { children: React.ReactNode }) {
   const user = await requireUser();
 
-  const [okunmamis, uyelik, ayar] = await Promise.all([
+  const [okunmamis, uyelik, ayar, profil] = await Promise.all([
     prisma.bildirim.count({ where: { kullaniciId: user.id, okundu: false } }),
     firmaUyeligi(user.id),
     getAyar(),
+    prisma.kullanici.findUnique({ where: { id: user.id }, select: { profilFoto: true } }),
   ]);
   const firmaYonetici = !!uyelik && ["FIRMA_ADMIN", "ICERIK_YONETICI", "RAPOR_IZLEYICI"].includes(uyelik.rol);
 
@@ -38,6 +39,8 @@ export default async function PanelLayout({ children }: { children: React.ReactN
         items={items}
         adSoyad={user.adSoyad}
         email={user.email}
+        profilFoto={profil?.profilFoto}
+        profilHref="/panel/profil"
         ustAksiyon={{ href: "/panel/kisi/yeni", etiket: "Kişi Ekle" }}
       />
       <div className="lg:pl-64">
