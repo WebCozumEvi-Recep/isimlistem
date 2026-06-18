@@ -46,7 +46,13 @@ export default async function ListeSayfasi({
   const kisiler = await prisma.kisi.findMany({
     where,
     orderBy: [{ oncelik: "desc" }, { updatedAt: "desc" }],
+    include: {
+      // İlk temas = ilk "Yeni" olmayan aktivite (arama/mesaj/durum ilerlemesi)
+      aktiviteler: { where: { durum: { not: "YENI" } }, orderBy: { tarih: "asc" }, take: 1, select: { tarih: true } },
+    },
   });
+
+  const tarihYaz = (d: Date | null | undefined) => (d ? d.toLocaleDateString("tr-TR") : "—");
 
   return (
     <div className="space-y-5">
@@ -125,6 +131,8 @@ export default async function ListeSayfasi({
                 <th className="px-4 py-3">Kaynak</th>
                 <th className="px-4 py-3">Durum</th>
                 <th className="px-4 py-3">Öncelik</th>
+                <th className="px-4 py-3">İlk Eklenme</th>
+                <th className="px-4 py-3">İlk Temas</th>
                 <th className="px-4 py-3">Takip</th>
                 <th className="px-4 py-3 text-right">İşlemler</th>
               </tr>
@@ -151,6 +159,12 @@ export default async function ListeSayfasi({
                   </td>
                   <td className="px-4 py-3 text-amber-500">
                     {"★".repeat(k.oncelik) || "—"}
+                  </td>
+                  <td className="px-4 py-3 text-slate-600">
+                    {tarihYaz(k.createdAt)}
+                  </td>
+                  <td className="px-4 py-3 text-slate-600">
+                    {tarihYaz(k.aktiviteler[0]?.tarih)}
                   </td>
                   <td className="px-4 py-3 text-slate-600">
                     {k.sonrakiTakip?.toLocaleDateString("tr-TR") ?? "—"}
