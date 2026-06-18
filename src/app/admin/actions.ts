@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { writeFile, mkdir } from "fs/promises";
 import path from "path";
 import { prisma } from "@/lib/prisma";
@@ -53,6 +54,51 @@ export async function firmaPaketDegistir(firmaId: string, paket: "FREE" | "BUSIN
   await requireAdmin();
   await prisma.firma.update({ where: { id: firmaId }, data: { paket } });
   revalidatePath("/admin");
+}
+
+const PAKETLER = ["FREE", "BUSINESS", "BUSINESS_PLUS"];
+const DURUMLAR = ["AKTIF", "PASIF", "ASKIDA"];
+
+function al(fd: FormData, k: string): string | null {
+  const v = String(fd.get(k) ?? "").trim();
+  return v === "" ? null : v;
+}
+
+/** Firma detaylarını günceller (admin). */
+export async function firmaGuncelle(firmaId: string, formData: FormData) {
+  await requireAdmin();
+  const ad = al(formData, "ad");
+  if (!ad) return;
+
+  let slug = al(formData, "slug");
+  if (slug) slug = slug.toLowerCase().replace(/[^a-z0-9-]/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
+
+  const paket = String(formData.get("paket") ?? "");
+  const durum = String(formData.get("durum") ?? "");
+  const limitRaw = al(formData, "networkerLimiti");
+  const networkerLimiti = limitRaw ? Math.max(0, Number(limitRaw) || 0) : null;
+
+  try {
+    await prisma.firma.update({
+      where: { id: firmaId },
+      data: {
+        ad,
+        ...(slug ? { slug } : {}),
+        ...(PAKETLER.includes(paket) ? { paket: paket as never } : {}),
+        ...(DURUMLAR.includes(durum) ? { durum: durum as never } : {}),
+        networkerLimiti,
+        aciklama: al(formData, "aciklama"),
+        website: al(formData, "website"),
+        telefon: al(formData, "telefon"),
+        whatsapp: al(formData, "whatsapp"),
+      },
+    });
+  } catch {
+    // slug çakışması vb. — sessizce çık (form aynı sayfada kalır)
+    return;
+  }
+  revalidatePath("/admin/firmalar");
+  redirect("/admin/firmalar");
 }
 
 // ---------- Global mesaj kalıpları ----------

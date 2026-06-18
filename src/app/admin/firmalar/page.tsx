@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { Pencil } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { firmaOlustur, firmaDurumDegistir, firmaPaketDegistir } from "@/app/admin/actions";
 
@@ -21,6 +23,7 @@ export default async function AdminFirmalar() {
                 <th className="px-4 py-3 font-medium">Üye</th>
                 <th className="px-4 py-3 font-medium">Paket</th>
                 <th className="px-4 py-3 font-medium">Durum</th>
+                <th className="px-4 py-3 text-right font-medium">İşlem</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -41,9 +44,14 @@ export default async function AdminFirmalar() {
                       </button>
                     </form>
                   </td>
+                  <td className="px-4 py-3 text-right">
+                    <Link href={`/admin/firmalar/${f.id}`} title="Düzenle" className="inline-flex items-center justify-center rounded-lg border border-slate-200 p-2 text-slate-500 hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-600">
+                      <Pencil size={15} />
+                    </Link>
+                  </td>
                 </tr>
               ))}
-              {firmalar.length === 0 && <tr><td colSpan={5} className="px-4 py-8 text-center text-slate-400">Henüz firma yok.</td></tr>}
+              {firmalar.length === 0 && <tr><td colSpan={6} className="px-4 py-8 text-center text-slate-400">Henüz firma yok.</td></tr>}
             </tbody>
           </table>
         </div>
