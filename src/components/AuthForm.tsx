@@ -4,7 +4,7 @@ import { useActionState } from "react";
 import Link from "next/link";
 import { girisYap, kayitOl, type FormDurum } from "@/app/auth/actions";
 
-export default function AuthForm({ mod }: { mod: "giris" | "kayit" }) {
+export default function AuthForm({ mod, firmaModu }: { mod: "giris" | "kayit"; firmaModu?: boolean }) {
   const action = mod === "giris" ? girisYap : kayitOl;
   const [durum, formAction, bekliyor] = useActionState<FormDurum, FormData>(
     action,
@@ -26,7 +26,7 @@ export default function AuthForm({ mod }: { mod: "giris" | "kayit" }) {
         )}
         <Alan label="E-posta" name="email" type="email" />
         <Alan label="Parola" name="parola" type="password" />
-        {mod === "kayit" && (
+        {mod === "kayit" && !firmaModu && (
           <Alan label="Firma Kayıt Kodu (opsiyonel)" name="kayitKodu" type="text" zorunlu={false} />
         )}
 

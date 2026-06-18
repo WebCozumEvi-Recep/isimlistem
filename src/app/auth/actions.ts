@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { setSession, clearSession } from "@/lib/session";
+import { hostFirma } from "@/lib/host";
 
 export type FormDurum = { hata?: string } | undefined;
 
@@ -19,13 +20,16 @@ export async function kayitOl(_prev: FormDurum, formData: FormData): Promise<For
   const mevcut = await prisma.kullanici.findUnique({ where: { email } });
   if (mevcut) return { hata: "Bu e-posta zaten kayıtlı." };
 
-  // Opsiyonel firma kayıt kodu — geçerliyse kullanıcı o firmaya bağlanır.
-  const kayitKodu = String(formData.get("kayitKodu") ?? "").trim();
-  let firma = null;
-  if (kayitKodu) {
-    firma = await prisma.firma.findUnique({ where: { kayitKodu } });
-    if (!firma) return { hata: "Firma kayıt kodu geçersiz." };
-    if (firma.durum !== "AKTIF") return { hata: "Bu firma hesabı şu an aktif değil." };
+  // Firma alt-alanından kayıt olunuyorsa o firmaya otomatik bağlanır;
+  // değilse opsiyonel kayıt kodu kontrol edilir.
+  let firma = await hostFirma();
+  if (!firma) {
+    const kayitKodu = String(formData.get("kayitKodu") ?? "").trim();
+    if (kayitKodu) {
+      firma = await prisma.firma.findUnique({ where: { kayitKodu } });
+      if (!firma) return { hata: "Firma kayıt kodu geçersiz." };
+      if (firma.durum !== "AKTIF") return { hata: "Bu firma hesabı şu an aktif değil." };
+    }
   }
 
   const parolaHash = await bcrypt.hash(parola, 10);
