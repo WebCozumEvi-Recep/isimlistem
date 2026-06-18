@@ -96,24 +96,26 @@ function HizliEkle({
   onListeyeGit: () => void;
 }) {
   const [ad, setAd] = useState("");
+  const [telefon, setTelefon] = useState("");
   const [not, setNot] = useState("");
   const [sinif, setSinif] = useState("musteri");
   const [skor, setSkor] = useState(3);
   const [kaydediliyor, setKaydediliyor] = useState(false);
   const [eklendi, setEklendi] = useState<string | null>(null);
   const adRef = useRef<HTMLInputElement>(null);
+  const telefonRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => { adRef.current?.focus(); }, [eklendi]);
 
   async function kaydet() {
-    if (!ad.trim() || kaydediliyor) return;
+    if (!ad.trim() || !telefon.trim() || kaydediliyor) return;
     setKaydediliyor(true);
-    const sonuc = await hizliAdayEkle({ ad, not, kaynakTip: kaynak.kaynakTip, kaynakNot: kaynak.etiket, sinif, skor });
+    const sonuc = await hizliAdayEkle({ ad, telefon, not, kaynakTip: kaynak.kaynakTip, kaynakNot: kaynak.etiket, sinif, skor });
     setKaydediliyor(false);
     if (sonuc.ok) {
       setEklendi(ad.trim());
       onEklendi();
-      setAd(""); setNot(""); setSinif("musteri"); setSkor(3);
+      setAd(""); setTelefon(""); setNot(""); setSinif("musteri"); setSkor(3);
     }
   }
 
@@ -141,10 +143,24 @@ function HizliEkle({
             ref={adRef}
             value={ad}
             onChange={(e) => setAd(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && kaydet()}
+            onKeyDown={(e) => e.key === "Enter" && telefonRef.current?.focus()}
             placeholder="Aklına gelen kişi…"
             className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-slate-900 outline-none focus:border-emerald-500"
           />
+        </label>
+        <label className="block">
+          <span className="mb-1 block text-sm font-medium text-slate-700">GSM Telefon *</span>
+          <input
+            ref={telefonRef}
+            value={telefon}
+            onChange={(e) => setTelefon(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && kaydet()}
+            type="tel"
+            inputMode="tel"
+            placeholder="05XX XXX XX XX"
+            className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-slate-900 outline-none focus:border-emerald-500"
+          />
+          <span className="mt-1 block text-xs text-slate-400">Aksiyon (WhatsApp daveti) için gerekli.</span>
         </label>
         <label className="block">
           <span className="mb-1 block text-sm font-medium text-slate-700">Not (opsiyonel)</span>
@@ -192,7 +208,7 @@ function HizliEkle({
 
         <button
           onClick={kaydet}
-          disabled={!ad.trim() || kaydediliyor}
+          disabled={!ad.trim() || !telefon.trim() || kaydediliyor}
           className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 py-3 font-semibold text-white shadow-sm transition hover:bg-emerald-600 disabled:opacity-50"
         >
           <Sparkles size={18} /> {kaydediliyor ? "Ekleniyor…" : "Adaya Ekle"}

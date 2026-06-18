@@ -20,6 +20,7 @@ function skorSicaklik(skor: number): "SOGUK" | "ILIK" | "SICAK" | "COK_SICAK" {
 
 export type HizliAday = {
   ad: string;
+  telefon: string;
   not?: string;
   kaynakTip: string;
   kaynakNot?: string;
@@ -27,11 +28,12 @@ export type HizliAday = {
   skor: number;
 };
 
-/** Keşfet akışından hızlı aday ekleme. Telefon istemez (sonradan düzenlenir). */
+/** Keşfet akışından hızlı aday ekleme. GSM telefon zorunlu (aksiyon için gerekli). */
 export async function hizliAdayEkle(veri: HizliAday): Promise<{ ok: boolean }> {
   const user = await requireUser();
   const ad = veri.ad?.trim();
-  if (!ad) return { ok: false };
+  const telefon = veri.telefon?.trim();
+  if (!ad || !telefon) return { ok: false };
 
   const kaynakTip: KaynakTip = (KAYNAK_TIPLERI as readonly string[]).includes(veri.kaynakTip)
     ? (veri.kaynakTip as KaynakTip)
@@ -42,6 +44,7 @@ export async function hizliAdayEkle(veri: HizliAday): Promise<{ ok: boolean }> {
   await prisma.kisi.create({
     data: {
       adSoyad: ad,
+      telefon,
       notlar: veri.not?.trim() || null,
       kaynakTip,
       kaynakNot: veri.kaynakNot?.trim() || null,
