@@ -70,7 +70,15 @@ export async function kullaniciGuncelle(kullaniciId: string, formData: FormData)
   const firmaRol = String(formData.get("firmaRol") ?? "NETWORKER");
   const yeniParola = String(formData.get("yeniParola") ?? "");
 
-  const veri: Record<string, unknown> = {};
+  const veri: Record<string, unknown> = {
+    telefon: al(formData, "telefon"),
+    sehir: al(formData, "sehir"),
+    bio: al(formData, "bio"),
+  };
+  const adSoyad = al(formData, "adSoyad");
+  if (adSoyad) veri.adSoyad = adSoyad;
+  const email = al(formData, "email");
+  if (email) veri.email = email.toLowerCase();
   if (rol === "ADMIN" || rol === "UYE") veri.rol = rol;
   if (yeniParola) {
     if (yeniParola.length < 6) return; // çok kısa parola yok sayılır
@@ -94,7 +102,12 @@ export async function kullaniciGuncelle(kullaniciId: string, formData: FormData)
   }
 
   if (Object.keys(veri).length > 0) {
-    await prisma.kullanici.update({ where: { id: kullaniciId }, data: veri });
+    try {
+      await prisma.kullanici.update({ where: { id: kullaniciId }, data: veri });
+    } catch {
+      // e-posta benzersiz olmalı vb. — sessizce çık
+      return;
+    }
   }
   revalidatePath("/admin/kullanicilar");
   redirect("/admin/kullanicilar");

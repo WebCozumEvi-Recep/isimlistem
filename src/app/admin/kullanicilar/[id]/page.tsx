@@ -36,6 +36,16 @@ export default async function KullaniciDuzenle({ params }: { params: Promise<{ i
 
       <form action={action} className="max-w-xl space-y-5 rounded-2xl border border-slate-200 bg-white p-6">
         <div className="grid gap-4 sm:grid-cols-2">
+          <Alan label="Ad Soyad" name="adSoyad" deger={kullanici.adSoyad} />
+          <Alan label="E-posta" name="email" deger={kullanici.email} type="email" />
+          <Alan label="Telefon" name="telefon" deger={kullanici.telefon ?? ""} />
+          <Alan label="Şehir" name="sehir" deger={kullanici.sehir ?? ""} />
+          <div className="sm:col-span-2">
+            <Alan label="Hakkımda" name="bio" deger={kullanici.bio ?? ""} cokSatir />
+          </div>
+        </div>
+
+        <div className="grid gap-4 border-t border-slate-100 pt-4 sm:grid-cols-2">
           <div>
             <span className="mb-1 block text-sm font-medium text-slate-600">Sistem Rolü</span>
             <select name="rol" defaultValue={kullanici.rol} className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
@@ -71,5 +81,18 @@ export default async function KullaniciDuzenle({ params }: { params: Promise<{ i
         </div>
       </form>
     </div>
+  );
+}
+
+function Alan({ label, name, deger, type, cokSatir }: { label: string; name: string; deger: string; type?: string; cokSatir?: boolean }) {
+  return (
+    <label className="block">
+      <span className="mb-1 block text-sm font-medium text-slate-600">{label}</span>
+      {cokSatir ? (
+        <textarea name={name} defaultValue={deger} rows={3} className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
+      ) : (
+        <input name={name} type={type ?? "text"} defaultValue={deger} className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
+      )}
+    </label>
   );
 }
