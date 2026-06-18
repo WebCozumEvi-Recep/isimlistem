@@ -8,7 +8,7 @@ export default async function AdminGlobalKaliplar() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900">Global Mesaj Kalıpları</h1>
+      <h1 className="text-2xl font-bold text-slate-900">Davet Mesajları</h1>
       <p className="text-sm text-slate-500">Bu kalıpları tüm bağımsız networker'lar kullanabilir.</p>
 
       <div className="grid gap-6 lg:grid-cols-3">
@@ -31,7 +31,7 @@ export default async function AdminGlobalKaliplar() {
         </div>
 
         <div className="rounded-2xl border border-slate-200 bg-white p-5">
-          <h2 className="mb-3 text-lg font-semibold text-slate-900">Yeni Global Kalıp</h2>
+          <h2 className="mb-3 text-lg font-semibold text-slate-900">Yeni Mesaj</h2>
           <form action={globalKalipEkle} className="space-y-3">
             <input name="baslik" placeholder="Kalıp adı" required className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
             <select name="kategori" className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
