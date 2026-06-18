@@ -299,6 +299,46 @@ function FotoYukle({ url, onUrl }: { url?: string; onUrl: (u: string) => void })
   );
 }
 
+function GorselAlani({ url, onChange }: { url: string; onChange: (u: string) => void }) {
+  const [yukleniyor, setYukleniyor] = useState(false);
+  async function sec(e: React.ChangeEvent<HTMLInputElement>) {
+    const dosya = e.target.files?.[0];
+    if (!dosya) return;
+    setYukleniyor(true);
+    const fd = new FormData();
+    fd.append("dosya", dosya);
+    const { url: yeni } = await medyaYukle(fd);
+    setYukleniyor(false);
+    if (yeni) onChange(yeni);
+    e.target.value = "";
+  }
+  return (
+    <div className="space-y-2">
+      {url && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={url} alt="" className="max-h-40 w-full rounded-lg object-cover" />
+      )}
+      <div className="flex flex-wrap items-center gap-2">
+        <label className="flex cursor-pointer items-center gap-1.5 rounded-lg bg-emerald-500 px-3 py-2 text-sm font-medium text-white hover:bg-emerald-600">
+          <Upload size={15} /> {yukleniyor ? "Yükleniyor…" : url ? "Görseli değiştir" : "Gözat — görsel yükle"}
+          <input type="file" accept="image/*" onChange={sec} className="hidden" disabled={yukleniyor} />
+        </label>
+        {url && (
+          <button onClick={() => onChange("")} className="flex items-center gap-1 text-sm font-medium text-rose-500 hover:text-rose-600">
+            <X size={14} /> Kaldır
+          </button>
+        )}
+      </div>
+      <input
+        value={url}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder="…veya görsel URL'i yapıştır"
+        className={inputCls}
+      />
+    </div>
+  );
+}
+
 function ModulKart({
   m, ilk, son, acik, onToggle, onChange, onKaydet, onSil, onYukari, onAsagi, dragBaslat, dragBitir,
 }: {
@@ -364,7 +404,7 @@ function ModulKart({
             </div>
           )}
           {m.tip === "GORSEL" && (
-            <input value={String(ic.url ?? "")} onChange={(e) => set("url", e.target.value)} placeholder="Görsel URL" className={inputCls} />
+            <GorselAlani url={String(ic.url ?? "")} onChange={(u) => set("url", u)} />
           )}
 
           {m.tip === "LISTE" && (
