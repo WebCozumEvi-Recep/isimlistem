@@ -10,15 +10,43 @@ import { kisiGuncelle, durumDegistir, kisiSil } from "@/app/panel/actions";
 import { whatsappHazirla, gonderildiOnayla } from "@/app/panel/davet-actions";
 import { firmaUyeligi } from "@/lib/firma";
 import { SUNUM_DURUMLARI, DURUM_ETIKET, SICAKLIK_ETIKET, SICAKLIK_RENK, skorSicaklik, type SunumDurum } from "@/lib/sabitler";
-import { Trash2, Send, MessageCircle, Activity, History, ListChecks, UserPen } from "lucide-react";
+import { Trash2, Send, MessageCircle, Activity, History, ListChecks, UserPen, Eye, Clock, MousePointerClick, ExternalLink } from "lucide-react";
 
 const BOLUMLER = [
   { key: "davet", etiket: "WhatsApp Daveti", Icon: MessageCircle },
+  { key: "mesajlar", etiket: "Gönderilen Mesajlar", Icon: Send },
   { key: "etkilesim", etiket: "Etkileşim", Icon: Activity },
   { key: "durum", etiket: "Durum Güncelle", Icon: ListChecks },
   { key: "aktivite", etiket: "Aktivite Geçmişi", Icon: History },
   { key: "bilgiler", etiket: "Bilgiler", Icon: UserPen },
 ] as const;
+
+const CTA_ETIKET: Record<string, string> = {
+  cta_interested: "İlgileniyorum",
+  cta_more_info: "Daha detaylı bilgi",
+  whatsapp_clicked: "WhatsApp'a tıkladı",
+  appointment_requested: "Randevu istedi",
+  cta_not_interested: "İlgilenmiyor",
+};
+
+type OlayLite = { olayTip: string; scrollYuzde: number | null; videoYuzde: number | null; sayfadaSure: number | null };
+
+function sureMetin(sn: number): string {
+  if (sn <= 0) return "—";
+  const d = Math.floor(sn / 60);
+  const s = sn % 60;
+  return d > 0 ? `${d} dk ${s} sn` : `${s} sn`;
+}
+
+function linkOzet(olaylar: OlayLite[]) {
+  const sure = Math.max(0, ...olaylar.map((o) => o.sayfadaSure ?? 0));
+  const scroll = Math.max(0, ...olaylar.map((o) => o.scrollYuzde ?? scrollEsik(o.olayTip)));
+  const video = Math.max(0, ...olaylar.map((o) => o.videoYuzde ?? videoEsik(o.olayTip)));
+  const ctalar = [...new Set(olaylar.filter((o) => CTA_ETIKET[o.olayTip]).map((o) => o.olayTip))];
+  return { sure, scroll, video, ctalar };
+}
+function scrollEsik(t: string) { const m = /^scroll_(\d+)$/.exec(t); return m ? Number(m[1]) : 0; }
+function videoEsik(t: string) { const m = /^video_(\d+)$/.exec(t); return m ? Number(m[1]) : 0; }
 
 export default async function KisiDetaySayfasi({
   params, searchParams,
@@ -36,7 +64,7 @@ export default async function KisiDetaySayfasi({
     include: {
       aktiviteler: { orderBy: { tarih: "desc" } },
       davetLinkleri: { include: { olaylar: true } },
-      hazirMesajlar: { orderBy: { createdAt: "desc" }, take: 10 },
+      hazirMesajlar: { orderBy: { createdAt: "desc" }, take: 50 },
     },
   });
   if (!kisi || kisi.kullaniciId !== user.id) notFound();
@@ -73,6 +101,10 @@ export default async function KisiDetaySayfasi({
   // (ya da linksiz) en güncel mesajı sun.
   const canliLinkIdleri = new Set(kisi.davetLinkleri.map((l) => l.id));
   const sonMesaj = kisi.hazirMesajlar.find((m) => !m.linkId || canliLinkIdleri.has(m.linkId));
+
+  // Mesaj geçmişi için: link ve kalıp eşlemeleri
+  const linkMap = new Map(kisi.davetLinkleri.map((l) => [l.id, l]));
+  const kalipMap = new Map(kaliplar.map((k) => [k.id, k.baslik]));
 
   const guncelleAction = kisiGuncelle.bind(null, kisi.id);
   const durumAction = durumDegistir.bind(null, kisi.id);
@@ -166,6 +198,74 @@ export default async function KisiDetaySayfasi({
         </div>
       )}
 
+      {/* Gönderilen Mesajlar — her mesaj + linkinin etkileşimi ayrı ayrı */}
+      {aktif === "mesajlar" && (
+        kisi.hazirMesajlar.length === 0 ? (
+          <p className="rounded-2xl border border-slate-200 bg-white p-6 text-sm text-slate-500">
+            Henüz mesaj hazırlanmadı. &ldquo;WhatsApp Daveti&rdquo; sekmesinden mesaj hazırlayabilirsin.
+          </p>
+        ) : (
+          <div className="space-y-3">
+            {kisi.hazirMesajlar.map((msg) => {
+              const link = msg.linkId ? linkMap.get(msg.linkId) : undefined;
+              const ozet = link ? linkOzet(link.olaylar) : null;
+              const kalipAd = (msg.kalipId && kalipMap.get(msg.kalipId)) || "Mesaj";
+              const gonderildi = msg.durum === "GONDERILDI_ONAY";
+              return (
+                <div key={msg.id} className="rounded-2xl border border-slate-200 bg-white p-5">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <Send size={16} className="text-emerald-500" />
+                      <span className="font-semibold text-slate-900">{kalipAd}</span>
+                      <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${gonderildi ? "bg-emerald-100 text-emerald-700" : "bg-amber-100 text-amber-700"}`}>
+                        {gonderildi ? "Gönderildi" : "Hazırlandı"}
+                      </span>
+                    </div>
+                    <span className="text-xs text-slate-400">
+                      {(msg.gonderildiOnayAt ?? msg.createdAt).toLocaleString("tr-TR")}
+                    </span>
+                  </div>
+
+                  {!link ? (
+                    <p className="mt-3 text-sm text-slate-400">Bu mesajın daveti artık geçerli değil (sayfa silinmiş).</p>
+                  ) : link.acilmaSayisi === 0 ? (
+                    <p className="mt-3 flex items-center gap-1.5 text-sm text-slate-500">
+                      <Eye size={15} className="text-slate-400" /> Henüz açılmadı
+                    </p>
+                  ) : (
+                    <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                      <Istatistik etiket="Açılma" deger={`${link.acilmaSayisi} kez`} Icon={Eye} />
+                      <Istatistik etiket="İnceleme süresi" deger={sureMetin(ozet!.sure)} Icon={Clock} />
+                      <Istatistik etiket="Sayfa kaydırma" deger={ozet!.scroll > 0 ? `%${ozet!.scroll}` : "—"} Icon={MousePointerClick} />
+                      <Istatistik etiket="Video izleme" deger={ozet!.video > 0 ? `%${ozet!.video}` : "—"} Icon={Activity} />
+                    </div>
+                  )}
+
+                  {link && link.ilkAcilmaAt && (
+                    <p className="mt-2 text-xs text-slate-400">
+                      İlk açılış: {link.ilkAcilmaAt.toLocaleString("tr-TR")}
+                      {link.sonAcilmaAt && ` · Son açılış: ${link.sonAcilmaAt.toLocaleString("tr-TR")}`}
+                    </p>
+                  )}
+
+                  {ozet && ozet.ctalar.length > 0 && (
+                    <div className="mt-2 flex flex-wrap gap-1.5">
+                      {ozet.ctalar.map((c) => (
+                        <span key={c} className="rounded-full bg-indigo-50 px-2 py-0.5 text-xs font-medium text-indigo-700">{CTA_ETIKET[c]}</span>
+                      ))}
+                    </div>
+                  )}
+
+                  <a href={msg.waMeUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-emerald-600 hover:text-emerald-700">
+                    <ExternalLink size={14} /> WhatsApp&apos;ta aç
+                  </a>
+                </div>
+              );
+            })}
+          </div>
+        )
+      )}
+
       {/* Etkileşim */}
       {aktif === "etkilesim" && (
         <AdayAnalitik
@@ -213,6 +313,17 @@ export default async function KisiDetaySayfasi({
           <KisiForm kisi={kisi} action={guncelleAction} gonderEtiket="Bilgileri Güncelle" />
         </div>
       )}
+    </div>
+  );
+}
+
+function Istatistik({ etiket, deger, Icon }: { etiket: string; deger: string; Icon: React.ComponentType<{ size?: number; className?: string }> }) {
+  return (
+    <div className="rounded-xl bg-slate-50 p-3">
+      <div className="flex items-center gap-1.5 text-xs text-slate-400">
+        <Icon size={13} /> {etiket}
+      </div>
+      <div className="mt-0.5 text-sm font-semibold text-slate-800">{deger}</div>
     </div>
   );
 }
