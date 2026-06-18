@@ -139,16 +139,16 @@ export async function medyaYukle(formData: FormData): Promise<{ url: string | nu
   return { url: `/medya/${adi}` };
 }
 
-/** Hazır 8 modüllü şablonu sayfaya ekler (mevcut modüllerin sonuna). */
+/** Mevcut tüm modülleri siler ve hazır 8 modüllü şablonu sıfırdan kurar. */
 export async function sablonUygula(sayfaId: string) {
   const user = await requireUser();
   if (!(await sayfaDuzenleyebilir(sayfaId, user.id))) return [] as { id: string; tip: string; sira: number; icerik: Record<string, unknown> }[];
-  const adet = await prisma.davetModulu.count({ where: { sayfaId } });
+  await prisma.davetModulu.deleteMany({ where: { sayfaId } });
   const olusan: { id: string; tip: string; sira: number; icerik: Record<string, unknown> }[] = [];
   for (let i = 0; i < SABLON_AKIS.length; i++) {
     const { tip, icerik } = SABLON_AKIS[i];
     const m = await prisma.davetModulu.create({
-      data: { sayfaId, tip: tip as never, sira: adet + i, icerik: icerik as never },
+      data: { sayfaId, tip: tip as never, sira: i, icerik: icerik as never },
     });
     olusan.push({ id: m.id, tip: m.tip as string, sira: m.sira, icerik: m.icerik as Record<string, unknown> });
   }
