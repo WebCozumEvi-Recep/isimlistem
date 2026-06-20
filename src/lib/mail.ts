@@ -1,6 +1,14 @@
 import "server-only";
 import nodemailer from "nodemailer";
 import { prisma } from "@/lib/prisma";
+import { ANA_DOMAIN } from "@/lib/host";
+
+/** Göreceli yolu (örn. /medya/logo.png) e-posta için mutlak URL'e çevirir. */
+function mutlakUrl(url?: string | null): string | null {
+  if (!url) return null;
+  if (/^https?:\/\//i.test(url)) return url;
+  return `https://${ANA_DOMAIN}${url.startsWith("/") ? "" : "/"}${url}`;
+}
 
 type MailGonder = {
   kime: string | string[];
@@ -60,7 +68,8 @@ export function mailSablon(opts: {
   butonUrl?: string;
   altNot?: string;
 }): string {
-  const { siteAdi, logoUrl, baslik, selamlama, govde, butonMetni, butonUrl, altNot } = opts;
+  const { siteAdi, baslik, selamlama, govde, butonMetni, butonUrl, altNot } = opts;
+  const logoUrl = mutlakUrl(opts.logoUrl);
   const yil = new Date().getFullYear();
   const marka = "#0b1c30";
   const yesil = "#22c55e";
