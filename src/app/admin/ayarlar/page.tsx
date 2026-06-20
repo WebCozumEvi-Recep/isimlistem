@@ -48,6 +48,17 @@ export default async function SistemAyarlari() {
               <input name="logoUrl" defaultValue={a.logoUrl ?? ""} placeholder="veya logo URL" className="mt-2 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
             </div>
             <div>
+              <span className="mb-2 block text-sm font-medium text-slate-700">Beyaz Logo (koyu zemin / e-posta başlığı)</span>
+              {a.logoBeyazUrl && (
+                <div className="mb-2 inline-flex rounded-lg bg-[#0b1c30] p-2">
+                  <Image src={a.logoBeyazUrl} alt="beyaz logo" width={180} height={48} className="h-12 w-auto object-contain" unoptimized />
+                </div>
+              )}
+              <input type="file" name="logoBeyazDosya" accept="image/*" className="block w-full text-sm text-slate-500 file:mr-3 file:rounded-lg file:border-0 file:bg-slate-100 file:px-3 file:py-1.5 file:text-sm file:font-medium" />
+              <input name="logoBeyazUrl" defaultValue={a.logoBeyazUrl ?? ""} placeholder="veya beyaz logo URL" className="mt-2 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
+              <p className="mt-1 text-xs text-slate-400">E-posta başlığı koyu lacivettir; logonun şeffaf zeminli beyaz versiyonunu yükleyin.</p>
+            </div>
+            <div>
               <span className="mb-2 block text-sm font-medium text-slate-700">Favicon</span>
               {a.faviconUrl && <Image src={a.faviconUrl} alt="favicon" width={40} height={40} className="mb-2 h-10 w-10 object-contain" unoptimized />}
               <input type="file" name="faviconDosya" accept="image/*" className="block w-full text-sm text-slate-500 file:mr-3 file:rounded-lg file:border-0 file:bg-slate-100 file:px-3 file:py-1.5 file:text-sm file:font-medium" />

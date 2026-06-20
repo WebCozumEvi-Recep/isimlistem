@@ -1794,6 +1794,7 @@ export const SiteAyarScalarFieldEnum = {
   siteAdi: 'siteAdi',
   slogan: 'slogan',
   logoUrl: 'logoUrl',
+  logoBeyazUrl: 'logoBeyazUrl',
   faviconUrl: 'faviconUrl',
   aciklama: 'aciklama',
   googleDogrulama: 'googleDogrulama',

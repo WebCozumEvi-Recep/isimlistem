@@ -39,6 +39,7 @@ export type SiteAyarMinAggregateOutputType = {
   siteAdi: string | null
   slogan: string | null
   logoUrl: string | null
+  logoBeyazUrl: string | null
   faviconUrl: string | null
   aciklama: string | null
   googleDogrulama: string | null
@@ -65,6 +66,7 @@ export type SiteAyarMaxAggregateOutputType = {
   siteAdi: string | null
   slogan: string | null
   logoUrl: string | null
+  logoBeyazUrl: string | null
   faviconUrl: string | null
   aciklama: string | null
   googleDogrulama: string | null
@@ -91,6 +93,7 @@ export type SiteAyarCountAggregateOutputType = {
   siteAdi: number
   slogan: number
   logoUrl: number
+  logoBeyazUrl: number
   faviconUrl: number
   aciklama: number
   googleDogrulama: number
@@ -127,6 +130,7 @@ export type SiteAyarMinAggregateInputType = {
   siteAdi?: true
   slogan?: true
   logoUrl?: true
+  logoBeyazUrl?: true
   faviconUrl?: true
   aciklama?: true
   googleDogrulama?: true
@@ -153,6 +157,7 @@ export type SiteAyarMaxAggregateInputType = {
   siteAdi?: true
   slogan?: true
   logoUrl?: true
+  logoBeyazUrl?: true
   faviconUrl?: true
   aciklama?: true
   googleDogrulama?: true
@@ -179,6 +184,7 @@ export type SiteAyarCountAggregateInputType = {
   siteAdi?: true
   slogan?: true
   logoUrl?: true
+  logoBeyazUrl?: true
   faviconUrl?: true
   aciklama?: true
   googleDogrulama?: true
@@ -292,6 +298,7 @@ export type SiteAyarGroupByOutputType = {
   siteAdi: string
   slogan: string | null
   logoUrl: string | null
+  logoBeyazUrl: string | null
   faviconUrl: string | null
   aciklama: string | null
   googleDogrulama: string | null
@@ -341,6 +348,7 @@ export type SiteAyarWhereInput = {
   siteAdi?: Prisma.StringFilter<"SiteAyar"> | string
   slogan?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   logoUrl?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
+  logoBeyazUrl?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   faviconUrl?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   aciklama?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   googleDogrulama?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
@@ -367,6 +375,7 @@ export type SiteAyarOrderByWithRelationInput = {
   siteAdi?: Prisma.SortOrder
   slogan?: Prisma.SortOrderInput | Prisma.SortOrder
   logoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  logoBeyazUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   faviconUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   aciklama?: Prisma.SortOrderInput | Prisma.SortOrder
   googleDogrulama?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -396,6 +405,7 @@ export type SiteAyarWhereUniqueInput = Prisma.AtLeast<{
   siteAdi?: Prisma.StringFilter<"SiteAyar"> | string
   slogan?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   logoUrl?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
+  logoBeyazUrl?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   faviconUrl?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   aciklama?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   googleDogrulama?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
@@ -422,6 +432,7 @@ export type SiteAyarOrderByWithAggregationInput = {
   siteAdi?: Prisma.SortOrder
   slogan?: Prisma.SortOrderInput | Prisma.SortOrder
   logoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  logoBeyazUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   faviconUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   aciklama?: Prisma.SortOrderInput | Prisma.SortOrder
   googleDogrulama?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -456,6 +467,7 @@ export type SiteAyarScalarWhereWithAggregatesInput = {
   siteAdi?: Prisma.StringWithAggregatesFilter<"SiteAyar"> | string
   slogan?: Prisma.StringNullableWithAggregatesFilter<"SiteAyar"> | string | null
   logoUrl?: Prisma.StringNullableWithAggregatesFilter<"SiteAyar"> | string | null
+  logoBeyazUrl?: Prisma.StringNullableWithAggregatesFilter<"SiteAyar"> | string | null
   faviconUrl?: Prisma.StringNullableWithAggregatesFilter<"SiteAyar"> | string | null
   aciklama?: Prisma.StringNullableWithAggregatesFilter<"SiteAyar"> | string | null
   googleDogrulama?: Prisma.StringNullableWithAggregatesFilter<"SiteAyar"> | string | null
@@ -482,6 +494,7 @@ export type SiteAyarCreateInput = {
   siteAdi?: string
   slogan?: string | null
   logoUrl?: string | null
+  logoBeyazUrl?: string | null
   faviconUrl?: string | null
   aciklama?: string | null
   googleDogrulama?: string | null
@@ -508,6 +521,7 @@ export type SiteAyarUncheckedCreateInput = {
   siteAdi?: string
   slogan?: string | null
   logoUrl?: string | null
+  logoBeyazUrl?: string | null
   faviconUrl?: string | null
   aciklama?: string | null
   googleDogrulama?: string | null
@@ -534,6 +548,7 @@ export type SiteAyarUpdateInput = {
   siteAdi?: Prisma.StringFieldUpdateOperationsInput | string
   slogan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoBeyazUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   faviconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleDogrulama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -560,6 +575,7 @@ export type SiteAyarUncheckedUpdateInput = {
   siteAdi?: Prisma.StringFieldUpdateOperationsInput | string
   slogan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoBeyazUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   faviconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleDogrulama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -586,6 +602,7 @@ export type SiteAyarCreateManyInput = {
   siteAdi?: string
   slogan?: string | null
   logoUrl?: string | null
+  logoBeyazUrl?: string | null
   faviconUrl?: string | null
   aciklama?: string | null
   googleDogrulama?: string | null
@@ -612,6 +629,7 @@ export type SiteAyarUpdateManyMutationInput = {
   siteAdi?: Prisma.StringFieldUpdateOperationsInput | string
   slogan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoBeyazUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   faviconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleDogrulama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -638,6 +656,7 @@ export type SiteAyarUncheckedUpdateManyInput = {
   siteAdi?: Prisma.StringFieldUpdateOperationsInput | string
   slogan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoBeyazUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   faviconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aciklama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleDogrulama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -664,6 +683,7 @@ export type SiteAyarCountOrderByAggregateInput = {
   siteAdi?: Prisma.SortOrder
   slogan?: Prisma.SortOrder
   logoUrl?: Prisma.SortOrder
+  logoBeyazUrl?: Prisma.SortOrder
   faviconUrl?: Prisma.SortOrder
   aciklama?: Prisma.SortOrder
   googleDogrulama?: Prisma.SortOrder
@@ -694,6 +714,7 @@ export type SiteAyarMaxOrderByAggregateInput = {
   siteAdi?: Prisma.SortOrder
   slogan?: Prisma.SortOrder
   logoUrl?: Prisma.SortOrder
+  logoBeyazUrl?: Prisma.SortOrder
   faviconUrl?: Prisma.SortOrder
   aciklama?: Prisma.SortOrder
   googleDogrulama?: Prisma.SortOrder
@@ -720,6 +741,7 @@ export type SiteAyarMinOrderByAggregateInput = {
   siteAdi?: Prisma.SortOrder
   slogan?: Prisma.SortOrder
   logoUrl?: Prisma.SortOrder
+  logoBeyazUrl?: Prisma.SortOrder
   faviconUrl?: Prisma.SortOrder
   aciklama?: Prisma.SortOrder
   googleDogrulama?: Prisma.SortOrder
@@ -756,6 +778,7 @@ export type SiteAyarSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   siteAdi?: boolean
   slogan?: boolean
   logoUrl?: boolean
+  logoBeyazUrl?: boolean
   faviconUrl?: boolean
   aciklama?: boolean
   googleDogrulama?: boolean
@@ -782,6 +805,7 @@ export type SiteAyarSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   siteAdi?: boolean
   slogan?: boolean
   logoUrl?: boolean
+  logoBeyazUrl?: boolean
   faviconUrl?: boolean
   aciklama?: boolean
   googleDogrulama?: boolean
@@ -808,6 +832,7 @@ export type SiteAyarSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   siteAdi?: boolean
   slogan?: boolean
   logoUrl?: boolean
+  logoBeyazUrl?: boolean
   faviconUrl?: boolean
   aciklama?: boolean
   googleDogrulama?: boolean
@@ -834,6 +859,7 @@ export type SiteAyarSelectScalar = {
   siteAdi?: boolean
   slogan?: boolean
   logoUrl?: boolean
+  logoBeyazUrl?: boolean
   faviconUrl?: boolean
   aciklama?: boolean
   googleDogrulama?: boolean
@@ -855,7 +881,7 @@ export type SiteAyarSelectScalar = {
   updatedAt?: boolean
 }
 
-export type SiteAyarOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "siteAdi" | "slogan" | "logoUrl" | "faviconUrl" | "aciklama" | "googleDogrulama" | "analitikKodu" | "destekEmail" | "smtpHost" | "smtpPort" | "smtpGuvenli" | "smtpKullanici" | "smtpParola" | "smtpGonderenAd" | "smtpGonderen" | "kvkkMetni" | "gizlilikMetni" | "cerezMetni" | "kullanimMetni" | "mesafeliMetni" | "uyelikMetni" | "updatedAt", ExtArgs["result"]["siteAyar"]>
+export type SiteAyarOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "siteAdi" | "slogan" | "logoUrl" | "logoBeyazUrl" | "faviconUrl" | "aciklama" | "googleDogrulama" | "analitikKodu" | "destekEmail" | "smtpHost" | "smtpPort" | "smtpGuvenli" | "smtpKullanici" | "smtpParola" | "smtpGonderenAd" | "smtpGonderen" | "kvkkMetni" | "gizlilikMetni" | "cerezMetni" | "kullanimMetni" | "mesafeliMetni" | "uyelikMetni" | "updatedAt", ExtArgs["result"]["siteAyar"]>
 
 export type $SiteAyarPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "SiteAyar"
@@ -865,6 +891,7 @@ export type $SiteAyarPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     siteAdi: string
     slogan: string | null
     logoUrl: string | null
+    logoBeyazUrl: string | null
     faviconUrl: string | null
     aciklama: string | null
     googleDogrulama: string | null
@@ -1311,6 +1338,7 @@ export interface SiteAyarFieldRefs {
   readonly siteAdi: Prisma.FieldRef<"SiteAyar", 'String'>
   readonly slogan: Prisma.FieldRef<"SiteAyar", 'String'>
   readonly logoUrl: Prisma.FieldRef<"SiteAyar", 'String'>
+  readonly logoBeyazUrl: Prisma.FieldRef<"SiteAyar", 'String'>
   readonly faviconUrl: Prisma.FieldRef<"SiteAyar", 'String'>
   readonly aciklama: Prisma.FieldRef<"SiteAyar", 'String'>
   readonly googleDogrulama: Prisma.FieldRef<"SiteAyar", 'String'>

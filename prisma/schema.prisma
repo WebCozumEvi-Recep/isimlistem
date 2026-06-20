@@ -403,6 +403,7 @@ model SiteAyar {
   siteAdi         String   @default("İsim Listem")
   slogan          String?
   logoUrl         String?
+  logoBeyazUrl    String?  // koyu zeminler (e-posta başlığı vb.) için beyaz logo
   faviconUrl      String?
   aciklama        String?
   googleDogrulama String?

@@ -37,7 +37,8 @@ export async function POST(req: NextRequest) {
   // E-postaları gönder (SMTP yapılandırılmışsa). Gönderim hatası talebi engellemez.
   const ayar = await prisma.siteAyar.findUnique({ where: { id: "default" } });
   const siteAdi = ayar?.siteAdi ?? "İsim Listem";
-  const logoUrl = ayar?.logoUrl ?? null;
+  // E-posta başlığı koyu zeminli; varsa beyaz logoyu kullan, yoksa normal logoya düş.
+  const logoUrl = ayar?.logoBeyazUrl ?? ayar?.logoUrl ?? null;
   const tipEtiket = tip === "KURUMSAL" ? "Kurumsal İletişim" : "Business Demo";
 
   // 1) Başvurana otomatik onay

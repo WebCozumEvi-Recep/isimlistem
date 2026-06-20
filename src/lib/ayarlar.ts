@@ -7,6 +7,7 @@ export type SiteAyarVeri = {
   siteAdi: string;
   slogan: string | null;
   logoUrl: string | null;
+  logoBeyazUrl: string | null;
   faviconUrl: string | null;
   aciklama: string | null;
   googleDogrulama: string | null;
@@ -30,7 +31,7 @@ export type SiteAyarVeri = {
 const VARSAYILAN: SiteAyarVeri = {
   id: "default",
   siteAdi: "İsim Listem",
-  slogan: null, logoUrl: null, faviconUrl: null, aciklama: null,
+  slogan: null, logoUrl: null, logoBeyazUrl: null, faviconUrl: null, aciklama: null,
   googleDogrulama: null, analitikKodu: null, destekEmail: null,
   smtpHost: null, smtpPort: null, smtpGuvenli: false, smtpKullanici: null, smtpParola: null, smtpGonderenAd: null, smtpGonderen: null,
   kvkkMetni: null, gizlilikMetni: null, cerezMetni: null, kullanimMetni: null, mesafeliMetni: null, uyelikMetni: null,

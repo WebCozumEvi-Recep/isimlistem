@@ -196,6 +196,7 @@ export async function ayarGuncelle(formData: FormData) {
   await requireAdmin();
 
   const logoUrl = (await dosyaKaydet(formData.get("logoDosya"), "logo")) ?? metin(formData, "logoUrl");
+  const logoBeyazUrl = (await dosyaKaydet(formData.get("logoBeyazDosya"), "logo-beyaz")) ?? metin(formData, "logoBeyazUrl");
   const faviconUrl = (await dosyaKaydet(formData.get("faviconDosya"), "favicon")) ?? metin(formData, "faviconUrl");
 
   const veri = {
@@ -219,6 +220,7 @@ export async function ayarGuncelle(formData: FormData) {
     mesafeliMetni: metin(formData, "mesafeliMetni"),
     uyelikMetni: metin(formData, "uyelikMetni"),
     ...(logoUrl ? { logoUrl } : {}),
+    ...(logoBeyazUrl ? { logoBeyazUrl } : {}),
     ...(faviconUrl ? { faviconUrl } : {}),
   };
 
