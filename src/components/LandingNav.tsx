@@ -8,7 +8,7 @@ const LINKLER = [
   { href: "#nasil", etiket: "Nasıl Çalışır" },
   { href: "#ozellikler", etiket: "Özellikler" },
   { href: "#networker", etiket: "Networker" },
-  { href: "#kurumsal", etiket: "Kurumsal" },
+  { href: "#kurumsal", etiket: "Kurumsal Firmalar" },
   { href: "#sss", etiket: "SSS" },
 ];
 
@@ -16,41 +16,41 @@ export default function LandingNav({ session, logoUrl, siteAdi = "İsim Listem",
   const [acik, setAcik] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/85 backdrop-blur-lg">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+    <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/90 shadow-sm backdrop-blur-lg">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 md:px-10">
         <Link href="/" className="flex items-center gap-2.5">
           {logoUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img src={logoUrl} alt={siteAdi} className="h-9 w-auto max-w-[180px] object-contain" />
           ) : (
             <>
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-slate-900 to-slate-700 text-sm font-bold text-white">İL</span>
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#0b1c30] text-sm font-bold text-white">İL</span>
               <span className="leading-tight">
-                <span className="block text-base font-bold text-slate-900">{siteAdi}</span>
-                <span className="hidden text-[11px] text-slate-500 sm:block">{slogan ?? "Networker’lar için aday takip sistemi"}</span>
+                <span className="block text-lg font-black text-[#0b1c30]">{siteAdi}</span>
+                {slogan && <span className="hidden text-[11px] text-slate-500 sm:block">{slogan}</span>}
               </span>
             </>
           )}
         </Link>
 
-        <nav className="hidden items-center gap-7 text-sm font-medium text-slate-600 lg:flex">
+        <nav className="hidden items-center gap-6 text-sm font-medium text-slate-600 lg:flex">
           {LINKLER.map((l) => (
-            <a key={l.href} href={l.href} className="transition hover:text-slate-900">{l.etiket}</a>
+            <a key={l.href} href={l.href} className="transition hover:text-green-600">{l.etiket}</a>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-2 lg:flex">
-          <Link href={session ? "/panel" : "/auth/giris"} className="rounded-xl px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100">
+        <div className="hidden items-center gap-4 lg:flex">
+          <Link href={session ? "/panel" : "/auth/giris"} className="text-sm font-medium text-slate-600 transition hover:text-green-600">
             {session ? "Panele Git" : "Giriş Yap"}
           </Link>
           {!session && (
-            <Link href="/auth/kayit" className="rounded-xl bg-emerald-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-600">
+            <Link href="/auth/kayit" className="rounded-lg bg-green-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-green-600">
               Ücretsiz Başla
             </Link>
           )}
         </div>
 
-        <button onClick={() => setAcik((v) => !v)} className="rounded-lg p-2 text-slate-700 lg:hidden" aria-label="Menü">
+        <button onClick={() => setAcik((v) => !v)} className="rounded-lg p-2 text-[#0b1c30] lg:hidden" aria-label="Menü">
           {acik ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
@@ -68,7 +68,7 @@ export default function LandingNav({ session, logoUrl, siteAdi = "İsim Listem",
                 {session ? "Panele Git" : "Giriş Yap"}
               </Link>
               {!session && (
-                <Link href="/auth/kayit" className="rounded-xl bg-emerald-500 px-4 py-2.5 text-center text-sm font-semibold text-white">
+                <Link href="/auth/kayit" className="rounded-xl bg-green-500 px-4 py-2.5 text-center text-sm font-semibold text-white">
                   Ücretsiz Başla
                 </Link>
               )}
