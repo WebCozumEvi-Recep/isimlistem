@@ -508,6 +508,40 @@ export type EnumRandevuDurumWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumRandevuDurumFilter<$PrismaModel>
 }
 
+export type EnumTalepTipiFilter<$PrismaModel = never> = {
+  equals?: $Enums.TalepTipi | Prisma.EnumTalepTipiFieldRefInput<$PrismaModel>
+  in?: $Enums.TalepTipi[] | Prisma.ListEnumTalepTipiFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TalepTipi[] | Prisma.ListEnumTalepTipiFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTalepTipiFilter<$PrismaModel> | $Enums.TalepTipi
+}
+
+export type EnumTalepDurumFilter<$PrismaModel = never> = {
+  equals?: $Enums.TalepDurum | Prisma.EnumTalepDurumFieldRefInput<$PrismaModel>
+  in?: $Enums.TalepDurum[] | Prisma.ListEnumTalepDurumFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TalepDurum[] | Prisma.ListEnumTalepDurumFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTalepDurumFilter<$PrismaModel> | $Enums.TalepDurum
+}
+
+export type EnumTalepTipiWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TalepTipi | Prisma.EnumTalepTipiFieldRefInput<$PrismaModel>
+  in?: $Enums.TalepTipi[] | Prisma.ListEnumTalepTipiFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TalepTipi[] | Prisma.ListEnumTalepTipiFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTalepTipiWithAggregatesFilter<$PrismaModel> | $Enums.TalepTipi
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTalepTipiFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTalepTipiFilter<$PrismaModel>
+}
+
+export type EnumTalepDurumWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TalepDurum | Prisma.EnumTalepDurumFieldRefInput<$PrismaModel>
+  in?: $Enums.TalepDurum[] | Prisma.ListEnumTalepDurumFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TalepDurum[] | Prisma.ListEnumTalepDurumFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTalepDurumWithAggregatesFilter<$PrismaModel> | $Enums.TalepDurum
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTalepDurumFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTalepDurumFilter<$PrismaModel>
+}
+
 export type EnumBildirimTipFilter<$PrismaModel = never> = {
   equals?: $Enums.BildirimTip | Prisma.EnumBildirimTipFieldRefInput<$PrismaModel>
   in?: $Enums.BildirimTip[] | Prisma.ListEnumBildirimTipFieldRefInput<$PrismaModel>
@@ -1003,6 +1037,40 @@ export type NestedEnumRandevuDurumWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumRandevuDurumFilter<$PrismaModel>
   _max?: Prisma.NestedEnumRandevuDurumFilter<$PrismaModel>
+}
+
+export type NestedEnumTalepTipiFilter<$PrismaModel = never> = {
+  equals?: $Enums.TalepTipi | Prisma.EnumTalepTipiFieldRefInput<$PrismaModel>
+  in?: $Enums.TalepTipi[] | Prisma.ListEnumTalepTipiFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TalepTipi[] | Prisma.ListEnumTalepTipiFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTalepTipiFilter<$PrismaModel> | $Enums.TalepTipi
+}
+
+export type NestedEnumTalepDurumFilter<$PrismaModel = never> = {
+  equals?: $Enums.TalepDurum | Prisma.EnumTalepDurumFieldRefInput<$PrismaModel>
+  in?: $Enums.TalepDurum[] | Prisma.ListEnumTalepDurumFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TalepDurum[] | Prisma.ListEnumTalepDurumFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTalepDurumFilter<$PrismaModel> | $Enums.TalepDurum
+}
+
+export type NestedEnumTalepTipiWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TalepTipi | Prisma.EnumTalepTipiFieldRefInput<$PrismaModel>
+  in?: $Enums.TalepTipi[] | Prisma.ListEnumTalepTipiFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TalepTipi[] | Prisma.ListEnumTalepTipiFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTalepTipiWithAggregatesFilter<$PrismaModel> | $Enums.TalepTipi
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTalepTipiFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTalepTipiFilter<$PrismaModel>
+}
+
+export type NestedEnumTalepDurumWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TalepDurum | Prisma.EnumTalepDurumFieldRefInput<$PrismaModel>
+  in?: $Enums.TalepDurum[] | Prisma.ListEnumTalepDurumFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TalepDurum[] | Prisma.ListEnumTalepDurumFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTalepDurumWithAggregatesFilter<$PrismaModel> | $Enums.TalepDurum
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTalepDurumFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTalepDurumFilter<$PrismaModel>
 }
 
 export type NestedEnumBildirimTipFilter<$PrismaModel = never> = {

@@ -2,10 +2,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { requireAdmin } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { firmaGuncelle } from "@/app/admin/actions";
+import { firmaGuncelle, kayitKoduYenile } from "@/app/admin/actions";
 import { altAlanUrl, ANA_DOMAIN } from "@/lib/host";
 import LogoSecici from "@/components/LogoSecici";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, ExternalLink, RefreshCw } from "lucide-react";
 
 export default async function FirmaDuzenle({ params }: { params: Promise<{ id: string }> }) {
   await requireAdmin();
@@ -29,6 +29,8 @@ export default async function FirmaDuzenle({ params }: { params: Promise<{ id: s
           <ExternalLink size={14} /> {firma.slug}.{ANA_DOMAIN}
         </a>
       </div>
+
+      <form id="kayitKoduForm" action={kayitKoduYenile.bind(null, firma.id)} className="hidden" />
 
       <form action={action} className="max-w-2xl space-y-4 rounded-2xl border border-slate-200 bg-white p-6">
         <div>
@@ -62,8 +64,15 @@ export default async function FirmaDuzenle({ params }: { params: Promise<{ id: s
         </div>
         <Alan label="Açıklama" name="aciklama" deger={firma.aciklama ?? ""} cokSatir />
 
-        <div className="flex items-center gap-3 border-t border-slate-100 pt-4 text-xs text-slate-400">
+        <div className="flex flex-wrap items-center gap-3 border-t border-slate-100 pt-4 text-xs text-slate-400">
           <span>Kayıt kodu: <code className="font-mono text-emerald-700">{firma.kayitKodu}</code></span>
+          <button
+            type="submit"
+            form="kayitKoduForm"
+            className="inline-flex items-center gap-1 rounded-md border border-slate-300 px-2 py-1 font-medium text-slate-600 hover:bg-slate-50"
+          >
+            <RefreshCw size={12} /> Yenile
+          </button>
           <span>·</span>
           <span>{firma._count.uyeler} üye</span>
         </div>

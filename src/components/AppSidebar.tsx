@@ -6,12 +6,12 @@ import { usePathname } from "next/navigation";
 import { cikisYap } from "@/app/auth/actions";
 import {
   LayoutGrid, List, FileText, MessageSquareText, CalendarClock,
-  Bell, Building2, Users, LogOut, Plus, Menu, X, BarChart3, ArrowLeft, Settings, Compass,
+  Bell, Building2, Users, LogOut, Plus, Menu, X, BarChart3, ArrowLeft, Settings, Compass, Inbox,
 } from "lucide-react";
 
 const IKONLAR = {
   LayoutGrid, List, FileText, MessageSquareText, CalendarClock,
-  Bell, Building2, Users, BarChart3, ArrowLeft, Settings, Compass,
+  Bell, Building2, Users, BarChart3, ArrowLeft, Settings, Compass, Inbox,
 } as const;
 
 export type SidebarItem = {

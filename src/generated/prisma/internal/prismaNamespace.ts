@@ -396,6 +396,7 @@ export const ModelName = {
   DavetOlayi: 'DavetOlayi',
   HazirMesajLog: 'HazirMesajLog',
   RandevuTalebi: 'RandevuTalebi',
+  TalepFormu: 'TalepFormu',
   SiteAyar: 'SiteAyar',
   Bildirim: 'Bildirim'
 } as const
@@ -413,7 +414,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "kullanici" | "firma" | "firmaUye" | "kisi" | "aktivite" | "mesajKalibi" | "davetSayfasi" | "davetModulu" | "davetLinki" | "davetOlayi" | "hazirMesajLog" | "randevuTalebi" | "siteAyar" | "bildirim"
+    modelProps: "kullanici" | "firma" | "firmaUye" | "kisi" | "aktivite" | "mesajKalibi" | "davetSayfasi" | "davetModulu" | "davetLinki" | "davetOlayi" | "hazirMesajLog" | "randevuTalebi" | "talepFormu" | "siteAyar" | "bildirim"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1305,6 +1306,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    TalepFormu: {
+      payload: Prisma.$TalepFormuPayload<ExtArgs>
+      fields: Prisma.TalepFormuFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TalepFormuFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TalepFormuPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TalepFormuFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TalepFormuPayload>
+        }
+        findFirst: {
+          args: Prisma.TalepFormuFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TalepFormuPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TalepFormuFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TalepFormuPayload>
+        }
+        findMany: {
+          args: Prisma.TalepFormuFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TalepFormuPayload>[]
+        }
+        create: {
+          args: Prisma.TalepFormuCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TalepFormuPayload>
+        }
+        createMany: {
+          args: Prisma.TalepFormuCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TalepFormuCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TalepFormuPayload>[]
+        }
+        delete: {
+          args: Prisma.TalepFormuDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TalepFormuPayload>
+        }
+        update: {
+          args: Prisma.TalepFormuUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TalepFormuPayload>
+        }
+        deleteMany: {
+          args: Prisma.TalepFormuDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TalepFormuUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TalepFormuUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TalepFormuPayload>[]
+        }
+        upsert: {
+          args: Prisma.TalepFormuUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TalepFormuPayload>
+        }
+        aggregate: {
+          args: Prisma.TalepFormuAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTalepFormu>
+        }
+        groupBy: {
+          args: Prisma.TalepFormuGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TalepFormuGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TalepFormuCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TalepFormuCountAggregateOutputType> | number
+        }
+      }
+    }
     SiteAyar: {
       payload: Prisma.$SiteAyarPayload<ExtArgs>
       fields: Prisma.SiteAyarFieldRefs
@@ -1697,6 +1772,23 @@ export const RandevuTalebiScalarFieldEnum = {
 export type RandevuTalebiScalarFieldEnum = (typeof RandevuTalebiScalarFieldEnum)[keyof typeof RandevuTalebiScalarFieldEnum]
 
 
+export const TalepFormuScalarFieldEnum = {
+  id: 'id',
+  tip: 'tip',
+  adSoyad: 'adSoyad',
+  firma: 'firma',
+  email: 'email',
+  telefon: 'telefon',
+  mesaj: 'mesaj',
+  durum: 'durum',
+  not: 'not',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TalepFormuScalarFieldEnum = (typeof TalepFormuScalarFieldEnum)[keyof typeof TalepFormuScalarFieldEnum]
+
+
 export const SiteAyarScalarFieldEnum = {
   id: 'id',
   siteAdi: 'siteAdi',
@@ -2054,6 +2146,34 @@ export type ListEnumRandevuDurumFieldRefInput<$PrismaModel> = FieldRefInputType<
 
 
 /**
+ * Reference to a field of type 'TalepTipi'
+ */
+export type EnumTalepTipiFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TalepTipi'>
+    
+
+
+/**
+ * Reference to a field of type 'TalepTipi[]'
+ */
+export type ListEnumTalepTipiFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TalepTipi[]'>
+    
+
+
+/**
+ * Reference to a field of type 'TalepDurum'
+ */
+export type EnumTalepDurumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TalepDurum'>
+    
+
+
+/**
+ * Reference to a field of type 'TalepDurum[]'
+ */
+export type ListEnumTalepDurumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TalepDurum[]'>
+    
+
+
+/**
  * Reference to a field of type 'BildirimTip'
  */
 export type EnumBildirimTipFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BildirimTip'>
@@ -2202,6 +2322,7 @@ export type GlobalOmitConfig = {
   davetOlayi?: Prisma.DavetOlayiOmit
   hazirMesajLog?: Prisma.HazirMesajLogOmit
   randevuTalebi?: Prisma.RandevuTalebiOmit
+  talepFormu?: Prisma.TalepFormuOmit
   siteAyar?: Prisma.SiteAyarOmit
   bildirim?: Prisma.BildirimOmit
 }

@@ -126,6 +126,29 @@ export const KALIP_KATEGORI_ETIKET: Record<KalipKategori, string> = {
   hatirlatma: "Randevu Hatırlatma",
 };
 
+// Talep formları (demo / kurumsal iletişim)
+export const TALEP_DURUMLARI = ["YENI", "GORUSULDU", "ISTEMIYOR", "KURULUM_YAPILDI"] as const;
+export type TalepDurum = (typeof TALEP_DURUMLARI)[number];
+
+export const TALEP_DURUM_ETIKET: Record<TalepDurum, string> = {
+  YENI: "Yeni",
+  GORUSULDU: "Görüşüldü",
+  ISTEMIYOR: "İstemiyor",
+  KURULUM_YAPILDI: "Kurulum Yapıldı",
+};
+
+export const TALEP_DURUM_RENK: Record<TalepDurum, string> = {
+  YENI: "bg-blue-100 text-blue-700",
+  GORUSULDU: "bg-amber-100 text-amber-700",
+  ISTEMIYOR: "bg-rose-100 text-rose-700",
+  KURULUM_YAPILDI: "bg-emerald-100 text-emerald-700",
+};
+
+export const TALEP_TIP_ETIKET: Record<"DEMO" | "KURUMSAL", string> = {
+  DEMO: "Business Demo",
+  KURUMSAL: "Kurumsal İletişim",
+};
+
 // Skordan sıcaklık etiketini türet (07-skorlama dokümanı)
 export function skorSicaklik(skor: number): Sicaklik {
   if (skor >= 120) return "COK_SICAK";

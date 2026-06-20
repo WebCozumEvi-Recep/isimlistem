@@ -221,3 +221,38 @@ export async function ayarGuncelle(formData: FormData) {
   revalidatePath("/", "layout");
   revalidatePath("/admin/ayarlar");
 }
+
+/** Talep formu durumu / notu güncelle. */
+export async function talepGuncelle(id: string, formData: FormData) {
+  await requireAdmin();
+  const durum = String(formData.get("durum") ?? "");
+  const not = metin(formData, "not");
+  const gecerli = ["YENI", "GORUSULDU", "ISTEMIYOR", "KURULUM_YAPILDI"];
+  await prisma.talepFormu.update({
+    where: { id },
+    data: {
+      ...(gecerli.includes(durum) ? { durum: durum as never } : {}),
+      not,
+    },
+  });
+  revalidatePath("/admin/talepler");
+}
+
+/** Talep formu sil. */
+export async function talepSil(id: string) {
+  await requireAdmin();
+  await prisma.talepFormu.delete({ where: { id } });
+  revalidatePath("/admin/talepler");
+}
+
+/** Firmanın kayıt kodunu yeniden üret (benzersiz). */
+export async function kayitKoduYenile(firmaId: string) {
+  await requireAdmin();
+  let kod = kayitKoduUret();
+  // Benzersiz olana kadar dene
+  while (await prisma.firma.findUnique({ where: { kayitKodu: kod } })) {
+    kod = kayitKoduUret();
+  }
+  await prisma.firma.update({ where: { id: firmaId }, data: { kayitKodu: kod } });
+  revalidatePath(`/admin/firmalar/${firmaId}`);
+}

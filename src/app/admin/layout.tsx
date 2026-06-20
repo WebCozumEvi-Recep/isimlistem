@@ -13,6 +13,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     { href: "/admin/firmalar", etiket: "Firmalar", ikon: "Building2" },
     { href: "/admin/kullanicilar", etiket: "Kullanıcılar", ikon: "Users" },
     { href: "/admin/kaliplar", etiket: "Davet Mesajları", ikon: "MessageSquareText" },
+    { href: "/admin/talepler", etiket: "Talep Formları", ikon: "Inbox" },
     { href: "/admin/ayarlar", etiket: "Sistem Ayarları", ikon: "Settings" },
     { href: "/panel", etiket: "Panele Dön", ikon: "ArrowLeft" },
   ];

@@ -6,6 +6,7 @@ import { hostFirma } from "@/lib/host";
 import Reveal from "@/components/Reveal";
 import LandingNav from "@/components/LandingNav";
 import SSS from "@/components/SSS";
+import TalepFormu from "@/components/TalepFormu";
 import {
   MessageCircle, BarChart3, UserPlus, Send, CalendarClock, ShieldCheck,
   ArrowRight, Building2, Flame, Check, ListChecks,
@@ -232,9 +233,7 @@ export default async function Landing() {
                     <li key={x} className="flex items-start gap-2"><Check size={18} className="mt-0.5 shrink-0 text-green-400" /> {x}</li>
                   ))}
                 </ul>
-                <a href={`mailto:${destek}?subject=Business Demo`} className="mt-8 w-full rounded-lg bg-white px-6 py-3.5 text-center font-semibold text-[#0b1c30] transition hover:bg-slate-100">
-                  Kurumsal İletişime Geç
-                </a>
+                <TalepFormu tip="KURUMSAL" etiket="Kurumsal İletişime Geç" className="mt-8 w-full rounded-lg bg-white px-6 py-3.5 text-center font-semibold text-[#0b1c30] transition hover:bg-slate-100" />
               </div>
             </Reveal>
           </div>
@@ -305,9 +304,7 @@ export default async function Landing() {
             <Link href="/auth/kayit" className="rounded-lg bg-green-500 px-8 py-4 text-lg font-semibold text-white shadow-lg transition hover:bg-green-600">
               Ücretsiz Hesabını Oluştur
             </Link>
-            <a href={`mailto:${destek}?subject=Business Demo`} className="rounded-lg border border-white/20 px-8 py-4 text-lg font-semibold text-white transition hover:bg-white/10">
-              Business Demo Talep Et
-            </a>
+            <TalepFormu tip="DEMO" etiket="Business Demo Talep Et" className="rounded-lg border border-white/20 px-8 py-4 text-lg font-semibold text-white transition hover:bg-white/10" />
           </div>
         </div>
       </section>

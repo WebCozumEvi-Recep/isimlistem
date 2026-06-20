@@ -191,3 +191,21 @@ export const BildirimTip = {
 } as const
 
 export type BildirimTip = (typeof BildirimTip)[keyof typeof BildirimTip]
+
+
+export const TalepTipi = {
+  DEMO: 'DEMO',
+  KURUMSAL: 'KURUMSAL'
+} as const
+
+export type TalepTipi = (typeof TalepTipi)[keyof typeof TalepTipi]
+
+
+export const TalepDurum = {
+  YENI: 'YENI',
+  GORUSULDU: 'GORUSULDU',
+  ISTEMIYOR: 'ISTEMIYOR',
+  KURULUM_YAPILDI: 'KURULUM_YAPILDI'
+} as const
+
+export type TalepDurum = (typeof TalepDurum)[keyof typeof TalepDurum]
