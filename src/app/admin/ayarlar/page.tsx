@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { getAyar } from "@/lib/ayarlar";
 import { ayarGuncelle } from "@/app/admin/actions";
+import SubmitButton from "@/components/SubmitButton";
 
 export default async function SistemAyarlari() {
   const a = await getAyar();
@@ -76,9 +77,9 @@ export default async function SistemAyarlari() {
           <Alan label="Mesafeli Satış Sözleşmesi" name="mesafeliMetni" deger={a.mesafeliMetni ?? ""} cokSatir buyuk />
         </Kart>
 
-        <button className="rounded-xl bg-emerald-500 px-6 py-2.5 font-semibold text-white shadow-sm transition hover:bg-emerald-600">
+        <SubmitButton bekleyenMetin="Kaydediliyor..." className="rounded-xl bg-emerald-500 px-6 py-2.5 font-semibold text-white shadow-sm transition hover:bg-emerald-600">
           Ayarları Kaydet
-        </button>
+        </SubmitButton>
       </form>
     </div>
   );

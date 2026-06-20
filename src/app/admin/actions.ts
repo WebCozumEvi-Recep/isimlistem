@@ -153,7 +153,7 @@ export async function firmaGuncelle(firmaId: string, formData: FormData) {
     return;
   }
   revalidatePath("/admin/firmalar");
-  redirect("/admin/firmalar");
+  redirect("/admin/firmalar?bildirim=" + encodeURIComponent("Firma bilgileri kaydedildi"));
 }
 
 // ---------- Global mesaj kalıpları ----------
@@ -167,6 +167,7 @@ export async function globalKalipEkle(formData: FormData) {
     data: { sahiplik: "GLOBAL", baslik, metin: metinIcerik, kategori: String(formData.get("kategori") ?? "ilk_temas") },
   });
   revalidatePath("/admin/kaliplar");
+  redirect("/admin/kaliplar?bildirim=" + encodeURIComponent("Mesaj eklendi"));
 }
 
 export async function globalKalipSil(kalipId: string) {
@@ -175,6 +176,7 @@ export async function globalKalipSil(kalipId: string) {
   if (!k || k.sahiplik !== "GLOBAL") return;
   await prisma.mesajKalibi.delete({ where: { id: kalipId } });
   revalidatePath("/admin/kaliplar");
+  redirect("/admin/kaliplar?bildirim=" + encodeURIComponent("Mesaj silindi"));
 }
 
 // ---------- Sistem ayarları ----------
@@ -227,6 +229,7 @@ export async function ayarGuncelle(formData: FormData) {
   });
   revalidatePath("/", "layout");
   revalidatePath("/admin/ayarlar");
+  redirect("/admin/ayarlar?bildirim=" + encodeURIComponent("Ayarlar kaydedildi"));
 }
 
 /** Talep formu durumu / notu güncelle. */
@@ -243,6 +246,7 @@ export async function talepGuncelle(id: string, formData: FormData) {
     },
   });
   revalidatePath("/admin/talepler");
+  redirect("/admin/talepler?bildirim=" + encodeURIComponent("Talep güncellendi"));
 }
 
 /** Talep formu sil. */
@@ -250,6 +254,7 @@ export async function talepSil(id: string) {
   await requireAdmin();
   await prisma.talepFormu.delete({ where: { id } });
   revalidatePath("/admin/talepler");
+  redirect("/admin/talepler?bildirim=" + encodeURIComponent("Talep silindi"));
 }
 
 /** Firmanın kayıt kodunu yeniden üret (benzersiz). */
@@ -262,4 +267,5 @@ export async function kayitKoduYenile(firmaId: string) {
   }
   await prisma.firma.update({ where: { id: firmaId }, data: { kayitKodu: kod } });
   revalidatePath(`/admin/firmalar/${firmaId}`);
+  redirect(`/admin/firmalar/${firmaId}?bildirim=` + encodeURIComponent("Yeni kayıt kodu: " + kod));
 }
