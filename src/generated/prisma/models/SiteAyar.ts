@@ -20,8 +20,18 @@ export type SiteAyarModel = runtime.Types.Result.DefaultSelection<Prisma.$SiteAy
 
 export type AggregateSiteAyar = {
   _count: SiteAyarCountAggregateOutputType | null
+  _avg: SiteAyarAvgAggregateOutputType | null
+  _sum: SiteAyarSumAggregateOutputType | null
   _min: SiteAyarMinAggregateOutputType | null
   _max: SiteAyarMaxAggregateOutputType | null
+}
+
+export type SiteAyarAvgAggregateOutputType = {
+  smtpPort: number | null
+}
+
+export type SiteAyarSumAggregateOutputType = {
+  smtpPort: number | null
 }
 
 export type SiteAyarMinAggregateOutputType = {
@@ -34,6 +44,13 @@ export type SiteAyarMinAggregateOutputType = {
   googleDogrulama: string | null
   analitikKodu: string | null
   destekEmail: string | null
+  smtpHost: string | null
+  smtpPort: number | null
+  smtpGuvenli: boolean | null
+  smtpKullanici: string | null
+  smtpParola: string | null
+  smtpGonderenAd: string | null
+  smtpGonderen: string | null
   kvkkMetni: string | null
   gizlilikMetni: string | null
   cerezMetni: string | null
@@ -53,6 +70,13 @@ export type SiteAyarMaxAggregateOutputType = {
   googleDogrulama: string | null
   analitikKodu: string | null
   destekEmail: string | null
+  smtpHost: string | null
+  smtpPort: number | null
+  smtpGuvenli: boolean | null
+  smtpKullanici: string | null
+  smtpParola: string | null
+  smtpGonderenAd: string | null
+  smtpGonderen: string | null
   kvkkMetni: string | null
   gizlilikMetni: string | null
   cerezMetni: string | null
@@ -72,6 +96,13 @@ export type SiteAyarCountAggregateOutputType = {
   googleDogrulama: number
   analitikKodu: number
   destekEmail: number
+  smtpHost: number
+  smtpPort: number
+  smtpGuvenli: number
+  smtpKullanici: number
+  smtpParola: number
+  smtpGonderenAd: number
+  smtpGonderen: number
   kvkkMetni: number
   gizlilikMetni: number
   cerezMetni: number
@@ -83,6 +114,14 @@ export type SiteAyarCountAggregateOutputType = {
 }
 
 
+export type SiteAyarAvgAggregateInputType = {
+  smtpPort?: true
+}
+
+export type SiteAyarSumAggregateInputType = {
+  smtpPort?: true
+}
+
 export type SiteAyarMinAggregateInputType = {
   id?: true
   siteAdi?: true
@@ -93,6 +132,13 @@ export type SiteAyarMinAggregateInputType = {
   googleDogrulama?: true
   analitikKodu?: true
   destekEmail?: true
+  smtpHost?: true
+  smtpPort?: true
+  smtpGuvenli?: true
+  smtpKullanici?: true
+  smtpParola?: true
+  smtpGonderenAd?: true
+  smtpGonderen?: true
   kvkkMetni?: true
   gizlilikMetni?: true
   cerezMetni?: true
@@ -112,6 +158,13 @@ export type SiteAyarMaxAggregateInputType = {
   googleDogrulama?: true
   analitikKodu?: true
   destekEmail?: true
+  smtpHost?: true
+  smtpPort?: true
+  smtpGuvenli?: true
+  smtpKullanici?: true
+  smtpParola?: true
+  smtpGonderenAd?: true
+  smtpGonderen?: true
   kvkkMetni?: true
   gizlilikMetni?: true
   cerezMetni?: true
@@ -131,6 +184,13 @@ export type SiteAyarCountAggregateInputType = {
   googleDogrulama?: true
   analitikKodu?: true
   destekEmail?: true
+  smtpHost?: true
+  smtpPort?: true
+  smtpGuvenli?: true
+  smtpKullanici?: true
+  smtpParola?: true
+  smtpGonderenAd?: true
+  smtpGonderen?: true
   kvkkMetni?: true
   gizlilikMetni?: true
   cerezMetni?: true
@@ -179,6 +239,18 @@ export type SiteAyarAggregateArgs<ExtArgs extends runtime.Types.Extensions.Inter
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: SiteAyarAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: SiteAyarSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: SiteAyarMinAggregateInputType
@@ -209,6 +281,8 @@ export type SiteAyarGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   _count?: SiteAyarCountAggregateInputType | true
+  _avg?: SiteAyarAvgAggregateInputType
+  _sum?: SiteAyarSumAggregateInputType
   _min?: SiteAyarMinAggregateInputType
   _max?: SiteAyarMaxAggregateInputType
 }
@@ -223,6 +297,13 @@ export type SiteAyarGroupByOutputType = {
   googleDogrulama: string | null
   analitikKodu: string | null
   destekEmail: string | null
+  smtpHost: string | null
+  smtpPort: number | null
+  smtpGuvenli: boolean | null
+  smtpKullanici: string | null
+  smtpParola: string | null
+  smtpGonderenAd: string | null
+  smtpGonderen: string | null
   kvkkMetni: string | null
   gizlilikMetni: string | null
   cerezMetni: string | null
@@ -231,6 +312,8 @@ export type SiteAyarGroupByOutputType = {
   uyelikMetni: string | null
   updatedAt: Date
   _count: SiteAyarCountAggregateOutputType | null
+  _avg: SiteAyarAvgAggregateOutputType | null
+  _sum: SiteAyarSumAggregateOutputType | null
   _min: SiteAyarMinAggregateOutputType | null
   _max: SiteAyarMaxAggregateOutputType | null
 }
@@ -263,6 +346,13 @@ export type SiteAyarWhereInput = {
   googleDogrulama?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   analitikKodu?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   destekEmail?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
+  smtpHost?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
+  smtpPort?: Prisma.IntNullableFilter<"SiteAyar"> | number | null
+  smtpGuvenli?: Prisma.BoolNullableFilter<"SiteAyar"> | boolean | null
+  smtpKullanici?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
+  smtpParola?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
+  smtpGonderenAd?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
+  smtpGonderen?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   kvkkMetni?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   gizlilikMetni?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   cerezMetni?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
@@ -282,6 +372,13 @@ export type SiteAyarOrderByWithRelationInput = {
   googleDogrulama?: Prisma.SortOrderInput | Prisma.SortOrder
   analitikKodu?: Prisma.SortOrderInput | Prisma.SortOrder
   destekEmail?: Prisma.SortOrderInput | Prisma.SortOrder
+  smtpHost?: Prisma.SortOrderInput | Prisma.SortOrder
+  smtpPort?: Prisma.SortOrderInput | Prisma.SortOrder
+  smtpGuvenli?: Prisma.SortOrderInput | Prisma.SortOrder
+  smtpKullanici?: Prisma.SortOrderInput | Prisma.SortOrder
+  smtpParola?: Prisma.SortOrderInput | Prisma.SortOrder
+  smtpGonderenAd?: Prisma.SortOrderInput | Prisma.SortOrder
+  smtpGonderen?: Prisma.SortOrderInput | Prisma.SortOrder
   kvkkMetni?: Prisma.SortOrderInput | Prisma.SortOrder
   gizlilikMetni?: Prisma.SortOrderInput | Prisma.SortOrder
   cerezMetni?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -304,6 +401,13 @@ export type SiteAyarWhereUniqueInput = Prisma.AtLeast<{
   googleDogrulama?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   analitikKodu?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   destekEmail?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
+  smtpHost?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
+  smtpPort?: Prisma.IntNullableFilter<"SiteAyar"> | number | null
+  smtpGuvenli?: Prisma.BoolNullableFilter<"SiteAyar"> | boolean | null
+  smtpKullanici?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
+  smtpParola?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
+  smtpGonderenAd?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
+  smtpGonderen?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   kvkkMetni?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   gizlilikMetni?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
   cerezMetni?: Prisma.StringNullableFilter<"SiteAyar"> | string | null
@@ -323,6 +427,13 @@ export type SiteAyarOrderByWithAggregationInput = {
   googleDogrulama?: Prisma.SortOrderInput | Prisma.SortOrder
   analitikKodu?: Prisma.SortOrderInput | Prisma.SortOrder
   destekEmail?: Prisma.SortOrderInput | Prisma.SortOrder
+  smtpHost?: Prisma.SortOrderInput | Prisma.SortOrder
+  smtpPort?: Prisma.SortOrderInput | Prisma.SortOrder
+  smtpGuvenli?: Prisma.SortOrderInput | Prisma.SortOrder
+  smtpKullanici?: Prisma.SortOrderInput | Prisma.SortOrder
+  smtpParola?: Prisma.SortOrderInput | Prisma.SortOrder
+  smtpGonderenAd?: Prisma.SortOrderInput | Prisma.SortOrder
+  smtpGonderen?: Prisma.SortOrderInput | Prisma.SortOrder
   kvkkMetni?: Prisma.SortOrderInput | Prisma.SortOrder
   gizlilikMetni?: Prisma.SortOrderInput | Prisma.SortOrder
   cerezMetni?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -331,8 +442,10 @@ export type SiteAyarOrderByWithAggregationInput = {
   uyelikMetni?: Prisma.SortOrderInput | Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.SiteAyarCountOrderByAggregateInput
+  _avg?: Prisma.SiteAyarAvgOrderByAggregateInput
   _max?: Prisma.SiteAyarMaxOrderByAggregateInput
   _min?: Prisma.SiteAyarMinOrderByAggregateInput
+  _sum?: Prisma.SiteAyarSumOrderByAggregateInput
 }
 
 export type SiteAyarScalarWhereWithAggregatesInput = {
@@ -348,6 +461,13 @@ export type SiteAyarScalarWhereWithAggregatesInput = {
   googleDogrulama?: Prisma.StringNullableWithAggregatesFilter<"SiteAyar"> | string | null
   analitikKodu?: Prisma.StringNullableWithAggregatesFilter<"SiteAyar"> | string | null
   destekEmail?: Prisma.StringNullableWithAggregatesFilter<"SiteAyar"> | string | null
+  smtpHost?: Prisma.StringNullableWithAggregatesFilter<"SiteAyar"> | string | null
+  smtpPort?: Prisma.IntNullableWithAggregatesFilter<"SiteAyar"> | number | null
+  smtpGuvenli?: Prisma.BoolNullableWithAggregatesFilter<"SiteAyar"> | boolean | null
+  smtpKullanici?: Prisma.StringNullableWithAggregatesFilter<"SiteAyar"> | string | null
+  smtpParola?: Prisma.StringNullableWithAggregatesFilter<"SiteAyar"> | string | null
+  smtpGonderenAd?: Prisma.StringNullableWithAggregatesFilter<"SiteAyar"> | string | null
+  smtpGonderen?: Prisma.StringNullableWithAggregatesFilter<"SiteAyar"> | string | null
   kvkkMetni?: Prisma.StringNullableWithAggregatesFilter<"SiteAyar"> | string | null
   gizlilikMetni?: Prisma.StringNullableWithAggregatesFilter<"SiteAyar"> | string | null
   cerezMetni?: Prisma.StringNullableWithAggregatesFilter<"SiteAyar"> | string | null
@@ -367,6 +487,13 @@ export type SiteAyarCreateInput = {
   googleDogrulama?: string | null
   analitikKodu?: string | null
   destekEmail?: string | null
+  smtpHost?: string | null
+  smtpPort?: number | null
+  smtpGuvenli?: boolean | null
+  smtpKullanici?: string | null
+  smtpParola?: string | null
+  smtpGonderenAd?: string | null
+  smtpGonderen?: string | null
   kvkkMetni?: string | null
   gizlilikMetni?: string | null
   cerezMetni?: string | null
@@ -386,6 +513,13 @@ export type SiteAyarUncheckedCreateInput = {
   googleDogrulama?: string | null
   analitikKodu?: string | null
   destekEmail?: string | null
+  smtpHost?: string | null
+  smtpPort?: number | null
+  smtpGuvenli?: boolean | null
+  smtpKullanici?: string | null
+  smtpParola?: string | null
+  smtpGonderenAd?: string | null
+  smtpGonderen?: string | null
   kvkkMetni?: string | null
   gizlilikMetni?: string | null
   cerezMetni?: string | null
@@ -405,6 +539,13 @@ export type SiteAyarUpdateInput = {
   googleDogrulama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   analitikKodu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   destekEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smtpHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smtpPort?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  smtpGuvenli?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  smtpKullanici?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smtpParola?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smtpGonderenAd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smtpGonderen?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   kvkkMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gizlilikMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cerezMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -424,6 +565,13 @@ export type SiteAyarUncheckedUpdateInput = {
   googleDogrulama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   analitikKodu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   destekEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smtpHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smtpPort?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  smtpGuvenli?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  smtpKullanici?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smtpParola?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smtpGonderenAd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smtpGonderen?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   kvkkMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gizlilikMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cerezMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -443,6 +591,13 @@ export type SiteAyarCreateManyInput = {
   googleDogrulama?: string | null
   analitikKodu?: string | null
   destekEmail?: string | null
+  smtpHost?: string | null
+  smtpPort?: number | null
+  smtpGuvenli?: boolean | null
+  smtpKullanici?: string | null
+  smtpParola?: string | null
+  smtpGonderenAd?: string | null
+  smtpGonderen?: string | null
   kvkkMetni?: string | null
   gizlilikMetni?: string | null
   cerezMetni?: string | null
@@ -462,6 +617,13 @@ export type SiteAyarUpdateManyMutationInput = {
   googleDogrulama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   analitikKodu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   destekEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smtpHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smtpPort?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  smtpGuvenli?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  smtpKullanici?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smtpParola?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smtpGonderenAd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smtpGonderen?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   kvkkMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gizlilikMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cerezMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -481,6 +643,13 @@ export type SiteAyarUncheckedUpdateManyInput = {
   googleDogrulama?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   analitikKodu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   destekEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smtpHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smtpPort?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  smtpGuvenli?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  smtpKullanici?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smtpParola?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smtpGonderenAd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smtpGonderen?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   kvkkMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gizlilikMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cerezMetni?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -500,6 +669,13 @@ export type SiteAyarCountOrderByAggregateInput = {
   googleDogrulama?: Prisma.SortOrder
   analitikKodu?: Prisma.SortOrder
   destekEmail?: Prisma.SortOrder
+  smtpHost?: Prisma.SortOrder
+  smtpPort?: Prisma.SortOrder
+  smtpGuvenli?: Prisma.SortOrder
+  smtpKullanici?: Prisma.SortOrder
+  smtpParola?: Prisma.SortOrder
+  smtpGonderenAd?: Prisma.SortOrder
+  smtpGonderen?: Prisma.SortOrder
   kvkkMetni?: Prisma.SortOrder
   gizlilikMetni?: Prisma.SortOrder
   cerezMetni?: Prisma.SortOrder
@@ -507,6 +683,10 @@ export type SiteAyarCountOrderByAggregateInput = {
   mesafeliMetni?: Prisma.SortOrder
   uyelikMetni?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type SiteAyarAvgOrderByAggregateInput = {
+  smtpPort?: Prisma.SortOrder
 }
 
 export type SiteAyarMaxOrderByAggregateInput = {
@@ -519,6 +699,13 @@ export type SiteAyarMaxOrderByAggregateInput = {
   googleDogrulama?: Prisma.SortOrder
   analitikKodu?: Prisma.SortOrder
   destekEmail?: Prisma.SortOrder
+  smtpHost?: Prisma.SortOrder
+  smtpPort?: Prisma.SortOrder
+  smtpGuvenli?: Prisma.SortOrder
+  smtpKullanici?: Prisma.SortOrder
+  smtpParola?: Prisma.SortOrder
+  smtpGonderenAd?: Prisma.SortOrder
+  smtpGonderen?: Prisma.SortOrder
   kvkkMetni?: Prisma.SortOrder
   gizlilikMetni?: Prisma.SortOrder
   cerezMetni?: Prisma.SortOrder
@@ -538,6 +725,13 @@ export type SiteAyarMinOrderByAggregateInput = {
   googleDogrulama?: Prisma.SortOrder
   analitikKodu?: Prisma.SortOrder
   destekEmail?: Prisma.SortOrder
+  smtpHost?: Prisma.SortOrder
+  smtpPort?: Prisma.SortOrder
+  smtpGuvenli?: Prisma.SortOrder
+  smtpKullanici?: Prisma.SortOrder
+  smtpParola?: Prisma.SortOrder
+  smtpGonderenAd?: Prisma.SortOrder
+  smtpGonderen?: Prisma.SortOrder
   kvkkMetni?: Prisma.SortOrder
   gizlilikMetni?: Prisma.SortOrder
   cerezMetni?: Prisma.SortOrder
@@ -545,6 +739,14 @@ export type SiteAyarMinOrderByAggregateInput = {
   mesafeliMetni?: Prisma.SortOrder
   uyelikMetni?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type SiteAyarSumOrderByAggregateInput = {
+  smtpPort?: Prisma.SortOrder
+}
+
+export type NullableBoolFieldUpdateOperationsInput = {
+  set?: boolean | null
 }
 
 
@@ -559,6 +761,13 @@ export type SiteAyarSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   googleDogrulama?: boolean
   analitikKodu?: boolean
   destekEmail?: boolean
+  smtpHost?: boolean
+  smtpPort?: boolean
+  smtpGuvenli?: boolean
+  smtpKullanici?: boolean
+  smtpParola?: boolean
+  smtpGonderenAd?: boolean
+  smtpGonderen?: boolean
   kvkkMetni?: boolean
   gizlilikMetni?: boolean
   cerezMetni?: boolean
@@ -578,6 +787,13 @@ export type SiteAyarSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   googleDogrulama?: boolean
   analitikKodu?: boolean
   destekEmail?: boolean
+  smtpHost?: boolean
+  smtpPort?: boolean
+  smtpGuvenli?: boolean
+  smtpKullanici?: boolean
+  smtpParola?: boolean
+  smtpGonderenAd?: boolean
+  smtpGonderen?: boolean
   kvkkMetni?: boolean
   gizlilikMetni?: boolean
   cerezMetni?: boolean
@@ -597,6 +813,13 @@ export type SiteAyarSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   googleDogrulama?: boolean
   analitikKodu?: boolean
   destekEmail?: boolean
+  smtpHost?: boolean
+  smtpPort?: boolean
+  smtpGuvenli?: boolean
+  smtpKullanici?: boolean
+  smtpParola?: boolean
+  smtpGonderenAd?: boolean
+  smtpGonderen?: boolean
   kvkkMetni?: boolean
   gizlilikMetni?: boolean
   cerezMetni?: boolean
@@ -616,6 +839,13 @@ export type SiteAyarSelectScalar = {
   googleDogrulama?: boolean
   analitikKodu?: boolean
   destekEmail?: boolean
+  smtpHost?: boolean
+  smtpPort?: boolean
+  smtpGuvenli?: boolean
+  smtpKullanici?: boolean
+  smtpParola?: boolean
+  smtpGonderenAd?: boolean
+  smtpGonderen?: boolean
   kvkkMetni?: boolean
   gizlilikMetni?: boolean
   cerezMetni?: boolean
@@ -625,7 +855,7 @@ export type SiteAyarSelectScalar = {
   updatedAt?: boolean
 }
 
-export type SiteAyarOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "siteAdi" | "slogan" | "logoUrl" | "faviconUrl" | "aciklama" | "googleDogrulama" | "analitikKodu" | "destekEmail" | "kvkkMetni" | "gizlilikMetni" | "cerezMetni" | "kullanimMetni" | "mesafeliMetni" | "uyelikMetni" | "updatedAt", ExtArgs["result"]["siteAyar"]>
+export type SiteAyarOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "siteAdi" | "slogan" | "logoUrl" | "faviconUrl" | "aciklama" | "googleDogrulama" | "analitikKodu" | "destekEmail" | "smtpHost" | "smtpPort" | "smtpGuvenli" | "smtpKullanici" | "smtpParola" | "smtpGonderenAd" | "smtpGonderen" | "kvkkMetni" | "gizlilikMetni" | "cerezMetni" | "kullanimMetni" | "mesafeliMetni" | "uyelikMetni" | "updatedAt", ExtArgs["result"]["siteAyar"]>
 
 export type $SiteAyarPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "SiteAyar"
@@ -640,6 +870,13 @@ export type $SiteAyarPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     googleDogrulama: string | null
     analitikKodu: string | null
     destekEmail: string | null
+    smtpHost: string | null
+    smtpPort: number | null
+    smtpGuvenli: boolean | null
+    smtpKullanici: string | null
+    smtpParola: string | null
+    smtpGonderenAd: string | null
+    smtpGonderen: string | null
     kvkkMetni: string | null
     gizlilikMetni: string | null
     cerezMetni: string | null
@@ -1079,6 +1316,13 @@ export interface SiteAyarFieldRefs {
   readonly googleDogrulama: Prisma.FieldRef<"SiteAyar", 'String'>
   readonly analitikKodu: Prisma.FieldRef<"SiteAyar", 'String'>
   readonly destekEmail: Prisma.FieldRef<"SiteAyar", 'String'>
+  readonly smtpHost: Prisma.FieldRef<"SiteAyar", 'String'>
+  readonly smtpPort: Prisma.FieldRef<"SiteAyar", 'Int'>
+  readonly smtpGuvenli: Prisma.FieldRef<"SiteAyar", 'Boolean'>
+  readonly smtpKullanici: Prisma.FieldRef<"SiteAyar", 'String'>
+  readonly smtpParola: Prisma.FieldRef<"SiteAyar", 'String'>
+  readonly smtpGonderenAd: Prisma.FieldRef<"SiteAyar", 'String'>
+  readonly smtpGonderen: Prisma.FieldRef<"SiteAyar", 'String'>
   readonly kvkkMetni: Prisma.FieldRef<"SiteAyar", 'String'>
   readonly gizlilikMetni: Prisma.FieldRef<"SiteAyar", 'String'>
   readonly cerezMetni: Prisma.FieldRef<"SiteAyar", 'String'>

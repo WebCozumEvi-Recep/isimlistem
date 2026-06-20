@@ -12,6 +12,13 @@ export type SiteAyarVeri = {
   googleDogrulama: string | null;
   analitikKodu: string | null;
   destekEmail: string | null;
+  smtpHost: string | null;
+  smtpPort: number | null;
+  smtpGuvenli: boolean | null;
+  smtpKullanici: string | null;
+  smtpParola: string | null;
+  smtpGonderenAd: string | null;
+  smtpGonderen: string | null;
   kvkkMetni: string | null;
   gizlilikMetni: string | null;
   cerezMetni: string | null;
@@ -25,6 +32,7 @@ const VARSAYILAN: SiteAyarVeri = {
   siteAdi: "İsim Listem",
   slogan: null, logoUrl: null, faviconUrl: null, aciklama: null,
   googleDogrulama: null, analitikKodu: null, destekEmail: null,
+  smtpHost: null, smtpPort: null, smtpGuvenli: false, smtpKullanici: null, smtpParola: null, smtpGonderenAd: null, smtpGonderen: null,
   kvkkMetni: null, gizlilikMetni: null, cerezMetni: null, kullanimMetni: null, mesafeliMetni: null, uyelikMetni: null,
 };
 

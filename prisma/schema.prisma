@@ -407,7 +407,15 @@ model SiteAyar {
   aciklama        String?
   googleDogrulama String?
   analitikKodu    String?  // <head> içine eklenecek JS (GA/GTM/Pixel)
-  destekEmail     String?
+  destekEmail     String?  // İletişim bölümünde gösterilen / form bildirimlerinin gönderildiği e-posta
+  // SMTP / e-posta gönderim ayarları (talep formu bildirimleri için)
+  smtpHost        String?
+  smtpPort        Int?
+  smtpGuvenli     Boolean? @default(false) // true = 465 SSL, false = 587 STARTTLS
+  smtpKullanici   String?
+  smtpParola      String?
+  smtpGonderenAd  String?  // "İsim Listem" gibi görünen ad
+  smtpGonderen    String?  // gönderen e-posta adresi (from)
   // Sözleşme / yasal sayfa içerikleri (boşsa varsayılan metin kullanılır)
   kvkkMetni       String?
   gizlilikMetni   String?

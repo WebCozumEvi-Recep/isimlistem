@@ -15,7 +15,26 @@ export default async function SistemAyarlari() {
           <Alan label="Site Adı" name="siteAdi" deger={a.siteAdi} />
           <Alan label="Slogan" name="slogan" deger={a.slogan ?? ""} />
           <Alan label="Meta Açıklama (SEO)" name="aciklama" deger={a.aciklama ?? ""} cokSatir />
-          <Alan label="Destek E-posta" name="destekEmail" deger={a.destekEmail ?? ""} />
+          <Alan label="İletişim / Destek E-posta (sitede gösterilir, form bildirimleri buraya gelir)" name="destekEmail" deger={a.destekEmail ?? ""} />
+        </Kart>
+
+        {/* E-posta Gönderimi (SMTP) */}
+        <Kart baslik="E-posta Gönderimi (SMTP)">
+          <p className="text-xs text-slate-400">
+            Talep formu bildirimleri ve otomatik yanıt e-postaları bu hesap üzerinden gönderilir. Boş bırakılırsa e-posta gönderilmez.
+          </p>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Alan label="SMTP Sunucu (host)" name="smtpHost" deger={a.smtpHost ?? ""} />
+            <Alan label="Port (465 SSL / 587 TLS)" name="smtpPort" deger={a.smtpPort?.toString() ?? ""} />
+            <Alan label="Kullanıcı Adı" name="smtpKullanici" deger={a.smtpKullanici ?? ""} />
+            <Alan label="Parola" name="smtpParola" deger={a.smtpParola ?? ""} sifre />
+            <Alan label="Gönderen Adı (ör. İsim Listem)" name="smtpGonderenAd" deger={a.smtpGonderenAd ?? ""} />
+            <Alan label="Gönderen E-posta (from)" name="smtpGonderen" deger={a.smtpGonderen ?? ""} />
+          </div>
+          <label className="flex items-center gap-2 text-sm text-slate-700">
+            <input type="checkbox" name="smtpGuvenli" defaultChecked={a.smtpGuvenli ?? false} className="h-4 w-4 rounded border-slate-300" />
+            SSL kullan (port 465). İşaretsizse STARTTLS (port 587) kullanılır.
+          </label>
         </Kart>
 
         {/* Logo / Favicon */}
@@ -74,14 +93,14 @@ function Kart({ baslik, children }: { baslik: string; children: React.ReactNode 
   );
 }
 
-function Alan({ label, name, deger, cokSatir, buyuk }: { label: string; name: string; deger: string; cokSatir?: boolean; buyuk?: boolean }) {
+function Alan({ label, name, deger, cokSatir, buyuk, sifre }: { label: string; name: string; deger: string; cokSatir?: boolean; buyuk?: boolean; sifre?: boolean }) {
   return (
     <label className="block">
       <span className="mb-1 block text-sm font-medium text-slate-700">{label}</span>
       {cokSatir ? (
         <textarea name={name} defaultValue={deger} rows={buyuk ? 5 : 2} className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
       ) : (
-        <input name={name} defaultValue={deger} className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
+        <input name={name} type={sifre ? "password" : "text"} defaultValue={deger} autoComplete={sifre ? "new-password" : undefined} className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
       )}
     </label>
   );
