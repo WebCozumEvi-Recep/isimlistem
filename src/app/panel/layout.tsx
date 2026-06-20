@@ -4,10 +4,20 @@ import Link from "next/link";
 import { Plus, Compass } from "lucide-react";
 import { firmaUyeligi } from "@/lib/firma";
 import { getAyar } from "@/lib/ayarlar";
+import { isAppMode } from "@/lib/app-mode";
 import AppSidebar, { type SidebarItem } from "@/components/AppSidebar";
 
 export default async function PanelLayout({ children }: { children: React.ReactNode }) {
   const user = await requireUser();
+
+  // Native uygulama içinde: sidebar/üst menü yok, tam ekran içerik (native tab bar dışarıda).
+  if (await isAppMode()) {
+    return (
+      <div className="min-h-screen bg-slate-50">
+        <main className="mx-auto max-w-3xl px-4 pb-28 pt-4 sm:px-6">{children}</main>
+      </div>
+    );
+  }
 
   const [okunmamis, uyelik, ayar, profil] = await Promise.all([
     prisma.bildirim.count({ where: { kullaniciId: user.id, okundu: false } }),
