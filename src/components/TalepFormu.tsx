@@ -95,35 +95,50 @@ export default function TalepFormu({
                   Bilgilerinizi bırakın, en kısa sürede size dönelim.
                 </p>
                 <form onSubmit={gonder} className="mt-5 space-y-3">
-                  <input
-                    name="adSoyad"
-                    required
-                    placeholder="Ad Soyad *"
-                    className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm focus:border-green-500 focus:outline-none"
-                  />
-                  <input
-                    name="firma"
-                    placeholder="Firma / Ekip adı"
-                    className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm focus:border-green-500 focus:outline-none"
-                  />
-                  <input
-                    name="email"
-                    type="email"
-                    required
-                    placeholder="E-posta *"
-                    className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm focus:border-green-500 focus:outline-none"
-                  />
-                  <input
-                    name="telefon"
-                    placeholder="Telefon"
-                    className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm focus:border-green-500 focus:outline-none"
-                  />
-                  <textarea
-                    name="mesaj"
-                    rows={3}
-                    placeholder="Mesajınız (opsiyonel)"
-                    className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm focus:border-green-500 focus:outline-none"
-                  />
+                  <label className="block">
+                    <span className="mb-1 block text-xs font-medium text-slate-600">Ad Soyad *</span>
+                    <input
+                      name="adSoyad"
+                      required
+                      placeholder="Adınız Soyadınız"
+                      className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-green-500 focus:outline-none"
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="mb-1 block text-xs font-medium text-slate-600">Firma / Ekip Adı</span>
+                    <input
+                      name="firma"
+                      placeholder="Şirket veya ekip adı"
+                      className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-green-500 focus:outline-none"
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="mb-1 block text-xs font-medium text-slate-600">E-posta *</span>
+                    <input
+                      name="email"
+                      type="email"
+                      required
+                      placeholder="ornek@firma.com"
+                      className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-green-500 focus:outline-none"
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="mb-1 block text-xs font-medium text-slate-600">Telefon</span>
+                    <input
+                      name="telefon"
+                      placeholder="05xx xxx xx xx"
+                      className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-green-500 focus:outline-none"
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="mb-1 block text-xs font-medium text-slate-600">Mesajınız</span>
+                    <textarea
+                      name="mesaj"
+                      rows={3}
+                      placeholder="İhtiyacınızı kısaca yazabilirsiniz (opsiyonel)"
+                      className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-green-500 focus:outline-none"
+                    />
+                  </label>
                   {hata && <p className="text-sm text-rose-600">{hata}</p>}
                   <button
                     type="submit"
