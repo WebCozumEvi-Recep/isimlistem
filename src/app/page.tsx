@@ -7,11 +7,12 @@ import Reveal from "@/components/Reveal";
 import LandingNav from "@/components/LandingNav";
 import SSS from "@/components/SSS";
 import TalepFormu from "@/components/TalepFormu";
+import { HeroTelefon, DavetTelefon, AnalitikGorsel } from "@/components/LandingGorseller";
 import {
   MessageCircle, BarChart3, UserPlus, Send, CalendarClock, ShieldCheck,
   ArrowRight, Building2, Flame, Check, ListChecks,
   PlayCircle, Layers, Phone, Mail, MapPin,
-  VideoOff, Timer, User, X,
+  VideoOff, Timer, User, X, Lock, Users, Tag,
 } from "lucide-react";
 
 export const metadata = {
@@ -59,16 +60,14 @@ export default async function Landing() {
                 Kurumsal Firma İçin İncele
               </a>
             </div>
+            <p className="anim-fade-up anim-delay-300 flex items-center gap-2 text-sm text-slate-500">
+              <Check size={16} className="text-green-500" /> Kredi kartı gerekmez
+            </p>
           </div>
 
-          {/* Hero görsel */}
-          <div className="anim-fade-up anim-delay-300 relative mx-auto w-full max-w-lg">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwwBbTYqGFawIGD1kU22_BNS4lCMLamn4K0JEFD2G_74ijqgVT9KdEJXDp64gWUk5y5CA1RimyT04nPZuytjUzdWExRq6FW7KLC8fQzKJ1pogduZ7xKSjiJbec2IeuVaeIZNLOu_M0e15X5FVQT0PT-OJ3eES9KVlVHMztgsuuwqqvzvtEZCuYgDRpiduuqRrEDcTsCk0-er-0CiUT0uuOLW1FpuJdPGG_S1WhtpdcgQZdDP3jBpJ0bCQ1qNJVXZ_K_MevnG-wVhQ"
-              alt="İsim Listem aday kartı — Ahmet Yılmaz, skor 95"
-              className="anim-float w-full rounded-2xl border border-slate-200 object-cover shadow-2xl"
-            />
+          {/* Hero görsel — kod ile çizilmiş dashboard telefonu */}
+          <div className="anim-fade-up anim-delay-300 relative">
+            <HeroTelefon />
           </div>
         </div>
       </section>
@@ -84,7 +83,7 @@ export default async function Landing() {
               { icon: MessageCircle, b: "WhatsApp Kaosu", m: "Mesajlar arasında kaybolan adaylar, kime ne gönderdiğini unutma derdi." },
               { icon: VideoOff, b: "Bilinmeyen İzleme", m: "Gönderdiğin sunum videosunu gerçekten izlediler mi? Ne kadarını izlediler? Belirsizlik." },
               { icon: CalendarClock, b: "Kaçan Takipler", m: "Zamanında dönüş yapılmadığı için soğuyan ve kaybedilen potansiyel iş ortakları." },
-              { icon: Timer, b: "Manuel Yazım Kaybı", m: "Aynı mesajları tekrar tekrar yazmakla harcanan değerli zaman." },
+              { icon: Timer, b: "Manuel Yazım Yükü", m: "Aynı mesajları tekrar tekrar yazmakla harcanan değerli zaman." },
             ].map((p, i) => (
               <Reveal key={p.b} delay={i * 90}>
                 <div className="flex h-full flex-col gap-2 rounded-xl border border-slate-100 bg-white p-6 text-left shadow-sm">
@@ -131,31 +130,26 @@ export default async function Landing() {
           <Reveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold text-[#0b1c30] sm:text-4xl">Networker’ın günlük işine özel araçlar</h2>
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { icon: ListChecks, b: "Aday Takip CRM", m: "Tüm adaylarını tek bir listede, durumlarına göre organize et." },
-              { icon: MessageCircle, b: "WhatsApp Kalıpları", m: "Sık kullanılan mesajları kaydet, tek tıkla adayına uyarla." },
-              { icon: Send, b: "wa.me Entegrasyonu", m: "Rehbere kaydetmeden doğrudan WhatsApp üzerinden mesaj gönder." },
-              { icon: Layers, b: "Modüler Davet Sayfası", m: "Sunum videonu, iletişim bilgilerini içeren şık sayfalar oluştur." },
-              { icon: PlayCircle, b: "Video Takibi", m: "Videonun ne kadarının izlendiğini yüzde olarak takip et." },
-              { icon: CalendarClock, b: "Randevu Talebi", m: "Adayların sayfandan kolayca toplantı talep etsin." },
+              { icon: Layers, b: "Modüler Davet Sayfası", m: "Kişiye özel, markana uygun davet sayfaları oluştur." },
+              { icon: PlayCircle, b: "Video Takibi", m: "Videoların izlenme oranını ve süresini ölç." },
+              { icon: CalendarClock, b: "Randevu Talebi", m: "Adayların uygulamadan bildirip randevu talep etsin." },
+              { icon: Flame, b: "Aday Skorlama", m: "Etkileşimlere göre adayları puanla ve önceliklendir." },
+              { icon: ListChecks, b: "Aday Takip CRM’i", m: "Tüm adaylarını ilişkinin geçmişiyle tek yerde tut." },
+              { icon: MessageCircle, b: "WhatsApp Mesaj Kalıpları", m: "Hazır şablonlarla hızlı ve kişisel mesajlar gönder." },
+              { icon: Tag, b: "Etiket & Filtreleme", m: "Adaylarını etiketle, filtrele ve kolayca yönet." },
+              { icon: BarChart3, b: "Raporlar & Analiz", m: "Performansını ölç, stratejini geliştir." },
             ].map((o, i) => (
-              <Reveal key={o.b} delay={(i % 3) * 90}>
-                <div className="h-full rounded-xl border border-slate-100 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-green-50 text-green-600"><o.icon size={22} /></div>
-                  <h3 className="mt-4 text-xl font-bold text-[#0b1c30]">{o.b}</h3>
+              <Reveal key={o.b} delay={(i % 4) * 80}>
+                <div className="h-full rounded-xl border border-slate-100 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-50 text-green-600"><o.icon size={20} /></div>
+                  <h3 className="mt-3 text-base font-bold text-[#0b1c30]">{o.b}</h3>
                   <p className="mt-1 text-sm text-slate-600">{o.m}</p>
                 </div>
               </Reveal>
             ))}
           </div>
-          <Reveal delay={120}>
-            <div className="mt-6 rounded-xl border border-slate-100 bg-white p-6 shadow-sm">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-green-50 text-green-600"><Flame size={22} /></div>
-              <h3 className="mt-4 text-xl font-bold text-[#0b1c30]">Aday Skorlama</h3>
-              <p className="mt-1 text-sm text-slate-600">Etkileşimlere göre adayların ilgisini otomatik puanla, sıcak adaylara odaklan.</p>
-            </div>
-          </Reveal>
         </div>
       </section>
 
@@ -173,12 +167,9 @@ export default async function Landing() {
                     takip edilebilir bir davet sayfası ekle.
                   </p>
                 </div>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkvPgPIhuS2iHL391L_xvMvp132hbPPCi7uq6Ewt_SvrJhnpZcTosLwFTlVVmZKNOLCDzUu9r8oASuwUE0kGpSoZptMKN-i1VAQiEEUAXpurxiF0kfW1T2cwoTruNnlqyQSmLf5jke_REVen2kwK8Gr5_6NIKl5AzM5ZMdSOy6cYCqKBYv8s7xDvAPAUY_U95ZCdhmm265zminFDevPT3M07-g7dn6H5ZI3SqjPQfviBsiMEYAwtKwJIEw8_m0SGYXosqg5vAWr2k"
-                  alt="Kişiye özel davet sayfası önizlemesi"
-                  className="mx-auto mt-auto w-full max-w-[280px] translate-y-6 object-contain drop-shadow-2xl"
-                />
+                <div className="mt-auto translate-y-6">
+                  <DavetTelefon />
+                </div>
               </div>
             </Reveal>
 
@@ -192,12 +183,9 @@ export default async function Landing() {
                     takip et ve doğru zamanda hamle yap.
                   </p>
                 </div>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAU9pKY_YhAJdGIRgmsb-z_ymgpP5-C6POswB-yMxHSjuy_5qlCe0b_hc_ZJEqzos0foT7308nxm1-fX_ifRVMyEt-nGQ8bOrgwypiAIZufBucxERP931XK6HTog6ORICxaqJ0-WTrBqo686pjLmhbtZOPxOSxIG-cJTSNkeC342ozFCJbv4DeAahNhefLUh3zGVdAV73KHua5YA-9ofEZIaTK284D0W8KaZ4_VnFW0sf19nCJuF3M2xgBt_t3Ar5HGpuXBAdqvEbg"
-                  alt="Aday dashboard — Link açıldı 1.245, sayfada 4:32, video %75, skor %90"
-                  className="mt-auto w-full rounded-xl border border-white/10 object-cover shadow-lg"
-                />
+                <div className="mt-auto">
+                  <AnalitikGorsel />
+                </div>
               </div>
             </Reveal>
           </div>
@@ -275,18 +263,30 @@ export default async function Landing() {
         </div>
       </section>
 
-      {/* 10. GÜVEN & SSS */}
+      {/* 10. GÜVEN ROZETLERİ */}
+      <section className="border-y border-slate-200 bg-white py-12">
+        <div className="mx-auto grid max-w-5xl gap-8 px-4 md:grid-cols-3 md:px-10">
+          {[
+            { icon: ShieldCheck, b: "Güvenli & Gizli", m: "Verilerin 256-bit SSL ile korunur. Gizliliğin bizim için önemli." },
+            { icon: Lock, b: "Spam Gönderim Yok", m: "Otomatik mesaj göndermez. Kontrol her zaman sende." },
+            { icon: Users, b: "Verilerin Senin", m: "Dilediğin zaman verini dışa aktarabilir veya hesabını silebilirsin." },
+          ].map((g, i) => (
+            <Reveal key={g.b} delay={i * 90}>
+              <div className="flex items-start gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-green-50 text-green-600"><g.icon size={20} /></div>
+                <div>
+                  <h3 className="font-bold text-[#0b1c30]">{g.b}</h3>
+                  <p className="mt-0.5 text-sm text-slate-600">{g.m}</p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* 10b. SSS */}
       <section id="sss" className="bg-slate-50 py-20">
         <div className="mx-auto max-w-3xl px-4 md:px-10">
-          <Reveal>
-            <div className="mb-12 rounded-xl border border-slate-200 bg-white p-6 text-center shadow-sm">
-              <ShieldCheck className="mx-auto text-[#0b1c30]" size={32} />
-              <p className="mt-3 text-slate-600">
-                <strong className="text-[#0b1c30]">Güvenlik Notu:</strong> İsim Listem bir MLM veya saadet zinciri değildir.
-                Kimseye otomatik spam mesaj göndermez. Sadece sizin yönettiğiniz profesyonel bir takip aracıdır.
-              </p>
-            </div>
-          </Reveal>
           <Reveal className="text-center">
             <h2 className="text-3xl font-bold text-[#0b1c30] sm:text-4xl">Sıkça Sorulan Sorular</h2>
           </Reveal>
