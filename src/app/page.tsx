@@ -7,7 +7,7 @@ import Reveal from "@/components/Reveal";
 import LandingNav from "@/components/LandingNav";
 import SSS from "@/components/SSS";
 import TalepFormu from "@/components/TalepFormu";
-import { HeroTelefon, DavetTelefon, AnalitikGorsel } from "@/components/LandingGorseller";
+import { AnalitikGorsel } from "@/components/LandingGorseller";
 import {
   MessageCircle, BarChart3, UserPlus, Send, CalendarClock, ShieldCheck,
   ArrowRight, Building2, Flame, Check, ListChecks,
@@ -65,9 +65,14 @@ export default async function Landing() {
             </p>
           </div>
 
-          {/* Hero görsel — kod ile çizilmiş dashboard telefonu */}
-          <div className="anim-fade-up anim-delay-300 relative">
-            <HeroTelefon />
+          {/* Hero görsel */}
+          <div className="anim-fade-up anim-delay-300 relative mx-auto w-full max-w-xl">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/gorseller/hero.png"
+              alt="İsim Listem mobil uygulama — aday takip paneli ve raporlar"
+              className="anim-float w-full object-contain"
+            />
           </div>
         </div>
       </section>
@@ -167,9 +172,12 @@ export default async function Landing() {
                     takip edilebilir bir davet sayfası ekle.
                   </p>
                 </div>
-                <div className="mt-auto translate-y-6">
-                  <DavetTelefon />
-                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/gorseller/davet.png"
+                  alt="Kişiye özel davet sayfası önizlemesi"
+                  className="mx-auto mt-auto w-full max-w-[300px] object-contain"
+                />
               </div>
             </Reveal>
 
