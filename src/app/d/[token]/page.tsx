@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import DavetTracker from "@/components/DavetTracker";
+import YenidenKayitFormu from "@/components/YenidenKayitFormu";
 import DavetVideo from "@/components/DavetVideo";
 import { ButonGrubu, RandevuModulu } from "@/components/DavetAksiyonlar";
 import { SSSListesi, HikayelerBolum, SecimBolum } from "@/components/DavetIcerik";
@@ -33,8 +34,15 @@ function ytEmbed(url: string): string | null {
   return url.includes("/embed/") || url.includes("player.") ? url : null;
 }
 
-export default async function DavetSayfasi({ params }: { params: Promise<{ token: string }> }) {
+export default async function DavetSayfasi({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ token: string }>;
+  searchParams: Promise<{ hata?: string }>;
+}) {
   const { token } = await params;
+  const { hata } = await searchParams;
   const link = await prisma.davetLinki.findUnique({
     where: { token },
     include: {
@@ -42,7 +50,21 @@ export default async function DavetSayfasi({ params }: { params: Promise<{ token
       sayfa: { include: { moduller: { orderBy: { sira: "asc" } }, kullanici: true } },
     },
   });
-  if (!link) notFound();
+  if (!link) {
+    // Aday silinmiş olabilir: eski token için bırakılan iz varsa yeniden kayıt formu göster.
+    const iz = await prisma.silinmisDavet.findUnique({ where: { token } });
+    if (iz) {
+      return (
+        <YenidenKayitFormu
+          token={token}
+          eskiAdSoyad={iz.eskiAdSoyad}
+          eskiTelefon={iz.eskiTelefon}
+          hata={hata === "eksik"}
+        />
+      );
+    }
+    notFound();
+  }
 
   const ad = link.kisi.adSoyad.trim().split(/\s+/)[0];
   const networker = link.sayfa.kullanici;

@@ -112,6 +112,11 @@ export type TalepFormu = Prisma.TalepFormuModel
  */
 export type SiteAyar = Prisma.SiteAyarModel
 /**
+ * Model SilinmisDavet
+ * 
+ */
+export type SilinmisDavet = Prisma.SilinmisDavetModel
+/**
  * Model Bildirim
  * 
  */

@@ -121,8 +121,34 @@ export async function durumDegistir(kisiId: string, formData: FormData) {
 
 export async function kisiSil(kisiId: string) {
   const user = await requireUser();
-  await sahipKisi(kisiId, user.id);
-  await prisma.kisi.delete({ where: { id: kisiId } });
+  const kisi = await sahipKisi(kisiId, user.id);
+
+  // Eski davet token'larını iz olarak sakla (kişi geri dönerse yeniden kayıt için).
+  const linkler = await prisma.davetLinki.findMany({
+    where: { kisiId },
+    select: { token: true, sayfaId: true },
+  });
+
+  await prisma.$transaction([
+    ...linkler.map((l) =>
+      prisma.silinmisDavet.upsert({
+        where: { token: l.token },
+        update: {},
+        create: {
+          token: l.token,
+          kullaniciId: user.id,
+          sayfaId: l.sayfaId,
+          eskiAdSoyad: kisi.adSoyad,
+          eskiTelefon: kisi.telefon,
+        },
+      })
+    ),
+    // Bildirim, adaya ilişki (relation) ile bağlı olmadığından elle temizlenir.
+    prisma.bildirim.deleteMany({ where: { kullaniciId: user.id, kisiId } }),
+    // Randevular, davet linkleri, mesaj logları ve aktiviteler onDelete: Cascade ile silinir.
+    prisma.kisi.delete({ where: { id: kisiId } }),
+  ]);
+
   redirect("/panel/liste");
 }
 

@@ -4,7 +4,7 @@ import { useState, useTransition } from "react";
 import Link from "next/link";
 import {
   Bell, Eye, PlayCircle, ThumbsUp, CalendarClock, MessageCircle, Clock, BellOff,
-  X, ChevronRight, MessageSquareText, Activity, Loader2, ExternalLink,
+  X, ChevronRight, MessageSquareText, Activity, Loader2, ExternalLink, UserPlus,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { bildirimAc, type BildirimDetay } from "@/app/panel/davet-actions";
@@ -18,6 +18,7 @@ const TIP_STILI: Record<string, Stil> = {
   WHATSAPP_DONUS: { etiket: "WhatsApp", Icon: MessageCircle, renk: "bg-green-100 text-green-600" },
   TAKIP_ZAMANI: { etiket: "Takip Zamanı", Icon: Clock, renk: "bg-amber-100 text-amber-600" },
   ACILMAYAN_DAVET: { etiket: "Açılmayan Davet", Icon: BellOff, renk: "bg-rose-100 text-rose-600" },
+  YENI_ADAY: { etiket: "Yeni Aday", Icon: UserPlus, renk: "bg-emerald-100 text-emerald-600" },
 };
 const VARSAYILAN_STIL: Stil = { etiket: "Bildirim", Icon: Bell, renk: "bg-slate-100 text-slate-500" };
 

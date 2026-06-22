@@ -143,6 +143,7 @@ enum BildirimTip {
   WHATSAPP_DONUS
   TAKIP_ZAMANI
   ACILMAYAN_DAVET
+  YENI_ADAY
 }
 
 model Kullanici {
@@ -425,6 +426,20 @@ model SiteAyar {
   mesafeliMetni   String?
   uyelikMetni     String?
   updatedAt       DateTime @updatedAt @default(now())
+}
+
+// Aday silindiğinde davet linkleri de silinir; eski token'la geri dönen kişinin
+// kendini yeniden aday olarak ekleyebilmesi için bırakılan iz (tombstone).
+model SilinmisDavet {
+  id          String   @id @default(cuid())
+  token       String   @unique
+  kullaniciId String // daveti gönderen (sahip)
+  sayfaId     String
+  eskiAdSoyad String?
+  eskiTelefon String?
+  createdAt   DateTime @default(now())
+
+  @@index([kullaniciId])
 }
 
 model Bildirim {

@@ -398,6 +398,7 @@ export const ModelName = {
   RandevuTalebi: 'RandevuTalebi',
   TalepFormu: 'TalepFormu',
   SiteAyar: 'SiteAyar',
+  SilinmisDavet: 'SilinmisDavet',
   Bildirim: 'Bildirim'
 } as const
 
@@ -414,7 +415,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "kullanici" | "firma" | "firmaUye" | "kisi" | "aktivite" | "mesajKalibi" | "davetSayfasi" | "davetModulu" | "davetLinki" | "davetOlayi" | "hazirMesajLog" | "randevuTalebi" | "talepFormu" | "siteAyar" | "bildirim"
+    modelProps: "kullanici" | "firma" | "firmaUye" | "kisi" | "aktivite" | "mesajKalibi" | "davetSayfasi" | "davetModulu" | "davetLinki" | "davetOlayi" | "hazirMesajLog" | "randevuTalebi" | "talepFormu" | "siteAyar" | "silinmisDavet" | "bildirim"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1454,6 +1455,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    SilinmisDavet: {
+      payload: Prisma.$SilinmisDavetPayload<ExtArgs>
+      fields: Prisma.SilinmisDavetFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SilinmisDavetFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SilinmisDavetPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SilinmisDavetFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SilinmisDavetPayload>
+        }
+        findFirst: {
+          args: Prisma.SilinmisDavetFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SilinmisDavetPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SilinmisDavetFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SilinmisDavetPayload>
+        }
+        findMany: {
+          args: Prisma.SilinmisDavetFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SilinmisDavetPayload>[]
+        }
+        create: {
+          args: Prisma.SilinmisDavetCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SilinmisDavetPayload>
+        }
+        createMany: {
+          args: Prisma.SilinmisDavetCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SilinmisDavetCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SilinmisDavetPayload>[]
+        }
+        delete: {
+          args: Prisma.SilinmisDavetDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SilinmisDavetPayload>
+        }
+        update: {
+          args: Prisma.SilinmisDavetUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SilinmisDavetPayload>
+        }
+        deleteMany: {
+          args: Prisma.SilinmisDavetDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SilinmisDavetUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SilinmisDavetUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SilinmisDavetPayload>[]
+        }
+        upsert: {
+          args: Prisma.SilinmisDavetUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SilinmisDavetPayload>
+        }
+        aggregate: {
+          args: Prisma.SilinmisDavetAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSilinmisDavet>
+        }
+        groupBy: {
+          args: Prisma.SilinmisDavetGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SilinmisDavetGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SilinmisDavetCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SilinmisDavetCountAggregateOutputType> | number
+        }
+      }
+    }
     Bildirim: {
       payload: Prisma.$BildirimPayload<ExtArgs>
       fields: Prisma.BildirimFieldRefs
@@ -1817,6 +1892,19 @@ export const SiteAyarScalarFieldEnum = {
 } as const
 
 export type SiteAyarScalarFieldEnum = (typeof SiteAyarScalarFieldEnum)[keyof typeof SiteAyarScalarFieldEnum]
+
+
+export const SilinmisDavetScalarFieldEnum = {
+  id: 'id',
+  token: 'token',
+  kullaniciId: 'kullaniciId',
+  sayfaId: 'sayfaId',
+  eskiAdSoyad: 'eskiAdSoyad',
+  eskiTelefon: 'eskiTelefon',
+  createdAt: 'createdAt'
+} as const
+
+export type SilinmisDavetScalarFieldEnum = (typeof SilinmisDavetScalarFieldEnum)[keyof typeof SilinmisDavetScalarFieldEnum]
 
 
 export const BildirimScalarFieldEnum = {
@@ -2332,6 +2420,7 @@ export type GlobalOmitConfig = {
   randevuTalebi?: Prisma.RandevuTalebiOmit
   talepFormu?: Prisma.TalepFormuOmit
   siteAyar?: Prisma.SiteAyarOmit
+  silinmisDavet?: Prisma.SilinmisDavetOmit
   bildirim?: Prisma.BildirimOmit
 }
 

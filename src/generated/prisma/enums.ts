@@ -187,7 +187,8 @@ export const BildirimTip = {
   RANDEVU: 'RANDEVU',
   WHATSAPP_DONUS: 'WHATSAPP_DONUS',
   TAKIP_ZAMANI: 'TAKIP_ZAMANI',
-  ACILMAYAN_DAVET: 'ACILMAYAN_DAVET'
+  ACILMAYAN_DAVET: 'ACILMAYAN_DAVET',
+  YENI_ADAY: 'YENI_ADAY'
 } as const
 
 export type BildirimTip = (typeof BildirimTip)[keyof typeof BildirimTip]

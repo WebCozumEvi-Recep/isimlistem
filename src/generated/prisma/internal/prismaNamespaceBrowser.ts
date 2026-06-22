@@ -65,6 +65,7 @@ export const ModelName = {
   RandevuTalebi: 'RandevuTalebi',
   TalepFormu: 'TalepFormu',
   SiteAyar: 'SiteAyar',
+  SilinmisDavet: 'SilinmisDavet',
   Bildirim: 'Bildirim'
 } as const
 
@@ -334,6 +335,19 @@ export const SiteAyarScalarFieldEnum = {
 } as const
 
 export type SiteAyarScalarFieldEnum = (typeof SiteAyarScalarFieldEnum)[keyof typeof SiteAyarScalarFieldEnum]
+
+
+export const SilinmisDavetScalarFieldEnum = {
+  id: 'id',
+  token: 'token',
+  kullaniciId: 'kullaniciId',
+  sayfaId: 'sayfaId',
+  eskiAdSoyad: 'eskiAdSoyad',
+  eskiTelefon: 'eskiTelefon',
+  createdAt: 'createdAt'
+} as const
+
+export type SilinmisDavetScalarFieldEnum = (typeof SilinmisDavetScalarFieldEnum)[keyof typeof SilinmisDavetScalarFieldEnum]
 
 
 export const BildirimScalarFieldEnum = {
