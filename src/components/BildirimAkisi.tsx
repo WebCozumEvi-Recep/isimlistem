@@ -4,10 +4,10 @@ import { useState, useTransition } from "react";
 import Link from "next/link";
 import {
   Bell, Eye, PlayCircle, ThumbsUp, CalendarClock, MessageCircle, Clock, BellOff,
-  X, ChevronRight, MessageSquareText, Activity, Loader2, ExternalLink, UserPlus,
+  X, ChevronRight, MessageSquareText, Activity, Loader2, ExternalLink, UserPlus, Trash2,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { bildirimAc, type BildirimDetay } from "@/app/panel/davet-actions";
+import { bildirimAc, bildirimSil, type BildirimDetay } from "@/app/panel/davet-actions";
 
 type Stil = { etiket: string; Icon: LucideIcon; renk: string };
 const TIP_STILI: Record<string, Stil> = {
@@ -41,6 +41,8 @@ export default function BildirimAkisi({ bildirimler }: { bildirimler: BildirimSa
   const [liste, setListe] = useState(bildirimler);
   const [detay, setDetay] = useState<BildirimDetay | null>(null);
   const [acikId, setAcikId] = useState<string | null>(null);
+  const [silOnay, setSilOnay] = useState(false);
+  const [siliniyor, setSiliniyor] = useState(false);
   const [bekliyor, basla] = useTransition();
 
   function ac(b: BildirimSatiri) {
@@ -57,6 +59,19 @@ export default function BildirimAkisi({ bildirimler }: { bildirimler: BildirimSa
   function kapat() {
     setAcikId(null);
     setDetay(null);
+    setSilOnay(false);
+  }
+
+  function sil() {
+    if (!acikId) return;
+    const id = acikId;
+    setSiliniyor(true);
+    basla(async () => {
+      await bildirimSil(id);
+      setListe((l) => l.filter((x) => x.id !== id));
+      setSiliniyor(false);
+      kapat();
+    });
   }
 
   return (
@@ -91,12 +106,44 @@ export default function BildirimAkisi({ bildirimler }: { bildirimler: BildirimSa
             onClick={(e) => e.stopPropagation()}
           >
             {/* Başlık */}
-            <div className="sticky top-0 flex items-center justify-between gap-3 border-b border-[#EEF1F5] bg-white px-5 py-4">
+            <div className="sticky top-0 z-10 flex items-center justify-between gap-3 border-b border-[#EEF1F5] bg-white px-5 py-4">
               <h2 className="text-[16px] font-extrabold text-[#0F1B2D]">Bildirim Detayı</h2>
-              <button onClick={kapat} className="flex h-8 w-8 items-center justify-center rounded-full bg-[#F4F6F9] text-[#5A6678] hover:bg-[#E9EDF2]">
-                <X size={18} />
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setSilOnay(true)}
+                  title="Bildirimi sil"
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-rose-50 text-rose-500 hover:bg-rose-100"
+                >
+                  <Trash2 size={16} />
+                </button>
+                <button onClick={kapat} className="flex h-8 w-8 items-center justify-center rounded-full bg-[#F4F6F9] text-[#5A6678] hover:bg-[#E9EDF2]">
+                  <X size={18} />
+                </button>
+              </div>
             </div>
+
+            {/* Silme onayı */}
+            {silOnay && (
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-rose-100 bg-rose-50 px-5 py-3">
+                <span className="text-[13px] font-bold text-rose-700">Bu bildirim silinsin mi?</span>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setSilOnay(false)}
+                    disabled={siliniyor}
+                    className="rounded-lg border border-rose-200 bg-white px-3 py-1.5 text-[12.5px] font-bold text-[#3B4759] disabled:opacity-50"
+                  >
+                    Vazgeç
+                  </button>
+                  <button
+                    onClick={sil}
+                    disabled={siliniyor}
+                    className="flex items-center gap-1.5 rounded-lg bg-rose-600 px-3 py-1.5 text-[12.5px] font-bold text-white hover:bg-rose-700 disabled:opacity-70"
+                  >
+                    {siliniyor ? <Loader2 size={14} className="animate-spin" /> : <Trash2 size={14} />} Sil
+                  </button>
+                </div>
+              </div>
+            )}
 
             <div className="space-y-4 px-5 py-4">
               {bekliyor && !detay ? (

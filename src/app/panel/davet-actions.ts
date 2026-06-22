@@ -360,6 +360,14 @@ export async function bildirimAc(bildirimId: string): Promise<BildirimDetay | nu
   return detay;
 }
 
+export async function bildirimSil(bildirimId: string) {
+  const user = await requireUser();
+  const b = await prisma.bildirim.findUnique({ where: { id: bildirimId } });
+  if (!b || b.kullaniciId !== user.id) return;
+  await prisma.bildirim.delete({ where: { id: bildirimId } });
+  revalidatePath("/panel/bildirimler");
+}
+
 export async function tumBildirimleriOku() {
   const user = await requireUser();
   await prisma.bildirim.updateMany({ where: { kullaniciId: user.id, okundu: false }, data: { okundu: true } });
