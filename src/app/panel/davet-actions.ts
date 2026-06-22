@@ -283,6 +283,83 @@ export async function bildirimOkundu(bildirimId: string) {
   revalidatePath("/panel/bildirimler");
 }
 
+// Aday işlem akışında gösterilecek olay etiketleri.
+const OLAY_ETIKET: Record<string, string> = {
+  first_opened: "Davet linkini açtı",
+  page_view: "Davet sayfasını görüntüledi",
+  video_75: "Videonun %75'ini izledi",
+  cta_interested: "“İlgileniyorum” dedi",
+  cta_more_info: "Daha fazla bilgi istedi",
+  appointment_requested: "Randevu talep etti",
+  whatsapp_clicked: "WhatsApp'tan yazmak için tıkladı",
+  secim_randevu: "Gelir fırsatı için ilgisini belirtti",
+  secim_urun: "Ürünlerle ilgilendiğini belirtti",
+  secim_whatsapp: "Bilgi almak istediğini belirtti",
+  secim_bilgi: "Bilgi almak istediğini belirtti",
+};
+const DURUM_ETIKET_AKIS: Record<string, string> = {
+  YENI: "Listeye eklendi", ARANDI: "İlk iletişim kuruldu", RANDEVU: "Randevu alındı",
+  SUNUM_YAPILDI: "Sunum yapıldı", TAKIP: "Takipte", KATILDI: "Ekibe katıldı", KAYIP: "Kapandı",
+};
+const MESAJ_DURUM_ETIKET: Record<string, string> = {
+  HAZIRLANDI: "Hazırlandı", WHATSAPP_ACILDI: "WhatsApp açıldı", GONDERILDI_ONAY: "Gönderildi", IPTAL: "İptal",
+};
+
+export type AkisOgesi = { tip: "olay" | "aktivite"; etiket: string; zaman: string; ts: number };
+export type BildirimDetay = {
+  bildirim: { mesaj: string; tip: string; zaman: string };
+  kisi: { id: string; adSoyad: string; telefon: string | null; durum: string; durumEtiket: string } | null;
+  sonMesaj: { metin: string; durumEtiket: string; zaman: string } | null;
+  link: { acilmaSayisi: number; durum: string; sonAcilma: string | null } | null;
+  akis: AkisOgesi[];
+};
+
+/** Bildirime tıklanınca: okundu işaretle + aday/mesaj/işlem akışı detayını döndür. */
+export async function bildirimAc(bildirimId: string): Promise<BildirimDetay | null> {
+  const user = await requireUser();
+  const b = await prisma.bildirim.findUnique({ where: { id: bildirimId } });
+  if (!b || b.kullaniciId !== user.id) return null;
+
+  if (!b.okundu) {
+    await prisma.bildirim.update({ where: { id: bildirimId }, data: { okundu: true } });
+    revalidatePath("/panel/bildirimler");
+  }
+
+  const zamanFmt = (d: Date) => d.toLocaleString("tr-TR", { day: "2-digit", month: "long", hour: "2-digit", minute: "2-digit" });
+  const detay: BildirimDetay = {
+    bildirim: { mesaj: b.mesaj, tip: b.tip, zaman: zamanFmt(b.createdAt) },
+    kisi: null, sonMesaj: null, link: null, akis: [],
+  };
+
+  if (!b.kisiId) return detay;
+
+  const [kisi, aktiviteler, olaylar, sonMesaj, link] = await Promise.all([
+    prisma.kisi.findUnique({ where: { id: b.kisiId }, select: { id: true, adSoyad: true, telefon: true, durum: true } }),
+    prisma.aktivite.findMany({ where: { kisiId: b.kisiId }, orderBy: { tarih: "desc" }, take: 20 }),
+    prisma.davetOlayi.findMany({ where: { kisiId: b.kisiId }, orderBy: { createdAt: "desc" }, take: 20 }),
+    prisma.hazirMesajLog.findFirst({ where: { kisiId: b.kisiId }, orderBy: { createdAt: "desc" } }),
+    prisma.davetLinki.findFirst({ where: { kisiId: b.kisiId }, orderBy: { updatedAt: "desc" } }),
+  ]);
+
+  if (kisi) {
+    detay.kisi = { id: kisi.id, adSoyad: kisi.adSoyad, telefon: kisi.telefon, durum: kisi.durum, durumEtiket: DURUM_ETIKET_AKIS[kisi.durum] ?? kisi.durum };
+  }
+  if (sonMesaj) {
+    detay.sonMesaj = { metin: sonMesaj.mesajMetni, durumEtiket: MESAJ_DURUM_ETIKET[sonMesaj.durum] ?? sonMesaj.durum, zaman: zamanFmt(sonMesaj.createdAt) };
+  }
+  if (link) {
+    detay.link = { acilmaSayisi: link.acilmaSayisi, durum: link.durum, sonAcilma: link.sonAcilmaAt ? zamanFmt(link.sonAcilmaAt) : null };
+  }
+
+  const akis: AkisOgesi[] = [
+    ...aktiviteler.map((a) => ({ tip: "aktivite" as const, etiket: a.aciklama || (DURUM_ETIKET_AKIS[a.durum] ?? a.durum), zaman: zamanFmt(a.tarih), ts: a.tarih.getTime() })),
+    ...olaylar.map((o) => ({ tip: "olay" as const, etiket: OLAY_ETIKET[o.olayTip] ?? o.olayTip, zaman: zamanFmt(o.createdAt), ts: o.createdAt.getTime() })),
+  ].sort((x, y) => y.ts - x.ts).slice(0, 25);
+  detay.akis = akis;
+
+  return detay;
+}
+
 export async function tumBildirimleriOku() {
   const user = await requireUser();
   await prisma.bildirim.updateMany({ where: { kullaniciId: user.id, okundu: false }, data: { okundu: true } });

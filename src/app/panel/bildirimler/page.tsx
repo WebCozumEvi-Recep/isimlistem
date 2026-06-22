@@ -7,6 +7,7 @@ import {
   Clock, BellOff, ChevronLeft, ChevronRight, Star,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import BildirimAkisi from "@/components/BildirimAkisi";
 
 const SAYFA_BOYU = 25;
 
@@ -20,8 +21,6 @@ const TIP_STILI: Record<string, Stil> = {
   TAKIP_ZAMANI: { etiket: "Takip Zamanı", Icon: Clock, renk: "bg-amber-100 text-amber-600" },
   ACILMAYAN_DAVET: { etiket: "Açılmayan Davet", Icon: BellOff, renk: "bg-rose-100 text-rose-600" },
 };
-const VARSAYILAN_STIL: Stil = { etiket: "Bildirim", Icon: Bell, renk: "bg-slate-100 text-slate-500" };
-
 // "Önemli" filtresinde gösterilecek yüksek değerli aksiyonlar.
 const ONEMLI_TIPLER = ["ILGILENIYOR", "RANDEVU", "WHATSAPP_DONUS"];
 
@@ -139,26 +138,16 @@ export default async function BildirimlerSayfasi({
       {bildirimler.length === 0 ? (
         <p className="rounded-2xl border border-[#ECEFF3] bg-white p-6 text-sm text-slate-500">Bu filtreye uygun bildirim yok.</p>
       ) : (
-        <div className="flex flex-col gap-2.5">
-          {bildirimler.map((b) => {
-            const s = TIP_STILI[b.tip] ?? VARSAYILAN_STIL;
-            const govde = (
-              <div className="flex items-center gap-3 rounded-2xl border border-[#ECEFF3] bg-white px-3.5 py-3 shadow-[0_6px_18px_-16px_rgba(15,27,45,.5)]">
-                <span className={`flex h-10 w-10 flex-none items-center justify-center rounded-[13px] ${s.renk}`}>
-                  <s.Icon size={18} />
-                </span>
-                <div className="min-w-0 flex-1">
-                  <div className="text-[13.5px] font-bold leading-snug text-[#0F1B2D]">{b.mesaj}</div>
-                  <div className="mt-0.5 text-[11.5px] font-semibold text-[#9AA7B8]">{s.etiket} · {b.createdAt.toLocaleString("tr-TR")}</div>
-                </div>
-                {!b.okundu && <span className="h-2.5 w-2.5 flex-none rounded-full bg-[#16B364]" />}
-              </div>
-            );
-            return b.kisiId
-              ? <Link key={b.id} href={`/panel/kisi/${b.kisiId}`} className="block">{govde}</Link>
-              : <div key={b.id}>{govde}</div>;
-          })}
-        </div>
+        <BildirimAkisi
+          bildirimler={bildirimler.map((b) => ({
+            id: b.id,
+            tip: b.tip,
+            mesaj: b.mesaj,
+            okundu: b.okundu,
+            kisiId: b.kisiId,
+            zaman: b.createdAt.toLocaleString("tr-TR"),
+          }))}
+        />
       )}
 
       {/* Sayfalama */}
