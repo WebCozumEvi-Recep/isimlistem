@@ -175,9 +175,9 @@ export default function DavetBuilder({
         </div>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid min-w-0 gap-6 lg:grid-cols-2">
         {/* Editör */}
-        <div className="space-y-3">
+        <div className="min-w-0 space-y-3">
           <h2 className="flex items-center gap-2 text-sm font-semibold text-slate-500"><Pencil size={15} /> Düzenle <span className="font-normal text-slate-400">· sürükleyerek sırala</span></h2>
           {moduller.length === 0 && (
             <p className="rounded-xl border border-dashed border-slate-300 p-8 text-center text-sm text-slate-400">Yukarıdan modül ekleyerek ya da “Şablon Uygula” ile sayfanı oluştur.</p>
@@ -201,7 +201,7 @@ export default function DavetBuilder({
         </div>
 
         {/* Önizleme */}
-        <div className="space-y-3">
+        <div className="min-w-0 space-y-3">
           <h2 className="flex items-center gap-2 text-sm font-semibold text-slate-500"><Eye size={15} /> Önizleme</h2>
           <div className="sticky top-4 mx-auto w-full max-w-xs rounded-[2rem] border-8 border-slate-900 bg-white shadow-xl">
             <div className="max-h-[70vh] space-y-3 overflow-y-auto rounded-[1.5rem] bg-gradient-to-b from-emerald-50 via-white to-teal-50 p-4">
