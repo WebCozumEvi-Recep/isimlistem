@@ -88,6 +88,11 @@ export type TalepFormu = Prisma.TalepFormuModel
  */
 export type SiteAyar = Prisma.SiteAyarModel
 /**
+ * Model PushToken
+ * 
+ */
+export type PushToken = Prisma.PushTokenModel
+/**
  * Model SilinmisDavet
  * 
  */

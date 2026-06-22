@@ -20,8 +20,20 @@ export type KullaniciModel = runtime.Types.Result.DefaultSelection<Prisma.$Kulla
 
 export type AggregateKullanici = {
   _count: KullaniciCountAggregateOutputType | null
+  _avg: KullaniciAvgAggregateOutputType | null
+  _sum: KullaniciSumAggregateOutputType | null
   _min: KullaniciMinAggregateOutputType | null
   _max: KullaniciMaxAggregateOutputType | null
+}
+
+export type KullaniciAvgAggregateOutputType = {
+  pushSessizBas: number | null
+  pushSessizBit: number | null
+}
+
+export type KullaniciSumAggregateOutputType = {
+  pushSessizBas: number | null
+  pushSessizBit: number | null
 }
 
 export type KullaniciMinAggregateOutputType = {
@@ -35,6 +47,10 @@ export type KullaniciMinAggregateOutputType = {
   bio: string | null
   profilFoto: string | null
   varsayilanFirmaId: string | null
+  pushAcik: boolean | null
+  pushTumu: boolean | null
+  pushSessizBas: number | null
+  pushSessizBit: number | null
   createdAt: Date | null
 }
 
@@ -49,6 +65,10 @@ export type KullaniciMaxAggregateOutputType = {
   bio: string | null
   profilFoto: string | null
   varsayilanFirmaId: string | null
+  pushAcik: boolean | null
+  pushTumu: boolean | null
+  pushSessizBas: number | null
+  pushSessizBit: number | null
   createdAt: Date | null
 }
 
@@ -63,10 +83,24 @@ export type KullaniciCountAggregateOutputType = {
   bio: number
   profilFoto: number
   varsayilanFirmaId: number
+  pushAcik: number
+  pushTumu: number
+  pushSessizBas: number
+  pushSessizBit: number
   createdAt: number
   _all: number
 }
 
+
+export type KullaniciAvgAggregateInputType = {
+  pushSessizBas?: true
+  pushSessizBit?: true
+}
+
+export type KullaniciSumAggregateInputType = {
+  pushSessizBas?: true
+  pushSessizBit?: true
+}
 
 export type KullaniciMinAggregateInputType = {
   id?: true
@@ -79,6 +113,10 @@ export type KullaniciMinAggregateInputType = {
   bio?: true
   profilFoto?: true
   varsayilanFirmaId?: true
+  pushAcik?: true
+  pushTumu?: true
+  pushSessizBas?: true
+  pushSessizBit?: true
   createdAt?: true
 }
 
@@ -93,6 +131,10 @@ export type KullaniciMaxAggregateInputType = {
   bio?: true
   profilFoto?: true
   varsayilanFirmaId?: true
+  pushAcik?: true
+  pushTumu?: true
+  pushSessizBas?: true
+  pushSessizBit?: true
   createdAt?: true
 }
 
@@ -107,6 +149,10 @@ export type KullaniciCountAggregateInputType = {
   bio?: true
   profilFoto?: true
   varsayilanFirmaId?: true
+  pushAcik?: true
+  pushTumu?: true
+  pushSessizBas?: true
+  pushSessizBit?: true
   createdAt?: true
   _all?: true
 }
@@ -149,6 +195,18 @@ export type KullaniciAggregateArgs<ExtArgs extends runtime.Types.Extensions.Inte
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: KullaniciAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: KullaniciSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: KullaniciMinAggregateInputType
@@ -179,6 +237,8 @@ export type KullaniciGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   _count?: KullaniciCountAggregateInputType | true
+  _avg?: KullaniciAvgAggregateInputType
+  _sum?: KullaniciSumAggregateInputType
   _min?: KullaniciMinAggregateInputType
   _max?: KullaniciMaxAggregateInputType
 }
@@ -194,8 +254,14 @@ export type KullaniciGroupByOutputType = {
   bio: string | null
   profilFoto: string | null
   varsayilanFirmaId: string | null
+  pushAcik: boolean
+  pushTumu: boolean
+  pushSessizBas: number | null
+  pushSessizBit: number | null
   createdAt: Date
   _count: KullaniciCountAggregateOutputType | null
+  _avg: KullaniciAvgAggregateOutputType | null
+  _sum: KullaniciSumAggregateOutputType | null
   _min: KullaniciMinAggregateOutputType | null
   _max: KullaniciMaxAggregateOutputType | null
 }
@@ -229,11 +295,16 @@ export type KullaniciWhereInput = {
   bio?: Prisma.StringNullableFilter<"Kullanici"> | string | null
   profilFoto?: Prisma.StringNullableFilter<"Kullanici"> | string | null
   varsayilanFirmaId?: Prisma.StringNullableFilter<"Kullanici"> | string | null
+  pushAcik?: Prisma.BoolFilter<"Kullanici"> | boolean
+  pushTumu?: Prisma.BoolFilter<"Kullanici"> | boolean
+  pushSessizBas?: Prisma.IntNullableFilter<"Kullanici"> | number | null
+  pushSessizBit?: Prisma.IntNullableFilter<"Kullanici"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Kullanici"> | Date | string
   kisiler?: Prisma.KisiListRelationFilter
   kaliplar?: Prisma.MesajKalibiListRelationFilter
   sayfalar?: Prisma.DavetSayfasiListRelationFilter
   bildirimler?: Prisma.BildirimListRelationFilter
+  pushTokenlar?: Prisma.PushTokenListRelationFilter
   firmaUyelikler?: Prisma.FirmaUyeListRelationFilter
 }
 
@@ -248,11 +319,16 @@ export type KullaniciOrderByWithRelationInput = {
   bio?: Prisma.SortOrderInput | Prisma.SortOrder
   profilFoto?: Prisma.SortOrderInput | Prisma.SortOrder
   varsayilanFirmaId?: Prisma.SortOrderInput | Prisma.SortOrder
+  pushAcik?: Prisma.SortOrder
+  pushTumu?: Prisma.SortOrder
+  pushSessizBas?: Prisma.SortOrderInput | Prisma.SortOrder
+  pushSessizBit?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   kisiler?: Prisma.KisiOrderByRelationAggregateInput
   kaliplar?: Prisma.MesajKalibiOrderByRelationAggregateInput
   sayfalar?: Prisma.DavetSayfasiOrderByRelationAggregateInput
   bildirimler?: Prisma.BildirimOrderByRelationAggregateInput
+  pushTokenlar?: Prisma.PushTokenOrderByRelationAggregateInput
   firmaUyelikler?: Prisma.FirmaUyeOrderByRelationAggregateInput
 }
 
@@ -270,11 +346,16 @@ export type KullaniciWhereUniqueInput = Prisma.AtLeast<{
   bio?: Prisma.StringNullableFilter<"Kullanici"> | string | null
   profilFoto?: Prisma.StringNullableFilter<"Kullanici"> | string | null
   varsayilanFirmaId?: Prisma.StringNullableFilter<"Kullanici"> | string | null
+  pushAcik?: Prisma.BoolFilter<"Kullanici"> | boolean
+  pushTumu?: Prisma.BoolFilter<"Kullanici"> | boolean
+  pushSessizBas?: Prisma.IntNullableFilter<"Kullanici"> | number | null
+  pushSessizBit?: Prisma.IntNullableFilter<"Kullanici"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Kullanici"> | Date | string
   kisiler?: Prisma.KisiListRelationFilter
   kaliplar?: Prisma.MesajKalibiListRelationFilter
   sayfalar?: Prisma.DavetSayfasiListRelationFilter
   bildirimler?: Prisma.BildirimListRelationFilter
+  pushTokenlar?: Prisma.PushTokenListRelationFilter
   firmaUyelikler?: Prisma.FirmaUyeListRelationFilter
 }, "id" | "email">
 
@@ -289,10 +370,16 @@ export type KullaniciOrderByWithAggregationInput = {
   bio?: Prisma.SortOrderInput | Prisma.SortOrder
   profilFoto?: Prisma.SortOrderInput | Prisma.SortOrder
   varsayilanFirmaId?: Prisma.SortOrderInput | Prisma.SortOrder
+  pushAcik?: Prisma.SortOrder
+  pushTumu?: Prisma.SortOrder
+  pushSessizBas?: Prisma.SortOrderInput | Prisma.SortOrder
+  pushSessizBit?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.KullaniciCountOrderByAggregateInput
+  _avg?: Prisma.KullaniciAvgOrderByAggregateInput
   _max?: Prisma.KullaniciMaxOrderByAggregateInput
   _min?: Prisma.KullaniciMinOrderByAggregateInput
+  _sum?: Prisma.KullaniciSumOrderByAggregateInput
 }
 
 export type KullaniciScalarWhereWithAggregatesInput = {
@@ -309,6 +396,10 @@ export type KullaniciScalarWhereWithAggregatesInput = {
   bio?: Prisma.StringNullableWithAggregatesFilter<"Kullanici"> | string | null
   profilFoto?: Prisma.StringNullableWithAggregatesFilter<"Kullanici"> | string | null
   varsayilanFirmaId?: Prisma.StringNullableWithAggregatesFilter<"Kullanici"> | string | null
+  pushAcik?: Prisma.BoolWithAggregatesFilter<"Kullanici"> | boolean
+  pushTumu?: Prisma.BoolWithAggregatesFilter<"Kullanici"> | boolean
+  pushSessizBas?: Prisma.IntNullableWithAggregatesFilter<"Kullanici"> | number | null
+  pushSessizBit?: Prisma.IntNullableWithAggregatesFilter<"Kullanici"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Kullanici"> | Date | string
 }
 
@@ -323,11 +414,16 @@ export type KullaniciCreateInput = {
   bio?: string | null
   profilFoto?: string | null
   varsayilanFirmaId?: string | null
+  pushAcik?: boolean
+  pushTumu?: boolean
+  pushSessizBas?: number | null
+  pushSessizBit?: number | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiCreateNestedManyWithoutKullaniciInput
   kaliplar?: Prisma.MesajKalibiCreateNestedManyWithoutKullaniciInput
   sayfalar?: Prisma.DavetSayfasiCreateNestedManyWithoutKullaniciInput
   bildirimler?: Prisma.BildirimCreateNestedManyWithoutKullaniciInput
+  pushTokenlar?: Prisma.PushTokenCreateNestedManyWithoutKullaniciInput
   firmaUyelikler?: Prisma.FirmaUyeCreateNestedManyWithoutKullaniciInput
 }
 
@@ -342,11 +438,16 @@ export type KullaniciUncheckedCreateInput = {
   bio?: string | null
   profilFoto?: string | null
   varsayilanFirmaId?: string | null
+  pushAcik?: boolean
+  pushTumu?: boolean
+  pushSessizBas?: number | null
+  pushSessizBit?: number | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiUncheckedCreateNestedManyWithoutKullaniciInput
   kaliplar?: Prisma.MesajKalibiUncheckedCreateNestedManyWithoutKullaniciInput
   sayfalar?: Prisma.DavetSayfasiUncheckedCreateNestedManyWithoutKullaniciInput
   bildirimler?: Prisma.BildirimUncheckedCreateNestedManyWithoutKullaniciInput
+  pushTokenlar?: Prisma.PushTokenUncheckedCreateNestedManyWithoutKullaniciInput
   firmaUyelikler?: Prisma.FirmaUyeUncheckedCreateNestedManyWithoutKullaniciInput
 }
 
@@ -361,11 +462,16 @@ export type KullaniciUpdateInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profilFoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   varsayilanFirmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pushAcik?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushTumu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUpdateManyWithoutKullaniciNestedInput
   kaliplar?: Prisma.MesajKalibiUpdateManyWithoutKullaniciNestedInput
   sayfalar?: Prisma.DavetSayfasiUpdateManyWithoutKullaniciNestedInput
   bildirimler?: Prisma.BildirimUpdateManyWithoutKullaniciNestedInput
+  pushTokenlar?: Prisma.PushTokenUpdateManyWithoutKullaniciNestedInput
   firmaUyelikler?: Prisma.FirmaUyeUpdateManyWithoutKullaniciNestedInput
 }
 
@@ -380,11 +486,16 @@ export type KullaniciUncheckedUpdateInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profilFoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   varsayilanFirmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pushAcik?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushTumu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUncheckedUpdateManyWithoutKullaniciNestedInput
   kaliplar?: Prisma.MesajKalibiUncheckedUpdateManyWithoutKullaniciNestedInput
   sayfalar?: Prisma.DavetSayfasiUncheckedUpdateManyWithoutKullaniciNestedInput
   bildirimler?: Prisma.BildirimUncheckedUpdateManyWithoutKullaniciNestedInput
+  pushTokenlar?: Prisma.PushTokenUncheckedUpdateManyWithoutKullaniciNestedInput
   firmaUyelikler?: Prisma.FirmaUyeUncheckedUpdateManyWithoutKullaniciNestedInput
 }
 
@@ -399,6 +510,10 @@ export type KullaniciCreateManyInput = {
   bio?: string | null
   profilFoto?: string | null
   varsayilanFirmaId?: string | null
+  pushAcik?: boolean
+  pushTumu?: boolean
+  pushSessizBas?: number | null
+  pushSessizBit?: number | null
   createdAt?: Date | string
 }
 
@@ -413,6 +528,10 @@ export type KullaniciUpdateManyMutationInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profilFoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   varsayilanFirmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pushAcik?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushTumu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -427,6 +546,10 @@ export type KullaniciUncheckedUpdateManyInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profilFoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   varsayilanFirmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pushAcik?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushTumu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -441,7 +564,16 @@ export type KullaniciCountOrderByAggregateInput = {
   bio?: Prisma.SortOrder
   profilFoto?: Prisma.SortOrder
   varsayilanFirmaId?: Prisma.SortOrder
+  pushAcik?: Prisma.SortOrder
+  pushTumu?: Prisma.SortOrder
+  pushSessizBas?: Prisma.SortOrder
+  pushSessizBit?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+}
+
+export type KullaniciAvgOrderByAggregateInput = {
+  pushSessizBas?: Prisma.SortOrder
+  pushSessizBit?: Prisma.SortOrder
 }
 
 export type KullaniciMaxOrderByAggregateInput = {
@@ -455,6 +587,10 @@ export type KullaniciMaxOrderByAggregateInput = {
   bio?: Prisma.SortOrder
   profilFoto?: Prisma.SortOrder
   varsayilanFirmaId?: Prisma.SortOrder
+  pushAcik?: Prisma.SortOrder
+  pushTumu?: Prisma.SortOrder
+  pushSessizBas?: Prisma.SortOrder
+  pushSessizBit?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -469,7 +605,16 @@ export type KullaniciMinOrderByAggregateInput = {
   bio?: Prisma.SortOrder
   profilFoto?: Prisma.SortOrder
   varsayilanFirmaId?: Prisma.SortOrder
+  pushAcik?: Prisma.SortOrder
+  pushTumu?: Prisma.SortOrder
+  pushSessizBas?: Prisma.SortOrder
+  pushSessizBit?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+}
+
+export type KullaniciSumOrderByAggregateInput = {
+  pushSessizBas?: Prisma.SortOrder
+  pushSessizBit?: Prisma.SortOrder
 }
 
 export type KullaniciScalarRelationFilter = {
@@ -492,6 +637,18 @@ export type NullableStringFieldUpdateOperationsInput = {
 
 export type EnumRolFieldUpdateOperationsInput = {
   set?: $Enums.Rol
+}
+
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -558,6 +715,20 @@ export type KullaniciUpdateOneWithoutSayfalarNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.KullaniciUpdateToOneWithWhereWithoutSayfalarInput, Prisma.KullaniciUpdateWithoutSayfalarInput>, Prisma.KullaniciUncheckedUpdateWithoutSayfalarInput>
 }
 
+export type KullaniciCreateNestedOneWithoutPushTokenlarInput = {
+  create?: Prisma.XOR<Prisma.KullaniciCreateWithoutPushTokenlarInput, Prisma.KullaniciUncheckedCreateWithoutPushTokenlarInput>
+  connectOrCreate?: Prisma.KullaniciCreateOrConnectWithoutPushTokenlarInput
+  connect?: Prisma.KullaniciWhereUniqueInput
+}
+
+export type KullaniciUpdateOneRequiredWithoutPushTokenlarNestedInput = {
+  create?: Prisma.XOR<Prisma.KullaniciCreateWithoutPushTokenlarInput, Prisma.KullaniciUncheckedCreateWithoutPushTokenlarInput>
+  connectOrCreate?: Prisma.KullaniciCreateOrConnectWithoutPushTokenlarInput
+  upsert?: Prisma.KullaniciUpsertWithoutPushTokenlarInput
+  connect?: Prisma.KullaniciWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.KullaniciUpdateToOneWithWhereWithoutPushTokenlarInput, Prisma.KullaniciUpdateWithoutPushTokenlarInput>, Prisma.KullaniciUncheckedUpdateWithoutPushTokenlarInput>
+}
+
 export type KullaniciCreateNestedOneWithoutBildirimlerInput = {
   create?: Prisma.XOR<Prisma.KullaniciCreateWithoutBildirimlerInput, Prisma.KullaniciUncheckedCreateWithoutBildirimlerInput>
   connectOrCreate?: Prisma.KullaniciCreateOrConnectWithoutBildirimlerInput
@@ -583,11 +754,16 @@ export type KullaniciCreateWithoutFirmaUyeliklerInput = {
   bio?: string | null
   profilFoto?: string | null
   varsayilanFirmaId?: string | null
+  pushAcik?: boolean
+  pushTumu?: boolean
+  pushSessizBas?: number | null
+  pushSessizBit?: number | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiCreateNestedManyWithoutKullaniciInput
   kaliplar?: Prisma.MesajKalibiCreateNestedManyWithoutKullaniciInput
   sayfalar?: Prisma.DavetSayfasiCreateNestedManyWithoutKullaniciInput
   bildirimler?: Prisma.BildirimCreateNestedManyWithoutKullaniciInput
+  pushTokenlar?: Prisma.PushTokenCreateNestedManyWithoutKullaniciInput
 }
 
 export type KullaniciUncheckedCreateWithoutFirmaUyeliklerInput = {
@@ -601,11 +777,16 @@ export type KullaniciUncheckedCreateWithoutFirmaUyeliklerInput = {
   bio?: string | null
   profilFoto?: string | null
   varsayilanFirmaId?: string | null
+  pushAcik?: boolean
+  pushTumu?: boolean
+  pushSessizBas?: number | null
+  pushSessizBit?: number | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiUncheckedCreateNestedManyWithoutKullaniciInput
   kaliplar?: Prisma.MesajKalibiUncheckedCreateNestedManyWithoutKullaniciInput
   sayfalar?: Prisma.DavetSayfasiUncheckedCreateNestedManyWithoutKullaniciInput
   bildirimler?: Prisma.BildirimUncheckedCreateNestedManyWithoutKullaniciInput
+  pushTokenlar?: Prisma.PushTokenUncheckedCreateNestedManyWithoutKullaniciInput
 }
 
 export type KullaniciCreateOrConnectWithoutFirmaUyeliklerInput = {
@@ -635,11 +816,16 @@ export type KullaniciUpdateWithoutFirmaUyeliklerInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profilFoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   varsayilanFirmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pushAcik?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushTumu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUpdateManyWithoutKullaniciNestedInput
   kaliplar?: Prisma.MesajKalibiUpdateManyWithoutKullaniciNestedInput
   sayfalar?: Prisma.DavetSayfasiUpdateManyWithoutKullaniciNestedInput
   bildirimler?: Prisma.BildirimUpdateManyWithoutKullaniciNestedInput
+  pushTokenlar?: Prisma.PushTokenUpdateManyWithoutKullaniciNestedInput
 }
 
 export type KullaniciUncheckedUpdateWithoutFirmaUyeliklerInput = {
@@ -653,11 +839,16 @@ export type KullaniciUncheckedUpdateWithoutFirmaUyeliklerInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profilFoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   varsayilanFirmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pushAcik?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushTumu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUncheckedUpdateManyWithoutKullaniciNestedInput
   kaliplar?: Prisma.MesajKalibiUncheckedUpdateManyWithoutKullaniciNestedInput
   sayfalar?: Prisma.DavetSayfasiUncheckedUpdateManyWithoutKullaniciNestedInput
   bildirimler?: Prisma.BildirimUncheckedUpdateManyWithoutKullaniciNestedInput
+  pushTokenlar?: Prisma.PushTokenUncheckedUpdateManyWithoutKullaniciNestedInput
 }
 
 export type KullaniciCreateWithoutKisilerInput = {
@@ -671,10 +862,15 @@ export type KullaniciCreateWithoutKisilerInput = {
   bio?: string | null
   profilFoto?: string | null
   varsayilanFirmaId?: string | null
+  pushAcik?: boolean
+  pushTumu?: boolean
+  pushSessizBas?: number | null
+  pushSessizBit?: number | null
   createdAt?: Date | string
   kaliplar?: Prisma.MesajKalibiCreateNestedManyWithoutKullaniciInput
   sayfalar?: Prisma.DavetSayfasiCreateNestedManyWithoutKullaniciInput
   bildirimler?: Prisma.BildirimCreateNestedManyWithoutKullaniciInput
+  pushTokenlar?: Prisma.PushTokenCreateNestedManyWithoutKullaniciInput
   firmaUyelikler?: Prisma.FirmaUyeCreateNestedManyWithoutKullaniciInput
 }
 
@@ -689,10 +885,15 @@ export type KullaniciUncheckedCreateWithoutKisilerInput = {
   bio?: string | null
   profilFoto?: string | null
   varsayilanFirmaId?: string | null
+  pushAcik?: boolean
+  pushTumu?: boolean
+  pushSessizBas?: number | null
+  pushSessizBit?: number | null
   createdAt?: Date | string
   kaliplar?: Prisma.MesajKalibiUncheckedCreateNestedManyWithoutKullaniciInput
   sayfalar?: Prisma.DavetSayfasiUncheckedCreateNestedManyWithoutKullaniciInput
   bildirimler?: Prisma.BildirimUncheckedCreateNestedManyWithoutKullaniciInput
+  pushTokenlar?: Prisma.PushTokenUncheckedCreateNestedManyWithoutKullaniciInput
   firmaUyelikler?: Prisma.FirmaUyeUncheckedCreateNestedManyWithoutKullaniciInput
 }
 
@@ -723,10 +924,15 @@ export type KullaniciUpdateWithoutKisilerInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profilFoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   varsayilanFirmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pushAcik?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushTumu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kaliplar?: Prisma.MesajKalibiUpdateManyWithoutKullaniciNestedInput
   sayfalar?: Prisma.DavetSayfasiUpdateManyWithoutKullaniciNestedInput
   bildirimler?: Prisma.BildirimUpdateManyWithoutKullaniciNestedInput
+  pushTokenlar?: Prisma.PushTokenUpdateManyWithoutKullaniciNestedInput
   firmaUyelikler?: Prisma.FirmaUyeUpdateManyWithoutKullaniciNestedInput
 }
 
@@ -741,10 +947,15 @@ export type KullaniciUncheckedUpdateWithoutKisilerInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profilFoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   varsayilanFirmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pushAcik?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushTumu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kaliplar?: Prisma.MesajKalibiUncheckedUpdateManyWithoutKullaniciNestedInput
   sayfalar?: Prisma.DavetSayfasiUncheckedUpdateManyWithoutKullaniciNestedInput
   bildirimler?: Prisma.BildirimUncheckedUpdateManyWithoutKullaniciNestedInput
+  pushTokenlar?: Prisma.PushTokenUncheckedUpdateManyWithoutKullaniciNestedInput
   firmaUyelikler?: Prisma.FirmaUyeUncheckedUpdateManyWithoutKullaniciNestedInput
 }
 
@@ -759,10 +970,15 @@ export type KullaniciCreateWithoutKaliplarInput = {
   bio?: string | null
   profilFoto?: string | null
   varsayilanFirmaId?: string | null
+  pushAcik?: boolean
+  pushTumu?: boolean
+  pushSessizBas?: number | null
+  pushSessizBit?: number | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiCreateNestedManyWithoutKullaniciInput
   sayfalar?: Prisma.DavetSayfasiCreateNestedManyWithoutKullaniciInput
   bildirimler?: Prisma.BildirimCreateNestedManyWithoutKullaniciInput
+  pushTokenlar?: Prisma.PushTokenCreateNestedManyWithoutKullaniciInput
   firmaUyelikler?: Prisma.FirmaUyeCreateNestedManyWithoutKullaniciInput
 }
 
@@ -777,10 +993,15 @@ export type KullaniciUncheckedCreateWithoutKaliplarInput = {
   bio?: string | null
   profilFoto?: string | null
   varsayilanFirmaId?: string | null
+  pushAcik?: boolean
+  pushTumu?: boolean
+  pushSessizBas?: number | null
+  pushSessizBit?: number | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiUncheckedCreateNestedManyWithoutKullaniciInput
   sayfalar?: Prisma.DavetSayfasiUncheckedCreateNestedManyWithoutKullaniciInput
   bildirimler?: Prisma.BildirimUncheckedCreateNestedManyWithoutKullaniciInput
+  pushTokenlar?: Prisma.PushTokenUncheckedCreateNestedManyWithoutKullaniciInput
   firmaUyelikler?: Prisma.FirmaUyeUncheckedCreateNestedManyWithoutKullaniciInput
 }
 
@@ -811,10 +1032,15 @@ export type KullaniciUpdateWithoutKaliplarInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profilFoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   varsayilanFirmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pushAcik?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushTumu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUpdateManyWithoutKullaniciNestedInput
   sayfalar?: Prisma.DavetSayfasiUpdateManyWithoutKullaniciNestedInput
   bildirimler?: Prisma.BildirimUpdateManyWithoutKullaniciNestedInput
+  pushTokenlar?: Prisma.PushTokenUpdateManyWithoutKullaniciNestedInput
   firmaUyelikler?: Prisma.FirmaUyeUpdateManyWithoutKullaniciNestedInput
 }
 
@@ -829,10 +1055,15 @@ export type KullaniciUncheckedUpdateWithoutKaliplarInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profilFoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   varsayilanFirmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pushAcik?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushTumu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUncheckedUpdateManyWithoutKullaniciNestedInput
   sayfalar?: Prisma.DavetSayfasiUncheckedUpdateManyWithoutKullaniciNestedInput
   bildirimler?: Prisma.BildirimUncheckedUpdateManyWithoutKullaniciNestedInput
+  pushTokenlar?: Prisma.PushTokenUncheckedUpdateManyWithoutKullaniciNestedInput
   firmaUyelikler?: Prisma.FirmaUyeUncheckedUpdateManyWithoutKullaniciNestedInput
 }
 
@@ -847,10 +1078,15 @@ export type KullaniciCreateWithoutSayfalarInput = {
   bio?: string | null
   profilFoto?: string | null
   varsayilanFirmaId?: string | null
+  pushAcik?: boolean
+  pushTumu?: boolean
+  pushSessizBas?: number | null
+  pushSessizBit?: number | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiCreateNestedManyWithoutKullaniciInput
   kaliplar?: Prisma.MesajKalibiCreateNestedManyWithoutKullaniciInput
   bildirimler?: Prisma.BildirimCreateNestedManyWithoutKullaniciInput
+  pushTokenlar?: Prisma.PushTokenCreateNestedManyWithoutKullaniciInput
   firmaUyelikler?: Prisma.FirmaUyeCreateNestedManyWithoutKullaniciInput
 }
 
@@ -865,10 +1101,15 @@ export type KullaniciUncheckedCreateWithoutSayfalarInput = {
   bio?: string | null
   profilFoto?: string | null
   varsayilanFirmaId?: string | null
+  pushAcik?: boolean
+  pushTumu?: boolean
+  pushSessizBas?: number | null
+  pushSessizBit?: number | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiUncheckedCreateNestedManyWithoutKullaniciInput
   kaliplar?: Prisma.MesajKalibiUncheckedCreateNestedManyWithoutKullaniciInput
   bildirimler?: Prisma.BildirimUncheckedCreateNestedManyWithoutKullaniciInput
+  pushTokenlar?: Prisma.PushTokenUncheckedCreateNestedManyWithoutKullaniciInput
   firmaUyelikler?: Prisma.FirmaUyeUncheckedCreateNestedManyWithoutKullaniciInput
 }
 
@@ -899,10 +1140,15 @@ export type KullaniciUpdateWithoutSayfalarInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profilFoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   varsayilanFirmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pushAcik?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushTumu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUpdateManyWithoutKullaniciNestedInput
   kaliplar?: Prisma.MesajKalibiUpdateManyWithoutKullaniciNestedInput
   bildirimler?: Prisma.BildirimUpdateManyWithoutKullaniciNestedInput
+  pushTokenlar?: Prisma.PushTokenUpdateManyWithoutKullaniciNestedInput
   firmaUyelikler?: Prisma.FirmaUyeUpdateManyWithoutKullaniciNestedInput
 }
 
@@ -917,9 +1163,122 @@ export type KullaniciUncheckedUpdateWithoutSayfalarInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profilFoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   varsayilanFirmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pushAcik?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushTumu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUncheckedUpdateManyWithoutKullaniciNestedInput
   kaliplar?: Prisma.MesajKalibiUncheckedUpdateManyWithoutKullaniciNestedInput
+  bildirimler?: Prisma.BildirimUncheckedUpdateManyWithoutKullaniciNestedInput
+  pushTokenlar?: Prisma.PushTokenUncheckedUpdateManyWithoutKullaniciNestedInput
+  firmaUyelikler?: Prisma.FirmaUyeUncheckedUpdateManyWithoutKullaniciNestedInput
+}
+
+export type KullaniciCreateWithoutPushTokenlarInput = {
+  id?: string
+  adSoyad: string
+  email: string
+  telefon?: string | null
+  parolaHash: string
+  rol?: $Enums.Rol
+  sehir?: string | null
+  bio?: string | null
+  profilFoto?: string | null
+  varsayilanFirmaId?: string | null
+  pushAcik?: boolean
+  pushTumu?: boolean
+  pushSessizBas?: number | null
+  pushSessizBit?: number | null
+  createdAt?: Date | string
+  kisiler?: Prisma.KisiCreateNestedManyWithoutKullaniciInput
+  kaliplar?: Prisma.MesajKalibiCreateNestedManyWithoutKullaniciInput
+  sayfalar?: Prisma.DavetSayfasiCreateNestedManyWithoutKullaniciInput
+  bildirimler?: Prisma.BildirimCreateNestedManyWithoutKullaniciInput
+  firmaUyelikler?: Prisma.FirmaUyeCreateNestedManyWithoutKullaniciInput
+}
+
+export type KullaniciUncheckedCreateWithoutPushTokenlarInput = {
+  id?: string
+  adSoyad: string
+  email: string
+  telefon?: string | null
+  parolaHash: string
+  rol?: $Enums.Rol
+  sehir?: string | null
+  bio?: string | null
+  profilFoto?: string | null
+  varsayilanFirmaId?: string | null
+  pushAcik?: boolean
+  pushTumu?: boolean
+  pushSessizBas?: number | null
+  pushSessizBit?: number | null
+  createdAt?: Date | string
+  kisiler?: Prisma.KisiUncheckedCreateNestedManyWithoutKullaniciInput
+  kaliplar?: Prisma.MesajKalibiUncheckedCreateNestedManyWithoutKullaniciInput
+  sayfalar?: Prisma.DavetSayfasiUncheckedCreateNestedManyWithoutKullaniciInput
+  bildirimler?: Prisma.BildirimUncheckedCreateNestedManyWithoutKullaniciInput
+  firmaUyelikler?: Prisma.FirmaUyeUncheckedCreateNestedManyWithoutKullaniciInput
+}
+
+export type KullaniciCreateOrConnectWithoutPushTokenlarInput = {
+  where: Prisma.KullaniciWhereUniqueInput
+  create: Prisma.XOR<Prisma.KullaniciCreateWithoutPushTokenlarInput, Prisma.KullaniciUncheckedCreateWithoutPushTokenlarInput>
+}
+
+export type KullaniciUpsertWithoutPushTokenlarInput = {
+  update: Prisma.XOR<Prisma.KullaniciUpdateWithoutPushTokenlarInput, Prisma.KullaniciUncheckedUpdateWithoutPushTokenlarInput>
+  create: Prisma.XOR<Prisma.KullaniciCreateWithoutPushTokenlarInput, Prisma.KullaniciUncheckedCreateWithoutPushTokenlarInput>
+  where?: Prisma.KullaniciWhereInput
+}
+
+export type KullaniciUpdateToOneWithWhereWithoutPushTokenlarInput = {
+  where?: Prisma.KullaniciWhereInput
+  data: Prisma.XOR<Prisma.KullaniciUpdateWithoutPushTokenlarInput, Prisma.KullaniciUncheckedUpdateWithoutPushTokenlarInput>
+}
+
+export type KullaniciUpdateWithoutPushTokenlarInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  adSoyad?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  telefon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parolaHash?: Prisma.StringFieldUpdateOperationsInput | string
+  rol?: Prisma.EnumRolFieldUpdateOperationsInput | $Enums.Rol
+  sehir?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profilFoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  varsayilanFirmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pushAcik?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushTumu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  kisiler?: Prisma.KisiUpdateManyWithoutKullaniciNestedInput
+  kaliplar?: Prisma.MesajKalibiUpdateManyWithoutKullaniciNestedInput
+  sayfalar?: Prisma.DavetSayfasiUpdateManyWithoutKullaniciNestedInput
+  bildirimler?: Prisma.BildirimUpdateManyWithoutKullaniciNestedInput
+  firmaUyelikler?: Prisma.FirmaUyeUpdateManyWithoutKullaniciNestedInput
+}
+
+export type KullaniciUncheckedUpdateWithoutPushTokenlarInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  adSoyad?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  telefon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parolaHash?: Prisma.StringFieldUpdateOperationsInput | string
+  rol?: Prisma.EnumRolFieldUpdateOperationsInput | $Enums.Rol
+  sehir?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profilFoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  varsayilanFirmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pushAcik?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushTumu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  kisiler?: Prisma.KisiUncheckedUpdateManyWithoutKullaniciNestedInput
+  kaliplar?: Prisma.MesajKalibiUncheckedUpdateManyWithoutKullaniciNestedInput
+  sayfalar?: Prisma.DavetSayfasiUncheckedUpdateManyWithoutKullaniciNestedInput
   bildirimler?: Prisma.BildirimUncheckedUpdateManyWithoutKullaniciNestedInput
   firmaUyelikler?: Prisma.FirmaUyeUncheckedUpdateManyWithoutKullaniciNestedInput
 }
@@ -935,10 +1294,15 @@ export type KullaniciCreateWithoutBildirimlerInput = {
   bio?: string | null
   profilFoto?: string | null
   varsayilanFirmaId?: string | null
+  pushAcik?: boolean
+  pushTumu?: boolean
+  pushSessizBas?: number | null
+  pushSessizBit?: number | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiCreateNestedManyWithoutKullaniciInput
   kaliplar?: Prisma.MesajKalibiCreateNestedManyWithoutKullaniciInput
   sayfalar?: Prisma.DavetSayfasiCreateNestedManyWithoutKullaniciInput
+  pushTokenlar?: Prisma.PushTokenCreateNestedManyWithoutKullaniciInput
   firmaUyelikler?: Prisma.FirmaUyeCreateNestedManyWithoutKullaniciInput
 }
 
@@ -953,10 +1317,15 @@ export type KullaniciUncheckedCreateWithoutBildirimlerInput = {
   bio?: string | null
   profilFoto?: string | null
   varsayilanFirmaId?: string | null
+  pushAcik?: boolean
+  pushTumu?: boolean
+  pushSessizBas?: number | null
+  pushSessizBit?: number | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiUncheckedCreateNestedManyWithoutKullaniciInput
   kaliplar?: Prisma.MesajKalibiUncheckedCreateNestedManyWithoutKullaniciInput
   sayfalar?: Prisma.DavetSayfasiUncheckedCreateNestedManyWithoutKullaniciInput
+  pushTokenlar?: Prisma.PushTokenUncheckedCreateNestedManyWithoutKullaniciInput
   firmaUyelikler?: Prisma.FirmaUyeUncheckedCreateNestedManyWithoutKullaniciInput
 }
 
@@ -987,10 +1356,15 @@ export type KullaniciUpdateWithoutBildirimlerInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profilFoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   varsayilanFirmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pushAcik?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushTumu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUpdateManyWithoutKullaniciNestedInput
   kaliplar?: Prisma.MesajKalibiUpdateManyWithoutKullaniciNestedInput
   sayfalar?: Prisma.DavetSayfasiUpdateManyWithoutKullaniciNestedInput
+  pushTokenlar?: Prisma.PushTokenUpdateManyWithoutKullaniciNestedInput
   firmaUyelikler?: Prisma.FirmaUyeUpdateManyWithoutKullaniciNestedInput
 }
 
@@ -1005,10 +1379,15 @@ export type KullaniciUncheckedUpdateWithoutBildirimlerInput = {
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profilFoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   varsayilanFirmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pushAcik?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushTumu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUncheckedUpdateManyWithoutKullaniciNestedInput
   kaliplar?: Prisma.MesajKalibiUncheckedUpdateManyWithoutKullaniciNestedInput
   sayfalar?: Prisma.DavetSayfasiUncheckedUpdateManyWithoutKullaniciNestedInput
+  pushTokenlar?: Prisma.PushTokenUncheckedUpdateManyWithoutKullaniciNestedInput
   firmaUyelikler?: Prisma.FirmaUyeUncheckedUpdateManyWithoutKullaniciNestedInput
 }
 
@@ -1022,6 +1401,7 @@ export type KullaniciCountOutputType = {
   kaliplar: number
   sayfalar: number
   bildirimler: number
+  pushTokenlar: number
   firmaUyelikler: number
 }
 
@@ -1030,6 +1410,7 @@ export type KullaniciCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensi
   kaliplar?: boolean | KullaniciCountOutputTypeCountKaliplarArgs
   sayfalar?: boolean | KullaniciCountOutputTypeCountSayfalarArgs
   bildirimler?: boolean | KullaniciCountOutputTypeCountBildirimlerArgs
+  pushTokenlar?: boolean | KullaniciCountOutputTypeCountPushTokenlarArgs
   firmaUyelikler?: boolean | KullaniciCountOutputTypeCountFirmaUyeliklerArgs
 }
 
@@ -1074,6 +1455,13 @@ export type KullaniciCountOutputTypeCountBildirimlerArgs<ExtArgs extends runtime
 /**
  * KullaniciCountOutputType without action
  */
+export type KullaniciCountOutputTypeCountPushTokenlarArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PushTokenWhereInput
+}
+
+/**
+ * KullaniciCountOutputType without action
+ */
 export type KullaniciCountOutputTypeCountFirmaUyeliklerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.FirmaUyeWhereInput
 }
@@ -1090,11 +1478,16 @@ export type KullaniciSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   bio?: boolean
   profilFoto?: boolean
   varsayilanFirmaId?: boolean
+  pushAcik?: boolean
+  pushTumu?: boolean
+  pushSessizBas?: boolean
+  pushSessizBit?: boolean
   createdAt?: boolean
   kisiler?: boolean | Prisma.Kullanici$kisilerArgs<ExtArgs>
   kaliplar?: boolean | Prisma.Kullanici$kaliplarArgs<ExtArgs>
   sayfalar?: boolean | Prisma.Kullanici$sayfalarArgs<ExtArgs>
   bildirimler?: boolean | Prisma.Kullanici$bildirimlerArgs<ExtArgs>
+  pushTokenlar?: boolean | Prisma.Kullanici$pushTokenlarArgs<ExtArgs>
   firmaUyelikler?: boolean | Prisma.Kullanici$firmaUyeliklerArgs<ExtArgs>
   _count?: boolean | Prisma.KullaniciCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["kullanici"]>
@@ -1110,6 +1503,10 @@ export type KullaniciSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   bio?: boolean
   profilFoto?: boolean
   varsayilanFirmaId?: boolean
+  pushAcik?: boolean
+  pushTumu?: boolean
+  pushSessizBas?: boolean
+  pushSessizBit?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["kullanici"]>
 
@@ -1124,6 +1521,10 @@ export type KullaniciSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   bio?: boolean
   profilFoto?: boolean
   varsayilanFirmaId?: boolean
+  pushAcik?: boolean
+  pushTumu?: boolean
+  pushSessizBas?: boolean
+  pushSessizBit?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["kullanici"]>
 
@@ -1138,15 +1539,20 @@ export type KullaniciSelectScalar = {
   bio?: boolean
   profilFoto?: boolean
   varsayilanFirmaId?: boolean
+  pushAcik?: boolean
+  pushTumu?: boolean
+  pushSessizBas?: boolean
+  pushSessizBit?: boolean
   createdAt?: boolean
 }
 
-export type KullaniciOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "adSoyad" | "email" | "telefon" | "parolaHash" | "rol" | "sehir" | "bio" | "profilFoto" | "varsayilanFirmaId" | "createdAt", ExtArgs["result"]["kullanici"]>
+export type KullaniciOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "adSoyad" | "email" | "telefon" | "parolaHash" | "rol" | "sehir" | "bio" | "profilFoto" | "varsayilanFirmaId" | "pushAcik" | "pushTumu" | "pushSessizBas" | "pushSessizBit" | "createdAt", ExtArgs["result"]["kullanici"]>
 export type KullaniciInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   kisiler?: boolean | Prisma.Kullanici$kisilerArgs<ExtArgs>
   kaliplar?: boolean | Prisma.Kullanici$kaliplarArgs<ExtArgs>
   sayfalar?: boolean | Prisma.Kullanici$sayfalarArgs<ExtArgs>
   bildirimler?: boolean | Prisma.Kullanici$bildirimlerArgs<ExtArgs>
+  pushTokenlar?: boolean | Prisma.Kullanici$pushTokenlarArgs<ExtArgs>
   firmaUyelikler?: boolean | Prisma.Kullanici$firmaUyeliklerArgs<ExtArgs>
   _count?: boolean | Prisma.KullaniciCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1160,6 +1566,7 @@ export type $KullaniciPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     kaliplar: Prisma.$MesajKalibiPayload<ExtArgs>[]
     sayfalar: Prisma.$DavetSayfasiPayload<ExtArgs>[]
     bildirimler: Prisma.$BildirimPayload<ExtArgs>[]
+    pushTokenlar: Prisma.$PushTokenPayload<ExtArgs>[]
     firmaUyelikler: Prisma.$FirmaUyePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1173,6 +1580,10 @@ export type $KullaniciPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     bio: string | null
     profilFoto: string | null
     varsayilanFirmaId: string | null
+    pushAcik: boolean
+    pushTumu: boolean
+    pushSessizBas: number | null
+    pushSessizBit: number | null
     createdAt: Date
   }, ExtArgs["result"]["kullanici"]>
   composites: {}
@@ -1572,6 +1983,7 @@ export interface Prisma__KullaniciClient<T, Null = never, ExtArgs extends runtim
   kaliplar<T extends Prisma.Kullanici$kaliplarArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Kullanici$kaliplarArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MesajKalibiPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sayfalar<T extends Prisma.Kullanici$sayfalarArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Kullanici$sayfalarArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DavetSayfasiPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   bildirimler<T extends Prisma.Kullanici$bildirimlerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Kullanici$bildirimlerArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BildirimPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pushTokenlar<T extends Prisma.Kullanici$pushTokenlarArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Kullanici$pushTokenlarArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PushTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   firmaUyelikler<T extends Prisma.Kullanici$firmaUyeliklerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Kullanici$firmaUyeliklerArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FirmaUyePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1612,6 +2024,10 @@ export interface KullaniciFieldRefs {
   readonly bio: Prisma.FieldRef<"Kullanici", 'String'>
   readonly profilFoto: Prisma.FieldRef<"Kullanici", 'String'>
   readonly varsayilanFirmaId: Prisma.FieldRef<"Kullanici", 'String'>
+  readonly pushAcik: Prisma.FieldRef<"Kullanici", 'Boolean'>
+  readonly pushTumu: Prisma.FieldRef<"Kullanici", 'Boolean'>
+  readonly pushSessizBas: Prisma.FieldRef<"Kullanici", 'Int'>
+  readonly pushSessizBit: Prisma.FieldRef<"Kullanici", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Kullanici", 'DateTime'>
 }
     
@@ -2099,6 +2515,30 @@ export type Kullanici$bildirimlerArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.BildirimScalarFieldEnum | Prisma.BildirimScalarFieldEnum[]
+}
+
+/**
+ * Kullanici.pushTokenlar
+ */
+export type Kullanici$pushTokenlarArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PushToken
+   */
+  select?: Prisma.PushTokenSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PushToken
+   */
+  omit?: Prisma.PushTokenOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PushTokenInclude<ExtArgs> | null
+  where?: Prisma.PushTokenWhereInput
+  orderBy?: Prisma.PushTokenOrderByWithRelationInput | Prisma.PushTokenOrderByWithRelationInput[]
+  cursor?: Prisma.PushTokenWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PushTokenScalarFieldEnum | Prisma.PushTokenScalarFieldEnum[]
 }
 
 /**

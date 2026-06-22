@@ -3,6 +3,7 @@ import { createHash } from "crypto";
 import { prisma } from "@/lib/prisma";
 import { skorHesapla } from "./skor";
 import { otomatikDurum } from "./durum";
+import { pushGonder } from "./push";
 import type { BildirimTip } from "@/generated/prisma/enums";
 
 function hash(deger: string | null | undefined): string | null {
@@ -120,16 +121,18 @@ export async function olayKaydet(
   // Bildirim
   const b = BILDIRIM_ESLEME[g.olayTip];
   if (b) {
+    const mesaj = b.metin(link.kisi.adSoyad);
     await prisma.bildirim.create({
       data: {
         kullaniciId: link.kullaniciId,
         baslik: "Aday hareketi",
-        mesaj: b.metin(link.kisi.adSoyad),
+        mesaj,
         tip: b.tip,
         kisiId: link.kisiId,
         linkId: link.id,
       },
     });
+    await pushGonder(link.kullaniciId, "İsim Listem", mesaj, b.tip, { kisiId: link.kisiId });
   }
 
   return true;

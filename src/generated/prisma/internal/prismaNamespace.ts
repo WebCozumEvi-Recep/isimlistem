@@ -398,6 +398,7 @@ export const ModelName = {
   RandevuTalebi: 'RandevuTalebi',
   TalepFormu: 'TalepFormu',
   SiteAyar: 'SiteAyar',
+  PushToken: 'PushToken',
   SilinmisDavet: 'SilinmisDavet',
   Bildirim: 'Bildirim'
 } as const
@@ -415,7 +416,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "kullanici" | "firma" | "firmaUye" | "kisi" | "aktivite" | "mesajKalibi" | "davetSayfasi" | "davetModulu" | "davetLinki" | "davetOlayi" | "hazirMesajLog" | "randevuTalebi" | "talepFormu" | "siteAyar" | "silinmisDavet" | "bildirim"
+    modelProps: "kullanici" | "firma" | "firmaUye" | "kisi" | "aktivite" | "mesajKalibi" | "davetSayfasi" | "davetModulu" | "davetLinki" | "davetOlayi" | "hazirMesajLog" | "randevuTalebi" | "talepFormu" | "siteAyar" | "pushToken" | "silinmisDavet" | "bildirim"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1455,6 +1456,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    PushToken: {
+      payload: Prisma.$PushTokenPayload<ExtArgs>
+      fields: Prisma.PushTokenFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PushTokenFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PushTokenPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PushTokenFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PushTokenPayload>
+        }
+        findFirst: {
+          args: Prisma.PushTokenFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PushTokenPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PushTokenFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PushTokenPayload>
+        }
+        findMany: {
+          args: Prisma.PushTokenFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PushTokenPayload>[]
+        }
+        create: {
+          args: Prisma.PushTokenCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PushTokenPayload>
+        }
+        createMany: {
+          args: Prisma.PushTokenCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PushTokenCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PushTokenPayload>[]
+        }
+        delete: {
+          args: Prisma.PushTokenDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PushTokenPayload>
+        }
+        update: {
+          args: Prisma.PushTokenUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PushTokenPayload>
+        }
+        deleteMany: {
+          args: Prisma.PushTokenDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PushTokenUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PushTokenUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PushTokenPayload>[]
+        }
+        upsert: {
+          args: Prisma.PushTokenUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PushTokenPayload>
+        }
+        aggregate: {
+          args: Prisma.PushTokenAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePushToken>
+        }
+        groupBy: {
+          args: Prisma.PushTokenGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PushTokenGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PushTokenCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PushTokenCountAggregateOutputType> | number
+        }
+      }
+    }
     SilinmisDavet: {
       payload: Prisma.$SilinmisDavetPayload<ExtArgs>
       fields: Prisma.SilinmisDavetFieldRefs
@@ -1653,6 +1728,10 @@ export const KullaniciScalarFieldEnum = {
   bio: 'bio',
   profilFoto: 'profilFoto',
   varsayilanFirmaId: 'varsayilanFirmaId',
+  pushAcik: 'pushAcik',
+  pushTumu: 'pushTumu',
+  pushSessizBas: 'pushSessizBas',
+  pushSessizBit: 'pushSessizBit',
   createdAt: 'createdAt'
 } as const
 
@@ -1894,6 +1973,18 @@ export const SiteAyarScalarFieldEnum = {
 export type SiteAyarScalarFieldEnum = (typeof SiteAyarScalarFieldEnum)[keyof typeof SiteAyarScalarFieldEnum]
 
 
+export const PushTokenScalarFieldEnum = {
+  id: 'id',
+  kullaniciId: 'kullaniciId',
+  token: 'token',
+  platform: 'platform',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PushTokenScalarFieldEnum = (typeof PushTokenScalarFieldEnum)[keyof typeof PushTokenScalarFieldEnum]
+
+
 export const SilinmisDavetScalarFieldEnum = {
   id: 'id',
   token: 'token',
@@ -1997,6 +2088,27 @@ export type ListEnumRolFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMo
 
 
 /**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
+ * Reference to a field of type 'Int'
+ */
+export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+/**
+ * Reference to a field of type 'Int[]'
+ */
+export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -2035,20 +2147,6 @@ export type EnumFirmaDurumFieldRefInput<$PrismaModel> = FieldRefInputType<$Prism
  * Reference to a field of type 'FirmaDurum[]'
  */
 export type ListEnumFirmaDurumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FirmaDurum[]'>
-    
-
-
-/**
- * Reference to a field of type 'Int'
- */
-export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-/**
- * Reference to a field of type 'Int[]'
- */
-export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -2119,13 +2217,6 @@ export type EnumSunumDurumFieldRefInput<$PrismaModel> = FieldRefInputType<$Prism
  * Reference to a field of type 'SunumDurum[]'
  */
 export type ListEnumSunumDurumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SunumDurum[]'>
-    
-
-
-/**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -2420,6 +2511,7 @@ export type GlobalOmitConfig = {
   randevuTalebi?: Prisma.RandevuTalebiOmit
   talepFormu?: Prisma.TalepFormuOmit
   siteAyar?: Prisma.SiteAyarOmit
+  pushToken?: Prisma.PushTokenOmit
   silinmisDavet?: Prisma.SilinmisDavetOmit
   bildirim?: Prisma.BildirimOmit
 }

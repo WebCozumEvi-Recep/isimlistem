@@ -1,5 +1,6 @@
 import "server-only";
 import { prisma } from "@/lib/prisma";
+import { pushGonder } from "./push";
 
 // Açılmamış / yarım bırakılmış davetler için nazik takip hatırlatmaları.
 // Networker'a bildirim üretir; spam değil, her aşama bir kez (marker olay ile tekilleştirme).
@@ -97,6 +98,14 @@ export async function takipTara(): Promise<TakipSonuc> {
           await tx.davetLinki.update({ where: { id: link.id }, data: { durum: "ILGISIZ" } });
         }
       });
+
+      await pushGonder(
+        link.kullaniciId,
+        "İsim Listem",
+        `${ad} için takip zamanı geldi.`,
+        a.final ? "ACILMAYAN_DAVET" : "TAKIP_ZAMANI",
+        { kisiId: link.kisiId },
+      );
 
       sonuc.bildirim++;
       if (a.final) sonuc.pasif++;

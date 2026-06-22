@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { davetToken } from "@/server/token";
+import { pushGonder } from "@/server/push";
 
 /**
  * Silinmiş bir adayın eski davet token'ı ile geri dönmesi: kendini yeniden aday
@@ -64,6 +65,8 @@ export async function silinmisDavetKayit(token: string, formData: FormData) {
     });
     await tx.silinmisDavet.deleteMany({ where: { token } });
   });
+
+  await pushGonder(iz.kullaniciId, "İsim Listem", `${adSoyad} davet linkinden kendini aday olarak ekledi.`, "YENI_ADAY");
 
   // Sayfa duruyorsa yeni davet sayfasını göster; yoksa teşekkür.
   redirect(sayfa ? `/d/${yeniToken}` : `/d/${token}/tesekkurler`);

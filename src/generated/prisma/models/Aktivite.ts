@@ -381,10 +381,6 @@ export type AktiviteUncheckedUpdateManyWithoutKisiNestedInput = {
   deleteMany?: Prisma.AktiviteScalarWhereInput | Prisma.AktiviteScalarWhereInput[]
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type AktiviteCreateWithoutKisiInput = {
   id?: string
   durum: $Enums.SunumDurum

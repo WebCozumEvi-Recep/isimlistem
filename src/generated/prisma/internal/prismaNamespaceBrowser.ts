@@ -65,6 +65,7 @@ export const ModelName = {
   RandevuTalebi: 'RandevuTalebi',
   TalepFormu: 'TalepFormu',
   SiteAyar: 'SiteAyar',
+  PushToken: 'PushToken',
   SilinmisDavet: 'SilinmisDavet',
   Bildirim: 'Bildirim'
 } as const
@@ -96,6 +97,10 @@ export const KullaniciScalarFieldEnum = {
   bio: 'bio',
   profilFoto: 'profilFoto',
   varsayilanFirmaId: 'varsayilanFirmaId',
+  pushAcik: 'pushAcik',
+  pushTumu: 'pushTumu',
+  pushSessizBas: 'pushSessizBas',
+  pushSessizBit: 'pushSessizBit',
   createdAt: 'createdAt'
 } as const
 
@@ -335,6 +340,18 @@ export const SiteAyarScalarFieldEnum = {
 } as const
 
 export type SiteAyarScalarFieldEnum = (typeof SiteAyarScalarFieldEnum)[keyof typeof SiteAyarScalarFieldEnum]
+
+
+export const PushTokenScalarFieldEnum = {
+  id: 'id',
+  kullaniciId: 'kullaniciId',
+  token: 'token',
+  platform: 'platform',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PushTokenScalarFieldEnum = (typeof PushTokenScalarFieldEnum)[keyof typeof PushTokenScalarFieldEnum]
 
 
 export const SilinmisDavetScalarFieldEnum = {

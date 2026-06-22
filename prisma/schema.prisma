@@ -161,6 +161,12 @@ model Kullanici {
   kaliplar        MesajKalibi[]
   sayfalar        DavetSayfasi[]
   bildirimler     Bildirim[]
+  pushTokenlar    PushToken[]
+  // Push bildirim tercihleri
+  pushAcik        Boolean        @default(true) // ana anahtar
+  pushTumu        Boolean        @default(false) // false = sadece önemli, true = tüm bildirimler
+  pushSessizBas   Int?           @default(23) // sessiz saat başlangıcı (0-23), null = kapalı
+  pushSessizBit   Int?           @default(8) // sessiz saat bitişi (0-23)
   firmaUyelikler  FirmaUye[]
   createdAt       DateTime       @default(now())
 }
@@ -430,6 +436,19 @@ model SiteAyar {
 
 // Aday silindiğinde davet linkleri de silinir; eski token'la geri dönen kişinin
 // kendini yeniden aday olarak ekleyebilmesi için bırakılan iz (tombstone).
+// Mobil uygulamanın push bildirim adresleri (Expo push token).
+model PushToken {
+  id          String    @id @default(cuid())
+  kullanici   Kullanici @relation(fields: [kullaniciId], references: [id], onDelete: Cascade)
+  kullaniciId String
+  token       String    @unique
+  platform    String? // ios | android
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([kullaniciId])
+}
+
 model SilinmisDavet {
   id          String   @id @default(cuid())
   token       String   @unique

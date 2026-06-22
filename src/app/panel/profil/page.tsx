@@ -2,7 +2,8 @@ import { requireUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import ProfilFotoSecici from "@/components/ProfilFotoSecici";
-import { profilGuncelle } from "./actions";
+import { profilGuncelle, pushAyarGuncelle } from "./actions";
+import { Bell } from "lucide-react";
 
 export default async function ProfilSayfasi() {
   const oturum = await requireUser();
@@ -38,7 +39,57 @@ export default async function ProfilSayfasi() {
           <span className="text-[12px] font-medium text-[#9AA7B8]">{user.email}</span>
         </div>
       </form>
+
+      {/* Bildirim Ayarları */}
+      <form action={pushAyarGuncelle} className="max-w-2xl space-y-4 rounded-[22px] border border-[#ECEFF3] bg-white p-5 shadow-[0_12px_30px_-22px_rgba(15,27,45,.5)]">
+        <h2 className="flex items-center gap-2 text-[16px] font-extrabold text-[#0F1B2D]">
+          <Bell size={18} className="text-[#16B364]" /> Telefon Bildirimleri
+        </h2>
+        <p className="-mt-2 text-[12px] font-medium leading-relaxed text-[#9AA7B8]">
+          Aday hareketleri telefonuna bildirim olarak düşer. Rahatsız olmamak için yalnızca önemli olayları ve sessiz saatleri seçebilirsin.
+        </p>
+
+        <label className="flex items-center gap-3 rounded-xl bg-[#F7F9FB] px-4 py-3.5">
+          <input type="checkbox" name="pushAcik" defaultChecked={user.pushAcik} className="h-5 w-5 accent-[#16B364]" />
+          <span className="text-[14px] font-bold text-[#0F1B2D]">Telefon bildirimleri açık</span>
+        </label>
+
+        <div>
+          <span className="mb-1.5 block text-[13px] font-bold text-[#3B4759]">Hangi bildirimler gelsin?</span>
+          <select name="kapsam" defaultValue={user.pushTumu ? "tumu" : "onemli"} className="w-full rounded-xl border border-[#E4E9F0] bg-[#F7F9FB] px-3.5 py-3 text-sm font-semibold text-[#0F1B2D] outline-none focus:border-emerald-500">
+            <option value="onemli">Sadece önemli (randevu, ilgileniyor, WhatsApp, yeni aday, takip)</option>
+            <option value="tumu">Tüm bildirimler (link açıldı, video izlendi dahil)</option>
+          </select>
+        </div>
+
+        <div className="rounded-xl bg-[#F7F9FB] p-4">
+          <label className="flex items-center gap-3">
+            <input type="checkbox" name="sessizKullan" defaultChecked={user.pushSessizBas != null} className="h-5 w-5 accent-[#16B364]" />
+            <span className="text-[14px] font-bold text-[#0F1B2D]">Sessiz saatler</span>
+          </label>
+          <div className="mt-3 flex items-center gap-2.5">
+            <SaatSecici name="sessizBas" deger={user.pushSessizBas ?? 23} />
+            <span className="text-[13px] font-bold text-[#8493A8]">—</span>
+            <SaatSecici name="sessizBit" deger={user.pushSessizBit ?? 8} />
+            <span className="text-[12px] font-medium text-[#9AA7B8]">arası bildirim gelmez</span>
+          </div>
+        </div>
+
+        <button className="rounded-[13px] bg-[#0B1B3C] px-7 py-3 text-[14px] font-bold text-white transition active:scale-[.97] hover:bg-[#16294e]">
+          Bildirim Ayarlarını Kaydet
+        </button>
+      </form>
     </div>
+  );
+}
+
+function SaatSecici({ name, deger }: { name: string; deger: number }) {
+  return (
+    <select name={name} defaultValue={deger} className="rounded-xl border border-[#E4E9F0] bg-white px-3.5 py-2.5 text-sm font-bold text-[#0F1B2D] outline-none focus:border-emerald-500">
+      {Array.from({ length: 24 }, (_, i) => (
+        <option key={i} value={i}>{String(i).padStart(2, "0")}:00</option>
+      ))}
+    </select>
   );
 }
 

@@ -630,14 +630,6 @@ export type EnumFirmaDurumFieldUpdateOperationsInput = {
   set?: $Enums.FirmaDurum
 }
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type FirmaCreateNestedOneWithoutUyelerInput = {
   create?: Prisma.XOR<Prisma.FirmaCreateWithoutUyelerInput, Prisma.FirmaUncheckedCreateWithoutUyelerInput>
   connectOrCreate?: Prisma.FirmaCreateOrConnectWithoutUyelerInput
