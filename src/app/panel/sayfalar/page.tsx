@@ -20,11 +20,11 @@ export default async function SayfalarSayfasi() {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-slate-900">Davet Sayfalarım</h1>
+        <h1 className="text-[22px] font-extrabold text-[#0F1B2D]">Davet Sayfalarım</h1>
         <form action={sayfaEkle}>
-          <button className="flex items-center gap-1.5 rounded-lg bg-emerald-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-emerald-600">
+          <button className="flex items-center gap-1.5 rounded-xl bg-gradient-to-br from-[#1FB46A] to-[#0E8A4D] px-3.5 py-2.5 text-[13px] font-bold text-white shadow-[0_10px_22px_-12px_rgba(14,138,77,.7)]">
             <Plus size={16} /> Yeni Sayfa
           </button>
         </form>
@@ -36,7 +36,7 @@ export default async function SayfalarSayfasi() {
         </div>
       )}
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-3 sm:grid-cols-2">
         {sayfalar.map((s) => {
           const benimMi = s.kullaniciId === user.id;
           const govde = (
@@ -84,11 +84,11 @@ export default async function SayfalarSayfasi() {
           );
           // Kendi sayfan → düzenleyici; firma sayfası → salt-okunur kart (sil/düzenle yok)
           return benimMi ? (
-            <Link key={s.id} href={`/panel/sayfa/${s.id}`} className="flex gap-4 rounded-2xl border border-slate-200 bg-white p-5 hover:border-emerald-300">
+            <Link key={s.id} href={`/panel/sayfa/${s.id}`} className="flex items-center gap-3.5 rounded-[18px] border border-[#ECEFF3] bg-white p-3.5 shadow-[0_8px_22px_-18px_rgba(15,27,45,.5)] hover:border-emerald-300">
               {govde}
             </Link>
           ) : (
-            <div key={s.id} className="flex gap-4 rounded-2xl border border-slate-200 bg-slate-50/60 p-5">
+            <div key={s.id} className="flex items-center gap-3.5 rounded-[18px] border border-[#ECEFF3] bg-slate-50/60 p-3.5">
               {govde}
             </div>
           );

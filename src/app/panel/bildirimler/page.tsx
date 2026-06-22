@@ -87,29 +87,29 @@ export default async function BildirimlerSayfasi({
   ];
 
   return (
-    <div className="space-y-5">
-      <div className="flex items-center justify-between">
-        <h1 className="flex items-center gap-2 text-2xl font-bold text-slate-900">
+    <div className="space-y-4">
+      <div className="flex items-center justify-between gap-3">
+        <h1 className="flex items-center gap-2.5 text-[21px] font-extrabold text-[#0F1B2D]">
           <Bell size={22} /> Bildirimler
         </h1>
         {okunmamisToplam > 0 && (
           <form action={tumBildirimleriOku}>
-            <button className="flex items-center gap-1.5 rounded-lg border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50">
-              <CheckCheck size={15} /> Tümünü okundu işaretle
+            <button className="flex items-center gap-1.5 rounded-xl border border-[#DDE3EA] bg-white px-3 py-2 text-[11.5px] font-bold text-[#0E8A4D] hover:bg-slate-50">
+              <CheckCheck size={15} className="text-[#16A34A]" /> Tümünü okundu
             </button>
           </form>
         )}
       </div>
 
       {/* Tip filtresi */}
-      <div className="flex flex-wrap gap-2">
+      <div className="-mx-[18px] flex gap-2 overflow-x-auto px-[18px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {tipChipleri.map((c) => {
           const sec = tip === c.key;
           return (
             <Link
               key={c.key}
               href={link({ tip: c.key })}
-              className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition ${sec ? "bg-slate-900 text-white" : "border border-slate-200 bg-white text-slate-600 hover:bg-slate-50"}`}
+              className={`flex flex-none items-center gap-1.5 rounded-full px-3.5 py-2 text-[12.5px] font-bold transition ${sec ? "bg-[#0B1B3C] text-white" : "border border-[#E4E9F0] bg-white text-[#3B4759] hover:bg-slate-50"}`}
             >
               <c.Icon size={14} /> {c.etiket}
             </Link>
@@ -126,41 +126,39 @@ export default async function BildirimlerSayfasi({
               <Link
                 key={a.key}
                 href={link({ aralik: a.key })}
-                className={`rounded-lg px-3 py-1.5 text-sm font-medium transition ${sec ? "bg-emerald-500 text-white" : "border border-slate-200 bg-white text-slate-600 hover:bg-slate-50"}`}
+                className={`rounded-full px-3.5 py-2 text-[12.5px] font-bold transition ${sec ? "bg-[#16B364] text-white" : "border border-[#E4E9F0] bg-white text-[#3B4759] hover:bg-slate-50"}`}
               >
                 {a.etiket}
               </Link>
             );
           })}
         </div>
-        <span className="text-sm text-slate-400">{toplam} bildirim</span>
+        <span className="text-[12px] font-bold text-[#8493A8]">{toplam} bildirim</span>
       </div>
 
       {bildirimler.length === 0 ? (
-        <p className="rounded-xl border border-slate-200 bg-white p-6 text-sm text-slate-500">Bu filtreye uygun bildirim yok.</p>
+        <p className="rounded-2xl border border-[#ECEFF3] bg-white p-6 text-sm text-slate-500">Bu filtreye uygun bildirim yok.</p>
       ) : (
-        <ul className="divide-y divide-slate-100 overflow-hidden rounded-xl border border-slate-200 bg-white">
+        <div className="flex flex-col gap-2.5">
           {bildirimler.map((b) => {
             const s = TIP_STILI[b.tip] ?? VARSAYILAN_STIL;
             const govde = (
-              <div className={`flex items-start gap-3 px-4 py-3 ${b.okundu ? "" : "bg-emerald-50/40"}`}>
-                <span className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${s.renk}`}>
+              <div className="flex items-center gap-3 rounded-2xl border border-[#ECEFF3] bg-white px-3.5 py-3 shadow-[0_6px_18px_-16px_rgba(15,27,45,.5)]">
+                <span className={`flex h-10 w-10 flex-none items-center justify-center rounded-[13px] ${s.renk}`}>
                   <s.Icon size={18} />
                 </span>
                 <div className="min-w-0 flex-1">
-                  <div className="font-medium text-slate-900">{b.mesaj}</div>
-                  <div className="text-xs text-slate-400">{s.etiket} · {b.createdAt.toLocaleString("tr-TR")}</div>
+                  <div className="text-[13.5px] font-bold leading-snug text-[#0F1B2D]">{b.mesaj}</div>
+                  <div className="mt-0.5 text-[11.5px] font-semibold text-[#9AA7B8]">{s.etiket} · {b.createdAt.toLocaleString("tr-TR")}</div>
                 </div>
-                {!b.okundu && <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />}
+                {!b.okundu && <span className="h-2.5 w-2.5 flex-none rounded-full bg-[#16B364]" />}
               </div>
             );
-            return (
-              <li key={b.id}>
-                {b.kisiId ? <Link href={`/panel/kisi/${b.kisiId}`} className="block hover:bg-slate-50">{govde}</Link> : govde}
-              </li>
-            );
+            return b.kisiId
+              ? <Link key={b.id} href={`/panel/kisi/${b.kisiId}`} className="block">{govde}</Link>
+              : <div key={b.id}>{govde}</div>;
           })}
-        </ul>
+        </div>
       )}
 
       {/* Sayfalama */}

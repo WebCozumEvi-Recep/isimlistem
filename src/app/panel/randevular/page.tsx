@@ -16,6 +16,10 @@ const DURUM_RENK: Record<string, string> = {
   REDDEDILDI: "bg-rose-100 text-rose-700", ERTELENDI: "bg-sky-100 text-sky-700",
   TAMAMLANDI: "bg-slate-200 text-slate-700", IPTAL: "bg-slate-100 text-slate-500",
 };
+const AVATAR_RENK = ["#16B364", "#2563EB", "#9333EA", "#D97706", "#0EA5A0", "#E11D6B"];
+function basHarf(ad: string) {
+  return ad.split(" ").filter(Boolean).map((w) => w[0]).slice(0, 2).join("").toLocaleUpperCase("tr");
+}
 
 const AY_ADI = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
 
@@ -66,15 +70,15 @@ export default async function RandevularSayfasi({ searchParams }: { searchParams
     });
 
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900">Randevular</h1>
+    <div className="space-y-4">
+      <h1 className="text-[21px] font-extrabold text-[#0F1B2D]">Randevular</h1>
 
-      <div className="flex flex-wrap gap-2">
+      <div className="-mx-[18px] flex gap-2 overflow-x-auto px-[18px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {FILTRELER.map((x) => (
           <Link
             key={x.anahtar}
             href={x.anahtar === "tumu" ? "/panel/randevular" : `/panel/randevular?f=${x.anahtar}`}
-            className={`rounded-full px-3.5 py-1.5 text-sm font-medium ${aktif.anahtar === x.anahtar ? "bg-slate-900 text-white" : "border border-slate-200 bg-white text-slate-600 hover:bg-slate-50"}`}
+            className={`flex-none rounded-full px-4 py-2 text-[13px] font-bold ${aktif.anahtar === x.anahtar ? "bg-[#0B1B3C] text-white" : "border border-[#E4E9F0] bg-white text-[#3B4759] hover:bg-slate-50"}`}
           >
             {x.etiket}
           </Link>
@@ -82,52 +86,53 @@ export default async function RandevularSayfasi({ searchParams }: { searchParams
       </div>
 
       {sirali.length === 0 ? (
-        <p className="rounded-xl border border-slate-200 bg-white p-6 text-sm text-slate-500">
+        <p className="rounded-2xl border border-[#ECEFF3] bg-white p-6 text-sm text-slate-500">
           {aktif.anahtar === "tumu"
             ? "Henüz randevu talebi yok. Adaylar davet sayfasından randevu istediğinde burada görünecek."
             : "Bu filtreye uygun randevu yok."}
         </p>
       ) : (
-        <div className="space-y-3">
-          {sirali.map(({ r, gorusme }) => (
-            <div key={r.id} className="rounded-2xl border border-slate-200 bg-white p-5">
-              <div className="flex flex-wrap items-start justify-between gap-3">
-                <div>
-                  <Link href={`/panel/kisi/${r.kisi.id}`} className="font-semibold text-slate-900 hover:text-emerald-600">
-                    {r.kisi.adSoyad}
-                  </Link>
-                  <div className="mt-1 text-sm text-slate-500">
-                    {RANDEVU_TIP_ETIKET[r.tip]} {r.tarihMetni ? `· ${r.tarihMetni}` : ""}
-                    {r.kisi.telefon ? ` · ${r.kisi.telefon}` : ""}
-                  </div>
-                  {r.mesaj && <p className="mt-1 text-sm text-slate-600">&ldquo;{r.mesaj}&rdquo;</p>}
-                </div>
-                <div className="flex items-center gap-2">
-                  {gorusme && gorusme.getTime() >= simdi && (
-                    <span className="rounded-full bg-indigo-100 px-2.5 py-0.5 text-xs font-medium text-indigo-700">Yaklaşan</span>
-                  )}
-                  <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${DURUM_RENK[r.durum]}`}>
-                    {DURUM_ETIKET[r.durum]}
-                  </span>
-                </div>
+        <div className="flex flex-col gap-3.5">
+          {sirali.map(({ r, gorusme }, i) => (
+            <div key={r.id} className="rounded-[20px] border border-[#ECEFF3] bg-white p-[17px] shadow-[0_10px_26px_-20px_rgba(15,27,45,.5)]">
+              <div className="mb-2 flex items-center gap-3">
+                <span className="flex h-[42px] w-[42px] flex-none items-center justify-center rounded-[14px] text-[14px] font-extrabold text-white" style={{ background: AVATAR_RENK[i % AVATAR_RENK.length] }}>
+                  {basHarf(r.kisi.adSoyad)}
+                </span>
+                <Link href={`/panel/kisi/${r.kisi.id}`} className="text-[15.5px] font-extrabold text-[#0F1B2D]">
+                  {r.kisi.adSoyad}
+                </Link>
               </div>
+              <div className="mb-2.5 text-[12.5px] font-semibold leading-relaxed text-[#7A8799]">
+                {RANDEVU_TIP_ETIKET[r.tip]} {r.tarihMetni ? `· ${r.tarihMetni}` : ""}
+                {r.kisi.telefon ? ` · ${r.kisi.telefon}` : ""}
+              </div>
+              <div className="mb-3.5 flex flex-wrap gap-2">
+                {gorusme && gorusme.getTime() >= simdi && (
+                  <span className="rounded-full bg-[#EAF1FF] px-3 py-1 text-[11.5px] font-bold text-[#2563EB]">Yaklaşan</span>
+                )}
+                <span className={`rounded-full px-3 py-1 text-[11.5px] font-bold ${DURUM_RENK[r.durum]}`}>
+                  {DURUM_ETIKET[r.durum]}
+                </span>
+              </div>
+              {r.mesaj && <p className="mb-2.5 text-[13px] text-[#5A6678]">&ldquo;{r.mesaj}&rdquo;</p>}
               {r.sonucNotu && (
-                <p className="mt-2 rounded-lg bg-slate-50 px-3 py-2 text-sm text-slate-600">
-                  <span className="font-medium text-slate-500">Sonuç notu:</span> {r.sonucNotu}
+                <p className="mb-2.5 rounded-xl bg-[#F4F6F9] px-3.5 py-2.5 text-[13px] text-[#5A6678]">
+                  <span className="font-bold text-[#7A8799]">Sonuç notu:</span> {r.sonucNotu}
                 </p>
               )}
-              <form action={randevuDurumGuncelle.bind(null, r.id)} className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center">
-                <select name="durum" defaultValue={r.durum} className="rounded-lg border border-slate-300 px-3 py-2 text-sm">
+              <form action={randevuDurumGuncelle.bind(null, r.id)} className="flex flex-col gap-2.5">
+                <select name="durum" defaultValue={r.durum} className="rounded-xl border border-[#E4E9F0] bg-[#F4F6F9] px-3.5 py-3 text-[13.5px] font-bold text-[#3B4759]">
                   {RANDEVU_DURUM_SECENEK.map((d) => <option key={d} value={d}>{DURUM_ETIKET[d]}</option>)}
                 </select>
                 <input
                   name="sonucNotu"
                   defaultValue={r.sonucNotu ?? ""}
                   placeholder="Kapatma / sonuç notu (opsiyonel)"
-                  className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm"
+                  className="rounded-xl border border-[#E4E9F0] bg-[#F4F6F9] px-3.5 py-3 text-[13px] outline-none placeholder:text-[#9AA7B8]"
                 />
-                <button className="flex items-center justify-center gap-1.5 rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800">
-                  <Check size={15} /> Güncelle
+                <button className="flex items-center justify-center gap-1.5 rounded-xl bg-[#0B1B3C] px-4 py-3 text-[14px] font-bold text-white hover:bg-[#16294e]">
+                  <Check size={16} /> Güncelle
                 </button>
               </form>
             </div>
