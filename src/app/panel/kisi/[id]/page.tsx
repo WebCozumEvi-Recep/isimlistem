@@ -10,7 +10,8 @@ import { kisiGuncelle, durumDegistir, kisiSil } from "@/app/panel/actions";
 import { whatsappHazirla, gonderildiOnayla } from "@/app/panel/davet-actions";
 import { firmaUyeligi } from "@/lib/firma";
 import { SUNUM_DURUMLARI, DURUM_ETIKET, SICAKLIK_ETIKET, SICAKLIK_RENK, skorSicaklik, type SunumDurum } from "@/lib/sabitler";
-import { Trash2, Send, MessageCircle, Activity, History, ListChecks, UserPen, Eye, Clock, MousePointerClick, ExternalLink } from "lucide-react";
+import { Send, MessageCircle, Activity, History, ListChecks, UserPen, Eye, Clock, MousePointerClick, ExternalLink } from "lucide-react";
+import KisiSilButonu from "@/components/KisiSilButonu";
 
 const BOLUMLER = [
   { key: "davet", etiket: "WhatsApp Daveti", Icon: MessageCircle },
@@ -112,19 +113,12 @@ export default async function KisiDetaySayfasi({
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex flex-wrap items-center gap-3">
-          <h1 className="text-2xl font-bold text-slate-900">{kisi.adSoyad}</h1>
-          <DurumRozeti durum={kisi.durum as SunumDurum} />
-          <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium ${SICAKLIK_RENK[sicaklik]}`}>
-            Skor {kisi.skor} · {SICAKLIK_ETIKET[sicaklik]}
-          </span>
-        </div>
-        <form action={silAction}>
-          <button className="flex items-center gap-1.5 rounded-lg border border-rose-200 px-3 py-1.5 text-sm font-medium text-rose-600 hover:bg-rose-50">
-            <Trash2 size={16} /> Sil
-          </button>
-        </form>
+      <div className="flex flex-wrap items-center gap-3">
+        <h1 className="text-2xl font-bold text-slate-900">{kisi.adSoyad}</h1>
+        <DurumRozeti durum={kisi.durum as SunumDurum} />
+        <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium ${SICAKLIK_RENK[sicaklik]}`}>
+          Skor {kisi.skor} · {SICAKLIK_ETIKET[sicaklik]}
+        </span>
       </div>
 
       {/* Sekmeler */}
@@ -313,6 +307,8 @@ export default async function KisiDetaySayfasi({
           <KisiForm kisi={kisi} action={guncelleAction} gonderEtiket="Bilgileri Güncelle" />
         </div>
       )}
+
+      <KisiSilButonu adSoyad={kisi.adSoyad} action={silAction} />
     </div>
   );
 }
