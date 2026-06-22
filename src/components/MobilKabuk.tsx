@@ -1,10 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { cikisYap } from "@/app/auth/actions";
-import { Home, Users, Bell, Calendar, User, Plus, Compass, LogOut } from "lucide-react";
+import { Home, Users, Bell, Calendar, User, Plus, Compass, LogOut, ChevronLeft } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+
+// Alt tab kökleri: bu sayfalarda üstte "çıkış" görünür. Diğer tüm /panel alt sayfalarında "geri".
+const KOK_SAYFALAR = ["/panel", "/panel/liste", "/panel/bildirimler", "/panel/randevular", "/panel/profil"];
+
+// Alt sayfa başlıkları (geri ikonu yanında ortada görünür).
+function altSayfaBasligi(pathname: string): string | null {
+  if (pathname.startsWith("/panel/kisi/yeni")) return "Yeni Aday";
+  if (pathname.startsWith("/panel/kisi/")) return "Aday Detayı";
+  if (pathname.startsWith("/panel/kesfet")) return "Keşfet";
+  if (pathname.startsWith("/panel/kaliplar")) return "Davet Mesajları";
+  if (pathname.startsWith("/panel/sayfalar")) return "Davet Sayfaları";
+  if (pathname.startsWith("/panel/sayfa/")) return "Davet Sayfası";
+  return null;
+}
 
 type Sekme = { href: string; etiket: string; icon: LucideIcon; rozet?: number; rozetRenk?: string };
 
@@ -20,6 +34,12 @@ export default function MobilKabuk({
   bekleyenRandevu?: number;
 }) {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const altBaslik = altSayfaBasligi(pathname);
+  const kokte = KOK_SAYFALAR.includes(pathname);
+  const geriGoster = !kokte && !!altBaslik;
+  const ustBaslik = geriGoster ? altBaslik : baslik;
 
   const sekmeler: Sekme[] = [
     { href: "/panel", etiket: "Anasayfa", icon: Home },
@@ -39,12 +59,23 @@ export default function MobilKabuk({
         style={{ paddingTop: "env(safe-area-inset-top)" }}
       >
         <div className="flex h-14 items-center gap-2 px-3">
-          <form action={cikisYap} className="flex">
-            <button aria-label="Çıkış" className="flex h-10 w-10 items-center justify-center rounded-xl text-white active:bg-white/10">
-              <LogOut size={22} />
+          {geriGoster ? (
+            <button
+              type="button"
+              onClick={() => { if (typeof window !== "undefined" && window.history.length > 1) router.back(); else router.push("/panel"); }}
+              aria-label="Geri"
+              className="flex h-10 w-10 items-center justify-center rounded-xl text-white active:bg-white/10"
+            >
+              <ChevronLeft size={24} />
             </button>
-          </form>
-          <div className="flex-1 text-center text-[17px] font-bold tracking-[.2px] text-white">{baslik}</div>
+          ) : (
+            <form action={cikisYap} className="flex">
+              <button aria-label="Çıkış" className="flex h-10 w-10 items-center justify-center rounded-xl text-white active:bg-white/10">
+                <LogOut size={22} />
+              </button>
+            </form>
+          )}
+          <div className="flex-1 text-center text-[17px] font-bold tracking-[.2px] text-white">{ustBaslik}</div>
           <Link href="/panel/kisi/yeni" aria-label="Aday Ekle" className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-white active:bg-white/20">
             <Plus size={22} />
           </Link>

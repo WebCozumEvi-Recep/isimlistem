@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Plus } from "lucide-react";
 import {
   KAYNAK_TIPLERI,
   KAYNAK_ETIKET,
@@ -54,7 +54,7 @@ export default function KisiForm({
       <button
         type="button"
         onClick={() => setAcik((v) => !v)}
-        className="flex items-center gap-1.5 text-sm font-medium text-emerald-700 hover:text-emerald-800"
+        className="flex items-center gap-1.5 text-[13.5px] font-bold text-[#0E8A4D] hover:text-emerald-800"
       >
         <ChevronDown size={16} className={`transition ${acik ? "rotate-180" : ""}`} />
         {acik ? "Detayı gizle" : "Detay ekle (opsiyonel)"}
@@ -79,20 +79,20 @@ export default function KisiForm({
             <Secim label="Durum" name="durum" deger={kisi?.durum ?? "YENI"} secenekler={SUNUM_DURUMLARI} etiketler={DURUM_ETIKET} />
           )}
           <div>
-            <span className="mb-1 block text-sm font-medium text-slate-700">Öncelik (0-5)</span>
-            <input name="oncelik" type="number" min={0} max={5} defaultValue={kisi?.oncelik ?? 0} className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-emerald-500" />
+            <span className="mb-1.5 block text-[13px] font-bold text-[#3B4759]">Öncelik (0-5)</span>
+            <input name="oncelik" type="number" min={0} max={5} defaultValue={kisi?.oncelik ?? 0} className="w-full rounded-xl border border-[#E4E9F0] bg-[#F7F9FB] px-3.5 py-3 text-[#0F1B2D] outline-none focus:border-emerald-500" />
           </div>
           <Alan label="Sonraki Takip Tarihi" name="sonrakiTakip" deger={takipDeger} type="date" />
         </div>
 
         <div>
-          <span className="mb-1 block text-sm font-medium text-slate-700">Notlar</span>
-          <textarea name="notlar" defaultValue={kisi?.notlar ?? ""} rows={3} className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-emerald-500" />
+          <span className="mb-1.5 block text-[13px] font-bold text-[#3B4759]">Notlar</span>
+          <textarea name="notlar" defaultValue={kisi?.notlar ?? ""} rows={3} className="w-full rounded-xl border border-[#E4E9F0] bg-[#F7F9FB] px-3.5 py-3 text-[#0F1B2D] outline-none focus:border-emerald-500" />
         </div>
       </div>
 
-      <button type="submit" className="rounded-xl bg-emerald-500 px-5 py-2.5 font-semibold text-white shadow-sm transition hover:bg-emerald-600">
-        {gonderEtiket}
+      <button type="submit" className="flex items-center justify-center gap-2 rounded-[13px] bg-gradient-to-br from-[#1FB46A] to-[#0E8A4D] px-6 py-3.5 text-[14.5px] font-bold text-white shadow-[0_12px_24px_-10px_rgba(14,138,77,.7)] transition active:scale-[.98]">
+        <Plus size={18} /> {gonderEtiket}
       </button>
     </form>
   );
@@ -109,8 +109,8 @@ function Secim({
 }) {
   return (
     <div>
-      <span className="mb-1 block text-sm font-medium text-slate-700">{label}</span>
-      <select name={name} defaultValue={deger} className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-emerald-500">
+      <span className="mb-1.5 block text-[13px] font-bold text-[#3B4759]">{label}</span>
+      <select name={name} defaultValue={deger} className="w-full rounded-xl border border-[#E4E9F0] bg-[#F7F9FB] px-3.5 py-3 text-[#0F1B2D] outline-none focus:border-emerald-500">
         {secenekler.map((k) => (
           <option key={k} value={k}>{etiketler[k]}</option>
         ))}
@@ -130,13 +130,13 @@ function Alan({
 }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-sm font-medium text-slate-700">{label}</span>
+      <span className="mb-1.5 block text-[13px] font-bold text-[#3B4759]">{label}</span>
       <input
         name={name}
         type={type}
         required={required}
         defaultValue={deger ?? ""}
-        className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+        className="w-full rounded-xl border border-[#E4E9F0] bg-[#F7F9FB] px-3.5 py-3 text-[#0F1B2D] outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
       />
     </label>
   );
