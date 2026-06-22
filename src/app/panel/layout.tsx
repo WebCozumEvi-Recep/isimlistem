@@ -67,7 +67,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
             <Plus size={16} /> Aday İsim Ekle
           </Link>
         </div>
-        <main className="mx-auto max-w-6xl overflow-x-clip px-4 py-6 sm:px-6">{children}</main>
+        <main className="mx-auto max-w-6xl overflow-x-clip px-4 pb-6 pt-4 sm:px-6 lg:py-6">{children}</main>
       </div>
     </div>
   );
