@@ -24,7 +24,7 @@ export type SidebarItem = {
 };
 
 export default function AppSidebar({
-  brandTitle, brandBadge, items, adSoyad, email, ustAksiyon, logoUrl, profilFoto, profilHref,
+  brandTitle, brandBadge, items, adSoyad, email, ustAksiyon, logoUrl, profilFoto, profilHref, mobilGizle,
 }: {
   brandTitle: string;
   brandBadge?: string;
@@ -35,6 +35,8 @@ export default function AppSidebar({
   logoUrl?: string | null;
   profilFoto?: string | null;
   profilHref?: string;
+  /** Mobil üst bar + drawer'ı gizle (MobilKabuk devraldığında). */
+  mobilGizle?: boolean;
 }) {
   const [acik, setAcik] = useState(false);
   const pathname = usePathname();
@@ -108,15 +110,17 @@ export default function AppSidebar({
     <>
       <aside className="fixed inset-y-0 left-0 hidden w-64 border-r border-slate-200 bg-white lg:block">{Icerik}</aside>
 
-      <div className="sticky top-0 z-30 flex items-center justify-between border-b border-slate-200 bg-white/90 px-4 py-3 backdrop-blur lg:hidden">
-        <button onClick={() => setAcik(true)} className="rounded-lg p-1.5 text-slate-700"><Menu size={22} /></button>
-        <span className="font-bold text-slate-900">{brandTitle}</span>
-        {ustAksiyon ? (
-          <Link href={ustAksiyon.href} className="rounded-lg bg-emerald-500 p-1.5 text-white"><Plus size={18} /></Link>
-        ) : <span className="w-8" />}
-      </div>
+      {!mobilGizle && (
+        <div className="sticky top-0 z-30 flex items-center justify-between border-b border-slate-200 bg-white/90 px-4 py-3 backdrop-blur lg:hidden">
+          <button onClick={() => setAcik(true)} className="rounded-lg p-1.5 text-slate-700"><Menu size={22} /></button>
+          <span className="font-bold text-slate-900">{brandTitle}</span>
+          {ustAksiyon ? (
+            <Link href={ustAksiyon.href} className="rounded-lg bg-emerald-500 p-1.5 text-white"><Plus size={18} /></Link>
+          ) : <span className="w-8" />}
+        </div>
+      )}
 
-      {acik && (
+      {!mobilGizle && acik && (
         <div className="fixed inset-0 z-40 lg:hidden">
           <div className="absolute inset-0 bg-slate-900/40" onClick={() => setAcik(false)} />
           <div className="absolute inset-y-0 left-0 w-72 bg-white shadow-xl">
