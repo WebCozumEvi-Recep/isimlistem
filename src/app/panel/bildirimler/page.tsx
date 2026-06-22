@@ -102,7 +102,7 @@ export default async function BildirimlerSayfasi({
       </div>
 
       {/* Tip filtresi */}
-      <div className="-mx-[18px] flex gap-2 overflow-x-auto px-[18px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="-mx-4 flex gap-2 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {tipChipleri.map((c) => {
           const sec = tip === c.key;
           return (

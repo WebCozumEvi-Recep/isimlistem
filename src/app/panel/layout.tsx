@@ -23,8 +23,8 @@ export default async function PanelLayout({ children }: { children: React.ReactN
   // Native uygulama içinde: üst başlık + alt tab native App.tsx tarafından çizilir; web yalnızca içerik.
   if (await isAppMode()) {
     return (
-      <div className="min-h-screen bg-[#EEF1F5]">
-        <main className="mx-auto max-w-3xl px-4 pb-28 pt-4 sm:px-6">{children}</main>
+      <div className="min-h-screen overflow-x-clip bg-[#EEF1F5]">
+        <main className="mx-auto max-w-3xl overflow-x-clip px-4 pb-28 pt-4 sm:px-6">{children}</main>
       </div>
     );
   }
@@ -43,7 +43,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
   if (user.rol === "ADMIN") items.push({ href: "/admin", etiket: "Yönetim", ikon: "Users" });
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen overflow-x-clip bg-slate-50">
       {/* Mobil tarayıcı: tasarım üst başlık + alt tab (lg altında) */}
       <MobilKabuk baslik={ayar.siteAdi} okunmamis={okunmamis} aday={aday} bekleyenRandevu={bekleyenRandevu} />
       <AppSidebar
@@ -67,7 +67,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
             <Plus size={16} /> Aday İsim Ekle
           </Link>
         </div>
-        <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6">{children}</main>
+        <main className="mx-auto max-w-6xl overflow-x-clip px-4 py-6 sm:px-6">{children}</main>
       </div>
     </div>
   );

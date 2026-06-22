@@ -73,7 +73,7 @@ export default async function RandevularSayfasi({ searchParams }: { searchParams
     <div className="space-y-4">
       <h1 className="text-[21px] font-extrabold text-[#0F1B2D]">Randevular</h1>
 
-      <div className="-mx-[18px] flex gap-2 overflow-x-auto px-[18px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="-mx-4 flex gap-2 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {FILTRELER.map((x) => (
           <Link
             key={x.anahtar}
