@@ -26,14 +26,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
   if (await isAppMode()) {
     return (
       <div className="min-h-screen overflow-x-clip bg-[#EEF1F5]">
-        <MobilKabuk
-          baslik={ayar.siteAdi}
-          okunmamis={okunmamis}
-          aday={aday}
-          bekleyenRandevu={bekleyenRandevu}
-          firmaYonetici={firmaYonetici}
-          admin={user.rol === "ADMIN"}
-        />
+        <MobilKabuk baslik={ayar.siteAdi} okunmamis={okunmamis} aday={aday} bekleyenRandevu={bekleyenRandevu} />
         <div style={{ paddingTop: "calc(56px + env(safe-area-inset-top))", paddingBottom: "calc(72px + env(safe-area-inset-bottom))" }}>
           <main className="mx-auto max-w-3xl overflow-x-clip px-4 pb-4 sm:px-6">{children}</main>
         </div>
@@ -55,7 +48,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
   return (
     <div className="min-h-screen overflow-x-clip bg-slate-50">
       {/* Mobil tarayıcı: tasarım üst başlık + alt tab (lg altında) */}
-      <MobilKabuk baslik={ayar.siteAdi} okunmamis={okunmamis} aday={aday} bekleyenRandevu={bekleyenRandevu} firmaYonetici={firmaYonetici} admin={user.rol === "ADMIN"} />
+      <MobilKabuk baslik={ayar.siteAdi} okunmamis={okunmamis} aday={aday} bekleyenRandevu={bekleyenRandevu} />
       <AppSidebar
         mobilGizle
         brandTitle={ayar.siteAdi}
