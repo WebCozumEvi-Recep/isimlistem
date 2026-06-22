@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cikisYap } from "@/app/auth/actions";
+import CikisButonu from "@/components/CikisButonu";
 import {
   LayoutGrid, List, FileText, MessageSquareText, CalendarClock,
   Bell, Building2, Users, LogOut, Plus, Menu, X, BarChart3, ArrowLeft, Settings, Compass, Inbox,
@@ -97,11 +97,9 @@ export default function AppSidebar({
             <div className="truncate text-xs text-slate-400">{email}</div>
           </div>
         </Link>
-        <form action={cikisYap}>
-          <button className="mt-1 flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-rose-600 transition hover:bg-rose-50">
-            <LogOut size={18} /> Çıkış Yap
-          </button>
-        </form>
+        <CikisButonu className="mt-1 flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-rose-600 transition hover:bg-rose-50">
+          <LogOut size={18} /> Çıkış Yap
+        </CikisButonu>
       </div>
     </div>
   );

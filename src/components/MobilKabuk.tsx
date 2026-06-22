@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { cikisYap } from "@/app/auth/actions";
+import CikisButonu from "@/components/CikisButonu";
 import { Home, Users, Bell, Calendar, User, Plus, Compass, LogOut, ChevronLeft } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -69,11 +69,9 @@ export default function MobilKabuk({
               <ChevronLeft size={24} />
             </button>
           ) : (
-            <form action={cikisYap} className="flex">
-              <button aria-label="Çıkış" className="flex h-10 w-10 items-center justify-center rounded-xl text-white active:bg-white/10">
-                <LogOut size={22} />
-              </button>
-            </form>
+            <CikisButonu className="flex h-10 w-10 items-center justify-center rounded-xl text-white active:bg-white/10">
+              <LogOut size={22} />
+            </CikisButonu>
           )}
           <div className="flex-1 text-center text-[17px] font-bold tracking-[.2px] text-white">{ustBaslik}</div>
           <Link href="/panel/kisi/yeni" aria-label="Aday Ekle" className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-white active:bg-white/20">
