@@ -55,11 +55,20 @@ export default async function ProfilSayfasi() {
         </label>
 
         <div>
-          <span className="mb-1.5 block text-[13px] font-bold text-[#3B4759]">Hangi bildirimler gelsin?</span>
-          <select name="kapsam" defaultValue={user.pushTumu ? "tumu" : "onemli"} className="w-full rounded-xl border border-[#E4E9F0] bg-[#F7F9FB] px-3.5 py-3 text-sm font-semibold text-[#0F1B2D] outline-none focus:border-emerald-500">
-            <option value="onemli">Sadece önemli (randevu, ilgileniyor, WhatsApp, yeni aday, takip)</option>
-            <option value="tumu">Tüm bildirimler (link açıldı, video izlendi dahil)</option>
-          </select>
+          <span className="mb-1 block text-[13px] font-bold text-[#3B4759]">Hangi durumlarda telefona bildirim gelsin?</span>
+          <p className="mb-2.5 text-[11.5px] font-medium text-[#9AA7B8]">İşaretlemediğin durumlar yalnızca uygulama içinde görünür, telefonu rahatsız etmez.</p>
+          <p className="mb-1.5 text-[11px] font-extrabold uppercase tracking-wide text-[#16B364]">Önemli</p>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {BILDIRIM_TIPLERI.filter((t) => t.onemli).map((t) => (
+              <TipKutu key={t.deger} tip={t} secili={user.pushTipler.includes(t.deger)} />
+            ))}
+          </div>
+          <p className="mb-1.5 mt-3 text-[11px] font-extrabold uppercase tracking-wide text-[#8493A8]">Diğer (düşük öncelikli)</p>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {BILDIRIM_TIPLERI.filter((t) => !t.onemli).map((t) => (
+              <TipKutu key={t.deger} tip={t} secili={user.pushTipler.includes(t.deger)} />
+            ))}
+          </div>
         </div>
 
         <div className="rounded-xl bg-[#F7F9FB] p-4">
@@ -80,6 +89,26 @@ export default async function ProfilSayfasi() {
         </button>
       </form>
     </div>
+  );
+}
+
+const BILDIRIM_TIPLERI: { deger: string; etiket: string; onemli: boolean }[] = [
+  { deger: "RANDEVU", etiket: "Randevu talebi", onemli: true },
+  { deger: "ILGILENIYOR", etiket: "İlgileniyor / detay istedi", onemli: true },
+  { deger: "WHATSAPP_DONUS", etiket: "WhatsApp dönüşü", onemli: true },
+  { deger: "YENI_ADAY", etiket: "Yeni aday (kendini ekledi)", onemli: true },
+  { deger: "TAKIP_ZAMANI", etiket: "Takip zamanı geldi", onemli: true },
+  { deger: "LINK_ACILDI", etiket: "Davet linki açıldı", onemli: false },
+  { deger: "VIDEO_IZLEDI", etiket: "Tanıtım videosu izlendi", onemli: false },
+  { deger: "ACILMAYAN_DAVET", etiket: "Davet açılmadı (hatırlatma)", onemli: false },
+];
+
+function TipKutu({ tip, secili }: { tip: { deger: string; etiket: string }; secili: boolean }) {
+  return (
+    <label className="flex items-center gap-2.5 rounded-xl bg-[#F7F9FB] px-3.5 py-2.5">
+      <input type="checkbox" name="tip" value={tip.deger} defaultChecked={secili} className="h-[18px] w-[18px] accent-[#16B364]" />
+      <span className="text-[13px] font-semibold text-[#0F1B2D]">{tip.etiket}</span>
+    </label>
   );
 }
 

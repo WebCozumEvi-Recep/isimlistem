@@ -2,9 +2,6 @@ import "server-only";
 import { prisma } from "@/lib/prisma";
 import type { BildirimTip } from "@/generated/prisma/enums";
 
-// Telefona push olarak düşmesi mantıklı, aksiyon gerektiren yüksek değerli olaylar.
-const ONEMLI_TIPLER: BildirimTip[] = ["ILGILENIYOR", "RANDEVU", "WHATSAPP_DONUS", "YENI_ADAY", "TAKIP_ZAMANI"];
-
 const EXPO_PUSH_URL = "https://exp.host/--/api/v2/push/send";
 
 /** Europe/Istanbul'a göre şu anki saat (0-23). */
@@ -35,10 +32,10 @@ export async function pushGonder(
   try {
     const kullanici = await prisma.kullanici.findUnique({
       where: { id: kullaniciId },
-      select: { pushAcik: true, pushTumu: true, pushSessizBas: true, pushSessizBit: true, pushTokenlar: { select: { token: true } } },
+      select: { pushAcik: true, pushTipler: true, pushSessizBas: true, pushSessizBit: true, pushTokenlar: { select: { token: true } } },
     });
     if (!kullanici || !kullanici.pushAcik) return;
-    if (!kullanici.pushTumu && !ONEMLI_TIPLER.includes(tip)) return;
+    if (!kullanici.pushTipler.includes(tip)) return;
     if (sessizMi(kullanici.pushSessizBas, kullanici.pushSessizBit)) return;
 
     const tokenlar = kullanici.pushTokenlar.map((t) => t.token).filter((t) => t.startsWith("ExponentPushToken"));

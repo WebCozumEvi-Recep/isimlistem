@@ -99,6 +99,7 @@ export const KullaniciScalarFieldEnum = {
   varsayilanFirmaId: 'varsayilanFirmaId',
   pushAcik: 'pushAcik',
   pushTumu: 'pushTumu',
+  pushTipler: 'pushTipler',
   pushSessizBas: 'pushSessizBas',
   pushSessizBit: 'pushSessizBit',
   createdAt: 'createdAt'

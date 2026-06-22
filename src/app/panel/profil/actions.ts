@@ -36,15 +36,21 @@ function saat(fd: FormData, key: string): number {
   return Number.isInteger(n) && n >= 0 && n <= 23 ? n : 0;
 }
 
+const GECERLI_TIPLER = [
+  "LINK_ACILDI", "VIDEO_IZLEDI", "ILGILENIYOR", "RANDEVU",
+  "WHATSAPP_DONUS", "TAKIP_ZAMANI", "ACILMAYAN_DAVET", "YENI_ADAY",
+];
+
 /** Push bildirim tercihlerini günceller. */
 export async function pushAyarGuncelle(formData: FormData) {
   const user = await requireUser();
   const sessizKullan = formData.get("sessizKullan") === "on";
+  const secilenTipler = formData.getAll("tip").map(String).filter((t) => GECERLI_TIPLER.includes(t));
   await prisma.kullanici.update({
     where: { id: user.id },
     data: {
       pushAcik: formData.get("pushAcik") === "on",
-      pushTumu: formData.get("kapsam") === "tumu",
+      pushTipler: secilenTipler,
       pushSessizBas: sessizKullan ? saat(formData, "sessizBas") : null,
       pushSessizBit: sessizKullan ? saat(formData, "sessizBit") : null,
     },

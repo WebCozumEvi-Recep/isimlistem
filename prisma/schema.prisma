@@ -164,7 +164,9 @@ model Kullanici {
   pushTokenlar    PushToken[]
   // Push bildirim tercihleri
   pushAcik        Boolean        @default(true) // ana anahtar
-  pushTumu        Boolean        @default(false) // false = sadece önemli, true = tüm bildirimler
+  pushTumu        Boolean        @default(false) // (kullanılmıyor — pushTipler ile değiştirildi)
+  // Hangi bildirim tiplerinde push gönderilsin (BildirimTip değerleri)
+  pushTipler      String[]       @default(["ILGILENIYOR", "RANDEVU", "WHATSAPP_DONUS", "YENI_ADAY", "TAKIP_ZAMANI"])
   pushSessizBas   Int?           @default(23) // sessiz saat başlangıcı (0-23), null = kapalı
   pushSessizBit   Int?           @default(8) // sessiz saat bitişi (0-23)
   firmaUyelikler  FirmaUye[]
