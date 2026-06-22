@@ -1,9 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { cikisYap } from "@/app/auth/actions";
-import { Home, Users, Bell, Calendar, User, Plus, Compass, LogOut, ChevronLeft } from "lucide-react";
+import {
+  Home, Users, Bell, Calendar, User, Plus, Compass, LogOut, ChevronLeft,
+  Menu, X, FileText, MessageSquareText, Building2, Shield, UserPlus,
+} from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 // Alt tab kökleri: bu sayfalarda üstte "çıkış" görünür. Diğer tüm /panel alt sayfalarında "geri".
@@ -27,19 +31,33 @@ export default function MobilKabuk({
   okunmamis = 0,
   aday = 0,
   bekleyenRandevu = 0,
+  firmaYonetici = false,
+  admin = false,
 }: {
   baslik?: string;
   okunmamis?: number;
   aday?: number;
   bekleyenRandevu?: number;
+  firmaYonetici?: boolean;
+  admin?: boolean;
 }) {
   const pathname = usePathname();
   const router = useRouter();
+  const [menuAcik, setMenuAcik] = useState(false);
 
   const altBaslik = altSayfaBasligi(pathname);
   const kokte = KOK_SAYFALAR.includes(pathname);
   const geriGoster = !kokte && !!altBaslik;
   const ustBaslik = geriGoster ? altBaslik : baslik;
+
+  const menuBaglantilari: { href: string; etiket: string; icon: LucideIcon }[] = [
+    { href: "/panel/kisi/yeni", etiket: "Aday İsim Ekle", icon: UserPlus },
+    { href: "/panel/kesfet", etiket: "Keşfet", icon: Compass },
+    { href: "/panel/sayfalar", etiket: "Davet Sayfaları", icon: FileText },
+    { href: "/panel/kaliplar", etiket: "Davet Mesajları", icon: MessageSquareText },
+    ...(firmaYonetici ? [{ href: "/firma", etiket: "Firma Paneli", icon: Building2 }] : []),
+    ...(admin ? [{ href: "/admin", etiket: "Yönetim", icon: Shield }] : []),
+  ];
 
   const sekmeler: Sekme[] = [
     { href: "/panel", etiket: "Anasayfa", icon: Home },
@@ -69,11 +87,14 @@ export default function MobilKabuk({
               <ChevronLeft size={24} />
             </button>
           ) : (
-            <form action={cikisYap} className="flex">
-              <button aria-label="Çıkış" className="flex h-10 w-10 items-center justify-center rounded-xl text-white active:bg-white/10">
-                <LogOut size={22} />
-              </button>
-            </form>
+            <button
+              type="button"
+              onClick={() => setMenuAcik(true)}
+              aria-label="Menü"
+              className="flex h-10 w-10 items-center justify-center rounded-xl text-white active:bg-white/10"
+            >
+              <Menu size={24} />
+            </button>
           )}
           <div className="flex-1 text-center text-[17px] font-bold tracking-[.2px] text-white">{ustBaslik}</div>
           <Link href="/panel/kisi/yeni" aria-label="Aday Ekle" className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-white active:bg-white/20">
@@ -108,6 +129,45 @@ export default function MobilKabuk({
           );
         })}
       </nav>
+
+      {/* Hamburger drawer (kök sayfalarda) */}
+      {menuAcik && (
+        <div className="fixed inset-0 z-50 flex lg:hidden" onClick={() => setMenuAcik(false)}>
+          <div
+            className="flex h-full w-[82%] max-w-[330px] flex-col bg-white shadow-2xl"
+            style={{ paddingTop: "env(safe-area-inset-top)", paddingBottom: "env(safe-area-inset-bottom)" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-[#ECEFF3] px-5 py-4">
+              <span className="text-[16px] font-extrabold text-[#0F1B2D]">Menü</span>
+              <button onClick={() => setMenuAcik(false)} aria-label="Kapat" className="flex h-8 w-8 items-center justify-center rounded-full bg-[#F4F6F9] text-[#5A6678]">
+                <X size={18} />
+              </button>
+            </div>
+            <div className="flex-1 overflow-y-auto py-2">
+              {menuBaglantilari.map((m) => {
+                const Icon = m.icon;
+                return (
+                  <Link
+                    key={m.href}
+                    href={m.href}
+                    onClick={() => setMenuAcik(false)}
+                    className="flex items-center gap-3.5 px-5 py-3.5 text-[15px] font-bold text-[#0F1B2D] active:bg-slate-50"
+                  >
+                    <Icon size={21} className="text-[#3B4759]" /> {m.etiket}
+                  </Link>
+                );
+              })}
+              <div className="my-2 h-px bg-[#ECEFF3]" />
+              <form action={cikisYap}>
+                <button className="flex w-full items-center gap-3.5 px-5 py-3.5 text-left text-[15px] font-bold text-rose-600 active:bg-rose-50">
+                  <LogOut size={21} /> Çıkış Yap
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

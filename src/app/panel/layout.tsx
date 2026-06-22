@@ -20,16 +20,26 @@ export default async function PanelLayout({ children }: { children: React.ReactN
     prisma.kullanici.findUnique({ where: { id: user.id }, select: { profilFoto: true } }),
   ]);
 
-  // Native uygulama içinde: üst başlık + alt tab native App.tsx tarafından çizilir; web yalnızca içerik.
+  const firmaYonetici = !!uyelik && ["FIRMA_ADMIN", "ICERIK_YONETICI", "RAPOR_IZLEYICI"].includes(uyelik.rol);
+
+  // Native uygulama (WebView) içinde: web kendi mobil kabuğunu (MobilKabuk) çizer — tek kaynak.
   if (await isAppMode()) {
     return (
       <div className="min-h-screen overflow-x-clip bg-[#EEF1F5]">
-        <main className="mx-auto max-w-3xl overflow-x-clip px-4 pb-28 pt-4 sm:px-6">{children}</main>
+        <MobilKabuk
+          baslik={ayar.siteAdi}
+          okunmamis={okunmamis}
+          aday={aday}
+          bekleyenRandevu={bekleyenRandevu}
+          firmaYonetici={firmaYonetici}
+          admin={user.rol === "ADMIN"}
+        />
+        <div style={{ paddingTop: "calc(56px + env(safe-area-inset-top))", paddingBottom: "calc(72px + env(safe-area-inset-bottom))" }}>
+          <main className="mx-auto max-w-3xl overflow-x-clip px-4 pb-4 sm:px-6">{children}</main>
+        </div>
       </div>
     );
   }
-
-  const firmaYonetici = !!uyelik && ["FIRMA_ADMIN", "ICERIK_YONETICI", "RAPOR_IZLEYICI"].includes(uyelik.rol);
 
   const items: SidebarItem[] = [
     { href: "/panel", etiket: "Panel", ikon: "LayoutGrid", exact: true },
@@ -45,7 +55,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
   return (
     <div className="min-h-screen overflow-x-clip bg-slate-50">
       {/* Mobil tarayıcı: tasarım üst başlık + alt tab (lg altında) */}
-      <MobilKabuk baslik={ayar.siteAdi} okunmamis={okunmamis} aday={aday} bekleyenRandevu={bekleyenRandevu} />
+      <MobilKabuk baslik={ayar.siteAdi} okunmamis={okunmamis} aday={aday} bekleyenRandevu={bekleyenRandevu} firmaYonetici={firmaYonetici} admin={user.rol === "ADMIN"} />
       <AppSidebar
         mobilGizle
         brandTitle={ayar.siteAdi}
