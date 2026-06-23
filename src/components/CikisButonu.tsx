@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import { LogOut, Loader2 } from "lucide-react";
 import { cikisYap } from "@/app/auth/actions";
 
@@ -26,14 +27,13 @@ export default function CikisButonu({
         {children}
       </button>
 
-      {acik && (
+      {acik && typeof document !== "undefined" && createPortal(
         <div
-          className="fixed inset-0 z-[60] flex items-end justify-center bg-black/40 p-0 sm:items-center sm:p-4"
+          className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 p-4"
           onClick={() => !cikiliyor && setAcik(false)}
         >
           <div
-            className="w-full max-w-sm rounded-t-[24px] bg-white p-5 shadow-2xl sm:rounded-[24px]"
-            style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 20px)" }}
+            className="w-full max-w-sm rounded-[24px] bg-white p-5 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-start gap-3">
@@ -68,7 +68,8 @@ export default function CikisButonu({
               </form>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );

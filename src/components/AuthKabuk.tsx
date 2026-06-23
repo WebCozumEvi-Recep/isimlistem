@@ -42,10 +42,24 @@ export default async function AuthKabuk({ children }: { children: React.ReactNod
       </div>
 
       {/* Sağ form */}
-      <div className="relative flex items-center justify-center bg-slate-50 px-4 py-12">
+      <div className="relative flex flex-col items-center justify-start gap-8 bg-slate-50 px-4 pb-12 pt-16 lg:justify-center lg:gap-0 lg:pt-12">
         <Link href="/" className="absolute left-4 top-4 flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-900">
           <ArrowLeft size={16} /> Ana sayfa
         </Link>
+
+        {/* Mobil üst logo (uygulama görünümü) */}
+        <Link href="/" className="flex flex-col items-center gap-2.5 lg:hidden">
+          {logoUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={logoUrl} alt={marka} className="h-16 w-16 rounded-[20px] object-contain shadow-[0_10px_30px_-12px_rgba(15,27,45,.5)]" />
+          ) : (
+            <span className="flex h-16 w-16 items-center justify-center rounded-[20px] bg-gradient-to-br from-[#1FB46A] to-[#0E8A4D] text-2xl font-extrabold text-white shadow-[0_10px_30px_-12px_rgba(14,138,77,.6)]">
+              {marka.charAt(0)}
+            </span>
+          )}
+          <span className="text-[18px] font-extrabold text-[#0F1B2D]">{marka}</span>
+        </Link>
+
         <div className="anim-fade-up w-full max-w-sm">
           {firma && (
             <div className="mb-6 flex flex-col items-center gap-2 text-center">
