@@ -43,21 +43,18 @@ export default async function AuthKabuk({ children }: { children: React.ReactNod
 
       {/* Sağ form */}
       <div className="relative flex flex-col items-center justify-start gap-8 bg-slate-50 px-4 pb-12 pt-16 lg:justify-center lg:gap-0 lg:pt-12">
-        <Link href="/" className="absolute left-4 top-4 flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-900">
+        <Link href="/" className="absolute left-4 top-4 hidden items-center gap-1.5 text-sm text-slate-500 hover:text-slate-900 lg:flex">
           <ArrowLeft size={16} /> Ana sayfa
         </Link>
 
-        {/* Mobil üst logo (uygulama görünümü) */}
-        <Link href="/" className="flex flex-col items-center gap-2.5 lg:hidden">
+        {/* Mobil üst logo (sade, geniş — uygulama görünümü) */}
+        <Link href="/" className="flex items-center justify-center lg:hidden">
           {logoUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={logoUrl} alt={marka} className="h-16 w-16 rounded-[20px] object-contain shadow-[0_10px_30px_-12px_rgba(15,27,45,.5)]" />
+            <img src={logoUrl} alt={marka} className="h-20 w-auto max-w-[280px] object-contain" />
           ) : (
-            <span className="flex h-16 w-16 items-center justify-center rounded-[20px] bg-gradient-to-br from-[#1FB46A] to-[#0E8A4D] text-2xl font-extrabold text-white shadow-[0_10px_30px_-12px_rgba(14,138,77,.6)]">
-              {marka.charAt(0)}
-            </span>
+            <span className="text-2xl font-extrabold text-[#0F1B2D]">{marka}</span>
           )}
-          <span className="text-[18px] font-extrabold text-[#0F1B2D]">{marka}</span>
         </Link>
 
         <div className="anim-fade-up w-full max-w-sm">
