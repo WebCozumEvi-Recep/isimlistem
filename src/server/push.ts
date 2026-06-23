@@ -45,7 +45,7 @@ export async function pushGonder(
       to,
       title: baslik,
       body: govde,
-      sound: "default",
+      sound: "para.wav", // uygulamaya gömülü özel "ka-ching" sesi
       priority: "high",
       ...(veri ? { data: veri } : {}),
     }));
