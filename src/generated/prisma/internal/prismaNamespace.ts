@@ -398,6 +398,7 @@ export const ModelName = {
   RandevuTalebi: 'RandevuTalebi',
   TalepFormu: 'TalepFormu',
   SiteAyar: 'SiteAyar',
+  ParolaSifirlama: 'ParolaSifirlama',
   PushToken: 'PushToken',
   SilinmisDavet: 'SilinmisDavet',
   Bildirim: 'Bildirim'
@@ -416,7 +417,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "kullanici" | "firma" | "firmaUye" | "kisi" | "aktivite" | "mesajKalibi" | "davetSayfasi" | "davetModulu" | "davetLinki" | "davetOlayi" | "hazirMesajLog" | "randevuTalebi" | "talepFormu" | "siteAyar" | "pushToken" | "silinmisDavet" | "bildirim"
+    modelProps: "kullanici" | "firma" | "firmaUye" | "kisi" | "aktivite" | "mesajKalibi" | "davetSayfasi" | "davetModulu" | "davetLinki" | "davetOlayi" | "hazirMesajLog" | "randevuTalebi" | "talepFormu" | "siteAyar" | "parolaSifirlama" | "pushToken" | "silinmisDavet" | "bildirim"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1456,6 +1457,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ParolaSifirlama: {
+      payload: Prisma.$ParolaSifirlamaPayload<ExtArgs>
+      fields: Prisma.ParolaSifirlamaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ParolaSifirlamaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParolaSifirlamaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ParolaSifirlamaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParolaSifirlamaPayload>
+        }
+        findFirst: {
+          args: Prisma.ParolaSifirlamaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParolaSifirlamaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ParolaSifirlamaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParolaSifirlamaPayload>
+        }
+        findMany: {
+          args: Prisma.ParolaSifirlamaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParolaSifirlamaPayload>[]
+        }
+        create: {
+          args: Prisma.ParolaSifirlamaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParolaSifirlamaPayload>
+        }
+        createMany: {
+          args: Prisma.ParolaSifirlamaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ParolaSifirlamaCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParolaSifirlamaPayload>[]
+        }
+        delete: {
+          args: Prisma.ParolaSifirlamaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParolaSifirlamaPayload>
+        }
+        update: {
+          args: Prisma.ParolaSifirlamaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParolaSifirlamaPayload>
+        }
+        deleteMany: {
+          args: Prisma.ParolaSifirlamaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ParolaSifirlamaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ParolaSifirlamaUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParolaSifirlamaPayload>[]
+        }
+        upsert: {
+          args: Prisma.ParolaSifirlamaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ParolaSifirlamaPayload>
+        }
+        aggregate: {
+          args: Prisma.ParolaSifirlamaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateParolaSifirlama>
+        }
+        groupBy: {
+          args: Prisma.ParolaSifirlamaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ParolaSifirlamaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ParolaSifirlamaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ParolaSifirlamaCountAggregateOutputType> | number
+        }
+      }
+    }
     PushToken: {
       payload: Prisma.$PushTokenPayload<ExtArgs>
       fields: Prisma.PushTokenFieldRefs
@@ -1972,6 +2047,17 @@ export const SiteAyarScalarFieldEnum = {
 } as const
 
 export type SiteAyarScalarFieldEnum = (typeof SiteAyarScalarFieldEnum)[keyof typeof SiteAyarScalarFieldEnum]
+
+
+export const ParolaSifirlamaScalarFieldEnum = {
+  id: 'id',
+  kullaniciId: 'kullaniciId',
+  token: 'token',
+  sonKullanma: 'sonKullanma',
+  createdAt: 'createdAt'
+} as const
+
+export type ParolaSifirlamaScalarFieldEnum = (typeof ParolaSifirlamaScalarFieldEnum)[keyof typeof ParolaSifirlamaScalarFieldEnum]
 
 
 export const PushTokenScalarFieldEnum = {
@@ -2512,6 +2598,7 @@ export type GlobalOmitConfig = {
   randevuTalebi?: Prisma.RandevuTalebiOmit
   talepFormu?: Prisma.TalepFormuOmit
   siteAyar?: Prisma.SiteAyarOmit
+  parolaSifirlama?: Prisma.ParolaSifirlamaOmit
   pushToken?: Prisma.PushTokenOmit
   silinmisDavet?: Prisma.SilinmisDavetOmit
   bildirim?: Prisma.BildirimOmit

@@ -309,6 +309,7 @@ export type KullaniciWhereInput = {
   sayfalar?: Prisma.DavetSayfasiListRelationFilter
   bildirimler?: Prisma.BildirimListRelationFilter
   pushTokenlar?: Prisma.PushTokenListRelationFilter
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaListRelationFilter
   firmaUyelikler?: Prisma.FirmaUyeListRelationFilter
 }
 
@@ -334,6 +335,7 @@ export type KullaniciOrderByWithRelationInput = {
   sayfalar?: Prisma.DavetSayfasiOrderByRelationAggregateInput
   bildirimler?: Prisma.BildirimOrderByRelationAggregateInput
   pushTokenlar?: Prisma.PushTokenOrderByRelationAggregateInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaOrderByRelationAggregateInput
   firmaUyelikler?: Prisma.FirmaUyeOrderByRelationAggregateInput
 }
 
@@ -362,6 +364,7 @@ export type KullaniciWhereUniqueInput = Prisma.AtLeast<{
   sayfalar?: Prisma.DavetSayfasiListRelationFilter
   bildirimler?: Prisma.BildirimListRelationFilter
   pushTokenlar?: Prisma.PushTokenListRelationFilter
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaListRelationFilter
   firmaUyelikler?: Prisma.FirmaUyeListRelationFilter
 }, "id" | "email">
 
@@ -433,6 +436,7 @@ export type KullaniciCreateInput = {
   sayfalar?: Prisma.DavetSayfasiCreateNestedManyWithoutKullaniciInput
   bildirimler?: Prisma.BildirimCreateNestedManyWithoutKullaniciInput
   pushTokenlar?: Prisma.PushTokenCreateNestedManyWithoutKullaniciInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaCreateNestedManyWithoutKullaniciInput
   firmaUyelikler?: Prisma.FirmaUyeCreateNestedManyWithoutKullaniciInput
 }
 
@@ -458,6 +462,7 @@ export type KullaniciUncheckedCreateInput = {
   sayfalar?: Prisma.DavetSayfasiUncheckedCreateNestedManyWithoutKullaniciInput
   bildirimler?: Prisma.BildirimUncheckedCreateNestedManyWithoutKullaniciInput
   pushTokenlar?: Prisma.PushTokenUncheckedCreateNestedManyWithoutKullaniciInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaUncheckedCreateNestedManyWithoutKullaniciInput
   firmaUyelikler?: Prisma.FirmaUyeUncheckedCreateNestedManyWithoutKullaniciInput
 }
 
@@ -483,6 +488,7 @@ export type KullaniciUpdateInput = {
   sayfalar?: Prisma.DavetSayfasiUpdateManyWithoutKullaniciNestedInput
   bildirimler?: Prisma.BildirimUpdateManyWithoutKullaniciNestedInput
   pushTokenlar?: Prisma.PushTokenUpdateManyWithoutKullaniciNestedInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaUpdateManyWithoutKullaniciNestedInput
   firmaUyelikler?: Prisma.FirmaUyeUpdateManyWithoutKullaniciNestedInput
 }
 
@@ -508,6 +514,7 @@ export type KullaniciUncheckedUpdateInput = {
   sayfalar?: Prisma.DavetSayfasiUncheckedUpdateManyWithoutKullaniciNestedInput
   bildirimler?: Prisma.BildirimUncheckedUpdateManyWithoutKullaniciNestedInput
   pushTokenlar?: Prisma.PushTokenUncheckedUpdateManyWithoutKullaniciNestedInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaUncheckedUpdateManyWithoutKullaniciNestedInput
   firmaUyelikler?: Prisma.FirmaUyeUncheckedUpdateManyWithoutKullaniciNestedInput
 }
 
@@ -748,6 +755,20 @@ export type KullaniciUpdateOneWithoutSayfalarNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.KullaniciUpdateToOneWithWhereWithoutSayfalarInput, Prisma.KullaniciUpdateWithoutSayfalarInput>, Prisma.KullaniciUncheckedUpdateWithoutSayfalarInput>
 }
 
+export type KullaniciCreateNestedOneWithoutParolaSifirlamalarInput = {
+  create?: Prisma.XOR<Prisma.KullaniciCreateWithoutParolaSifirlamalarInput, Prisma.KullaniciUncheckedCreateWithoutParolaSifirlamalarInput>
+  connectOrCreate?: Prisma.KullaniciCreateOrConnectWithoutParolaSifirlamalarInput
+  connect?: Prisma.KullaniciWhereUniqueInput
+}
+
+export type KullaniciUpdateOneRequiredWithoutParolaSifirlamalarNestedInput = {
+  create?: Prisma.XOR<Prisma.KullaniciCreateWithoutParolaSifirlamalarInput, Prisma.KullaniciUncheckedCreateWithoutParolaSifirlamalarInput>
+  connectOrCreate?: Prisma.KullaniciCreateOrConnectWithoutParolaSifirlamalarInput
+  upsert?: Prisma.KullaniciUpsertWithoutParolaSifirlamalarInput
+  connect?: Prisma.KullaniciWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.KullaniciUpdateToOneWithWhereWithoutParolaSifirlamalarInput, Prisma.KullaniciUpdateWithoutParolaSifirlamalarInput>, Prisma.KullaniciUncheckedUpdateWithoutParolaSifirlamalarInput>
+}
+
 export type KullaniciCreateNestedOneWithoutPushTokenlarInput = {
   create?: Prisma.XOR<Prisma.KullaniciCreateWithoutPushTokenlarInput, Prisma.KullaniciUncheckedCreateWithoutPushTokenlarInput>
   connectOrCreate?: Prisma.KullaniciCreateOrConnectWithoutPushTokenlarInput
@@ -798,6 +819,7 @@ export type KullaniciCreateWithoutFirmaUyeliklerInput = {
   sayfalar?: Prisma.DavetSayfasiCreateNestedManyWithoutKullaniciInput
   bildirimler?: Prisma.BildirimCreateNestedManyWithoutKullaniciInput
   pushTokenlar?: Prisma.PushTokenCreateNestedManyWithoutKullaniciInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaCreateNestedManyWithoutKullaniciInput
 }
 
 export type KullaniciUncheckedCreateWithoutFirmaUyeliklerInput = {
@@ -822,6 +844,7 @@ export type KullaniciUncheckedCreateWithoutFirmaUyeliklerInput = {
   sayfalar?: Prisma.DavetSayfasiUncheckedCreateNestedManyWithoutKullaniciInput
   bildirimler?: Prisma.BildirimUncheckedCreateNestedManyWithoutKullaniciInput
   pushTokenlar?: Prisma.PushTokenUncheckedCreateNestedManyWithoutKullaniciInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaUncheckedCreateNestedManyWithoutKullaniciInput
 }
 
 export type KullaniciCreateOrConnectWithoutFirmaUyeliklerInput = {
@@ -862,6 +885,7 @@ export type KullaniciUpdateWithoutFirmaUyeliklerInput = {
   sayfalar?: Prisma.DavetSayfasiUpdateManyWithoutKullaniciNestedInput
   bildirimler?: Prisma.BildirimUpdateManyWithoutKullaniciNestedInput
   pushTokenlar?: Prisma.PushTokenUpdateManyWithoutKullaniciNestedInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaUpdateManyWithoutKullaniciNestedInput
 }
 
 export type KullaniciUncheckedUpdateWithoutFirmaUyeliklerInput = {
@@ -886,6 +910,7 @@ export type KullaniciUncheckedUpdateWithoutFirmaUyeliklerInput = {
   sayfalar?: Prisma.DavetSayfasiUncheckedUpdateManyWithoutKullaniciNestedInput
   bildirimler?: Prisma.BildirimUncheckedUpdateManyWithoutKullaniciNestedInput
   pushTokenlar?: Prisma.PushTokenUncheckedUpdateManyWithoutKullaniciNestedInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaUncheckedUpdateManyWithoutKullaniciNestedInput
 }
 
 export type KullaniciCreateWithoutKisilerInput = {
@@ -909,6 +934,7 @@ export type KullaniciCreateWithoutKisilerInput = {
   sayfalar?: Prisma.DavetSayfasiCreateNestedManyWithoutKullaniciInput
   bildirimler?: Prisma.BildirimCreateNestedManyWithoutKullaniciInput
   pushTokenlar?: Prisma.PushTokenCreateNestedManyWithoutKullaniciInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaCreateNestedManyWithoutKullaniciInput
   firmaUyelikler?: Prisma.FirmaUyeCreateNestedManyWithoutKullaniciInput
 }
 
@@ -933,6 +959,7 @@ export type KullaniciUncheckedCreateWithoutKisilerInput = {
   sayfalar?: Prisma.DavetSayfasiUncheckedCreateNestedManyWithoutKullaniciInput
   bildirimler?: Prisma.BildirimUncheckedCreateNestedManyWithoutKullaniciInput
   pushTokenlar?: Prisma.PushTokenUncheckedCreateNestedManyWithoutKullaniciInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaUncheckedCreateNestedManyWithoutKullaniciInput
   firmaUyelikler?: Prisma.FirmaUyeUncheckedCreateNestedManyWithoutKullaniciInput
 }
 
@@ -973,6 +1000,7 @@ export type KullaniciUpdateWithoutKisilerInput = {
   sayfalar?: Prisma.DavetSayfasiUpdateManyWithoutKullaniciNestedInput
   bildirimler?: Prisma.BildirimUpdateManyWithoutKullaniciNestedInput
   pushTokenlar?: Prisma.PushTokenUpdateManyWithoutKullaniciNestedInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaUpdateManyWithoutKullaniciNestedInput
   firmaUyelikler?: Prisma.FirmaUyeUpdateManyWithoutKullaniciNestedInput
 }
 
@@ -997,6 +1025,7 @@ export type KullaniciUncheckedUpdateWithoutKisilerInput = {
   sayfalar?: Prisma.DavetSayfasiUncheckedUpdateManyWithoutKullaniciNestedInput
   bildirimler?: Prisma.BildirimUncheckedUpdateManyWithoutKullaniciNestedInput
   pushTokenlar?: Prisma.PushTokenUncheckedUpdateManyWithoutKullaniciNestedInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaUncheckedUpdateManyWithoutKullaniciNestedInput
   firmaUyelikler?: Prisma.FirmaUyeUncheckedUpdateManyWithoutKullaniciNestedInput
 }
 
@@ -1021,6 +1050,7 @@ export type KullaniciCreateWithoutKaliplarInput = {
   sayfalar?: Prisma.DavetSayfasiCreateNestedManyWithoutKullaniciInput
   bildirimler?: Prisma.BildirimCreateNestedManyWithoutKullaniciInput
   pushTokenlar?: Prisma.PushTokenCreateNestedManyWithoutKullaniciInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaCreateNestedManyWithoutKullaniciInput
   firmaUyelikler?: Prisma.FirmaUyeCreateNestedManyWithoutKullaniciInput
 }
 
@@ -1045,6 +1075,7 @@ export type KullaniciUncheckedCreateWithoutKaliplarInput = {
   sayfalar?: Prisma.DavetSayfasiUncheckedCreateNestedManyWithoutKullaniciInput
   bildirimler?: Prisma.BildirimUncheckedCreateNestedManyWithoutKullaniciInput
   pushTokenlar?: Prisma.PushTokenUncheckedCreateNestedManyWithoutKullaniciInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaUncheckedCreateNestedManyWithoutKullaniciInput
   firmaUyelikler?: Prisma.FirmaUyeUncheckedCreateNestedManyWithoutKullaniciInput
 }
 
@@ -1085,6 +1116,7 @@ export type KullaniciUpdateWithoutKaliplarInput = {
   sayfalar?: Prisma.DavetSayfasiUpdateManyWithoutKullaniciNestedInput
   bildirimler?: Prisma.BildirimUpdateManyWithoutKullaniciNestedInput
   pushTokenlar?: Prisma.PushTokenUpdateManyWithoutKullaniciNestedInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaUpdateManyWithoutKullaniciNestedInput
   firmaUyelikler?: Prisma.FirmaUyeUpdateManyWithoutKullaniciNestedInput
 }
 
@@ -1109,6 +1141,7 @@ export type KullaniciUncheckedUpdateWithoutKaliplarInput = {
   sayfalar?: Prisma.DavetSayfasiUncheckedUpdateManyWithoutKullaniciNestedInput
   bildirimler?: Prisma.BildirimUncheckedUpdateManyWithoutKullaniciNestedInput
   pushTokenlar?: Prisma.PushTokenUncheckedUpdateManyWithoutKullaniciNestedInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaUncheckedUpdateManyWithoutKullaniciNestedInput
   firmaUyelikler?: Prisma.FirmaUyeUncheckedUpdateManyWithoutKullaniciNestedInput
 }
 
@@ -1133,6 +1166,7 @@ export type KullaniciCreateWithoutSayfalarInput = {
   kaliplar?: Prisma.MesajKalibiCreateNestedManyWithoutKullaniciInput
   bildirimler?: Prisma.BildirimCreateNestedManyWithoutKullaniciInput
   pushTokenlar?: Prisma.PushTokenCreateNestedManyWithoutKullaniciInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaCreateNestedManyWithoutKullaniciInput
   firmaUyelikler?: Prisma.FirmaUyeCreateNestedManyWithoutKullaniciInput
 }
 
@@ -1157,6 +1191,7 @@ export type KullaniciUncheckedCreateWithoutSayfalarInput = {
   kaliplar?: Prisma.MesajKalibiUncheckedCreateNestedManyWithoutKullaniciInput
   bildirimler?: Prisma.BildirimUncheckedCreateNestedManyWithoutKullaniciInput
   pushTokenlar?: Prisma.PushTokenUncheckedCreateNestedManyWithoutKullaniciInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaUncheckedCreateNestedManyWithoutKullaniciInput
   firmaUyelikler?: Prisma.FirmaUyeUncheckedCreateNestedManyWithoutKullaniciInput
 }
 
@@ -1197,6 +1232,7 @@ export type KullaniciUpdateWithoutSayfalarInput = {
   kaliplar?: Prisma.MesajKalibiUpdateManyWithoutKullaniciNestedInput
   bildirimler?: Prisma.BildirimUpdateManyWithoutKullaniciNestedInput
   pushTokenlar?: Prisma.PushTokenUpdateManyWithoutKullaniciNestedInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaUpdateManyWithoutKullaniciNestedInput
   firmaUyelikler?: Prisma.FirmaUyeUpdateManyWithoutKullaniciNestedInput
 }
 
@@ -1219,6 +1255,123 @@ export type KullaniciUncheckedUpdateWithoutSayfalarInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUncheckedUpdateManyWithoutKullaniciNestedInput
   kaliplar?: Prisma.MesajKalibiUncheckedUpdateManyWithoutKullaniciNestedInput
+  bildirimler?: Prisma.BildirimUncheckedUpdateManyWithoutKullaniciNestedInput
+  pushTokenlar?: Prisma.PushTokenUncheckedUpdateManyWithoutKullaniciNestedInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaUncheckedUpdateManyWithoutKullaniciNestedInput
+  firmaUyelikler?: Prisma.FirmaUyeUncheckedUpdateManyWithoutKullaniciNestedInput
+}
+
+export type KullaniciCreateWithoutParolaSifirlamalarInput = {
+  id?: string
+  adSoyad: string
+  email: string
+  telefon?: string | null
+  parolaHash: string
+  rol?: $Enums.Rol
+  sehir?: string | null
+  bio?: string | null
+  profilFoto?: string | null
+  varsayilanFirmaId?: string | null
+  pushAcik?: boolean
+  pushTumu?: boolean
+  pushTipler?: Prisma.KullaniciCreatepushTiplerInput | string[]
+  pushSessizBas?: number | null
+  pushSessizBit?: number | null
+  createdAt?: Date | string
+  kisiler?: Prisma.KisiCreateNestedManyWithoutKullaniciInput
+  kaliplar?: Prisma.MesajKalibiCreateNestedManyWithoutKullaniciInput
+  sayfalar?: Prisma.DavetSayfasiCreateNestedManyWithoutKullaniciInput
+  bildirimler?: Prisma.BildirimCreateNestedManyWithoutKullaniciInput
+  pushTokenlar?: Prisma.PushTokenCreateNestedManyWithoutKullaniciInput
+  firmaUyelikler?: Prisma.FirmaUyeCreateNestedManyWithoutKullaniciInput
+}
+
+export type KullaniciUncheckedCreateWithoutParolaSifirlamalarInput = {
+  id?: string
+  adSoyad: string
+  email: string
+  telefon?: string | null
+  parolaHash: string
+  rol?: $Enums.Rol
+  sehir?: string | null
+  bio?: string | null
+  profilFoto?: string | null
+  varsayilanFirmaId?: string | null
+  pushAcik?: boolean
+  pushTumu?: boolean
+  pushTipler?: Prisma.KullaniciCreatepushTiplerInput | string[]
+  pushSessizBas?: number | null
+  pushSessizBit?: number | null
+  createdAt?: Date | string
+  kisiler?: Prisma.KisiUncheckedCreateNestedManyWithoutKullaniciInput
+  kaliplar?: Prisma.MesajKalibiUncheckedCreateNestedManyWithoutKullaniciInput
+  sayfalar?: Prisma.DavetSayfasiUncheckedCreateNestedManyWithoutKullaniciInput
+  bildirimler?: Prisma.BildirimUncheckedCreateNestedManyWithoutKullaniciInput
+  pushTokenlar?: Prisma.PushTokenUncheckedCreateNestedManyWithoutKullaniciInput
+  firmaUyelikler?: Prisma.FirmaUyeUncheckedCreateNestedManyWithoutKullaniciInput
+}
+
+export type KullaniciCreateOrConnectWithoutParolaSifirlamalarInput = {
+  where: Prisma.KullaniciWhereUniqueInput
+  create: Prisma.XOR<Prisma.KullaniciCreateWithoutParolaSifirlamalarInput, Prisma.KullaniciUncheckedCreateWithoutParolaSifirlamalarInput>
+}
+
+export type KullaniciUpsertWithoutParolaSifirlamalarInput = {
+  update: Prisma.XOR<Prisma.KullaniciUpdateWithoutParolaSifirlamalarInput, Prisma.KullaniciUncheckedUpdateWithoutParolaSifirlamalarInput>
+  create: Prisma.XOR<Prisma.KullaniciCreateWithoutParolaSifirlamalarInput, Prisma.KullaniciUncheckedCreateWithoutParolaSifirlamalarInput>
+  where?: Prisma.KullaniciWhereInput
+}
+
+export type KullaniciUpdateToOneWithWhereWithoutParolaSifirlamalarInput = {
+  where?: Prisma.KullaniciWhereInput
+  data: Prisma.XOR<Prisma.KullaniciUpdateWithoutParolaSifirlamalarInput, Prisma.KullaniciUncheckedUpdateWithoutParolaSifirlamalarInput>
+}
+
+export type KullaniciUpdateWithoutParolaSifirlamalarInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  adSoyad?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  telefon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parolaHash?: Prisma.StringFieldUpdateOperationsInput | string
+  rol?: Prisma.EnumRolFieldUpdateOperationsInput | $Enums.Rol
+  sehir?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profilFoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  varsayilanFirmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pushAcik?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushTumu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushTipler?: Prisma.KullaniciUpdatepushTiplerInput | string[]
+  pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  kisiler?: Prisma.KisiUpdateManyWithoutKullaniciNestedInput
+  kaliplar?: Prisma.MesajKalibiUpdateManyWithoutKullaniciNestedInput
+  sayfalar?: Prisma.DavetSayfasiUpdateManyWithoutKullaniciNestedInput
+  bildirimler?: Prisma.BildirimUpdateManyWithoutKullaniciNestedInput
+  pushTokenlar?: Prisma.PushTokenUpdateManyWithoutKullaniciNestedInput
+  firmaUyelikler?: Prisma.FirmaUyeUpdateManyWithoutKullaniciNestedInput
+}
+
+export type KullaniciUncheckedUpdateWithoutParolaSifirlamalarInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  adSoyad?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  telefon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parolaHash?: Prisma.StringFieldUpdateOperationsInput | string
+  rol?: Prisma.EnumRolFieldUpdateOperationsInput | $Enums.Rol
+  sehir?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profilFoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  varsayilanFirmaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pushAcik?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushTumu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pushTipler?: Prisma.KullaniciUpdatepushTiplerInput | string[]
+  pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  kisiler?: Prisma.KisiUncheckedUpdateManyWithoutKullaniciNestedInput
+  kaliplar?: Prisma.MesajKalibiUncheckedUpdateManyWithoutKullaniciNestedInput
+  sayfalar?: Prisma.DavetSayfasiUncheckedUpdateManyWithoutKullaniciNestedInput
   bildirimler?: Prisma.BildirimUncheckedUpdateManyWithoutKullaniciNestedInput
   pushTokenlar?: Prisma.PushTokenUncheckedUpdateManyWithoutKullaniciNestedInput
   firmaUyelikler?: Prisma.FirmaUyeUncheckedUpdateManyWithoutKullaniciNestedInput
@@ -1245,6 +1398,7 @@ export type KullaniciCreateWithoutPushTokenlarInput = {
   kaliplar?: Prisma.MesajKalibiCreateNestedManyWithoutKullaniciInput
   sayfalar?: Prisma.DavetSayfasiCreateNestedManyWithoutKullaniciInput
   bildirimler?: Prisma.BildirimCreateNestedManyWithoutKullaniciInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaCreateNestedManyWithoutKullaniciInput
   firmaUyelikler?: Prisma.FirmaUyeCreateNestedManyWithoutKullaniciInput
 }
 
@@ -1269,6 +1423,7 @@ export type KullaniciUncheckedCreateWithoutPushTokenlarInput = {
   kaliplar?: Prisma.MesajKalibiUncheckedCreateNestedManyWithoutKullaniciInput
   sayfalar?: Prisma.DavetSayfasiUncheckedCreateNestedManyWithoutKullaniciInput
   bildirimler?: Prisma.BildirimUncheckedCreateNestedManyWithoutKullaniciInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaUncheckedCreateNestedManyWithoutKullaniciInput
   firmaUyelikler?: Prisma.FirmaUyeUncheckedCreateNestedManyWithoutKullaniciInput
 }
 
@@ -1309,6 +1464,7 @@ export type KullaniciUpdateWithoutPushTokenlarInput = {
   kaliplar?: Prisma.MesajKalibiUpdateManyWithoutKullaniciNestedInput
   sayfalar?: Prisma.DavetSayfasiUpdateManyWithoutKullaniciNestedInput
   bildirimler?: Prisma.BildirimUpdateManyWithoutKullaniciNestedInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaUpdateManyWithoutKullaniciNestedInput
   firmaUyelikler?: Prisma.FirmaUyeUpdateManyWithoutKullaniciNestedInput
 }
 
@@ -1333,6 +1489,7 @@ export type KullaniciUncheckedUpdateWithoutPushTokenlarInput = {
   kaliplar?: Prisma.MesajKalibiUncheckedUpdateManyWithoutKullaniciNestedInput
   sayfalar?: Prisma.DavetSayfasiUncheckedUpdateManyWithoutKullaniciNestedInput
   bildirimler?: Prisma.BildirimUncheckedUpdateManyWithoutKullaniciNestedInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaUncheckedUpdateManyWithoutKullaniciNestedInput
   firmaUyelikler?: Prisma.FirmaUyeUncheckedUpdateManyWithoutKullaniciNestedInput
 }
 
@@ -1357,6 +1514,7 @@ export type KullaniciCreateWithoutBildirimlerInput = {
   kaliplar?: Prisma.MesajKalibiCreateNestedManyWithoutKullaniciInput
   sayfalar?: Prisma.DavetSayfasiCreateNestedManyWithoutKullaniciInput
   pushTokenlar?: Prisma.PushTokenCreateNestedManyWithoutKullaniciInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaCreateNestedManyWithoutKullaniciInput
   firmaUyelikler?: Prisma.FirmaUyeCreateNestedManyWithoutKullaniciInput
 }
 
@@ -1381,6 +1539,7 @@ export type KullaniciUncheckedCreateWithoutBildirimlerInput = {
   kaliplar?: Prisma.MesajKalibiUncheckedCreateNestedManyWithoutKullaniciInput
   sayfalar?: Prisma.DavetSayfasiUncheckedCreateNestedManyWithoutKullaniciInput
   pushTokenlar?: Prisma.PushTokenUncheckedCreateNestedManyWithoutKullaniciInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaUncheckedCreateNestedManyWithoutKullaniciInput
   firmaUyelikler?: Prisma.FirmaUyeUncheckedCreateNestedManyWithoutKullaniciInput
 }
 
@@ -1421,6 +1580,7 @@ export type KullaniciUpdateWithoutBildirimlerInput = {
   kaliplar?: Prisma.MesajKalibiUpdateManyWithoutKullaniciNestedInput
   sayfalar?: Prisma.DavetSayfasiUpdateManyWithoutKullaniciNestedInput
   pushTokenlar?: Prisma.PushTokenUpdateManyWithoutKullaniciNestedInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaUpdateManyWithoutKullaniciNestedInput
   firmaUyelikler?: Prisma.FirmaUyeUpdateManyWithoutKullaniciNestedInput
 }
 
@@ -1445,6 +1605,7 @@ export type KullaniciUncheckedUpdateWithoutBildirimlerInput = {
   kaliplar?: Prisma.MesajKalibiUncheckedUpdateManyWithoutKullaniciNestedInput
   sayfalar?: Prisma.DavetSayfasiUncheckedUpdateManyWithoutKullaniciNestedInput
   pushTokenlar?: Prisma.PushTokenUncheckedUpdateManyWithoutKullaniciNestedInput
+  parolaSifirlamalar?: Prisma.ParolaSifirlamaUncheckedUpdateManyWithoutKullaniciNestedInput
   firmaUyelikler?: Prisma.FirmaUyeUncheckedUpdateManyWithoutKullaniciNestedInput
 }
 
@@ -1459,6 +1620,7 @@ export type KullaniciCountOutputType = {
   sayfalar: number
   bildirimler: number
   pushTokenlar: number
+  parolaSifirlamalar: number
   firmaUyelikler: number
 }
 
@@ -1468,6 +1630,7 @@ export type KullaniciCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensi
   sayfalar?: boolean | KullaniciCountOutputTypeCountSayfalarArgs
   bildirimler?: boolean | KullaniciCountOutputTypeCountBildirimlerArgs
   pushTokenlar?: boolean | KullaniciCountOutputTypeCountPushTokenlarArgs
+  parolaSifirlamalar?: boolean | KullaniciCountOutputTypeCountParolaSifirlamalarArgs
   firmaUyelikler?: boolean | KullaniciCountOutputTypeCountFirmaUyeliklerArgs
 }
 
@@ -1519,6 +1682,13 @@ export type KullaniciCountOutputTypeCountPushTokenlarArgs<ExtArgs extends runtim
 /**
  * KullaniciCountOutputType without action
  */
+export type KullaniciCountOutputTypeCountParolaSifirlamalarArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ParolaSifirlamaWhereInput
+}
+
+/**
+ * KullaniciCountOutputType without action
+ */
 export type KullaniciCountOutputTypeCountFirmaUyeliklerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.FirmaUyeWhereInput
 }
@@ -1546,6 +1716,7 @@ export type KullaniciSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   sayfalar?: boolean | Prisma.Kullanici$sayfalarArgs<ExtArgs>
   bildirimler?: boolean | Prisma.Kullanici$bildirimlerArgs<ExtArgs>
   pushTokenlar?: boolean | Prisma.Kullanici$pushTokenlarArgs<ExtArgs>
+  parolaSifirlamalar?: boolean | Prisma.Kullanici$parolaSifirlamalarArgs<ExtArgs>
   firmaUyelikler?: boolean | Prisma.Kullanici$firmaUyeliklerArgs<ExtArgs>
   _count?: boolean | Prisma.KullaniciCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["kullanici"]>
@@ -1614,6 +1785,7 @@ export type KullaniciInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   sayfalar?: boolean | Prisma.Kullanici$sayfalarArgs<ExtArgs>
   bildirimler?: boolean | Prisma.Kullanici$bildirimlerArgs<ExtArgs>
   pushTokenlar?: boolean | Prisma.Kullanici$pushTokenlarArgs<ExtArgs>
+  parolaSifirlamalar?: boolean | Prisma.Kullanici$parolaSifirlamalarArgs<ExtArgs>
   firmaUyelikler?: boolean | Prisma.Kullanici$firmaUyeliklerArgs<ExtArgs>
   _count?: boolean | Prisma.KullaniciCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1628,6 +1800,7 @@ export type $KullaniciPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     sayfalar: Prisma.$DavetSayfasiPayload<ExtArgs>[]
     bildirimler: Prisma.$BildirimPayload<ExtArgs>[]
     pushTokenlar: Prisma.$PushTokenPayload<ExtArgs>[]
+    parolaSifirlamalar: Prisma.$ParolaSifirlamaPayload<ExtArgs>[]
     firmaUyelikler: Prisma.$FirmaUyePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -2046,6 +2219,7 @@ export interface Prisma__KullaniciClient<T, Null = never, ExtArgs extends runtim
   sayfalar<T extends Prisma.Kullanici$sayfalarArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Kullanici$sayfalarArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DavetSayfasiPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   bildirimler<T extends Prisma.Kullanici$bildirimlerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Kullanici$bildirimlerArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BildirimPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pushTokenlar<T extends Prisma.Kullanici$pushTokenlarArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Kullanici$pushTokenlarArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PushTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  parolaSifirlamalar<T extends Prisma.Kullanici$parolaSifirlamalarArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Kullanici$parolaSifirlamalarArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ParolaSifirlamaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   firmaUyelikler<T extends Prisma.Kullanici$firmaUyeliklerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Kullanici$firmaUyeliklerArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FirmaUyePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2602,6 +2776,30 @@ export type Kullanici$pushTokenlarArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.PushTokenScalarFieldEnum | Prisma.PushTokenScalarFieldEnum[]
+}
+
+/**
+ * Kullanici.parolaSifirlamalar
+ */
+export type Kullanici$parolaSifirlamalarArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ParolaSifirlama
+   */
+  select?: Prisma.ParolaSifirlamaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ParolaSifirlama
+   */
+  omit?: Prisma.ParolaSifirlamaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ParolaSifirlamaInclude<ExtArgs> | null
+  where?: Prisma.ParolaSifirlamaWhereInput
+  orderBy?: Prisma.ParolaSifirlamaOrderByWithRelationInput | Prisma.ParolaSifirlamaOrderByWithRelationInput[]
+  cursor?: Prisma.ParolaSifirlamaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ParolaSifirlamaScalarFieldEnum | Prisma.ParolaSifirlamaScalarFieldEnum[]
 }
 
 /**

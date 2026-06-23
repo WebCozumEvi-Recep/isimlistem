@@ -162,6 +162,7 @@ model Kullanici {
   sayfalar        DavetSayfasi[]
   bildirimler     Bildirim[]
   pushTokenlar    PushToken[]
+  parolaSifirlamalar ParolaSifirlama[]
   // Push bildirim tercihleri
   pushAcik        Boolean        @default(true) // ana anahtar
   pushTumu        Boolean        @default(false) // (kullanılmıyor — pushTipler ile değiştirildi)
@@ -438,6 +439,18 @@ model SiteAyar {
 
 // Aday silindiğinde davet linkleri de silinir; eski token'la geri dönen kişinin
 // kendini yeniden aday olarak ekleyebilmesi için bırakılan iz (tombstone).
+// Parola sıfırlama e-postası ile gönderilen tek kullanımlık token.
+model ParolaSifirlama {
+  id          String    @id @default(cuid())
+  kullanici   Kullanici @relation(fields: [kullaniciId], references: [id], onDelete: Cascade)
+  kullaniciId String
+  token       String    @unique
+  sonKullanma DateTime
+  createdAt   DateTime  @default(now())
+
+  @@index([kullaniciId])
+}
+
 // Mobil uygulamanın push bildirim adresleri (Expo push token).
 model PushToken {
   id          String    @id @default(cuid())

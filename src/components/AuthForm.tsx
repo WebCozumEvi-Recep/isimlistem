@@ -2,7 +2,9 @@
 
 import { useActionState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { girisYap, kayitOl, type FormDurum } from "@/app/auth/actions";
+import ParolaAlani from "@/components/ParolaAlani";
 
 export default function AuthForm({ mod, firmaModu }: { mod: "giris" | "kayit"; firmaModu?: boolean }) {
   const action = mod === "giris" ? girisYap : kayitOl;
@@ -10,6 +12,8 @@ export default function AuthForm({ mod, firmaModu }: { mod: "giris" | "kayit"; f
     action,
     undefined
   );
+  const params = useSearchParams();
+  const sifirlandi = mod === "giris" && params.get("sifirlandi") === "1";
 
   return (
     <div className="w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
@@ -20,14 +24,32 @@ export default function AuthForm({ mod, firmaModu }: { mod: "giris" | "kayit"; f
         İsim Listem — iş sunum takip paneli
       </p>
 
+      {sifirlandi && (
+        <p className="mt-4 rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-700">
+          Parolan güncellendi. Yeni parolanla giriş yapabilirsin.
+        </p>
+      )}
+
       <form action={formAction} className="mt-6 space-y-4">
         {mod === "kayit" && (
           <Alan label="Ad Soyad" name="adSoyad" type="text" />
         )}
         <Alan label="E-posta" name="email" type="email" />
-        <Alan label="Parola" name="parola" type="password" />
+        <ParolaAlani autoComplete={mod === "giris" ? "current-password" : "new-password"} />
         {mod === "kayit" && !firmaModu && (
           <Alan label="Firma Kayıt Kodu (opsiyonel)" name="kayitKodu" type="text" zorunlu={false} />
+        )}
+
+        {mod === "giris" && (
+          <div className="flex items-center justify-between">
+            <label className="flex items-center gap-2 text-sm text-slate-600">
+              <input type="checkbox" name="hatirla" defaultChecked className="h-4 w-4 accent-emerald-500" />
+              Beni hatırla
+            </label>
+            <Link href="/auth/sifremi-unuttum" className="text-sm font-medium text-emerald-600 hover:text-emerald-700">
+              Şifremi unuttum
+            </Link>
+          </div>
         )}
 
         {durum?.hata && (

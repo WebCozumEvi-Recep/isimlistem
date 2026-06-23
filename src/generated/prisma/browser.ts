@@ -88,6 +88,11 @@ export type TalepFormu = Prisma.TalepFormuModel
  */
 export type SiteAyar = Prisma.SiteAyarModel
 /**
+ * Model ParolaSifirlama
+ * 
+ */
+export type ParolaSifirlama = Prisma.ParolaSifirlamaModel
+/**
  * Model PushToken
  * 
  */

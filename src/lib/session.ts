@@ -14,11 +14,11 @@ export type SessionPayload = {
   rol: "UYE" | "ADMIN";
 };
 
-export async function setSession(payload: SessionPayload) {
+export async function setSession(payload: SessionPayload, kalici = true) {
   const token = await new SignJWT({ ...payload })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
-    .setExpirationTime("30d")
+    .setExpirationTime(kalici ? "30d" : "1d")
     .sign(secret);
 
   const store = await cookies();
@@ -26,7 +26,8 @@ export async function setSession(payload: SessionPayload) {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
-    maxAge: 60 * 60 * 24 * 30,
+    // "Beni hatırla" işaretliyse 30 gün kalıcı; değilse oturum çerezi (tarayıcı kapanınca silinir).
+    ...(kalici ? { maxAge: 60 * 60 * 24 * 30 } : {}),
     path: "/",
   });
 }
