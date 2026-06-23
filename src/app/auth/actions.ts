@@ -110,6 +110,7 @@ export async function sifreSifirlamaIste(_prev: SifirlamaDurum, formData: FormDa
     html: mailSablon({
       siteAdi: ayar.siteAdi,
       logoUrl: ayar.logoUrl,
+      logoBeyazUrl: ayar.logoBeyazUrl,
       baslik: "Parola sıfırlama isteği",
       selamlama: `Merhaba ${kullanici.adSoyad},`,
       govde: "Hesabın için bir parola sıfırlama isteği aldık. Yeni parola belirlemek için aşağıdaki butona tıkla. Bu bağlantı <b>1 saat</b> geçerlidir.",

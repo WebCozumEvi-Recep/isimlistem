@@ -61,6 +61,7 @@ export async function mailGonder({ kime, konu, html, yanitla }: MailGonder): Pro
 export function mailSablon(opts: {
   siteAdi: string;
   logoUrl?: string | null;
+  logoBeyazUrl?: string | null; // koyu e-posta başlığı için tercih edilir
   baslik: string;
   selamlama?: string;
   govde: string; // HTML
@@ -69,7 +70,8 @@ export function mailSablon(opts: {
   altNot?: string;
 }): string {
   const { siteAdi, baslik, selamlama, govde, butonMetni, butonUrl, altNot } = opts;
-  const logoUrl = mutlakUrl(opts.logoUrl);
+  // E-posta başlığı koyu (#0b1c30) olduğundan varsa beyaz logo kullanılır.
+  const logoUrl = mutlakUrl(opts.logoBeyazUrl ?? opts.logoUrl);
   const yil = new Date().getFullYear();
   const marka = "#0b1c30";
   const yesil = "#22c55e";
