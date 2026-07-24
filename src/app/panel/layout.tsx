@@ -26,7 +26,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
   if (await isAppMode()) {
     return (
       <div className="min-h-screen overflow-x-clip bg-[#EEF1F5]">
-        <MobilKabuk baslik={ayar.siteAdi} okunmamis={okunmamis} aday={aday} bekleyenRandevu={bekleyenRandevu} demo={!!user.demo} />
+        <MobilKabuk baslik={ayar.siteAdi} okunmamis={okunmamis} aday={aday} bekleyenRandevu={bekleyenRandevu} />
         <div style={{ paddingTop: "calc(56px + env(safe-area-inset-top))", paddingBottom: "calc(72px + env(safe-area-inset-bottom))" }}>
           <main className="mx-auto max-w-3xl overflow-x-clip px-4 pb-4 sm:px-6">{children}</main>
         </div>
@@ -48,7 +48,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
   return (
     <div className="min-h-screen overflow-x-clip bg-slate-50">
       {/* Mobil tarayıcı: tasarım üst başlık + alt tab (lg altında) */}
-      <MobilKabuk baslik={ayar.siteAdi} okunmamis={okunmamis} aday={aday} bekleyenRandevu={bekleyenRandevu} demo={!!user.demo} />
+      <MobilKabuk baslik={ayar.siteAdi} okunmamis={okunmamis} aday={aday} bekleyenRandevu={bekleyenRandevu} />
       <AppSidebar
         mobilGizle
         brandTitle={ayar.siteAdi}
@@ -63,11 +63,9 @@ export default async function PanelLayout({ children }: { children: React.ReactN
       />
       <div className="pb-24 pt-[56px] lg:pb-0 lg:pl-64 lg:pt-0">
         <div className="sticky top-0 z-20 hidden items-center justify-end gap-2 border-b border-slate-200 bg-white/80 px-6 py-3 backdrop-blur lg:flex">
-          {!user.demo && (
-            <Link href="/panel/kesfet" className="flex items-center gap-1.5 rounded-xl border border-emerald-300 px-3.5 py-2 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50">
-              <Compass size={16} /> Keşfet
-            </Link>
-          )}
+          <Link href="/panel/kesfet" className="flex items-center gap-1.5 rounded-xl border border-emerald-300 px-3.5 py-2 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50">
+            <Compass size={16} /> Keşfet
+          </Link>
           <Link href="/panel/kisi/yeni" className="flex items-center gap-1.5 rounded-xl bg-emerald-500 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-600">
             <Plus size={16} /> Aday İsim Ekle
           </Link>
