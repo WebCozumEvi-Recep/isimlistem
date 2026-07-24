@@ -24,7 +24,7 @@ export type BakimSonuc = { ok: boolean; mesaj: string };
 export async function migrasyonCalistir(): Promise<BakimSonuc> {
   await requireAdmin();
   try {
-    const { stdout, stderr } = await execAsync("npx prisma db push --skip-generate", {
+    const { stdout, stderr } = await execAsync("npx prisma db push", {
       cwd: process.cwd(),
       timeout: 120000,
       env: process.env,
