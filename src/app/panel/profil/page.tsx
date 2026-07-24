@@ -2,6 +2,7 @@ import { requireUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import ProfilFotoSecici from "@/components/ProfilFotoSecici";
+import HesapSilButonu from "@/components/HesapSilButonu";
 import { profilGuncelle, pushAyarGuncelle } from "./actions";
 import { Bell } from "lucide-react";
 
@@ -88,6 +89,17 @@ export default async function ProfilSayfasi() {
           Bildirim Ayarlarını Kaydet
         </button>
       </form>
+
+      {/* Hesap silme — demo oturumunda gösterilmez */}
+      {!oturum.demo && (
+        <div className="max-w-2xl space-y-3 rounded-[22px] border border-rose-100 bg-white p-5 shadow-[0_12px_30px_-22px_rgba(15,27,45,.5)]">
+          <h2 className="text-[16px] font-extrabold text-rose-600">Hesabı Sil</h2>
+          <p className="text-[12.5px] font-medium leading-relaxed text-[#9AA7B8]">
+            Hesabını kalıcı olarak silersen bir daha giriş yapamazsın. Bu işlem geri alınamaz.
+          </p>
+          <HesapSilButonu />
+        </div>
+      )}
     </div>
   );
 }

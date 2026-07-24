@@ -1808,6 +1808,8 @@ export const KullaniciScalarFieldEnum = {
   pushTipler: 'pushTipler',
   pushSessizBas: 'pushSessizBas',
   pushSessizBit: 'pushSessizBit',
+  silindi: 'silindi',
+  silindiTarih: 'silindiTarih',
   createdAt: 'createdAt'
 } as const
 

@@ -51,6 +51,8 @@ export type KullaniciMinAggregateOutputType = {
   pushTumu: boolean | null
   pushSessizBas: number | null
   pushSessizBit: number | null
+  silindi: boolean | null
+  silindiTarih: Date | null
   createdAt: Date | null
 }
 
@@ -69,6 +71,8 @@ export type KullaniciMaxAggregateOutputType = {
   pushTumu: boolean | null
   pushSessizBas: number | null
   pushSessizBit: number | null
+  silindi: boolean | null
+  silindiTarih: Date | null
   createdAt: Date | null
 }
 
@@ -88,6 +92,8 @@ export type KullaniciCountAggregateOutputType = {
   pushTipler: number
   pushSessizBas: number
   pushSessizBit: number
+  silindi: number
+  silindiTarih: number
   createdAt: number
   _all: number
 }
@@ -118,6 +124,8 @@ export type KullaniciMinAggregateInputType = {
   pushTumu?: true
   pushSessizBas?: true
   pushSessizBit?: true
+  silindi?: true
+  silindiTarih?: true
   createdAt?: true
 }
 
@@ -136,6 +144,8 @@ export type KullaniciMaxAggregateInputType = {
   pushTumu?: true
   pushSessizBas?: true
   pushSessizBit?: true
+  silindi?: true
+  silindiTarih?: true
   createdAt?: true
 }
 
@@ -155,6 +165,8 @@ export type KullaniciCountAggregateInputType = {
   pushTipler?: true
   pushSessizBas?: true
   pushSessizBit?: true
+  silindi?: true
+  silindiTarih?: true
   createdAt?: true
   _all?: true
 }
@@ -261,6 +273,8 @@ export type KullaniciGroupByOutputType = {
   pushTipler: string[]
   pushSessizBas: number | null
   pushSessizBit: number | null
+  silindi: boolean
+  silindiTarih: Date | null
   createdAt: Date
   _count: KullaniciCountAggregateOutputType | null
   _avg: KullaniciAvgAggregateOutputType | null
@@ -303,6 +317,8 @@ export type KullaniciWhereInput = {
   pushTipler?: Prisma.StringNullableListFilter<"Kullanici">
   pushSessizBas?: Prisma.IntNullableFilter<"Kullanici"> | number | null
   pushSessizBit?: Prisma.IntNullableFilter<"Kullanici"> | number | null
+  silindi?: Prisma.BoolFilter<"Kullanici"> | boolean
+  silindiTarih?: Prisma.DateTimeNullableFilter<"Kullanici"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Kullanici"> | Date | string
   kisiler?: Prisma.KisiListRelationFilter
   kaliplar?: Prisma.MesajKalibiListRelationFilter
@@ -329,6 +345,8 @@ export type KullaniciOrderByWithRelationInput = {
   pushTipler?: Prisma.SortOrder
   pushSessizBas?: Prisma.SortOrderInput | Prisma.SortOrder
   pushSessizBit?: Prisma.SortOrderInput | Prisma.SortOrder
+  silindi?: Prisma.SortOrder
+  silindiTarih?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   kisiler?: Prisma.KisiOrderByRelationAggregateInput
   kaliplar?: Prisma.MesajKalibiOrderByRelationAggregateInput
@@ -358,6 +376,8 @@ export type KullaniciWhereUniqueInput = Prisma.AtLeast<{
   pushTipler?: Prisma.StringNullableListFilter<"Kullanici">
   pushSessizBas?: Prisma.IntNullableFilter<"Kullanici"> | number | null
   pushSessizBit?: Prisma.IntNullableFilter<"Kullanici"> | number | null
+  silindi?: Prisma.BoolFilter<"Kullanici"> | boolean
+  silindiTarih?: Prisma.DateTimeNullableFilter<"Kullanici"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Kullanici"> | Date | string
   kisiler?: Prisma.KisiListRelationFilter
   kaliplar?: Prisma.MesajKalibiListRelationFilter
@@ -384,6 +404,8 @@ export type KullaniciOrderByWithAggregationInput = {
   pushTipler?: Prisma.SortOrder
   pushSessizBas?: Prisma.SortOrderInput | Prisma.SortOrder
   pushSessizBit?: Prisma.SortOrderInput | Prisma.SortOrder
+  silindi?: Prisma.SortOrder
+  silindiTarih?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.KullaniciCountOrderByAggregateInput
   _avg?: Prisma.KullaniciAvgOrderByAggregateInput
@@ -411,6 +433,8 @@ export type KullaniciScalarWhereWithAggregatesInput = {
   pushTipler?: Prisma.StringNullableListFilter<"Kullanici">
   pushSessizBas?: Prisma.IntNullableWithAggregatesFilter<"Kullanici"> | number | null
   pushSessizBit?: Prisma.IntNullableWithAggregatesFilter<"Kullanici"> | number | null
+  silindi?: Prisma.BoolWithAggregatesFilter<"Kullanici"> | boolean
+  silindiTarih?: Prisma.DateTimeNullableWithAggregatesFilter<"Kullanici"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Kullanici"> | Date | string
 }
 
@@ -430,6 +454,8 @@ export type KullaniciCreateInput = {
   pushTipler?: Prisma.KullaniciCreatepushTiplerInput | string[]
   pushSessizBas?: number | null
   pushSessizBit?: number | null
+  silindi?: boolean
+  silindiTarih?: Date | string | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiCreateNestedManyWithoutKullaniciInput
   kaliplar?: Prisma.MesajKalibiCreateNestedManyWithoutKullaniciInput
@@ -456,6 +482,8 @@ export type KullaniciUncheckedCreateInput = {
   pushTipler?: Prisma.KullaniciCreatepushTiplerInput | string[]
   pushSessizBas?: number | null
   pushSessizBit?: number | null
+  silindi?: boolean
+  silindiTarih?: Date | string | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiUncheckedCreateNestedManyWithoutKullaniciInput
   kaliplar?: Prisma.MesajKalibiUncheckedCreateNestedManyWithoutKullaniciInput
@@ -482,6 +510,8 @@ export type KullaniciUpdateInput = {
   pushTipler?: Prisma.KullaniciUpdatepushTiplerInput | string[]
   pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  silindi?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  silindiTarih?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUpdateManyWithoutKullaniciNestedInput
   kaliplar?: Prisma.MesajKalibiUpdateManyWithoutKullaniciNestedInput
@@ -508,6 +538,8 @@ export type KullaniciUncheckedUpdateInput = {
   pushTipler?: Prisma.KullaniciUpdatepushTiplerInput | string[]
   pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  silindi?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  silindiTarih?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUncheckedUpdateManyWithoutKullaniciNestedInput
   kaliplar?: Prisma.MesajKalibiUncheckedUpdateManyWithoutKullaniciNestedInput
@@ -534,6 +566,8 @@ export type KullaniciCreateManyInput = {
   pushTipler?: Prisma.KullaniciCreatepushTiplerInput | string[]
   pushSessizBas?: number | null
   pushSessizBit?: number | null
+  silindi?: boolean
+  silindiTarih?: Date | string | null
   createdAt?: Date | string
 }
 
@@ -553,6 +587,8 @@ export type KullaniciUpdateManyMutationInput = {
   pushTipler?: Prisma.KullaniciUpdatepushTiplerInput | string[]
   pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  silindi?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  silindiTarih?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -572,6 +608,8 @@ export type KullaniciUncheckedUpdateManyInput = {
   pushTipler?: Prisma.KullaniciUpdatepushTiplerInput | string[]
   pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  silindi?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  silindiTarih?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -599,6 +637,8 @@ export type KullaniciCountOrderByAggregateInput = {
   pushTipler?: Prisma.SortOrder
   pushSessizBas?: Prisma.SortOrder
   pushSessizBit?: Prisma.SortOrder
+  silindi?: Prisma.SortOrder
+  silindiTarih?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -622,6 +662,8 @@ export type KullaniciMaxOrderByAggregateInput = {
   pushTumu?: Prisma.SortOrder
   pushSessizBas?: Prisma.SortOrder
   pushSessizBit?: Prisma.SortOrder
+  silindi?: Prisma.SortOrder
+  silindiTarih?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -640,6 +682,8 @@ export type KullaniciMinOrderByAggregateInput = {
   pushTumu?: Prisma.SortOrder
   pushSessizBas?: Prisma.SortOrder
   pushSessizBit?: Prisma.SortOrder
+  silindi?: Prisma.SortOrder
+  silindiTarih?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -689,6 +733,10 @@ export type NullableIntFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -813,6 +861,8 @@ export type KullaniciCreateWithoutFirmaUyeliklerInput = {
   pushTipler?: Prisma.KullaniciCreatepushTiplerInput | string[]
   pushSessizBas?: number | null
   pushSessizBit?: number | null
+  silindi?: boolean
+  silindiTarih?: Date | string | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiCreateNestedManyWithoutKullaniciInput
   kaliplar?: Prisma.MesajKalibiCreateNestedManyWithoutKullaniciInput
@@ -838,6 +888,8 @@ export type KullaniciUncheckedCreateWithoutFirmaUyeliklerInput = {
   pushTipler?: Prisma.KullaniciCreatepushTiplerInput | string[]
   pushSessizBas?: number | null
   pushSessizBit?: number | null
+  silindi?: boolean
+  silindiTarih?: Date | string | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiUncheckedCreateNestedManyWithoutKullaniciInput
   kaliplar?: Prisma.MesajKalibiUncheckedCreateNestedManyWithoutKullaniciInput
@@ -879,6 +931,8 @@ export type KullaniciUpdateWithoutFirmaUyeliklerInput = {
   pushTipler?: Prisma.KullaniciUpdatepushTiplerInput | string[]
   pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  silindi?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  silindiTarih?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUpdateManyWithoutKullaniciNestedInput
   kaliplar?: Prisma.MesajKalibiUpdateManyWithoutKullaniciNestedInput
@@ -904,6 +958,8 @@ export type KullaniciUncheckedUpdateWithoutFirmaUyeliklerInput = {
   pushTipler?: Prisma.KullaniciUpdatepushTiplerInput | string[]
   pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  silindi?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  silindiTarih?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUncheckedUpdateManyWithoutKullaniciNestedInput
   kaliplar?: Prisma.MesajKalibiUncheckedUpdateManyWithoutKullaniciNestedInput
@@ -929,6 +985,8 @@ export type KullaniciCreateWithoutKisilerInput = {
   pushTipler?: Prisma.KullaniciCreatepushTiplerInput | string[]
   pushSessizBas?: number | null
   pushSessizBit?: number | null
+  silindi?: boolean
+  silindiTarih?: Date | string | null
   createdAt?: Date | string
   kaliplar?: Prisma.MesajKalibiCreateNestedManyWithoutKullaniciInput
   sayfalar?: Prisma.DavetSayfasiCreateNestedManyWithoutKullaniciInput
@@ -954,6 +1012,8 @@ export type KullaniciUncheckedCreateWithoutKisilerInput = {
   pushTipler?: Prisma.KullaniciCreatepushTiplerInput | string[]
   pushSessizBas?: number | null
   pushSessizBit?: number | null
+  silindi?: boolean
+  silindiTarih?: Date | string | null
   createdAt?: Date | string
   kaliplar?: Prisma.MesajKalibiUncheckedCreateNestedManyWithoutKullaniciInput
   sayfalar?: Prisma.DavetSayfasiUncheckedCreateNestedManyWithoutKullaniciInput
@@ -995,6 +1055,8 @@ export type KullaniciUpdateWithoutKisilerInput = {
   pushTipler?: Prisma.KullaniciUpdatepushTiplerInput | string[]
   pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  silindi?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  silindiTarih?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kaliplar?: Prisma.MesajKalibiUpdateManyWithoutKullaniciNestedInput
   sayfalar?: Prisma.DavetSayfasiUpdateManyWithoutKullaniciNestedInput
@@ -1020,6 +1082,8 @@ export type KullaniciUncheckedUpdateWithoutKisilerInput = {
   pushTipler?: Prisma.KullaniciUpdatepushTiplerInput | string[]
   pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  silindi?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  silindiTarih?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kaliplar?: Prisma.MesajKalibiUncheckedUpdateManyWithoutKullaniciNestedInput
   sayfalar?: Prisma.DavetSayfasiUncheckedUpdateManyWithoutKullaniciNestedInput
@@ -1045,6 +1109,8 @@ export type KullaniciCreateWithoutKaliplarInput = {
   pushTipler?: Prisma.KullaniciCreatepushTiplerInput | string[]
   pushSessizBas?: number | null
   pushSessizBit?: number | null
+  silindi?: boolean
+  silindiTarih?: Date | string | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiCreateNestedManyWithoutKullaniciInput
   sayfalar?: Prisma.DavetSayfasiCreateNestedManyWithoutKullaniciInput
@@ -1070,6 +1136,8 @@ export type KullaniciUncheckedCreateWithoutKaliplarInput = {
   pushTipler?: Prisma.KullaniciCreatepushTiplerInput | string[]
   pushSessizBas?: number | null
   pushSessizBit?: number | null
+  silindi?: boolean
+  silindiTarih?: Date | string | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiUncheckedCreateNestedManyWithoutKullaniciInput
   sayfalar?: Prisma.DavetSayfasiUncheckedCreateNestedManyWithoutKullaniciInput
@@ -1111,6 +1179,8 @@ export type KullaniciUpdateWithoutKaliplarInput = {
   pushTipler?: Prisma.KullaniciUpdatepushTiplerInput | string[]
   pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  silindi?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  silindiTarih?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUpdateManyWithoutKullaniciNestedInput
   sayfalar?: Prisma.DavetSayfasiUpdateManyWithoutKullaniciNestedInput
@@ -1136,6 +1206,8 @@ export type KullaniciUncheckedUpdateWithoutKaliplarInput = {
   pushTipler?: Prisma.KullaniciUpdatepushTiplerInput | string[]
   pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  silindi?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  silindiTarih?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUncheckedUpdateManyWithoutKullaniciNestedInput
   sayfalar?: Prisma.DavetSayfasiUncheckedUpdateManyWithoutKullaniciNestedInput
@@ -1161,6 +1233,8 @@ export type KullaniciCreateWithoutSayfalarInput = {
   pushTipler?: Prisma.KullaniciCreatepushTiplerInput | string[]
   pushSessizBas?: number | null
   pushSessizBit?: number | null
+  silindi?: boolean
+  silindiTarih?: Date | string | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiCreateNestedManyWithoutKullaniciInput
   kaliplar?: Prisma.MesajKalibiCreateNestedManyWithoutKullaniciInput
@@ -1186,6 +1260,8 @@ export type KullaniciUncheckedCreateWithoutSayfalarInput = {
   pushTipler?: Prisma.KullaniciCreatepushTiplerInput | string[]
   pushSessizBas?: number | null
   pushSessizBit?: number | null
+  silindi?: boolean
+  silindiTarih?: Date | string | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiUncheckedCreateNestedManyWithoutKullaniciInput
   kaliplar?: Prisma.MesajKalibiUncheckedCreateNestedManyWithoutKullaniciInput
@@ -1227,6 +1303,8 @@ export type KullaniciUpdateWithoutSayfalarInput = {
   pushTipler?: Prisma.KullaniciUpdatepushTiplerInput | string[]
   pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  silindi?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  silindiTarih?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUpdateManyWithoutKullaniciNestedInput
   kaliplar?: Prisma.MesajKalibiUpdateManyWithoutKullaniciNestedInput
@@ -1252,6 +1330,8 @@ export type KullaniciUncheckedUpdateWithoutSayfalarInput = {
   pushTipler?: Prisma.KullaniciUpdatepushTiplerInput | string[]
   pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  silindi?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  silindiTarih?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUncheckedUpdateManyWithoutKullaniciNestedInput
   kaliplar?: Prisma.MesajKalibiUncheckedUpdateManyWithoutKullaniciNestedInput
@@ -1277,6 +1357,8 @@ export type KullaniciCreateWithoutParolaSifirlamalarInput = {
   pushTipler?: Prisma.KullaniciCreatepushTiplerInput | string[]
   pushSessizBas?: number | null
   pushSessizBit?: number | null
+  silindi?: boolean
+  silindiTarih?: Date | string | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiCreateNestedManyWithoutKullaniciInput
   kaliplar?: Prisma.MesajKalibiCreateNestedManyWithoutKullaniciInput
@@ -1302,6 +1384,8 @@ export type KullaniciUncheckedCreateWithoutParolaSifirlamalarInput = {
   pushTipler?: Prisma.KullaniciCreatepushTiplerInput | string[]
   pushSessizBas?: number | null
   pushSessizBit?: number | null
+  silindi?: boolean
+  silindiTarih?: Date | string | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiUncheckedCreateNestedManyWithoutKullaniciInput
   kaliplar?: Prisma.MesajKalibiUncheckedCreateNestedManyWithoutKullaniciInput
@@ -1343,6 +1427,8 @@ export type KullaniciUpdateWithoutParolaSifirlamalarInput = {
   pushTipler?: Prisma.KullaniciUpdatepushTiplerInput | string[]
   pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  silindi?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  silindiTarih?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUpdateManyWithoutKullaniciNestedInput
   kaliplar?: Prisma.MesajKalibiUpdateManyWithoutKullaniciNestedInput
@@ -1368,6 +1454,8 @@ export type KullaniciUncheckedUpdateWithoutParolaSifirlamalarInput = {
   pushTipler?: Prisma.KullaniciUpdatepushTiplerInput | string[]
   pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  silindi?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  silindiTarih?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUncheckedUpdateManyWithoutKullaniciNestedInput
   kaliplar?: Prisma.MesajKalibiUncheckedUpdateManyWithoutKullaniciNestedInput
@@ -1393,6 +1481,8 @@ export type KullaniciCreateWithoutPushTokenlarInput = {
   pushTipler?: Prisma.KullaniciCreatepushTiplerInput | string[]
   pushSessizBas?: number | null
   pushSessizBit?: number | null
+  silindi?: boolean
+  silindiTarih?: Date | string | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiCreateNestedManyWithoutKullaniciInput
   kaliplar?: Prisma.MesajKalibiCreateNestedManyWithoutKullaniciInput
@@ -1418,6 +1508,8 @@ export type KullaniciUncheckedCreateWithoutPushTokenlarInput = {
   pushTipler?: Prisma.KullaniciCreatepushTiplerInput | string[]
   pushSessizBas?: number | null
   pushSessizBit?: number | null
+  silindi?: boolean
+  silindiTarih?: Date | string | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiUncheckedCreateNestedManyWithoutKullaniciInput
   kaliplar?: Prisma.MesajKalibiUncheckedCreateNestedManyWithoutKullaniciInput
@@ -1459,6 +1551,8 @@ export type KullaniciUpdateWithoutPushTokenlarInput = {
   pushTipler?: Prisma.KullaniciUpdatepushTiplerInput | string[]
   pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  silindi?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  silindiTarih?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUpdateManyWithoutKullaniciNestedInput
   kaliplar?: Prisma.MesajKalibiUpdateManyWithoutKullaniciNestedInput
@@ -1484,6 +1578,8 @@ export type KullaniciUncheckedUpdateWithoutPushTokenlarInput = {
   pushTipler?: Prisma.KullaniciUpdatepushTiplerInput | string[]
   pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  silindi?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  silindiTarih?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUncheckedUpdateManyWithoutKullaniciNestedInput
   kaliplar?: Prisma.MesajKalibiUncheckedUpdateManyWithoutKullaniciNestedInput
@@ -1509,6 +1605,8 @@ export type KullaniciCreateWithoutBildirimlerInput = {
   pushTipler?: Prisma.KullaniciCreatepushTiplerInput | string[]
   pushSessizBas?: number | null
   pushSessizBit?: number | null
+  silindi?: boolean
+  silindiTarih?: Date | string | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiCreateNestedManyWithoutKullaniciInput
   kaliplar?: Prisma.MesajKalibiCreateNestedManyWithoutKullaniciInput
@@ -1534,6 +1632,8 @@ export type KullaniciUncheckedCreateWithoutBildirimlerInput = {
   pushTipler?: Prisma.KullaniciCreatepushTiplerInput | string[]
   pushSessizBas?: number | null
   pushSessizBit?: number | null
+  silindi?: boolean
+  silindiTarih?: Date | string | null
   createdAt?: Date | string
   kisiler?: Prisma.KisiUncheckedCreateNestedManyWithoutKullaniciInput
   kaliplar?: Prisma.MesajKalibiUncheckedCreateNestedManyWithoutKullaniciInput
@@ -1575,6 +1675,8 @@ export type KullaniciUpdateWithoutBildirimlerInput = {
   pushTipler?: Prisma.KullaniciUpdatepushTiplerInput | string[]
   pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  silindi?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  silindiTarih?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUpdateManyWithoutKullaniciNestedInput
   kaliplar?: Prisma.MesajKalibiUpdateManyWithoutKullaniciNestedInput
@@ -1600,6 +1702,8 @@ export type KullaniciUncheckedUpdateWithoutBildirimlerInput = {
   pushTipler?: Prisma.KullaniciUpdatepushTiplerInput | string[]
   pushSessizBas?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pushSessizBit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  silindi?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  silindiTarih?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kisiler?: Prisma.KisiUncheckedUpdateManyWithoutKullaniciNestedInput
   kaliplar?: Prisma.MesajKalibiUncheckedUpdateManyWithoutKullaniciNestedInput
@@ -1710,6 +1814,8 @@ export type KullaniciSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   pushTipler?: boolean
   pushSessizBas?: boolean
   pushSessizBit?: boolean
+  silindi?: boolean
+  silindiTarih?: boolean
   createdAt?: boolean
   kisiler?: boolean | Prisma.Kullanici$kisilerArgs<ExtArgs>
   kaliplar?: boolean | Prisma.Kullanici$kaliplarArgs<ExtArgs>
@@ -1737,6 +1843,8 @@ export type KullaniciSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   pushTipler?: boolean
   pushSessizBas?: boolean
   pushSessizBit?: boolean
+  silindi?: boolean
+  silindiTarih?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["kullanici"]>
 
@@ -1756,6 +1864,8 @@ export type KullaniciSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   pushTipler?: boolean
   pushSessizBas?: boolean
   pushSessizBit?: boolean
+  silindi?: boolean
+  silindiTarih?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["kullanici"]>
 
@@ -1775,10 +1885,12 @@ export type KullaniciSelectScalar = {
   pushTipler?: boolean
   pushSessizBas?: boolean
   pushSessizBit?: boolean
+  silindi?: boolean
+  silindiTarih?: boolean
   createdAt?: boolean
 }
 
-export type KullaniciOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "adSoyad" | "email" | "telefon" | "parolaHash" | "rol" | "sehir" | "bio" | "profilFoto" | "varsayilanFirmaId" | "pushAcik" | "pushTumu" | "pushTipler" | "pushSessizBas" | "pushSessizBit" | "createdAt", ExtArgs["result"]["kullanici"]>
+export type KullaniciOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "adSoyad" | "email" | "telefon" | "parolaHash" | "rol" | "sehir" | "bio" | "profilFoto" | "varsayilanFirmaId" | "pushAcik" | "pushTumu" | "pushTipler" | "pushSessizBas" | "pushSessizBit" | "silindi" | "silindiTarih" | "createdAt", ExtArgs["result"]["kullanici"]>
 export type KullaniciInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   kisiler?: boolean | Prisma.Kullanici$kisilerArgs<ExtArgs>
   kaliplar?: boolean | Prisma.Kullanici$kaliplarArgs<ExtArgs>
@@ -1819,6 +1931,8 @@ export type $KullaniciPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     pushTipler: string[]
     pushSessizBas: number | null
     pushSessizBit: number | null
+    silindi: boolean
+    silindiTarih: Date | null
     createdAt: Date
   }, ExtArgs["result"]["kullanici"]>
   composites: {}
@@ -2265,6 +2379,8 @@ export interface KullaniciFieldRefs {
   readonly pushTipler: Prisma.FieldRef<"Kullanici", 'String[]'>
   readonly pushSessizBas: Prisma.FieldRef<"Kullanici", 'Int'>
   readonly pushSessizBit: Prisma.FieldRef<"Kullanici", 'Int'>
+  readonly silindi: Prisma.FieldRef<"Kullanici", 'Boolean'>
+  readonly silindiTarih: Prisma.FieldRef<"Kullanici", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Kullanici", 'DateTime'>
 }
     

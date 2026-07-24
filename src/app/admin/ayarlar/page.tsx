@@ -2,6 +2,7 @@ import Image from "next/image";
 import { getAyar } from "@/lib/ayarlar";
 import { ayarGuncelle } from "@/app/admin/actions";
 import SubmitButton from "@/components/SubmitButton";
+import SistemBakim from "@/components/SistemBakim";
 
 export default async function SistemAyarlari() {
   const a = await getAyar();
@@ -92,6 +93,9 @@ export default async function SistemAyarlari() {
           Ayarları Kaydet
         </SubmitButton>
       </form>
+
+      {/* Sistem bakımı — migration & önbellek (form dışında, kendi action'ları var) */}
+      <SistemBakim />
     </div>
   );
 }

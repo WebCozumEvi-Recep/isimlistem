@@ -59,6 +59,11 @@ export default async function KaliplarSayfasi() {
           ))}
         </div>
 
+        {user.demo ? (
+          <div className="rounded-[18px] border border-dashed border-[#E4E9F0] bg-[#F7F9FB] p-4 text-center text-[13px] font-semibold text-[#9AA7B8]">
+            Demo modunda yeni mesaj oluşturma kapalıdır.
+          </div>
+        ) : (
         <div className="rounded-[18px] border border-[#ECEFF3] bg-white p-4 shadow-[0_8px_22px_-18px_rgba(15,27,45,.5)]">
           <h2 className="mb-3 text-[15px] font-extrabold text-[#0F1B2D]">Yeni Kalıp</h2>
           <form action={kalipEkle} className="space-y-2.5">
@@ -87,6 +92,7 @@ export default async function KaliplarSayfasi() {
             </button>
           </form>
         </div>
+        )}
       </div>
     </div>
   );

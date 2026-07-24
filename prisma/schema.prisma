@@ -171,6 +171,10 @@ model Kullanici {
   pushSessizBas   Int?           @default(23) // sessiz saat başlangıcı (0-23), null = kapalı
   pushSessizBit   Int?           @default(8) // sessiz saat bitişi (0-23)
   firmaUyelikler  FirmaUye[]
+  // Hesap silme (soft-delete): kullanıcı hesabını siler; veri korunur ama
+  // giriş yapılamaz ve "silinmiş" sayılır. Apple 5.1.1(v) / Play gereği.
+  silindi         Boolean        @default(false)
+  silindiTarih    DateTime?
   createdAt       DateTime       @default(now())
 }
 

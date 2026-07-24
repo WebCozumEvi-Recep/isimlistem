@@ -67,6 +67,9 @@ export async function girisYap(_prev: FormDurum, formData: FormData): Promise<Fo
   if (!kullanici || !(await bcrypt.compare(parola, kullanici.parolaHash))) {
     return { hata: "E-posta veya parola hatalı." };
   }
+  if (kullanici.silindi) {
+    return { hata: "Bu hesap silinmiş. Yeni bir hesap oluşturabilirsin." };
+  }
 
   const hatirla = formData.get("hatirla") === "on";
   await setSession({
@@ -81,6 +84,28 @@ export async function girisYap(_prev: FormDurum, formData: FormData): Promise<Fo
 export async function cikisYap() {
   await clearSession();
   redirect("/auth/giris");
+}
+
+// Demo/misafir giriş: sabit demo hesabıyla oturum açar (parola sorulmaz),
+// oturuma demo:true bayrağı eklenir. Demo hesabı seed-demo.ts ile oluşturulur.
+const DEMO_EMAIL = "demo-networker@isimlistem.com";
+
+export async function demoGiris(): Promise<void> {
+  const kullanici = await prisma.kullanici.findUnique({ where: { email: DEMO_EMAIL } });
+  if (!kullanici || kullanici.silindi) {
+    redirect("/auth/giris?demoHata=1");
+  }
+  await setSession(
+    {
+      id: kullanici.id,
+      adSoyad: kullanici.adSoyad,
+      email: kullanici.email,
+      rol: "UYE", // demo her zaman üye yetkisinde
+      demo: true,
+    },
+    false // demo oturumu kalıcı olmasın (tarayıcı kapanınca bitsin)
+  );
+  redirect("/panel");
 }
 
 // ---------- Parola sıfırlama ----------

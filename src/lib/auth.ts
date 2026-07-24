@@ -13,3 +13,12 @@ export async function requireAdmin(): Promise<SessionPayload> {
   if (session.rol !== "ADMIN") redirect("/panel");
   return session;
 }
+
+/** Demo/misafir oturumunda kişi ekleme üst sınırı. */
+export const DEMO_KISI_LIMIT = 3;
+
+/** Oturum demo (misafir) modu mu? Write action'larını kısıtlamak için kullanılır. */
+export async function demoModuMu(): Promise<boolean> {
+  const session = await getSession();
+  return session?.demo === true;
+}

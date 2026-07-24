@@ -752,10 +752,6 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
-}
-
 export type KisiCreateNestedOneWithoutAktivitelerInput = {
   create?: Prisma.XOR<Prisma.KisiCreateWithoutAktivitelerInput, Prisma.KisiUncheckedCreateWithoutAktivitelerInput>
   connectOrCreate?: Prisma.KisiCreateOrConnectWithoutAktivitelerInput

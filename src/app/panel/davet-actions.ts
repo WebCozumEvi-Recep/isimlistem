@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { writeFile, mkdir } from "fs/promises";
 import path from "path";
 import { prisma } from "@/lib/prisma";
-import { requireUser } from "@/lib/auth";
+import { requireUser, demoModuMu } from "@/lib/auth";
 import { davetUrl } from "@/lib/site";
 import { davetToken } from "@/server/token";
 import { mesajDoldur, waMeUrl } from "@/server/mesaj";
@@ -22,6 +22,8 @@ function metin(fd: FormData, key: string): string | null {
 
 export async function kalipEkle(formData: FormData) {
   const user = await requireUser();
+  // Demo modunda mesaj oluşturma kapalı.
+  if (await demoModuMu()) return;
   const baslik = metin(formData, "baslik");
   const mesajMetni = metin(formData, "metin");
   if (!baslik || !mesajMetni) return;

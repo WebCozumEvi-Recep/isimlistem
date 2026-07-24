@@ -27,11 +27,13 @@ export default function MobilKabuk({
   okunmamis = 0,
   aday = 0,
   bekleyenRandevu = 0,
+  demo = false,
 }: {
   baslik?: string;
   okunmamis?: number;
   aday?: number;
   bekleyenRandevu?: number;
+  demo?: boolean;
 }) {
   const pathname = usePathname();
   const router = useRouter();
@@ -77,9 +79,11 @@ export default function MobilKabuk({
           <Link href="/panel/kisi/yeni" aria-label="Aday Ekle" className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-white active:bg-white/20">
             <Plus size={22} />
           </Link>
-          <Link href="/panel/kesfet" aria-label="Keşfet" className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-white active:bg-white/20">
-            <Compass size={22} />
-          </Link>
+          {!demo && (
+            <Link href="/panel/kesfet" aria-label="Keşfet" className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-white active:bg-white/20">
+              <Compass size={22} />
+            </Link>
+          )}
         </div>
       </header>
 

@@ -3,7 +3,7 @@
 import { useActionState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { girisYap, kayitOl, type FormDurum } from "@/app/auth/actions";
+import { girisYap, kayitOl, demoGiris, type FormDurum } from "@/app/auth/actions";
 import ParolaAlani from "@/components/ParolaAlani";
 
 export default function AuthForm({ mod, firmaModu }: { mod: "giris" | "kayit"; firmaModu?: boolean }) {
@@ -14,6 +14,8 @@ export default function AuthForm({ mod, firmaModu }: { mod: "giris" | "kayit"; f
   );
   const params = useSearchParams();
   const sifirlandi = mod === "giris" && params.get("sifirlandi") === "1";
+  const silindi = mod === "giris" && params.get("silindi") === "1";
+  const demoHata = mod === "giris" && params.get("demoHata") === "1";
 
   return (
     <div className="w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
@@ -27,6 +29,12 @@ export default function AuthForm({ mod, firmaModu }: { mod: "giris" | "kayit"; f
       {sifirlandi && (
         <p className="mt-4 rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-700">
           Parolan güncellendi. Yeni parolanla giriş yapabilirsin.
+        </p>
+      )}
+
+      {silindi && (
+        <p className="mt-4 rounded-lg bg-slate-100 px-3 py-2 text-sm text-slate-600">
+          Hesabın silindi. Dilersen yeni bir hesap oluşturabilirsin.
         </p>
       )}
 
@@ -66,6 +74,32 @@ export default function AuthForm({ mod, firmaModu }: { mod: "giris" | "kayit"; f
           {bekliyor ? "Lütfen bekleyin…" : mod === "giris" ? "Giriş Yap" : "Kayıt Ol"}
         </button>
       </form>
+
+      {mod === "giris" && (
+        <>
+          <div className="my-5 flex items-center gap-3">
+            <span className="h-px flex-1 bg-slate-200" />
+            <span className="text-xs font-medium text-slate-400">veya</span>
+            <span className="h-px flex-1 bg-slate-200" />
+          </div>
+          {demoHata && (
+            <p className="mb-3 rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-700">
+              Demo hesabı şu an kullanılamıyor. Lütfen daha sonra tekrar deneyin.
+            </p>
+          )}
+          <form action={demoGiris}>
+            <button
+              type="submit"
+              className="w-full rounded-xl border border-slate-300 bg-white py-2.5 font-semibold text-slate-700 transition hover:border-emerald-400 hover:text-emerald-700"
+            >
+              Demo olarak gez (kayıt gerekmez)
+            </button>
+          </form>
+          <p className="mt-2 text-center text-xs text-slate-400">
+            Örnek verilerle uygulamayı incele. Demo modunda bazı işlemler kısıtlıdır.
+          </p>
+        </>
+      )}
 
       <p className="mt-6 text-center text-sm text-slate-500">
         {mod === "giris" ? (

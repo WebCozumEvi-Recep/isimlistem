@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
-import { requireUser } from "@/lib/auth";
+import { requireUser, demoModuMu, DEMO_KISI_LIMIT } from "@/lib/auth";
 import {
   SUNUM_DURUMLARI,
   KAYNAK_TIPLERI,
@@ -49,6 +49,13 @@ async function sahipKisi(kisiId: string, kullaniciId: string) {
 
 export async function kisiEkle(formData: FormData) {
   const user = await requireUser();
+  // Demo modu: en fazla DEMO_KISI_LIMIT kişi eklenebilir.
+  if (await demoModuMu()) {
+    const mevcut = await prisma.kisi.count({ where: { kullaniciId: user.id } });
+    if (mevcut >= DEMO_KISI_LIMIT) {
+      redirect(`/panel/liste?demo=limit`);
+    }
+  }
   const adSoyad = metin(formData, "adSoyad");
   const telefonZorunlu = metin(formData, "telefon");
   if (!adSoyad || !telefonZorunlu) return;
@@ -155,6 +162,8 @@ export async function kisiSil(kisiId: string) {
 // Excel/CSV içe aktarma — başlıklar: "Ad Soyad", "Telefon", "E-posta", "Bağ Notu".
 export async function kisiIceAktar(formData: FormData) {
   const user = await requireUser();
+  // Demo modunda toplu içe aktarma kapalı (kişi limiti 3).
+  if (await demoModuMu()) redirect("/panel/liste?demo=limit");
   const dosya = formData.get("dosya");
   if (!(dosya instanceof File) || dosya.size === 0) redirect("/panel/liste?hata=dosya");
 

@@ -12,6 +12,9 @@ export type SessionPayload = {
   adSoyad: string;
   email: string;
   rol: "UYE" | "ADMIN";
+  // Demo/misafir oturumu: true ise Keşfet gizli, mesaj oluşturma kapalı,
+  // kişi ekleme en fazla 3 (auth.ts DEMO_KISI_LIMIT).
+  demo?: boolean;
 };
 
 export async function setSession(payload: SessionPayload, kalici = true) {

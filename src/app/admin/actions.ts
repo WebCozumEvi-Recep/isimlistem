@@ -5,9 +5,51 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { writeFile, mkdir } from "fs/promises";
 import path from "path";
+import { exec } from "child_process";
+import { promisify } from "util";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth";
 import { benzersizSlug, kayitKoduUret } from "@/lib/firma";
+
+const execAsync = promisify(exec);
+
+export type BakimSonuc = { ok: boolean; mesaj: string };
+
+/**
+ * Prisma şemasını (schema.prisma) canlı veritabanına senkronlar — eksik
+ * tablo/sütunları ekler. Bu proje `prisma db push` iş akışını kullanır
+ * (deploy.sh build adımıyla aynı komut). Veri kaybı riski olan değişiklikte
+ * güvenli tarafta kalır ve uygulamaz (--accept-data-loss verilmez).
+ */
+export async function migrasyonCalistir(): Promise<BakimSonuc> {
+  await requireAdmin();
+  try {
+    const { stdout, stderr } = await execAsync("npx prisma db push --skip-generate", {
+      cwd: process.cwd(),
+      timeout: 120000,
+      env: process.env,
+    });
+    const cikti = `${stdout}\n${stderr}`.trim();
+    return { ok: true, mesaj: cikti || "Veritabanı güncel. Bekleyen değişiklik yoktu." };
+  } catch (e) {
+    const err = e as { stdout?: string; stderr?: string; message?: string };
+    return { ok: false, mesaj: (err.stderr || err.stdout || err.message || "Bilinmeyen hata").trim() };
+  }
+}
+
+/**
+ * Uygulama önbelleğini boşaltır — tüm yolların Next.js data/route cache'ini
+ * yeniler. İçerik güncellemeleri hemen görünsün diye kullanılır.
+ */
+export async function cacheBosalt(): Promise<BakimSonuc> {
+  await requireAdmin();
+  try {
+    revalidatePath("/", "layout");
+    return { ok: true, mesaj: "Önbellek boşaltıldı. Değişiklikler birkaç saniye içinde yansır." };
+  } catch (e) {
+    return { ok: false, mesaj: (e as Error).message };
+  }
+}
 
 function metin(fd: FormData, key: string): string | null {
   const v = String(fd.get(key) ?? "").trim();

@@ -1,8 +1,10 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
-import { requireUser } from "@/lib/auth";
+import { requireUser, demoModuMu } from "@/lib/auth";
+import { clearSession } from "@/lib/session";
 
 function metin(fd: FormData, key: string): string | null {
   const v = String(fd.get(key) ?? "").trim();
@@ -29,6 +31,37 @@ export async function profilGuncelle(formData: FormData) {
 
   revalidatePath("/panel/profil");
   revalidatePath("/panel", "layout");
+}
+
+/**
+ * Hesabı siler (soft-delete): veriyi silmeden hesabı pasife alır — kullanıcı
+ * bir daha giriş yapamaz, sistemde "silinmiş" sayılır. E-posta çakışmasını
+ * önlemek için benzersiz e-posta serbest bırakılır (silindi:<zaman>:<eski>).
+ * Demo hesabında çalışmaz.
+ */
+export async function hesabiSil() {
+  const user = await requireUser();
+  if (await demoModuMu()) return; // demo hesabı silinemez
+
+  const now = new Date();
+  const mevcut = await prisma.kullanici.findUnique({ where: { id: user.id }, select: { email: true, silindi: true } });
+  if (!mevcut || mevcut.silindi) {
+    await clearSession();
+    redirect("/auth/giris");
+  }
+
+  await prisma.kullanici.update({
+    where: { id: user.id },
+    data: {
+      silindi: true,
+      silindiTarih: now,
+      // E-postayı serbest bırak ki kullanıcı ileride yeni hesap açabilsin.
+      email: `silindi:${now.getTime()}:${mevcut!.email}`,
+    },
+  });
+
+  await clearSession();
+  redirect("/auth/giris?silindi=1");
 }
 
 function saat(fd: FormData, key: string): number {
