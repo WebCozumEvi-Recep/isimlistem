@@ -89,6 +89,13 @@ function getRNWebView(): RNWebView | undefined {
   return (globalThis as unknown as { ReactNativeWebView?: RNWebView }).ReactNativeWebView;
 }
 
+// Uygulama modu tespiti: user-agent'ta "IsimListemApp" imzası (App.tsx bunu ekler).
+// ReactNativeWebView objesinden daha güvenilir (her zaman hazır).
+function appIcindeMi(): boolean {
+  if (typeof navigator === "undefined") return false;
+  return navigator.userAgent.includes("IsimListemApp");
+}
+
 export default function Kesfet() {
   const router = useRouter();
   const [grupKey, setGrupKey] = useState<string | null>(null);
@@ -98,7 +105,7 @@ export default function Kesfet() {
   // Sunucuda false, istemcide gerçek değer — hydration uyumlu.
   const appModu = useSyncExternalStore(
     () => () => {},
-    () => !!getRNWebView(),
+    () => appIcindeMi(),
     () => false
   );
 
@@ -208,25 +215,25 @@ export default function Kesfet() {
   return (
     <div className="space-y-4">
       <Baslik arama={arama} setArama={setArama} onYeniAday={() => router.push("/panel/kisi/yeni")} />
+      {appModu && (
+        <button
+          onClick={rehberdenEkle}
+          className="flex w-full items-center gap-3 rounded-2xl border border-emerald-300 bg-gradient-to-br from-[#E7F8EE] to-white p-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+        >
+          <span className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-emerald-500 text-white">
+            <Phone size={24} />
+          </span>
+          <div className="min-w-0 flex-1">
+            <div className="text-[15px] font-extrabold text-slate-900">Rehberinden Ekle</div>
+            <div className="mt-0.5 text-xs font-semibold leading-snug text-slate-500">
+              Telefon rehberinden seç, ad ve numara otomatik dolsun
+            </div>
+          </div>
+          <ChevronRight size={20} className="flex-none text-emerald-400" />
+        </button>
+      )}
       <div className="text-[13px] font-bold text-slate-500">Bir kaynak seç, aklına gelenleri ekle:</div>
       <div className="flex flex-col gap-2.5">
-        {appModu && (
-          <button
-            onClick={rehberdenEkle}
-            className="flex w-full items-center gap-3 rounded-2xl border border-emerald-200 bg-gradient-to-br from-[#E7F8EE] to-white p-3.5 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
-          >
-            <span className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-emerald-500 text-white">
-              <Phone size={24} />
-            </span>
-            <div className="min-w-0 flex-1">
-              <div className="text-[15px] font-extrabold text-slate-900">Rehberden Kişi Ekle</div>
-              <div className="mt-0.5 text-xs font-semibold leading-snug text-slate-500">
-                Telefon rehberinden seç, ad ve numara otomatik dolsun
-              </div>
-            </div>
-            <ChevronRight size={20} className="flex-none text-emerald-400" />
-          </button>
-        )}
         {GRUPLAR.map((g) => (
           <button
             key={g.key}
