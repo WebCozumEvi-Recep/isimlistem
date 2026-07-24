@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { migrasyonCalistir, cacheBosalt, demoVerisiOlustur, type BakimSonuc } from "@/app/admin/actions";
-import { Database, RefreshCw, Sparkles } from "lucide-react";
+import { migrasyonCalistir, cacheBosalt, type BakimSonuc } from "@/app/admin/actions";
+import { Database, RefreshCw } from "lucide-react";
 
 export default function SistemBakim() {
   const [bekliyor, basla] = useTransition();
@@ -48,17 +48,6 @@ export default function SistemBakim() {
           <RefreshCw size={16} />
           {bekliyor && aktif === "cache" ? "Boşaltılıyor…" : "Önbelleği Boşalt"}
         </button>
-
-        {/* GEÇİCİ: demo verisi seed butonu — bir kez kullanıldıktan sonra kaldırılabilir. */}
-        <button
-          type="button"
-          disabled={bekliyor}
-          onClick={() => calistir("demo", demoVerisiOlustur)}
-          className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700 disabled:opacity-60"
-        >
-          <Sparkles size={16} />
-          {bekliyor && aktif === "demo" ? "Oluşturuluyor…" : "Demo Verisi Oluştur (geçici)"}
-        </button>
       </div>
 
       {sonuc && (
@@ -68,8 +57,7 @@ export default function SistemBakim() {
           }`}
         >
           <p className="mb-1 font-semibold">
-            {sonuc.ok ? "✓ Başarılı" : "✗ Hata"} —{" "}
-            {sonuc.islem === "migration" ? "Migration" : sonuc.islem === "demo" ? "Demo Verisi" : "Önbellek"}
+            {sonuc.ok ? "✓ Başarılı" : "✗ Hata"} — {sonuc.islem === "migration" ? "Migration" : "Önbellek"}
           </p>
           <pre className="max-h-52 overflow-auto whitespace-pre-wrap font-mono text-xs leading-relaxed">{sonuc.mesaj}</pre>
         </div>

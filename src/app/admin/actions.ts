@@ -38,27 +38,6 @@ export async function migrasyonCalistir(): Promise<BakimSonuc> {
 }
 
 /**
- * GEÇİCİ: Demo verisini (demo firma + demo-networker hesabı + örnek adaylar)
- * canlı veritabanına ekler. Demo giriş özelliğinin çalışması için bir kez
- * çalıştırılır. İş bittikten sonra bu action ve butonu kaldırılabilir.
- */
-export async function demoVerisiOlustur(): Promise<BakimSonuc> {
-  await requireAdmin();
-  try {
-    const { stdout, stderr } = await execAsync("npm run db:seed-demo", {
-      cwd: process.cwd(),
-      timeout: 180000,
-      env: process.env,
-    });
-    const cikti = `${stdout}\n${stderr}`.trim();
-    return { ok: true, mesaj: cikti || "Demo verisi oluşturuldu." };
-  } catch (e) {
-    const err = e as { stdout?: string; stderr?: string; message?: string };
-    return { ok: false, mesaj: (err.stderr || err.stdout || err.message || "Bilinmeyen hata").trim() };
-  }
-}
-
-/**
  * Uygulama önbelleğini boşaltır — tüm yolların Next.js data/route cache'ini
  * yeniler. İçerik güncellemeleri hemen görünsün diye kullanılır.
  */
