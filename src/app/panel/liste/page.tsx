@@ -67,20 +67,20 @@ export default async function ListeSayfasi({
 
   return (
     <div className="space-y-4">
-      <div className="flex items-start justify-between gap-3">
-        <h1 className="text-[21px] font-extrabold leading-tight text-[#0F1B2D]">
-          Aday İsim Listesi{" "}
-          <span className="text-[#16B364]">({kisiler.length})</span>
-        </h1>
-        <div className="flex items-center gap-2">
-          <IceAktarButton />
-          <a
-            href="/api/disa-aktar"
-            className="flex flex-col items-center gap-1 rounded-[13px] border border-[#DDE3EA] bg-white px-3 py-2 text-[12px] font-bold text-[#3B4759] hover:bg-slate-50"
-          >
-            <Upload size={18} className="text-[#16A34A]" /> Excel&apos;e
-          </a>
-        </div>
+      <h1 className="text-[21px] font-extrabold leading-tight text-[#0F1B2D]">
+        Aday İsim Listesi{" "}
+        <span className="text-[#16B364]">({kisiler.length})</span>
+      </h1>
+
+      {/* İçe/dışa aktarma — arama kutusunun hemen üstünde, yan yana eşit */}
+      <div className="grid grid-cols-2 gap-2.5">
+        <IceAktarButton />
+        <a
+          href="/api/disa-aktar"
+          className="flex items-center justify-center gap-2 rounded-xl border border-[#DDE3EA] bg-white px-3 py-2.5 text-[13px] font-bold text-[#3B4759] hover:bg-slate-50"
+        >
+          <Upload size={17} className="text-[#16A34A]" /> Excel&apos;e Aktar
+        </a>
       </div>
 
       <form className="space-y-2.5" method="get">
